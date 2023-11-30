@@ -1,0 +1,25 @@
+import styled from 'styled-components';
+import Box from '../../../ui/box/box';
+
+export const StyledProcesses = styled('div')`
+  display: flex;
+  gap: 16px;
+  width: 100%;
+`;
+
+export const Process = styled(Box)`
+  display: flex;
+  gap: 8px;
+  flex-grow: 1;
+  align-items: center;
+  padding: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 110%;
+`;
+
+export const ProcessInner = styled('div')`
+  display: flex;
+  flex-direction: column;
+`;
