@@ -1,8 +1,8 @@
-import EmployeeLayout from '../../layouts/employee-layout/employee-layout'
-import PageLayout from '../../layouts/page-layout/page-layout'
-import PrivateRoute from '../../private-route/private-route'
-import { Main } from '../main-page/styled'
+import PrivateRoute from '@/components/private-route/private-route'
 import LaborActivities from './labor-activities/labor-activities'
+import PageLayout from '@/components/layouts/page-layout/page-layout'
+import EmployeeLayout from '@/components/layouts/employee-layout/employee-layout'
+import { Main } from './styled'
 
 function EmployeeWorkPage(): JSX.Element {
   return (

@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type BriefcaseIconProps = {
   width: number
   height: number
@@ -23,4 +21,4 @@ function BriefcaseIcon({ width, height }: BriefcaseIconProps): JSX.Element {
   )
 }
 
-export default memo(BriefcaseIcon)
+export default BriefcaseIcon

@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type UserMinusIconProps = {
   width: number
   height: number
@@ -24,4 +22,4 @@ function UserMinusIcon({ width, height }: UserMinusIconProps): JSX.Element {
   )
 }
 
-export default memo(UserMinusIcon)
+export default UserMinusIcon

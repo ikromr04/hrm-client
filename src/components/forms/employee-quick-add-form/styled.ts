@@ -1,5 +1,5 @@
+import Text from '@/components/ui/text/text';
 import styled from 'styled-components';
-import Text from '../../ui/text/text';
 
 export const Form = styled('form')`
   width: 560px;

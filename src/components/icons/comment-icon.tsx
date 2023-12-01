@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type CommentIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function CommentIcon({ width, height }: CommentIconProps): JSX.Element {
   )
 }
 
-export default memo(CommentIcon)
+export default CommentIcon

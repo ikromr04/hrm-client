@@ -1,6 +1,6 @@
+import { StyledInfo } from '@/components/ui/info/styled';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { StyledInfo } from '../../../ui/info/styled';
 
 export const StyledLink = styled(Link).withConfig({
   shouldForwardProp: (props) => !['isCurrent', 'isCollapsed'].includes(props),

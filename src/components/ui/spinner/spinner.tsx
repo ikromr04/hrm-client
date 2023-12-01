@@ -5,7 +5,7 @@ type SpinnerProps = {
   width?: number
   stroke?: number
   color?: string
-  [rest: string]: any
+  [rest: string]: unknown
 }
 
 function Spinner(props: SpinnerProps): JSX.Element {

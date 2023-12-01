@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type LanguageIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function LanguageIcon({ width, height }: LanguageIconProps): JSX.Element {
   )
 }
 
-export default memo(LanguageIcon)
+export default LanguageIcon

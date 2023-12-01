@@ -1,5 +1,5 @@
-import { useAppSelector } from '../../../../../hooks'
-import { getEmployeePersonalData } from '../../../../../store/employee-slice/employees-selector'
+import { useAppSelector } from '@/hooks'
+import { getEmployeePersonalData } from '@/store/employee-slice/employees-selector'
 
 function FamilyStatus(): JSX.Element {
   const personalData = useAppSelector(getEmployeePersonalData)

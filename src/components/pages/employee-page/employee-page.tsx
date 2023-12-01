@@ -1,10 +1,10 @@
-import EmployeeLayout from '../../layouts/employee-layout/employee-layout'
-import PageLayout from '../../layouts/page-layout/page-layout'
-import PrivateRoute from '../../private-route/private-route'
+import PrivateRoute from '@/components/private-route/private-route'
 import EmployeeEducations from './employee-educations/employee-educations'
 import Employee from './employee/employee'
 import PersonalData from './personal-data/personal-data'
 import { Main } from './styled'
+import PageLayout from '@/components/layouts/page-layout/page-layout'
+import EmployeeLayout from '@/components/layouts/employee-layout/employee-layout'
 
 function EmployeePage(): JSX.Element {
   return (

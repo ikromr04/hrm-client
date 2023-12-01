@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from '../../../../hooks'
-import { getNavigationCollapsedState } from '../../../../store/app-slice/app-selector'
+import { useAppDispatch, useAppSelector } from '@/hooks'
 import { StyledButton } from './styled'
-import ArrowLeftIcon from '../../../icons/arrow-left-icon'
-import { toggleNavigationAction } from '../../../../store/app-slice/app-slice'
+import { getNavigationCollapsedState } from '@/store/app-slice/app-selector'
+import { toggleNavigationAction } from '@/store/app-slice/app-slice'
+import ArrowLeftIcon from '@/components/icons/arrow-left-icon'
 
 function ToggleButton(): JSX.Element {
   const isCollapsed = useAppSelector(getNavigationCollapsedState)

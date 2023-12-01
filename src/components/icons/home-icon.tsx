@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type HomeIconProps = {
   width: number
   height: number
@@ -23,4 +21,4 @@ function HomeIcon({ width, height }: HomeIconProps): JSX.Element {
   )
 }
 
-export default memo(HomeIcon)
+export default HomeIcon

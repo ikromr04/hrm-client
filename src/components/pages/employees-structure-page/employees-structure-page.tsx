@@ -1,4 +1,4 @@
-import EmployeesLayout from '../../layouts/employees-layout/employees-layout'
+import EmployeesLayout from '@/components/layouts/employees-layout/employees-layout'
 
 function EmployeesStructurePage(): JSX.Element {
   return (

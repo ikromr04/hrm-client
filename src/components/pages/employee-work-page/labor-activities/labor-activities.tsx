@@ -1,10 +1,10 @@
-import EducationIcon from '../../../icons/education-icon'
-import Box from '../../../ui/box/box'
-import IconsBox from '../../../ui/icons-box/icons-box'
-import Title from '../../../ui/title/title'
+import Box from '@/components/ui/box/box'
 import Activities from './activities/activities'
 import CreateActivity from './create-activity/create-activity'
 import { Toolbar } from './styled'
+import IconsBox from '@/components/ui/icons-box/icons-box'
+import Title from '@/components/ui/title/title'
+import EducationIcon from '@/components/icons/education-icon'
 
 function LaborActivities(): JSX.Element {
   return (

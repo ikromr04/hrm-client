@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type ClockIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function ClockIcon({ width, height }: ClockIconProps): JSX.Element {
   )
 }
 
-export default memo(ClockIcon)
+export default ClockIcon

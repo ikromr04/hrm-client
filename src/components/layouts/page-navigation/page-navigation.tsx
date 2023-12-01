@@ -1,11 +1,11 @@
-import { AppRoute } from '../../../const'
-import AddressBookIcon from '../../icons/address-book-icon'
-import HomeIcon from '../../icons/home-icon'
 import { NavigationItem, StyledBox } from './styled'
-import Hr from '../../ui/hr/hr'
-import Info from '../../ui/info/info'
 import NavigationLink from './navigation-link/navigation-link'
 import ToggleButton from './toggle-button/toggle-button'
+import { AppRoute } from '@/const'
+import HomeIcon from '@/components/icons/home-icon'
+import Info from '@/components/ui/info/info'
+import Hr from '@/components/ui/hr/hr'
+import AddressBookIcon from '@/components/icons/address-book-icon'
 
 function PageNavigation(): JSX.Element {
   return (

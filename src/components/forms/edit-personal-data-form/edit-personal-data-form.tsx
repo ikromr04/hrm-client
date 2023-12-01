@@ -1,22 +1,25 @@
 import { BaseSyntheticEvent, useRef, useState } from 'react'
-import Button from '../../ui/button/button'
-import Buttons from '../../ui/buttons/buttons'
 import { Form, WideColumn } from './styled'
-import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { getEmployeePersonalData } from '../../../store/employee-slice/employees-selector'
-import Input from '../../ui/input/input'
-import { ValidationError } from '../../../types/validation-error'
-import { debounce } from '../../../utils'
 import GenderSelect from './gender-select/gender-select'
 import FamilyStatusSelect from './family-status-select/family-status-select'
-import { updateEmployeePersonalDataAction } from '../../../store/employee-slice/employees-api-actions'
 import { toast } from 'react-toastify'
+import { useAppDispatch, useAppSelector } from '@/hooks'
+import { getEmployeePersonalData } from '@/store/employee-slice/employees-selector'
+import { ValidationError } from '@/types/validation-error'
+import { debounce } from '@/utils'
+import { updateEmployeePersonalDataAction } 
+  from '@/store/employee-slice/employees-api-actions'
+import Input from '@/components/ui/input/input'
+import Buttons from '@/components/ui/buttons/buttons'
+import Button from '@/components/ui/button/button'
 
 type EditPersonalDataFormProps = {
   closeModalHandler: () => void
 }
 
-function EditPersonalDataForm({ closeModalHandler }: EditPersonalDataFormProps): JSX.Element {
+function EditPersonalDataForm({ 
+  closeModalHandler
+}: EditPersonalDataFormProps): JSX.Element {
   const personalData = useAppSelector(getEmployeePersonalData)
   const [validationError, setValidationError] = useState<ValidationError | null>(null)
   const formRef = useRef<HTMLFormElement | null>(null)

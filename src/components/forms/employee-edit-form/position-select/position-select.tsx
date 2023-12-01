@@ -1,10 +1,10 @@
+import MultiSelect from '@/components/ui/multi-select/multi-select'
+import { EmployeeUpdateDTO } from '@/dto/employees'
+import { useAppDispatch, useAppSelector } from '@/hooks'
+import { fetchPositionsAction } from '@/store/position-slice/position-api-actions'
+import { getPositions } from '@/store/position-slice/position-selector'
+import { PositionId } from '@/types/position'
 import { Dispatch, SetStateAction, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../hooks'
-import MultiSelect from '../../../ui/multi-select/multi-select'
-import { EmployeeUpdateDTO } from '../../../../dto/employees'
-import { getPositions } from '../../../../store/position-slice/position-selector'
-import { fetchPositionsAction } from '../../../../store/position-slice/position-api-actions'
-import { PositionId } from '../../../../types/position'
 
 type PositionSelectProps = {
   dto: EmployeeUpdateDTO
@@ -17,7 +17,7 @@ function PositionSelect({ dto, setDTO }: PositionSelectProps): JSX.Element {
 
   useEffect(() => {
     !positions && dispatch(fetchPositionsAction())
-  }, [])
+  }, [dispatch, positions])
 
   const handleSelectChange = (values: PositionId[]) =>
     setDTO((prevState) => {

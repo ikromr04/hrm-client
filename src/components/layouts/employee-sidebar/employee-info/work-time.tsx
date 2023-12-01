@@ -1,6 +1,6 @@
-import { useAppSelector } from '../../../../hooks'
-import { getEmployee } from '../../../../store/employee-slice/employees-selector'
-import { getWorkTime } from '../../../../utils'
+import { useAppSelector } from '@/hooks'
+import { getEmployee } from '@/store/employee-slice/employees-selector'
+import { getWorkTime } from '@/utils'
 
 function WorkTime(): JSX.Element {
   const employee = useAppSelector(getEmployee)

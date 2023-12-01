@@ -1,6 +1,6 @@
+import { useAppSelector } from '@/hooks'
+import { getEmployeePersonalData } from '@/store/employee-slice/employees-selector'
 import dayjs from 'dayjs'
-import { useAppSelector } from '../../../../../hooks'
-import { getEmployeePersonalData } from '../../../../../store/employee-slice/employees-selector'
 
 function BirthDate(): JSX.Element {
   const personalData = useAppSelector(getEmployeePersonalData)

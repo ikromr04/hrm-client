@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type UsersIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function UsersIcon({ width, height }: UsersIconProps): JSX.Element {
   )
 }
 
-export default memo(UsersIcon)
+export default UsersIcon

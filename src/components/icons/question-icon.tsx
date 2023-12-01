@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type QuestionIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function QuestionIcon({ width, height }: QuestionIconProps): JSX.Element {
   )
 }
 
-export default memo(QuestionIcon)
+export default QuestionIcon

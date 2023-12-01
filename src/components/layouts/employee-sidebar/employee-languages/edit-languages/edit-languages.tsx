@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import EditIcon from '../../../../icons/edit-icon'
-import Info from '../../../../ui/info/info'
 import { EditButton } from './styled'
-import Modal from '../../../../ui/modal/modal'
-import EmployeeLanguagesForm from '../../../../forms/employee-languages-form.tsx/employee-languages-form'
+import EditIcon from '@/components/icons/edit-icon'
+import Info from '@/components/ui/info/info'
+import Modal from '@/components/ui/modal/modal'
+import EmployeeLanguagesForm 
+  from '@/components/forms/employee-languages-form.tsx/employee-languages-form'
 
 function EditLanguages(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)

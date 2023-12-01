@@ -1,5 +1,5 @@
+import CaretIcon from '@/components/icons/caret-icon';
 import styled from 'styled-components';
-import CaretIcon from '../../../icons/caret-icon';
 
 export const DropdownButton = styled('button')`
   border: 0;

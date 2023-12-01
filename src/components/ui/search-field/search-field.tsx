@@ -1,9 +1,9 @@
-import SearchIcon from '../../icons/search-icon'
+import SearchIcon from '@/components/icons/search-icon'
 import { Icon, Input, Wrapper } from './styled'
 
 type SearchFieldProps = {
   className?: string
-  [rest: string]: any
+  [rest: string]: unknown
 }
 
 function SearchField({ className, ...rest }: SearchFieldProps): JSX.Element {

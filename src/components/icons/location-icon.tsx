@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type LocationIconProps = {
   width: number
   height: number
@@ -23,4 +21,4 @@ function LocationIcon({ width, height }: LocationIconProps): JSX.Element {
   )
 }
 
-export default memo(LocationIcon)
+export default LocationIcon

@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type EllipsisIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function EllipsisIcon({ width, height }: EllipsisIconProps): JSX.Element {
   )
 }
 
-export default memo(EllipsisIcon)
+export default EllipsisIcon

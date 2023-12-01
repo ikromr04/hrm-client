@@ -1,5 +1,5 @@
+import Container from '@/components/ui/container/container';
 import styled from 'styled-components';
-import Container from '../../ui/container/container';
 
 export const StyledPage = styled(Container)`
   display: flex;

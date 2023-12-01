@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type MobileIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function MobileIcon({ width, height }: MobileIconProps): JSX.Element {
   )
 }
 
-export default memo(MobileIcon)
+export default MobileIcon

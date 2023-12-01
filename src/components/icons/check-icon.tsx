@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type CheckIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function CheckIcon({ width, height }: CheckIconProps): JSX.Element {
   )
 }
 
-export default memo(CheckIcon)
+export default CheckIcon

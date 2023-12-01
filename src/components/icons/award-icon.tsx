@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type AwardIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function AwardIcon({ width, height }: AwardIconProps): JSX.Element {
   )
 }
 
-export default memo(AwardIcon)
+export default AwardIcon

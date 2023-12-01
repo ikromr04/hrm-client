@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type PieChartIconProps = {
   width: number
   height: number
@@ -23,4 +21,4 @@ function PieChartIcon({ width, height }: PieChartIconProps): JSX.Element {
   )
 }
 
-export default memo(PieChartIcon)
+export default PieChartIcon

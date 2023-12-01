@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type BellIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function BellIcon({ width, height }: BellIconProps): JSX.Element {
   )
 }
 
-export default memo(BellIcon)
+export default BellIcon

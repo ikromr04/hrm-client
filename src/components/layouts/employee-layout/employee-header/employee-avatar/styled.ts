@@ -1,6 +1,6 @@
+import Dropdown from '@/components/ui/dropdown/dropdown';
+import { StyledInfo } from '@/components/ui/info/styled';
 import styled from 'styled-components';
-import Dropdown from '../../../../ui/dropdown/dropdown';
-import { StyledInfo } from '../../../../ui/info/styled';
 
 export const  StyledDropdown = styled(Dropdown)`
   margin-top: 24px;

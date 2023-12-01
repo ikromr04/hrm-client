@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type CopyIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function CopyIcon({ width, height }: CopyIconProps): JSX.Element {
   )
 }
 
-export default memo(CopyIcon)
+export default CopyIcon

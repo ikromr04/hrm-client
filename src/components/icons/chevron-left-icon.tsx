@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type ChevronLeftIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function ChevronLeftIcon({ width, height }: ChevronLeftIconProps): JSX.Element {
   )
 }
 
-export default memo(ChevronLeftIcon)
+export default ChevronLeftIcon

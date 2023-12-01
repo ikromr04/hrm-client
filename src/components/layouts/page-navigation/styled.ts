@@ -1,5 +1,5 @@
+import Box from '@/components/ui/box/box';
 import { styled } from 'styled-components';
-import Box from '../../ui/box/box';
 
 export const StyledBox = styled(Box)`
   position: sticky;

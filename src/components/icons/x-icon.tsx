@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type XIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function XIcon({ width, height }: XIconProps): JSX.Element {
   )
 }
 
-export default memo(XIcon)
+export default XIcon

@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { CreateButton } from './styled'
-import PlusIcon from '../../../../icons/plus-icon'
-import Info from '../../../../ui/info/info'
-import Modal from '../../../../ui/modal/modal'
-import CreateActivityForm from '../../../../forms/create-activity-form/create-activity-form'
+import PlusIcon from '@/components/icons/plus-icon'
+import Info from '@/components/ui/info/info'
+import Modal from '@/components/ui/modal/modal'
+import CreateActivityForm 
+  from '@/components/forms/create-activity-form/create-activity-form'
 
 function CreateActivity(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)

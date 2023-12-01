@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type CaretIconProps = {
   className?: string
   width: number
@@ -22,4 +20,4 @@ function CaretIcon({ className, width, height }: CaretIconProps): JSX.Element {
   )
 }
 
-export default memo(CaretIcon)
+export default CaretIcon

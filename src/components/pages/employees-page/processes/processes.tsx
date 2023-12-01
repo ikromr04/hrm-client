@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import UserPlusIcon from '../../../icons/user-plus-icon'
-import IconsBox from '../../../ui/icons-box/icons-box'
 import { Process, ProcessInner, StyledProcesses } from './styled'
-import UserIcon from '../../../icons/user-icon'
-import UserMinusIcon from '../../../icons/user-minus-icon'
+import IconsBox from '@/components/ui/icons-box/icons-box'
+import UserPlusIcon from '@/components/icons/user-plus-icon'
+import UserIcon from '@/components/icons/user-icon'
+import UserMinusIcon from '@/components/icons/user-minus-icon'
 
 function Processes(): JSX.Element {
   return (

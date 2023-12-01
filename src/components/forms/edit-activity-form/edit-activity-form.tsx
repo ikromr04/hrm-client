@@ -1,16 +1,14 @@
 import { BaseSyntheticEvent, useRef, useState } from 'react'
-import Input from '../../ui/input/input'
 import { Form, WideColumn } from './styled'
-import { ValidationError } from '../../../types/validation-error'
-import { useAppDispatch } from '../../../hooks'
 import { toast } from 'react-toastify'
-import {
-  updateEmployeeActivityAction,
-} from '../../../store/employee-slice/employees-api-actions'
-import Buttons from '../../ui/buttons/buttons'
-import Button from '../../ui/button/button'
-import { Activity } from '../../../types/employee'
-import { debounce } from '../../../utils'
+import { ValidationError } from '@/types/validation-error'
+import { useAppDispatch } from '@/hooks'
+import { debounce } from '@/utils'
+import { Activity } from '@/types/employee'
+import { updateEmployeeActivityAction } from '@/store/employee-slice/employees-api-actions'
+import Input from '@/components/ui/input/input'
+import Buttons from '@/components/ui/buttons/buttons'
+import Button from '@/components/ui/button/button'
 
 type EditActivityFormProps = {
   activity: Activity

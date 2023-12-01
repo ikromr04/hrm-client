@@ -1,17 +1,16 @@
 import { Fragment, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../../hooks'
-import { getEmployee, getEmployeeEducations } from '../../../../../store/employee-slice/employees-selector'
-import Text from '../../../../ui/text/text'
-import Hr from '../../../../ui/hr/hr'
-import DescriptionList from '../../../../ui/description-list/description-list'
 import dayjs from 'dayjs'
-import {
-  fetchEmployeeEducationsAction
-} from '../../../../../store/employee-slice/employees-api-actions'
-import BoxInner from '../../../../ui/box-inner/box-inner'
 import EditEducation from './edit-education/edit-education'
 import DeleteEducation from './delete-education/delete-education'
 import { Actions } from './styled'
+import { useAppDispatch, useAppSelector } from '@/hooks'
+import { getEmployee, getEmployeeEducations } 
+  from '@/store/employee-slice/employees-selector'
+import { fetchEmployeeEducationsAction } from '@/store/employee-slice/employees-api-actions'
+import BoxInner from '@/components/ui/box-inner/box-inner'
+import Text from '@/components/ui/text/text'
+import Hr from '@/components/ui/hr/hr'
+import DescriptionList from '@/components/ui/description-list/description-list'
 
 function Educations(): JSX.Element {
   const educations = useAppSelector(getEmployeeEducations)
@@ -19,10 +18,13 @@ function Educations(): JSX.Element {
   const employee = useAppSelector(getEmployee)
 
   useEffect(() => {
-    if (employee && (!educations || !educations.length || educations[0].userId !== employee.id)) {
+    if (
+      employee && 
+      (!educations || !educations.length || educations[0].userId !== employee.id)
+    ) {
       dispatch(fetchEmployeeEducationsAction({ employeeId: employee.id }))
     }
-  }, [employee])
+  }, [dispatch, educations, employee])
 
   if (!educations || !educations.length) {
     return (
@@ -39,8 +41,8 @@ function Educations(): JSX.Element {
           {index > 0 && <Hr/>}
           <BoxInner>
             <Actions>
-              <EditEducation education={education} />
-              <DeleteEducation education={education} />
+              <EditEducation education={education}/>
+              <DeleteEducation education={education}/>
             </Actions>
             <DescriptionList
               list={{

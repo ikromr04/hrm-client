@@ -1,9 +1,9 @@
 import { BaseSyntheticEvent, Dispatch, SetStateAction, useState } from 'react'
-import { EMPTY_OPTION_LABEL, languageLevelOptions } from '../../../../const'
-import { EmployeeLanguage, EmployeeLanguages } from '../../../../types/employee'
-import { Languages } from '../../../../types/language'
-import Select from '../../../ui/select/select'
 import { Wrapper } from './styled'
+import { Languages } from '@/types/language'
+import { EmployeeLanguage, EmployeeLanguages } from '@/types/employee'
+import { EMPTY_OPTION_LABEL, languageLevelOptions } from '@/const'
+import Select from '@/components/ui/select/select'
 
 type EmptyLanguageFieldsProps = {
   languages: Languages

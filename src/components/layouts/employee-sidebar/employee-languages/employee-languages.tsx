@@ -1,12 +1,11 @@
-import IconsBox from '../../../ui/icons-box/icons-box'
-import LanguageIcon from '../../../icons/language-icon'
-import Title from '../../../ui/title/title'
 import LanguagesList from './languages-list/languages-list'
-import Box from '../../../ui/box/box'
-import BoxToolbar from '../../../ui/box-toolbar/box-toolbar'
-import { memo } from 'react'
-import BoxInner from '../../../ui/box-inner/box-inner'
 import EditLanguages from './edit-languages/edit-languages'
+import Box from '@/components/ui/box/box'
+import BoxToolbar from '@/components/ui/box-toolbar/box-toolbar'
+import IconsBox from '@/components/ui/icons-box/icons-box'
+import LanguageIcon from '@/components/icons/language-icon'
+import Title from '@/components/ui/title/title'
+import BoxInner from '@/components/ui/box-inner/box-inner'
 
 function EmployeeLanguages(): JSX.Element {
   return (
@@ -24,4 +23,4 @@ function EmployeeLanguages(): JSX.Element {
   )
 }
 
-export default memo(EmployeeLanguages)
+export default EmployeeLanguages

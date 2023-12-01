@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type FileIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function FileIcon({ width, height }: FileIconProps): JSX.Element {
   )
 }
 
-export default memo(FileIcon)
+export default FileIcon

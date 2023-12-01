@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type SearchIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function SearchIcon({ width, height }: SearchIconProps): JSX.Element {
   )
 }
 
-export default memo(SearchIcon)
+export default SearchIcon

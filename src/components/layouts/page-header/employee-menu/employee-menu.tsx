@@ -37,11 +37,15 @@ function EmployeeMenu(): JSX.Element {
       }
       menu={
         <>
-          <DropdownMenuItem href={generatePath(AppRoute.Employees.Show, { employeeId: employee.id })}>
+          <DropdownMenuItem 
+            href={generatePath(AppRoute.Employees.Show, { employeeId: employee.id })}
+          >
             Перейти к профилю
           </DropdownMenuItem>
           <Hr />
-          <DropdownMenuItem onClick={() => dispatch(logoutAction())}>Выйти</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => dispatch(logoutAction())}>
+            Выйти
+          </DropdownMenuItem>
         </>
       }
     />

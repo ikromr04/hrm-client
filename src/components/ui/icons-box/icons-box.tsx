@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { StyledIconsBox } from './styled'
 
 type IconsBoxProps = {
@@ -12,4 +11,4 @@ function IconsBox({ icon, color }: IconsBoxProps): JSX.Element {
   )
 }
 
-export default memo(IconsBox)
+export default IconsBox

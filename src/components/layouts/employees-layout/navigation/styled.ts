@@ -1,5 +1,5 @@
+import { StyledInfo } from '@/components/ui/info/styled';
 import { Link } from 'react-router-dom';
-import { StyledInfo } from '../../../ui/info/styled';
 import styled, { css } from 'styled-components';
 
 export const StyledNavigation = styled('nav')`

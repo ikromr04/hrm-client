@@ -1,14 +1,14 @@
 import { BaseSyntheticEvent, useRef, useState } from 'react'
-import Input from '../../ui/input/input'
 import { Form, WideColumn } from './styled'
-import { ValidationError } from '../../../types/validation-error'
-import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { getEmployee } from '../../../store/employee-slice/employees-selector'
 import { toast } from 'react-toastify'
-import { storeEmployeeActivityAction } from '../../../store/employee-slice/employees-api-actions'
-import Buttons from '../../ui/buttons/buttons'
-import Button from '../../ui/button/button'
-import { debounce } from '../../../utils'
+import { storeEmployeeActivityAction } from '@/store/employee-slice/employees-api-actions'
+import { useAppDispatch, useAppSelector } from '@/hooks'
+import { debounce } from '@/utils'
+import { getEmployee } from '@/store/employee-slice/employees-selector'
+import { ValidationError } from '@/types/validation-error'
+import Input from '@/components/ui/input/input'
+import Buttons from '@/components/ui/buttons/buttons'
+import Button from '@/components/ui/button/button'
 
 type CreateActivityFormProps = {
   closeModalHandler: () => void

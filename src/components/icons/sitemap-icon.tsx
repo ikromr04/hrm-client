@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type SitemapIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function SitemapIcon({ width, height }: SitemapIconProps): JSX.Element {
   )
 }
 
-export default memo(SitemapIcon)
+export default SitemapIcon

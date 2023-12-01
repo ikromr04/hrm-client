@@ -1,8 +1,8 @@
-import { useAppSelector } from '../../../../../hooks'
-import { getEmployee } from '../../../../../store/employee-slice/employees-selector'
-import { EmployeeLanguages } from '../../../../../types/employee'
-import DescriptionList from '../../../../ui/description-list/description-list'
-import Text from '../../../../ui/text/text'
+import DescriptionList from '@/components/ui/description-list/description-list'
+import Text from '@/components/ui/text/text'
+import { useAppSelector } from '@/hooks'
+import { getEmployee } from '@/store/employee-slice/employees-selector'
+import { EmployeeLanguages } from '@/types/employee'
 
 function LanguagesList(): JSX.Element {
   const employee = useAppSelector(getEmployee)

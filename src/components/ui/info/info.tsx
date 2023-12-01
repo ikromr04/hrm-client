@@ -1,4 +1,4 @@
-import { PropsWithChildren, memo } from 'react'
+import { PropsWithChildren } from 'react'
 import { StyledInfo } from './styled'
 
 type InfoProps = PropsWithChildren<{
@@ -23,4 +23,4 @@ function Info({ children, className, top, right, bottom, left }: InfoProps): JSX
   )
 }
 
-export default memo(Info)
+export default Info

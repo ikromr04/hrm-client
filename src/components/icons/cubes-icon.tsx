@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type CubesIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function CubesIcon({ width, height }: CubesIconProps): JSX.Element {
   )
 }
 
-export default memo(CubesIcon)
+export default CubesIcon

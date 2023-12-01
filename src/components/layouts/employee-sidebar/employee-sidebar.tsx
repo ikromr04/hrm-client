@@ -1,10 +1,12 @@
-import { memo, useEffect } from 'react'
+import { useEffect } from 'react'
 import EmployeeInfo from './employee-info/employee-info'
 import { StyledSidebar } from './styled'
-import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { fetchEmployeePersonalDataAction } from '../../../store/employee-slice/employees-api-actions'
 import EmployeeLanguages from './employee-languages/employee-languages'
-import { getEmployee, getEmployeePersonalData } from '../../../store/employee-slice/employees-selector'
+import { useAppDispatch, useAppSelector } from '@/hooks'
+import { getEmployee, getEmployeePersonalData } 
+  from '@/store/employee-slice/employees-selector'
+import { fetchEmployeePersonalDataAction } 
+  from '@/store/employee-slice/employees-api-actions'
 
 function EmployeeSidebar(): JSX.Element {
   const dispatch = useAppDispatch()
@@ -15,7 +17,7 @@ function EmployeeSidebar(): JSX.Element {
     if (personalData?.userId !== employee?.id) {
       dispatch(fetchEmployeePersonalDataAction({ employeeId: employee?.id || '' }))
     }
-  }, [employee])
+  }, [dispatch, employee, personalData?.userId])
 
   return (
     <StyledSidebar>
@@ -25,4 +27,4 @@ function EmployeeSidebar(): JSX.Element {
   )
 }
 
-export default memo(EmployeeSidebar)
+export default EmployeeSidebar

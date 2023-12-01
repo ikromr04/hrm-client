@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect } from 'react'
 import { ModalInner, StyledModal } from './styled'
-import { useModalClose } from '../../../hooks/use-modal-close'
+import { useModalClose } from '@/hooks/use-modal-close'
 
 type ModalProps = PropsWithChildren<{
   isOpen: boolean

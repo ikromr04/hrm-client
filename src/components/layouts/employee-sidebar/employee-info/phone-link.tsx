@@ -1,6 +1,6 @@
-import { useAppSelector } from '../../../../hooks'
-import { getEmployeePersonalData } from '../../../../store/employee-slice/employees-selector'
-import TextLink from '../../../ui/text-link/text-link'
+import TextLink from '@/components/ui/text-link/text-link'
+import { useAppSelector } from '@/hooks'
+import { getEmployeePersonalData } from '@/store/employee-slice/employees-selector'
 
 function PhoneLink(): JSX.Element {
   const personalData = useAppSelector(getEmployeePersonalData)

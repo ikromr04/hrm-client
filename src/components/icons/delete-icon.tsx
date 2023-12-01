@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type DeleteIconProps = {
   width: number
   height: number
@@ -22,4 +20,4 @@ function DeleteIcon({ width, height }: DeleteIconProps): JSX.Element {
   )
 }
 
-export default memo(DeleteIcon)
+export default DeleteIcon

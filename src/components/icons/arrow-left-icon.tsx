@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type ArrowLeftIconProps = {
   width: number
   height: number
@@ -22,4 +20,4 @@ function ArrowLeftIcon({ width, height, ...rest }: ArrowLeftIconProps): JSX.Elem
   )
 }
 
-export default memo(ArrowLeftIcon)
+export default ArrowLeftIcon

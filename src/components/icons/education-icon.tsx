@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type EducationIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function EducationIcon({ width, height }: EducationIconProps): JSX.Element {
   )
 }
 
-export default memo(EducationIcon)
+export default EducationIcon

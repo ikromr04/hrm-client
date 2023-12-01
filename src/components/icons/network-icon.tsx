@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type NetwordIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function NetwordIcon({ width, height }: NetwordIconProps): JSX.Element {
   )
 }
 
-export default memo(NetwordIcon)
+export default NetwordIcon

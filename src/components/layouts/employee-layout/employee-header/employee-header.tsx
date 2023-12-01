@@ -1,15 +1,14 @@
-import { memo } from 'react'
 import { HeaderInner, Jobs, Name, Positions, StyledHeader } from './styled'
 import EmployeeAvatar from './employee-avatar/employee-avatar'
-import BriefcaseIcon from '../../../icons/briefcase-icon'
-import { useAppSelector } from '../../../../hooks'
-import { getEmployee } from '../../../../store/employee-slice/employees-selector'
-import Buttons from '../../../ui/buttons/buttons'
-import Button from '../../../ui/button/button'
-import ChevronLeftIcon from '../../../icons/chevron-left-icon'
-import ChevronRightIcon from '../../../icons/chevron-right-icon'
+import { useAppSelector } from '@/hooks'
+import { getEmployee } from '@/store/employee-slice/employees-selector'
+import BriefcaseIcon from '@/components/icons/briefcase-icon'
+import Buttons from '@/components/ui/buttons/buttons'
+import Button from '@/components/ui/button/button'
+import ChevronLeftIcon from '@/components/icons/chevron-left-icon'
 import { generatePath } from 'react-router-dom'
-import { AppRoute } from '../../../../const'
+import { AppRoute } from '@/const'
+import ChevronRightIcon from '@/components/icons/chevron-right-icon'
 
 function EmployeeHeader(): JSX.Element {
   const employee = useAppSelector(getEmployee)
@@ -17,6 +16,13 @@ function EmployeeHeader(): JSX.Element {
   if (!employee) {
     return <></>
   }
+
+  const prevLink = generatePath(AppRoute.Employees.Show, { 
+    employeeId: employee.previousEmployeeId 
+  })
+  const nextLink = generatePath(AppRoute.Employees.Show, { 
+    employeeId: employee.nextEmployeeId 
+  })
 
   return (
     <StyledHeader>
@@ -27,16 +33,17 @@ function EmployeeHeader(): JSX.Element {
           <Name>{`${employee.surname} ${employee.name} ${employee.patronymic || ''}`}</Name>
           {employee.jobs &&
             <Jobs>
-              <BriefcaseIcon width={16} height={16} /> {employee.jobs.map(({ title }) => title).join(', ')}
+              <BriefcaseIcon width={16} height={16} /> 
+              {employee.jobs.map(({ title }) => title).join(', ')}
             </Jobs>}
           <Positions>{employee.positions?.map(({ title }) => title).join(', ')}</Positions>
         </div>
 
         <Buttons>
-          <Button href={generatePath(AppRoute.Employees.Show, { employeeId: employee.previousEmployeeId })}>
+          <Button href={prevLink}>
             <ChevronLeftIcon width={16} height={16} /> Предыдущий
           </Button>
-          <Button href={generatePath(AppRoute.Employees.Show, { employeeId: employee.nextEmployeeId })}>
+          <Button href={nextLink}>
             Следующий <ChevronRightIcon width={16} height={16} />
           </Button>
         </Buttons>
@@ -45,4 +52,4 @@ function EmployeeHeader(): JSX.Element {
   )
 }
 
-export default memo(EmployeeHeader)
+export default EmployeeHeader

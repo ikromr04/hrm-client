@@ -1,21 +1,23 @@
 import { BaseSyntheticEvent, useState } from 'react'
-import Button from '../../ui/button/button'
-import Buttons from '../../ui/buttons/buttons'
 import { CopyButton, Form, ResponseObject, SuccessText } from './styled'
-import Input from '../../ui/input/input'
-import { useAppDispatch} from '../../../hooks'
-import { ValidationError } from '../../../types/validation-error'
-import { addEmployeeQuickAction } from '../../../store/employee-slice/employees-api-actions'
-import { EmployeeQuickAddDTO } from '../../../dto/employees'
-import { EmployeeQuickAddResponse } from '../../../response/employees'
-import CheckIcon from '../../icons/check-icon'
-import CopyIcon from '../../icons/copy-icon'
+import { ValidationError } from '@/types/validation-error'
+import { EmployeeQuickAddDTO } from '@/dto/employees'
+import { useAppDispatch } from '@/hooks'
+import { EmployeeQuickAddResponse } from '@/response/employees'
+import { addEmployeeQuickAction } from '@/store/employee-slice/employees-api-actions'
+import CheckIcon from '@/components/icons/check-icon'
+import CopyIcon from '@/components/icons/copy-icon'
+import Buttons from '@/components/ui/buttons/buttons'
+import Button from '@/components/ui/button/button'
+import Input from '@/components/ui/input/input'
 
 type EmployeeQuickAddFormProps = {
   closeModalHandler: () => void
 }
 
-function EmployeeQuickAddForm({ closeModalHandler }: EmployeeQuickAddFormProps): JSX.Element {
+function EmployeeQuickAddForm({ 
+  closeModalHandler 
+}: EmployeeQuickAddFormProps): JSX.Element {
   const [validationError, setValidationError] = useState<ValidationError | null>(null)
   const [dto, setDTO] = useState<EmployeeQuickAddDTO>({
     name: '',

@@ -8,8 +8,8 @@ import {
   SelectedOptions,
   Wrapper,
 } from './styled'
-import { useOutsideClick } from '../../../hooks/use-outside-click'
-import { EMPTY_OPTION_LABEL } from '../../../const'
+import { useOutsideClick } from '@/hooks/use-outside-click'
+import { EMPTY_OPTION_LABEL } from '@/const'
 
 type MultiSelectProps = {
   className?: string

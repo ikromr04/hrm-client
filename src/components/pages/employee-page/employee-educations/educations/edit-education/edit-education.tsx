@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import EditIcon from '../../../../../icons/edit-icon'
-import Info from '../../../../../ui/info/info'
-import Modal from '../../../../../ui/modal/modal'
 import { EditButton } from './styled'
-import { Education } from '../../../../../../types/employee'
-import EditEducationForm from '../../../../../forms/edit-education-form/edit-education-form'
+import { Education } from '@/types/employee'
+import EditIcon from '@/components/icons/edit-icon'
+import Info from '@/components/ui/info/info'
+import Modal from '@/components/ui/modal/modal'
+import EditEducationForm from '@/components/forms/edit-education-form/edit-education-form'
 
 type EditEducationProps = {
   education: Education
@@ -20,7 +20,10 @@ function EditEducation({ education }: EditEducationProps): JSX.Element {
         <Info left>Редактировать</Info>
       </EditButton>
       <Modal isOpen={isOpen} closeModalHandler={() => setIsOpen(false)}>
-        <EditEducationForm education={education} closeModalHandler={() => setIsOpen(false)} />
+        <EditEducationForm 
+          education={education} 
+          closeModalHandler={() => setIsOpen(false)} 
+        />
       </Modal>
     </>
   )

@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type CogIconProps = {
   width: number
   height: number
@@ -23,4 +21,4 @@ function CogIcon({ width, height }: CogIconProps): JSX.Element {
   )
 }
 
-export default memo(CogIcon)
+export default CogIcon

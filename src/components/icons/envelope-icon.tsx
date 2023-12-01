@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type EnvelopeIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function EnvelopeIcon({ width, height }: EnvelopeIconProps): JSX.Element {
   )
 }
 
-export default memo(EnvelopeIcon)
+export default EnvelopeIcon

@@ -1,18 +1,16 @@
 import { BaseSyntheticEvent, useRef, useState } from 'react'
-import Input from '../../ui/input/input'
-import Select from '../../ui/select/select'
 import { Form, WideColumn } from './styled'
-import { ValidationError } from '../../../types/validation-error'
-import { useAppDispatch } from '../../../hooks'
 import { toast } from 'react-toastify'
-import {
-  updateEmployeeEducationAction
-} from '../../../store/employee-slice/employees-api-actions'
-import Buttons from '../../ui/buttons/buttons'
-import Button from '../../ui/button/button'
-import { Education } from '../../../types/employee'
-import { educationFormOptions } from '../../../const'
-import { debounce } from '../../../utils'
+import { Education } from '@/types/employee'
+import { ValidationError } from '@/types/validation-error'
+import { useAppDispatch } from '@/hooks'
+import { debounce } from '@/utils'
+import { updateEmployeeEducationAction } from '@/store/employee-slice/employees-api-actions'
+import Input from '@/components/ui/input/input'
+import Select from '@/components/ui/select/select'
+import { educationFormOptions } from '@/const'
+import Buttons from '@/components/ui/buttons/buttons'
+import Button from '@/components/ui/button/button'
 
 type CreateEducationFormProps = {
   education: Education

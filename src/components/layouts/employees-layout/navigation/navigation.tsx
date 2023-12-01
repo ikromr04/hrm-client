@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom'
-import { AppRoute } from '../../../../const'
-import AddressBookIcon from '../../../icons/address-book-icon'
-import Info from '../../../ui/info/info'
 import { NavigationItem, StyledNavigation } from './styled'
-import SitemapIcon from '../../../icons/sitemap-icon'
+import { AppRoute } from '@/const'
+import AddressBookIcon from '@/components/icons/address-book-icon'
+import Info from '@/components/ui/info/info'
+import SitemapIcon from '@/components/icons/sitemap-icon'
 
 function Navigation(): JSX.Element {
   const location = useLocation()

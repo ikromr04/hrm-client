@@ -1,13 +1,15 @@
-import { Header, HeaderContainer, HeaderLogo } from './styled'
+import { Header, HeaderContainer } from './styled'
 import EmployeeMenu from './employee-menu/employee-menu'
-import DropdownMenuItem from '../../ui/dropdown-navigation/dropdown-navigation'
-import Dropdown from '../../ui/dropdown/dropdown'
-import PlusIcon from '../../icons/plus-icon'
 import { useState } from 'react'
-import Modal from '../../ui/modal/modal'
-import EmployeeQuickAddForm from '../../forms/employee-quick-add-form/employee-quick-add-form'
-import Button from '../../ui/button/button'
-import Info from '../../ui/info/info'
+import Logo from './logo/logo'
+import Dropdown from '@/components/ui/dropdown/dropdown'
+import Button from '@/components/ui/button/button'
+import Info from '@/components/ui/info/info'
+import PlusIcon from '@/components/icons/plus-icon'
+import DropdownMenuItem from '@/components/ui/dropdown-navigation/dropdown-navigation';
+import Modal from '@/components/ui/modal/modal'
+import EmployeeQuickAddForm 
+  from '@/components/forms/employee-quick-add-form/employee-quick-add-form'
 
 function PageHeader(): JSX.Element {
   const [isCreateEmployeeOpen, setIsCreateEmployeeOpen] = useState(false)
@@ -16,7 +18,7 @@ function PageHeader(): JSX.Element {
     <>
       <Header>
         <HeaderContainer>
-          <HeaderLogo />
+          <Logo />
 
           <Dropdown
             button={

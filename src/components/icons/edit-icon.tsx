@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type EditIconProps = {
   width: number
   height: number
@@ -24,4 +22,4 @@ function EditIcon({ width, height }: EditIconProps): JSX.Element {
   )
 }
 
-export default memo(EditIcon)
+export default EditIcon

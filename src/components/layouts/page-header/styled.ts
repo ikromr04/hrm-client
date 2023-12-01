@@ -1,6 +1,5 @@
+import Container from '@/components/ui/container/container';
 import { styled } from 'styled-components';
-import Container from '../../ui/container/container';
-import MainLogo from '../../ui/main-logo/main-logo';
 
 export const Header = styled('header')`
   position: sticky;
@@ -16,10 +15,6 @@ export const Header = styled('header')`
   .modal-shown & {
     transform: translateY(-100%);
   }
-`;
-
-export const HeaderLogo = styled(MainLogo)`
-  margin-right: auto;
 `;
 
 export const HeaderContainer = styled(Container)`

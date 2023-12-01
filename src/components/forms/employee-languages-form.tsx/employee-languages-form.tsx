@@ -1,23 +1,25 @@
 import { BaseSyntheticEvent, useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { getEmployee } from '../../../store/employee-slice/employees-selector'
 import { Form } from './styled'
-import { EmployeeLanguage, EmployeeLanguages } from '../../../types/employee'
-import { getLanguages } from '../../../store/language-slice/language-selector'
-import { fetchLanguagesAction } from '../../../store/language-slice/language-api-actions'
 import EmptyLanguageFields from './empty-language-fields/empty-language-fields'
-import { Languages } from '../../../types/language'
 import LanguageFields from './language-fields/language-fields'
-import Buttons from '../../ui/buttons/buttons'
-import Button from '../../ui/button/button'
 import { toast } from 'react-toastify'
-import { crudEmployeeLanguagesAction } from '../../../store/employee-slice/employees-api-actions'
+import { useAppDispatch, useAppSelector } from '@/hooks'
+import { getEmployee } from '@/store/employee-slice/employees-selector'
+import { getLanguages } from '@/store/language-slice/language-selector'
+import { EmployeeLanguage, EmployeeLanguages } from '@/types/employee'
+import { fetchLanguagesAction } from '@/store/language-slice/language-api-actions'
+import { Languages } from '@/types/language'
+import { crudEmployeeLanguagesAction } from '@/store/employee-slice/employees-api-actions'
+import Buttons from '@/components/ui/buttons/buttons'
+import Button from '@/components/ui/button/button'
 
 type EmployeeLanguagesFormProps = {
   closeModalHandler: () => void
 }
 
-function EmployeeLanguagesForm({ closeModalHandler }: EmployeeLanguagesFormProps): JSX.Element {
+function EmployeeLanguagesForm({ 
+  closeModalHandler
+}: EmployeeLanguagesFormProps): JSX.Element {
   const employee = useAppSelector(getEmployee)
   const languages = useAppSelector(getLanguages)
   const dispatch = useAppDispatch()
@@ -26,7 +28,7 @@ function EmployeeLanguagesForm({ closeModalHandler }: EmployeeLanguagesFormProps
 
   useEffect(() => {
     !languages && dispatch(fetchLanguagesAction())
-  }, [])
+  }, [dispatch, languages])
 
   if (!languages || !employee) {
     return <></>

@@ -1,8 +1,3 @@
-import BoxInner from '../../../ui/box-inner/box-inner'
-import BoxToolbar from '../../../ui/box-toolbar/box-toolbar'
-import Box from '../../../ui/box/box'
-import DescriptionList from '../../../ui/description-list/description-list'
-import Title from '../../../ui/title/title'
 import BirthDate from './details/birth-date'
 import Gender from './details/gender'
 import Nationality from './details/nationality'
@@ -14,6 +9,11 @@ import Tel2 from './details/tel-2'
 import FamilyStatus from './details/family-status'
 import Children from './details/children'
 import EditPersonalData from './edit-personal-data/edit-personal-data'
+import Box from '@/components/ui/box/box'
+import BoxToolbar from '@/components/ui/box-toolbar/box-toolbar'
+import Title from '@/components/ui/title/title'
+import BoxInner from '@/components/ui/box-inner/box-inner'
+import DescriptionList from '@/components/ui/description-list/description-list'
 
 function PersonalData(): JSX.Element {
   return (

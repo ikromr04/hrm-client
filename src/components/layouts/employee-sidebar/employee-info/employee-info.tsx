@@ -1,16 +1,15 @@
-import EnvelopeIcon from '../../../icons/envelope-icon'
-import MobileIcon from '../../../icons/mobile-icon'
-import DescriptionList from '../../../ui/description-list/description-list'
-import IconsBox from '../../../ui/icons-box/icons-box'
 import { LinksWrapper } from './styled'
-import Box from '../../../ui/box/box'
-import BoxToolbar from '../../../ui/box-toolbar/box-toolbar'
-import BoxInner from '../../../ui/box-inner/box-inner'
-import { memo } from 'react'
 import EmailLink from './email-link'
 import PhoneLink from './phone-link'
 import StartedWorkAt from './started-work-at'
 import WorkTime from './work-time'
+import Box from '@/components/ui/box/box'
+import BoxToolbar from '@/components/ui/box-toolbar/box-toolbar'
+import IconsBox from '@/components/ui/icons-box/icons-box'
+import EnvelopeIcon from '@/components/icons/envelope-icon'
+import MobileIcon from '@/components/icons/mobile-icon'
+import BoxInner from '@/components/ui/box-inner/box-inner'
+import DescriptionList from '@/components/ui/description-list/description-list'
 
 function EmployeeInfo(): JSX.Element {
   return (
@@ -40,4 +39,4 @@ function EmployeeInfo(): JSX.Element {
   )
 }
 
-export default memo(EmployeeInfo)
+export default EmployeeInfo

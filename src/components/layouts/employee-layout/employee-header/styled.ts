@@ -1,5 +1,5 @@
+import Title from '@/components/ui/title/title';
 import styled from 'styled-components';
-import Title from '../../../ui/title/title';
 
 export const StyledHeader = styled('header')`
   display: flex;

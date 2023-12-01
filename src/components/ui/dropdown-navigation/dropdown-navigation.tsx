@@ -1,10 +1,10 @@
-import { PropsWithChildren, memo } from 'react'
+import { PropsWithChildren } from 'react'
 import { MenuItem } from './styled'
 import { Link } from 'react-router-dom'
 
 type DropdownMenuItemProps = PropsWithChildren<{
   href?: string
-  [rest: string]: any
+  [rest: string]: unknown
 }>
 
 function DropdownMenuItem({
@@ -23,4 +23,4 @@ function DropdownMenuItem({
   )
 }
 
-export default memo(DropdownMenuItem)
+export default DropdownMenuItem

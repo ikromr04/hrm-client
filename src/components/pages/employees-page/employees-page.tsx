@@ -1,7 +1,7 @@
-import EmployeesLayout from '../../layouts/employees-layout/employees-layout'
-import SearchField from '../../ui/search-field/search-field'
+import EmployeesLayout from '@/components/layouts/employees-layout/employees-layout'
 import Processes from './processes/processes'
 import { Main, Toolbar } from './styled'
+import SearchField from '@/components/ui/search-field/search-field'
 
 function EmployeesPage(): JSX.Element {
   return (

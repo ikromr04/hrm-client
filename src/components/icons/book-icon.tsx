@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type BookIconProps = {
   width: number
   height: number
@@ -22,4 +20,4 @@ function BookIcon({ width, height }: BookIconProps): JSX.Element {
   )
 }
 
-export default memo(BookIcon)
+export default BookIcon

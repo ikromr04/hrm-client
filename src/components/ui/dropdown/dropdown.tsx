@@ -1,7 +1,7 @@
-import { memo, useState } from 'react'
+import { useState } from 'react'
 import { StyledDropdown, DropdownMenu } from './styled'
-import { useOutsideClick } from '../../../hooks/use-outside-click'
-import { useEscapeKeydown } from '../../../hooks/use-escape-keydown'
+import { useOutsideClick } from '@/hooks/use-outside-click'
+import { useEscapeKeydown } from '@/hooks/use-escape-keydown'
 
 type DropdownProps = {
   className?: string
@@ -38,4 +38,4 @@ function Dropdown({
   )
 }
 
-export default memo(Dropdown)
+export default Dropdown

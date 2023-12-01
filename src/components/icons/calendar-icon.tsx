@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 type CalendarIconProps = {
   width: number
   height: number
@@ -20,4 +18,4 @@ function CalendarIcon({ width, height }: CalendarIconProps): JSX.Element {
   )
 }
 
-export default memo(CalendarIcon)
+export default CalendarIcon

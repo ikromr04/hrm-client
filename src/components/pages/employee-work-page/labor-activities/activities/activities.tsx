@@ -1,20 +1,17 @@
 import { Fragment, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../../hooks'
-import {
-  getEmployee,
-  getEmployeeActivities
-} from '../../../../../store/employee-slice/employees-selector'
-import Text from '../../../../ui/text/text'
-import Hr from '../../../../ui/hr/hr'
-import DescriptionList from '../../../../ui/description-list/description-list'
 import dayjs from 'dayjs'
-import {
-  fetchEmployeeActivitiesAction
-} from '../../../../../store/employee-slice/employees-api-actions'
-import BoxInner from '../../../../ui/box-inner/box-inner'
 import { Actions } from './styled'
 import EditActivity from './edit-activity/edit-activity'
 import DeleteActivity from './delete-activity/delete-activity'
+import { useAppDispatch, useAppSelector } from '@/hooks'
+import { getEmployee, getEmployeeActivities } 
+  from '@/store/employee-slice/employees-selector'
+import { fetchEmployeeActivitiesAction } 
+  from '@/store/employee-slice/employees-api-actions'
+import BoxInner from '@/components/ui/box-inner/box-inner'
+import Text from '@/components/ui/text/text'
+import Hr from '@/components/ui/hr/hr'
+import DescriptionList from '@/components/ui/description-list/description-list'
 
 function Activities(): JSX.Element {
   const activities = useAppSelector(getEmployeeActivities)
@@ -22,10 +19,13 @@ function Activities(): JSX.Element {
   const employee = useAppSelector(getEmployee)
 
   useEffect(() => {
-    if (employee && (!activities || !activities.length || activities[0].userId !== employee.id)) {
+    if (
+      employee && 
+      (!activities || !activities.length || activities[0].userId !== employee.id)
+    ) {
       dispatch(fetchEmployeeActivitiesAction({ employeeId: employee.id }))
     }
-  }, [employee])
+  }, [activities, dispatch, employee])
 
   if (!activities || !activities.length) {
     return (

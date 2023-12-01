@@ -1,10 +1,10 @@
+import MultiSelect from '@/components/ui/multi-select/multi-select'
+import { EmployeeUpdateDTO } from '@/dto/employees'
+import { useAppDispatch, useAppSelector } from '@/hooks'
+import { fetchJobsAction } from '@/store/job-slice/job-api-actions'
+import { getJobs } from '@/store/job-slice/job-selector'
+import { JobId } from '@/types/job'
 import { Dispatch, SetStateAction, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../hooks'
-import { getJobs } from '../../../../store/job-slice/job-selector'
-import { fetchJobsAction } from '../../../../store/job-slice/job-api-actions'
-import MultiSelect from '../../../ui/multi-select/multi-select'
-import { EmployeeUpdateDTO } from '../../../../dto/employees'
-import { JobId } from '../../../../types/job'
 
 type JobSelectProps = {
   dto: EmployeeUpdateDTO
@@ -17,7 +17,7 @@ function JobSelect({ dto, setDTO }: JobSelectProps): JSX.Element {
 
   useEffect(() => {
     !jobs && dispatch(fetchJobsAction())
-  }, [])
+  }, [jobs, dispatch])
 
   const handleSelectChange = (values: JobId[]) =>
     setDTO((prevState) => {

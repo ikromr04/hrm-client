@@ -1,12 +1,12 @@
 import { BaseSyntheticEvent, Dispatch, SetStateAction } from 'react'
-import { languageLevelOptions } from '../../../../const'
-import { EmployeeLanguage, EmployeeLanguages } from '../../../../types/employee'
-import { Languages } from '../../../../types/language'
-import Select from '../../../ui/select/select'
 import { Wrapper } from './styled'
-import Button from '../../../ui/button/button'
-import XIcon from '../../../icons/x-icon'
-import Info from '../../../ui/info/info'
+import { EmployeeLanguage, EmployeeLanguages } from '@/types/employee'
+import { Languages } from '@/types/language'
+import Select from '@/components/ui/select/select'
+import { languageLevelOptions } from '@/const'
+import Button from '@/components/ui/button/button'
+import XIcon from '@/components/icons/x-icon'
+import Info from '@/components/ui/info/info'
 
 type LanguageFieldsProps = {
   currentLanguage: EmployeeLanguage

@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import EditIcon from '../../../../icons/edit-icon'
-import Info from '../../../../ui/info/info'
-import Modal from '../../../../ui/modal/modal'
 import { EditButton } from './styled'
-import EmployeeEditForm from '../../../../forms/employee-edit-form/employee-edit-form'
+import EditIcon from '@/components/icons/edit-icon'
+import Info from '@/components/ui/info/info'
+import Modal from '@/components/ui/modal/modal'
+import EmployeeEditForm from '@/components/forms/employee-edit-form/employee-edit-form'
 
 function EditEmployee(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
