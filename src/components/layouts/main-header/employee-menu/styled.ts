@@ -11,7 +11,7 @@ export const DropdownButton = styled('button')`
   font-weight: 600;
   font-size: 14px;
   line-height: 14px;
-  color: #000f30;
+  color: #212121;
   cursor: pointer;
 `;
 
@@ -22,6 +22,5 @@ export const Avatar = styled('img')`
 
 export const DropdownIcon = styled(CaretIcon)`
   width: 8px;
-  fill: #476887;
   transition: .3s;
 `;
