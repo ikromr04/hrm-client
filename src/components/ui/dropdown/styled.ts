@@ -11,7 +11,7 @@ export const DropdownMenu = styled(Box).withConfig({
 })<{ isOpen: boolean, fullWidthMenu: boolean }>`
   position: absolute;
   right: 0;
-  top: calc(100%);
+  top: calc(100% + 2px);
   padding: 8px 0;
   min-width: max-content;
   z-index: 1;
