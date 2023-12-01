@@ -4,16 +4,20 @@ export const StyledInfo = styled('span').withConfig({
   shouldForwardProp: (props) => !['top', 'right', 'bottom', 'left'].includes(props),
 })<{ top?: boolean, right?: boolean, bottom?: boolean, left?: boolean }>`
   position: absolute;
-  color: #fff;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: max-content;
+  height: 24px;
   padding: 4px 8px;
-  font-weight: 400;
   border-radius: 4px;
   font-size: 13px;
-  background-color: #252525;
-  min-width: max-content;
+  font-weight: 300;
+  line-height: 1;
+  color: #ffffff;
+  background-color: #212121;
   opacity: 0;
-  text-align: center;
   visibility: hidden;
   transition: 0.3s;
 

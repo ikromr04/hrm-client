@@ -6,15 +6,17 @@ export const MenuItem = styled('button')`
   gap: 8px;
   text-decoration: none;
   padding: 8px 16px;
-  color: #476887;
+  color: #616161;
   font-size: 13px;
-  transition: .3s;
   border: none;
   width: 100%;
+  height: 32px;
   background-color: transparent;
   cursor: pointer;
+  transition-property: background-color;
+  transition-duration: .3s;
 
   &:hover {
-    background-color: #e5ecf3;
+    background-color: #eeeeee;
   }
 `;

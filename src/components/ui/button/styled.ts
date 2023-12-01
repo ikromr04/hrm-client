@@ -65,7 +65,8 @@ export const StyledButton = styled('button').withConfig({
     box-shadow: none;
   }
 
-  &:hover ${StyledInfo} {
+  &:hover ${StyledInfo},
+  &:focus ${StyledInfo} {
     opacity: 1;
     visibility: visible;
   }

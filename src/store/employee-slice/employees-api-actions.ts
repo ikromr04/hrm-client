@@ -39,8 +39,6 @@ export const checkAuthorizationAction = createAsyncThunk<AuthorizedEmployee, und
   'employees/checkAuthorization',
   async (_arg, { extra: api }) => {
     const { data } = await api.get(APIRoute.Auth.Login)
-    console.log(data);
-    
     return adaptEmployeeToClient(data)
   },
 )

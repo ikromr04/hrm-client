@@ -1,8 +1,7 @@
-import { Header, HeaderContainer } from './styled'
+import { Header, HeaderContainer, QuickAddDropdown } from './styled'
 import EmployeeMenu from './employee-menu/employee-menu'
 import { useState } from 'react'
 import Logo from './logo/logo'
-import Dropdown from '@/components/ui/dropdown/dropdown'
 import Button from '@/components/ui/button/button'
 import Info from '@/components/ui/info/info'
 import PlusIcon from '@/components/icons/plus-icon'
@@ -11,7 +10,7 @@ import Modal from '@/components/ui/modal/modal'
 import EmployeeQuickAddForm 
   from '@/components/forms/employee-quick-add-form/employee-quick-add-form'
 
-function PageHeader(): JSX.Element {
+function MainHeader(): JSX.Element {
   const [isCreateEmployeeOpen, setIsCreateEmployeeOpen] = useState(false)
 
   return (
@@ -20,24 +19,21 @@ function PageHeader(): JSX.Element {
         <HeaderContainer>
           <Logo />
 
-          <Dropdown
+          <QuickAddDropdown
             button={
               <Button
                 type="button"
                 small
                 success
               >
-                <Info left>Быстрое добавление</Info>
                 <PlusIcon width={16} height={16} />
+                <Info left>Быстрое добавление</Info>
               </Button>
             }
             menu={
-              <>
-                <DropdownMenuItem onClick={() => setIsCreateEmployeeOpen(true)}>
-                  <PlusIcon width={16} height={16} />
-                  Создать сотрудника
-                </DropdownMenuItem>
-              </>
+              <DropdownMenuItem onClick={() => setIsCreateEmployeeOpen(true)}>
+                <PlusIcon width={16} height={16} /> Создать сотрудника
+              </DropdownMenuItem>
             }
           />
           <EmployeeMenu />
@@ -53,4 +49,4 @@ function PageHeader(): JSX.Element {
   )
 }
 
-export default PageHeader
+export default MainHeader

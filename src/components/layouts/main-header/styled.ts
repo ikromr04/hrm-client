@@ -1,4 +1,6 @@
 import Container from '@/components/ui/container/container';
+import Dropdown from '@/components/ui/dropdown/dropdown';
+import { DropdownMenu } from '@/components/ui/dropdown/styled';
 import { styled } from 'styled-components';
 
 export const Header = styled('header')`
@@ -21,4 +23,10 @@ export const HeaderContainer = styled(Container)`
   display: flex;
   align-items: center;
   gap: 16px;
+`;
+
+export const QuickAddDropdown = styled(Dropdown)`
+  ${DropdownMenu} {
+    top: calc(100% + 2px);
+  }
 `;
