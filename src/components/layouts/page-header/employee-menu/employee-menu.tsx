@@ -2,13 +2,13 @@ import { Avatar, DropdownButton, DropdownIcon } from './styled'
 import { AppRoute } from '@/const'
 import Hr from '@/components/ui/hr/hr'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { logoutAction } from '@/store/employees-slice/employees-api-actions'
+import { logoutAction } from '@/store/employee-slice/employees-api-actions'
 import { generatePath } from 'react-router-dom'
 import Dropdown from '@/components/ui/dropdown/dropdown'
 import {
   getAuthorizedEmployee,
   getAuthorizedEmployeeAvatar
-} from '@/store/employees-slice/employees-selector'
+} from '@/store/employee-slice/employees-selector'
 import DropdownMenuItem from '@/components/ui/dropdown-navigation/dropdown-navigation'
 import defaultAvatar from '@/assets/static/default-avatar.png'
 

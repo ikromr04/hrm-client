@@ -38,7 +38,9 @@ export const checkAuthorizationAction = createAsyncThunk<AuthorizedEmployee, und
 }>(
   'employees/checkAuthorization',
   async (_arg, { extra: api }) => {
-    const { data } = await api.get(APIRoute.Login)
+    const { data } = await api.get(APIRoute.Auth.Login)
+    console.log(data);
+    
     return adaptEmployeeToClient(data)
   },
 )
@@ -53,7 +55,7 @@ export const loginAction = createAsyncThunk<AuthorizedEmployee, {
   'employees/login',
   async ({ loginData, errorHandler }, { extra: api, rejectWithValue }) => {
     try {
-      const { data } = await api.post(APIRoute.Login, loginData)
+      const { data } = await api.post(APIRoute.Auth.Login, loginData)
       saveToken(data.token)
       return adaptEmployeeToClient(data)
     } catch (err: any) {
@@ -72,7 +74,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
 }>(
   'employees/logout',
   async (_arg, { extra: api }) => {
-    await api.delete(APIRoute.Logout)
+    await api.delete(APIRoute.Auth.Logout)
     dropToken()
   },
 )

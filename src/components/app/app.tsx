@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AppRoute, AuthorizationStatus } from '@/const'
 import { useAppSelector } from '@/hooks'
-import { getAuthorizationStatus } from '@/store/employees-slice/employees-selector'
+import { getAuthorizationStatus } from '@/store/employee-slice/employees-selector'
 import { AppSpinner } from './styled'
 import LoginPage from '../pages/login-page/login-page'
 import NotFoundPage from '../pages/not-found-page/not-found-page'
@@ -26,7 +26,7 @@ function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Login} element={<LoginPage />} />
+        <Route path={AppRoute.Auth.Login} element={<LoginPage />} />
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
 
         <Route path={AppRoute.Main} element={<MainPage />} />

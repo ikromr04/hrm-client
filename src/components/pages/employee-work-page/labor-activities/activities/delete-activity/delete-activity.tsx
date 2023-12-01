@@ -12,7 +12,7 @@ import Button from '../../../../../ui/button/button'
 import { toast } from 'react-toastify'
 import {
   deleteEmployeeActivityAction
-} from '../../../../../../store/employees-slice/employees-api-actions'
+} from '../../../../../../store/employee-slice/employees-api-actions'
 import { useAppDispatch } from '../../../../../../hooks'
 
 type DeleteActivityProps = {

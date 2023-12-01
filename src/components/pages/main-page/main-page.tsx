@@ -1,6 +1,6 @@
 import { useAppSelector } from '@/hooks'
 import { getAuthorizedEmployee, getAuthorizedEmployeeAvatar } 
-  from '@/store/employees-slice/employees-selector'
+  from '@/store/employee-slice/employees-selector'
 import PageLayout from '@/components/layouts/page-layout/page-layout'
 import { Avatar, Header, Main } from './styled'
 import PrivateRoute from '@/components/private-route/private-route'

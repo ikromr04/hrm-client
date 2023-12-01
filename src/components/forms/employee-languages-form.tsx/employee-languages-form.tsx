@@ -1,6 +1,6 @@
 import { BaseSyntheticEvent, useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { getEmployee } from '../../../store/employees-slice/employees-selector'
+import { getEmployee } from '../../../store/employee-slice/employees-selector'
 import { Form } from './styled'
 import { EmployeeLanguage, EmployeeLanguages } from '../../../types/employee'
 import { getLanguages } from '../../../store/language-slice/language-selector'
@@ -11,7 +11,7 @@ import LanguageFields from './language-fields/language-fields'
 import Buttons from '../../ui/buttons/buttons'
 import Button from '../../ui/button/button'
 import { toast } from 'react-toastify'
-import { crudEmployeeLanguagesAction } from '../../../store/employees-slice/employees-api-actions'
+import { crudEmployeeLanguagesAction } from '../../../store/employee-slice/employees-api-actions'
 
 type EmployeeLanguagesFormProps = {
   closeModalHandler: () => void

@@ -1,7 +1,7 @@
 import { BaseSyntheticEvent, useState } from 'react'
 import { useAppSelector } from '../../../../hooks'
 import Select from '../../../ui/select/select'
-import { getEmployeePersonalData } from '../../../../store/employees-slice/employees-selector'
+import { getEmployeePersonalData } from '../../../../store/employee-slice/employees-selector'
 import { EMPTY_OPTION_LABEL } from '../../../../const'
 
 function FamilyStatusSelect(): JSX.Element {

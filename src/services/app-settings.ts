@@ -10,8 +10,8 @@ export const initialSettings: AppSettings = {
 
 export const getAppSettings = (): AppSettings => {
   if (localStorage.getItem(SETTINGS_KEY_NAME)) {
-    const settings: any = localStorage.getItem(SETTINGS_KEY_NAME)
-    return JSON.parse(settings)
+    const settings: string | null = localStorage.getItem(SETTINGS_KEY_NAME)
+    return JSON.parse(settings || '')
   }
   saveAppSettings(initialSettings)
   return initialSettings

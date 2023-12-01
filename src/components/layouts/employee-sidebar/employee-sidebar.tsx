@@ -2,9 +2,9 @@ import { memo, useEffect } from 'react'
 import EmployeeInfo from './employee-info/employee-info'
 import { StyledSidebar } from './styled'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { fetchEmployeePersonalDataAction } from '../../../store/employees-slice/employees-api-actions'
+import { fetchEmployeePersonalDataAction } from '../../../store/employee-slice/employees-api-actions'
 import EmployeeLanguages from './employee-languages/employee-languages'
-import { getEmployee, getEmployeePersonalData } from '../../../store/employees-slice/employees-selector'
+import { getEmployee, getEmployeePersonalData } from '../../../store/employee-slice/employees-selector'
 
 function EmployeeSidebar(): JSX.Element {
   const dispatch = useAppDispatch()

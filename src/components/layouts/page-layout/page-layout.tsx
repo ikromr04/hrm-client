@@ -1,7 +1,7 @@
 import { LayoutContainer } from './styled'
 import PageHeader from '../page-header/page-header'
 import PageNavigation from '../page-navigation/page-navigation'
-import { PropsWithChildren, memo } from 'react'
+import { PropsWithChildren } from 'react'
 
 function PageLayout({ children }: PropsWithChildren): JSX.Element {
   return (
@@ -16,4 +16,4 @@ function PageLayout({ children }: PropsWithChildren): JSX.Element {
   )
 }
 
-export default memo(PageLayout)
+export default PageLayout

@@ -1,13 +1,13 @@
 import { Fragment, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../../hooks'
-import { getEmployee, getEmployeeEducations } from '../../../../../store/employees-slice/employees-selector'
+import { getEmployee, getEmployeeEducations } from '../../../../../store/employee-slice/employees-selector'
 import Text from '../../../../ui/text/text'
 import Hr from '../../../../ui/hr/hr'
 import DescriptionList from '../../../../ui/description-list/description-list'
 import dayjs from 'dayjs'
 import {
   fetchEmployeeEducationsAction
-} from '../../../../../store/employees-slice/employees-api-actions'
+} from '../../../../../store/employee-slice/employees-api-actions'
 import BoxInner from '../../../../ui/box-inner/box-inner'
 import EditEducation from './edit-education/edit-education'
 import DeleteEducation from './delete-education/delete-education'

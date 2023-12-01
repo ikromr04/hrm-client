@@ -3,14 +3,14 @@ import { useAppDispatch, useAppSelector } from '../../../../../hooks'
 import {
   getEmployee,
   getEmployeeActivities
-} from '../../../../../store/employees-slice/employees-selector'
+} from '../../../../../store/employee-slice/employees-selector'
 import Text from '../../../../ui/text/text'
 import Hr from '../../../../ui/hr/hr'
 import DescriptionList from '../../../../ui/description-list/description-list'
 import dayjs from 'dayjs'
 import {
   fetchEmployeeActivitiesAction
-} from '../../../../../store/employees-slice/employees-api-actions'
+} from '../../../../../store/employee-slice/employees-api-actions'
 import BoxInner from '../../../../ui/box-inner/box-inner'
 import { Actions } from './styled'
 import EditActivity from './edit-activity/edit-activity'

@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../../hooks'
 import { toast } from 'react-toastify'
 import {
   updateEmployeeActivityAction,
-} from '../../../store/employees-slice/employees-api-actions'
+} from '../../../store/employee-slice/employees-api-actions'
 import Buttons from '../../ui/buttons/buttons'
 import Button from '../../ui/button/button'
 import { Activity } from '../../../types/employee'

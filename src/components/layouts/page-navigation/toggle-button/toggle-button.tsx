@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
-import { getNavigationCollapsedState } from '../../../../store/app-slice/job-selector'
+import { getNavigationCollapsedState } from '../../../../store/app-slice/app-selector'
 import { StyledButton } from './styled'
 import ArrowLeftIcon from '../../../icons/arrow-left-icon'
 import { toggleNavigationAction } from '../../../../store/app-slice/app-slice'

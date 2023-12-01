@@ -1,10 +1,10 @@
 import { BaseSyntheticEvent } from 'react'
 import { Avatar, StyledDropdown } from './styled'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { getEmployee, getEmployeeAvatar } from '@/store/employees-slice/employees-selector'
+import { getEmployee, getEmployeeAvatar } from '@/store/employee-slice/employees-selector'
 import { deleteEmployeeAvatarAction, updateEmployeeAvatarAction } 
-  from '@/store/employees-slice/employees-api-actions'
-import { setEmployeeAvatarAction } from '@/store/employees-slice/employees-slice'
+  from '@/store/employee-slice/employees-api-actions'
+import { setEmployeeAvatarAction } from '@/store/employee-slice/employees-slice'
 import Info from '@/components/ui/info/info'
 import DropdownMenuItem from '@/components/ui/dropdown-navigation/dropdown-navigation';
 import defaultAvatar from '@/assets/static/default-avatar.png'

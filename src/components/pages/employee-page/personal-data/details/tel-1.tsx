@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../../../../hooks'
-import { getEmployeePersonalData } from '../../../../../store/employees-slice/employees-selector'
+import { getEmployeePersonalData } from '../../../../../store/employee-slice/employees-selector'
 import TextLink from '../../../../ui/text-link/text-link'
 
 function Tel1(): JSX.Element {

@@ -3,7 +3,7 @@ import { StyledLink } from './styled'
 import { useLocation } from 'react-router-dom'
 import { AppRoute } from '../../../../const'
 import { useAppSelector } from '../../../../hooks'
-import { getNavigationCollapsedState } from '../../../../store/app-slice/job-selector'
+import { getNavigationCollapsedState } from '../../../../store/app-slice/app-selector'
 
 type NavigationLinkProps = PropsWithChildren<{
   href: string

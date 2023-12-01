@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { PropsWithChildren, useEffect } from 'react'
-import { getEmployee } from '../../../store/employees-slice/employees-selector'
+import { getEmployee } from '../../../store/employee-slice/employees-selector'
 import EmployeeNavigation from './employee-navigation/employee-navigation'
 import { SectionInner, Section } from './styled'
-import { fetchEmployeeByIdAction } from '../../../store/employees-slice/employees-api-actions'
+import { fetchEmployeeByIdAction } from '../../../store/employee-slice/employees-api-actions'
 import EmployeeHeader from './employee-header/employee-header'
 import EmployeeSidebar from '../employee-sidebar/employee-sidebar'
 

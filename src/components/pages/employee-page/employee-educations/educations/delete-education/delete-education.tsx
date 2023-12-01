@@ -10,7 +10,7 @@ import Hr from '../../../../../ui/hr/hr'
 import Buttons from '../../../../../ui/buttons/buttons'
 import Button from '../../../../../ui/button/button'
 import { toast } from 'react-toastify'
-import { deleteEmployeeEducationAction } from '../../../../../../store/employees-slice/employees-api-actions'
+import { deleteEmployeeEducationAction } from '../../../../../../store/employee-slice/employees-api-actions'
 import { useAppDispatch } from '../../../../../../hooks'
 
 type DeleteEducationProps = {

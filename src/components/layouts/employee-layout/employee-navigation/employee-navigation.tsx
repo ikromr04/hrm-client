@@ -4,7 +4,7 @@ import { AppRoute } from '../../../../const'
 import { memo } from 'react'
 import NavigationLink from './navigation-link/navigation-link'
 import { useAppSelector } from '../../../../hooks'
-import { getEmployee } from '../../../../store/employees-slice/employees-selector'
+import { getEmployee } from '../../../../store/employee-slice/employees-selector'
 
 function EmployeeNavigation(): JSX.Element {
   const employee = useAppSelector(getEmployee)

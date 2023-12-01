@@ -2,7 +2,6 @@ export const EMPTY_OPTION_LABEL = '--Выберите--'
 
 export const AppRoute = {
   Main: '/',
-  Login: '/employees/login',
   Auth: {
     Login: '/auth/login',
     Logout: '/auth/logout'
@@ -27,23 +26,25 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum APIRoute {
-  Login = '/employees/login',
-  Logout = '/employees/logout',
-  Employees = '/employees',
-  EmployeesQuickAdd = '/employees/quick-add',
-  Employee = '/employees/:employeeId',
-  EmployeeJob = '/employees/:employeeId/job',
-  EmployeeAvatar = '/employees/:employeeId/avatar',
-  EmployeePersonalData = '/employees/:employeeId/personal',
-  EmployeeEducations = '/employees/:employeeId/educations',
-  EmployeeActivities = '/employees/:employeeId/activities',
-  EmployeeLanguages = '/employees/:employeeId/languages',
-  Education = '/educations/:educationId',
-  Activity = '/labor-activities/:activityId',
-  Jobs = '/jobs',
-  Positions = '/positions',
-  Languages = '/languages',
+export const APIRoute = {
+  Auth: {
+    Login: '/auth/login',
+    Logout: '/auth/logout'
+  },
+  Employees: '/employees',
+  EmployeesQuickAdd: '/employees/quick-add',
+  Employee: '/employees/:employeeId',
+  EmployeeJob: '/employees/:employeeId/job',
+  EmployeeAvatar: '/employees/:employeeId/avatar',
+  EmployeePersonalData: '/employees/:employeeId/personal',
+  EmployeeEducations: '/employees/:employeeId/educations',
+  EmployeeActivities: '/employees/:employeeId/activities',
+  EmployeeLanguages: '/employees/:employeeId/languages',
+  Education: '/educations/:educationId',
+  Activity: '/labor-activities/:activityId',
+  Jobs: '/jobs',
+  Positions: '/positions',
+  Languages: '/languages',
 }
 
 export enum SliceName {
