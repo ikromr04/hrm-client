@@ -6,15 +6,18 @@ import { AppSpinner } from './styled'
 import LoginPage from '../pages/login-page/login-page'
 import NotFoundPage from '../pages/not-found-page/not-found-page'
 import MainPage from '../pages/main-page/main-page'
-import EmployeePage from '../pages/employee-page/employee-page'
-import EmployeeWorkPage from '../pages/employee-work-page/employee-work-page'
-import EmployeeEquipmentPage from '../pages/employee-equipment-page/employee-equipment-page'
-import EmployeeVacationPage from '../pages/employee-vacation-page/employee-vacation-page'
-import EmployeePIRPage from '../pages/employee-pir-page/employee-pir-page'
-import EmployeeKPIPage from '../pages/employee-kpi-page/employee-kpi-page'
-import EmployeeAttendancePage from '../pages/employee-attendance-page/employee-attendance-page'
-import EmployeesStructurePage from '../pages/employees-structure-page/employees-structure-page'
-import EmployeesPage from '../pages/employees-page/employees-page'
+import EmployeesPage from '../pages/employees/index-page/employees-page'
+import EmployeesStructurePage 
+  from '../pages/employees/structure-page/employees-structure-page'
+import EmployeesShowPage from '../pages/employees/show-page/employees-show-page'
+import EmployeesWorkPage from '../pages/employees/work-page/employees-work-page'
+import EmployeesEquipmentPage 
+  from '../pages/employees/equipment-page/employees-equipment-page'
+import EmployeesVacationPage from '../pages/employees/vacation-page/employees-vacation-page'
+import EmployeesPIRPage from '../pages/employees/pir-page/employees-pir-page'
+import EmployeesKPIPage from '../pages/employees/kpi-page/employees-kpi-page'
+import EmployeesAttendancePage 
+  from '../pages/employees/attendance-page/employees-attendance-page'
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus)
@@ -27,19 +30,20 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Auth.Login} element={<LoginPage />} />
-        <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
 
         <Route path={AppRoute.Main} element={<MainPage />} />
 
         <Route path={AppRoute.Employees.Index} element={<EmployeesPage />} />
         <Route path={AppRoute.Employees.Structure} element={<EmployeesStructurePage />} />
-        <Route path={AppRoute.Employees.Show} element={<EmployeePage />} />
-        <Route path={AppRoute.Employees.Work} element={<EmployeeWorkPage />} />
-        <Route path={AppRoute.Employees.Equipment} element={<EmployeeEquipmentPage />} />
-        <Route path={AppRoute.Employees.Vacation} element={<EmployeeVacationPage />} />
-        <Route path={AppRoute.Employees.PIR} element={<EmployeePIRPage />} />
-        <Route path={AppRoute.Employees.KPI} element={<EmployeeKPIPage />} />
-        <Route path={AppRoute.Employees.Attendance} element={<EmployeeAttendancePage />} />
+        <Route path={AppRoute.Employees.Show} element={<EmployeesShowPage />} />
+        <Route path={AppRoute.Employees.Work} element={<EmployeesWorkPage />} />
+        <Route path={AppRoute.Employees.Equipment} element={<EmployeesEquipmentPage />} />
+        <Route path={AppRoute.Employees.Vacation} element={<EmployeesVacationPage />} />
+        <Route path={AppRoute.Employees.PIR} element={<EmployeesPIRPage />} />
+        <Route path={AppRoute.Employees.KPI} element={<EmployeesKPIPage />} />
+        <Route path={AppRoute.Employees.Attendance} element={<EmployeesAttendancePage />} />
+
+        <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   )

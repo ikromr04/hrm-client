@@ -7,8 +7,9 @@ import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
 import { fetchEmployeeByIdAction } from '@/store/employee-slice/employees-api-actions'
 import EmployeeSidebar from '../employee-sidebar/employee-sidebar'
+import PageLayout from '../page-layout/page-layout'
 
-function EmployeeLayout({ children }: PropsWithChildren): JSX.Element {
+function EmployeesShowLayout({ children }: PropsWithChildren): JSX.Element {
   const employee = useAppSelector(getEmployee)
   const dispatch = useAppDispatch()
   const params = useParams()
@@ -20,17 +21,19 @@ function EmployeeLayout({ children }: PropsWithChildren): JSX.Element {
   }, [dispatch, employee?.id, params.employeeId])
 
   return (
-    <Section>
-      <EmployeeHeader />
+    <PageLayout>
+      <Section>
+        <EmployeeHeader />
 
-      <EmployeeNavigation />
+        <EmployeeNavigation />
 
-      <SectionInner>
-        {children}
-        <EmployeeSidebar />
-      </SectionInner>
-    </Section>
+        <SectionInner>
+          {children}
+          <EmployeeSidebar />
+        </SectionInner>
+      </Section>
+    </PageLayout>
   )
 }
 
-export default EmployeeLayout
+export default EmployeesShowLayout
