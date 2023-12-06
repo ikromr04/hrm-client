@@ -5,16 +5,14 @@ import QuickAdd from './quick-add/quick-add'
 
 function MainHeader(): JSX.Element {
   return (
-    <>
-      <Header>
-        <HeaderContainer>
-          <Logo />
+    <Header>
+      <HeaderContainer>
+        <Logo />
 
-          <QuickAdd />
-          <EmployeeMenu />
-        </HeaderContainer>
-      </Header>
-    </>
+        <QuickAdd />
+        <EmployeeMenu />
+      </HeaderContainer>
+    </Header>
   )
 }
 
