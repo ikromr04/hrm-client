@@ -6,7 +6,6 @@ export const Layout = styled('div')`
   grid-template-rows: auto 1fr;
   height: 100vh;
   width: 100vw;
-  background-color: #f1f5f8;
 `
 export const LayoutContent = styled('div')`
   padding-top: 16px;

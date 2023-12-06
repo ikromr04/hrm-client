@@ -1,7 +1,11 @@
 import CaretIcon from '@/components/icons/caret-icon';
 import styled from 'styled-components';
 
-export const DropdownButton = styled('button')`
+export const Dropdown = styled('div')`
+  position: relative;
+`
+
+export const StyledButton = styled('button')`
   border: 0;
   padding: 0;
   background-color: transparent;

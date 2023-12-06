@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
+    background-color: #f1f5f8;
   }
 
   img {
