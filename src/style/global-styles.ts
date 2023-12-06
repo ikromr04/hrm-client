@@ -18,20 +18,6 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    background-color: #f1f5f8;
-
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: #ffffff;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #bdbdbd;
-      border-radius: 2px;
-    }
   }
 
   img {

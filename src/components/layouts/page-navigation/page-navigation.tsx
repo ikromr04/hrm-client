@@ -1,4 +1,4 @@
-import { NavigationItem, StyledBox } from './styled'
+import { NavigationItem, Nav } from './styled'
 import NavigationLink from './navigation-link/navigation-link'
 import ToggleButton from './toggle-button/toggle-button'
 import { AppRoute } from '@/const'
@@ -9,7 +9,7 @@ import AddressBookIcon from '@/components/icons/address-book-icon'
 
 function PageNavigation(): JSX.Element {
   return (
-    <StyledBox tagName="nav">
+    <Nav tagName="nav">
       <NavigationItem>
         <NavigationLink href={AppRoute.Main}>
           <HomeIcon width={16} height={16} /> Главная страница
@@ -29,7 +29,7 @@ function PageNavigation(): JSX.Element {
       <Hr />
 
       <ToggleButton />
-    </StyledBox>
+    </Nav>
   )
 }
 

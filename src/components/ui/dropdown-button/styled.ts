@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MenuItem = styled('button')`
+export const Button = styled('button')`
   display: flex;
   align-items: center;
   gap: 8px;

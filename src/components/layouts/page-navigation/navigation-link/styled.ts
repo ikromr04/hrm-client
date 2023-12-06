@@ -20,7 +20,8 @@ export const StyledLink = styled(Link).withConfig({
   border-radius: 4px;
   overflow: hidden;
   white-space: nowrap;
-  transition: .3s;
+  transition-property: color, background-color, max-width;
+  transition-duration: .3s;
 
   ${({ isCurrent }) => isCurrent && css`
     color: #476887;
@@ -45,7 +46,8 @@ export const StyledLink = styled(Link).withConfig({
     max-width: 32px;
     color: transparent;
 
-    &:hover+${StyledInfo} {
+    &:hover+${StyledInfo},
+    &:focus+${StyledInfo} {
       visibility: visible;
       opacity: 1;
     }

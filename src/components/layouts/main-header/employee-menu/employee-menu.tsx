@@ -4,12 +4,12 @@ import Hr from '@/components/ui/hr/hr'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { logoutAction } from '@/store/employee-slice/employees-api-actions'
 import { generatePath } from 'react-router-dom'
-import Dropdown from '@/components/ui/dropdown/dropdown'
+import Dropdown from '@/components/ui/dropdown-menu/dropdown-menu'
 import {
   getAuthorizedEmployee,
   getAuthorizedEmployeeAvatar
 } from '@/store/employee-slice/employees-selector'
-import DropdownMenuItem from '@/components/ui/dropdown-navigation/dropdown-navigation'
+import DropdownMenuItem from '@/components/ui/dropdown-button/dropdown-button'
 import defaultAvatar from '@/assets/static/default-avatar.png'
 
 function EmployeeMenu(): JSX.Element {

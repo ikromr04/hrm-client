@@ -1,4 +1,4 @@
-import Dropdown from '@/components/ui/dropdown/dropdown';
+import Dropdown from '@/components/ui/dropdown-menu/dropdown-menu';
 import { StyledInfo } from '@/components/ui/info/styled';
 import styled from 'styled-components';
 

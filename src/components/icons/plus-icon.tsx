@@ -1,9 +1,12 @@
 type PlusIconProps = {
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
-function PlusIcon({ width, height }: PlusIconProps): JSX.Element {
+function PlusIcon({ 
+  width = 16,
+  height = 16
+}: PlusIconProps): JSX.Element {
   return (
     <svg
       viewBox="0 0 448 512"

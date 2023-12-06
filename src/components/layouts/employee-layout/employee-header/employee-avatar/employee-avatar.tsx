@@ -6,7 +6,7 @@ import { deleteEmployeeAvatarAction, updateEmployeeAvatarAction }
   from '@/store/employee-slice/employees-api-actions'
 import { setEmployeeAvatarAction } from '@/store/employee-slice/employees-slice'
 import Info from '@/components/ui/info/info'
-import DropdownMenuItem from '@/components/ui/dropdown-navigation/dropdown-navigation';
+import DropdownMenuItem from '@/components/ui/dropdown-button/dropdown-button';
 import defaultAvatar from '@/assets/static/default-avatar.png'
 
 function EmployeeAvatar(): JSX.Element {

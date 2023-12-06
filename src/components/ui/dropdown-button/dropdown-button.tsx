@@ -1,26 +1,26 @@
 import { PropsWithChildren } from 'react'
-import { MenuItem } from './styled'
+import { Button } from './styled'
 import { Link } from 'react-router-dom'
 
-type DropdownMenuItemProps = PropsWithChildren<{
+type DropdownButtonProps = PropsWithChildren<{
   href?: string
   [rest: string]: unknown
 }>
 
-function DropdownMenuItem({
+function DropdownButton({
   href,
   children,
   ...rest
-} : DropdownMenuItemProps): JSX.Element {
+} : DropdownButtonProps): JSX.Element {
   return (
-    <MenuItem
+    <Button
       as={href ? Link : ''}
       to={href}
       {...rest}
     >
       {children}
-    </MenuItem>
+    </Button>
   )
 }
 
-export default DropdownMenuItem
+export default DropdownButton
