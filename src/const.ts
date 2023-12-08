@@ -32,10 +32,11 @@ export const APIRoute = {
     Logout: '/auth/logout'
   },
   Employees: '/employees',
+  EmployeesAvatar: '/employees/:employeeId/avatar',
+
   EmployeesQuickAdd: '/employees/quick-add',
   Employee: '/employees/:employeeId',
   EmployeeJob: '/employees/:employeeId/job',
-  EmployeeAvatar: '/employees/:employeeId/avatar',
   EmployeePersonalData: '/employees/:employeeId/personal',
   EmployeeEducations: '/employees/:employeeId/educations',
   EmployeeActivities: '/employees/:employeeId/activities',

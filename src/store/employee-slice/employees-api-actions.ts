@@ -89,18 +89,18 @@ export const fetchEmployeePersonalDataAction = createAsyncThunk<PersonalData, {
   },
 )
 
-export const updateEmployeeAvatarAction = createAsyncThunk<void, {
+export const updateEmployeesAvatarAction = createAsyncThunk<void, {
   formData: FormData
   employeeId: string
   successHandler: (avatarPath: AvatarPath | null) => void
  }, {
   extra: AxiosInstance
 }>(
-  'employees/updateEmployeeAvatar',
+  'employees/updateAvatar',
   async ({ formData, employeeId, successHandler }, { extra: api }) => {
     formData.append('_method', 'put')
     const { data } = await api.post(
-      generatePath(APIRoute.EmployeeAvatar, { employeeId }), formData
+      generatePath(APIRoute.EmployeesAvatar, { employeeId }), formData
     )
     successHandler(data)
   },
@@ -114,7 +114,7 @@ export const deleteEmployeeAvatarAction = createAsyncThunk<void, {
 }>(
   'employees/deleteEmployeeAvatar',
   async ({ employeeId, successHandler }, { extra: api }) => {
-    await api.delete(generatePath(APIRoute.EmployeeAvatar, { employeeId }))
+    await api.delete(generatePath(APIRoute.EmployeesAvatar, { employeeId }))
     successHandler()
   },
 )

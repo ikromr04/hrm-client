@@ -49,7 +49,7 @@ export const employeeSlice = createSlice({
   name: SliceName.Employee,
   initialState,
   reducers: {
-    setEmployeeAvatarAction: (state, action) => {
+    setEmployeesAvatarAction: (state, action) => {
       state.employeeAvatar = action.payload;
       if (state.authorizedEmployee?.id === state.employee?.id ) {
         state.authorizedEmployeeAvatar = action.payload;
@@ -147,4 +147,4 @@ export const employeeSlice = createSlice({
   },
 });
 
-export const { setEmployeeAvatarAction } = employeeSlice.actions;
+export const { setEmployeesAvatarAction } = employeeSlice.actions;

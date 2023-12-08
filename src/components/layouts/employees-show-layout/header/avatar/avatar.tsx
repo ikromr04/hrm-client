@@ -2,9 +2,9 @@ import { BaseSyntheticEvent, useState } from 'react'
 import { Image, Button, Loading } from './styled'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getEmployee, getEmployeeAvatar } from '@/store/employee-slice/employees-selector'
-import { deleteEmployeeAvatarAction, updateEmployeeAvatarAction } 
+import { deleteEmployeeAvatarAction, updateEmployeesAvatarAction } 
   from '@/store/employee-slice/employees-api-actions'
-import { setEmployeeAvatarAction } from '@/store/employee-slice/employees-slice'
+import { setEmployeesAvatarAction } from '@/store/employee-slice/employees-slice'
 import Info from '@/components/ui/info/info'
 import defaultAvatar from '@/assets/static/default-avatar.png'
 import { Dropdown } from '@/components/layouts/main-header/employee-menu/styled'
@@ -27,12 +27,12 @@ function Avatar(): JSX.Element {
       const formData = new FormData()
       formData.append('avatar', evt.target.files[0])
       setIsLoading(true)
-      dispatch(updateEmployeeAvatarAction({
+      dispatch(updateEmployeesAvatarAction({
         formData,
         employeeId: employee.id,
         successHandler(avatarPath) {
           setIsLoading(false)
-          dispatch(setEmployeeAvatarAction(avatarPath))
+          dispatch(setEmployeesAvatarAction(avatarPath))
         },
       }))
   }
@@ -42,7 +42,7 @@ function Avatar(): JSX.Element {
     dispatch(deleteEmployeeAvatarAction({
       employeeId: employee.id,
       successHandler() {
-        dispatch(setEmployeeAvatarAction(null))
+        dispatch(setEmployeesAvatarAction(null))
         setIsLoading(false)
       },
     }))
@@ -58,6 +58,10 @@ function Avatar(): JSX.Element {
         <Image
           src={avatar || defaultAvatar}
           alt={employee?.name}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src=defaultAvatar;
+          }}
           width={144}
           height={144}
         />
