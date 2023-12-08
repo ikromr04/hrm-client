@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 
 export const Nav = styled(Box)`
   position: sticky;
+  z-index: 1;
   top: 0;
   padding: 8px 0;
 `;

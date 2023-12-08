@@ -18,12 +18,17 @@ import EmployeesPIRPage from '../pages/employees/pir-page/employees-pir-page'
 import EmployeesKPIPage from '../pages/employees/kpi-page/employees-kpi-page'
 import EmployeesAttendancePage 
   from '../pages/employees/attendance-page/employees-attendance-page'
+import Spinner from '../ui/spinner/spinner'
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus)
 
   if (authorizationStatus === AuthorizationStatus.Unknown) {
-    return (<AppSpinner />)
+    return (
+    <AppSpinner>
+      <Spinner width={56} height={56} />
+    </AppSpinner>
+    )
   }
 
   return (

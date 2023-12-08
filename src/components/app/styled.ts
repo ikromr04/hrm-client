@@ -1,7 +1,9 @@
 import { styled } from 'styled-components';
-import Spinner from '../ui/spinner/spinner';
 
-export const AppSpinner = styled(Spinner)`
-  padding-top: 32px;
-  width: 100%;
+export const AppSpinner = styled('div')`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

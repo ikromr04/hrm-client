@@ -1,5 +1,4 @@
-import { HeaderInner, Jobs, Name, Positions, StyledHeader } from './styled'
-import EmployeeAvatar from './employee-avatar/employee-avatar'
+import { Inner, Jobs, Name, Positions, StyledHeader } from './styled'
 import { useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
 import BriefcaseIcon from '@/components/icons/briefcase-icon'
@@ -9,8 +8,9 @@ import ChevronLeftIcon from '@/components/icons/chevron-left-icon'
 import { generatePath } from 'react-router-dom'
 import { AppRoute } from '@/const'
 import ChevronRightIcon from '@/components/icons/chevron-right-icon'
+import Avatar from './avatar/avatar'
 
-function EmployeeHeader(): JSX.Element {
+function Header(): JSX.Element {
   const employee = useAppSelector(getEmployee)
 
   if (!employee) {
@@ -20,15 +20,16 @@ function EmployeeHeader(): JSX.Element {
   const prevLink = generatePath(AppRoute.Employees.Show, { 
     employeeId: employee.previousEmployeeId 
   })
+
   const nextLink = generatePath(AppRoute.Employees.Show, { 
     employeeId: employee.nextEmployeeId 
   })
 
   return (
     <StyledHeader>
-      <EmployeeAvatar />
+      <Avatar />
 
-      <HeaderInner>
+      <Inner>
         <div>
           <Name>{`${employee.surname} ${employee.name} ${employee.patronymic || ''}`}</Name>
           {employee.jobs &&
@@ -47,9 +48,9 @@ function EmployeeHeader(): JSX.Element {
             Следующий <ChevronRightIcon width={16} height={16} />
           </Button>
         </Buttons>
-      </HeaderInner>
+      </Inner>
     </StyledHeader>
   )
 }
 
-export default EmployeeHeader
+export default Header

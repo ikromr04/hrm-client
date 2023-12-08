@@ -7,7 +7,7 @@ export const StyledHeader = styled('header')`
   gap: 16px;
 `;
 
-export const HeaderInner = styled('div')`
+export const Inner = styled('div')`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;

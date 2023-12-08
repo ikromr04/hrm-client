@@ -17,6 +17,7 @@ export const StyledButton = styled('button').withConfig({
   small?: boolean 
 }>`
   position: relative;
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;

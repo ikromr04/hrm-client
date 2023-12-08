@@ -8,7 +8,7 @@ import { getEmployee, getEmployeePersonalData }
 import { fetchEmployeePersonalDataAction } 
   from '@/store/employee-slice/employees-api-actions'
 
-function EmployeeSidebar(): JSX.Element {
+function Sidebar(): JSX.Element {
   const dispatch = useAppDispatch()
   const personalData = useAppSelector(getEmployeePersonalData)
   const employee = useAppSelector(getEmployee)
@@ -27,4 +27,4 @@ function EmployeeSidebar(): JSX.Element {
   )
 }
 
-export default EmployeeSidebar
+export default Sidebar

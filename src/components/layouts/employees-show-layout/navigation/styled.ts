@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export const Navigation = styled('div')`
+export const StyledNavigation = styled('div')`
   display: flex;
 `;

@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom'
 import { PropsWithChildren, useEffect } from 'react'
-import EmployeeNavigation from './employee-navigation/employee-navigation'
-import { SectionInner, Section } from './styled'
-import EmployeeHeader from './employee-header/employee-header'
+import { Main, Content } from './styled'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
 import { fetchEmployeeByIdAction } from '@/store/employee-slice/employees-api-actions'
-import EmployeeSidebar from '../employee-sidebar/employee-sidebar'
 import PageLayout from '../page-layout/page-layout'
+import Header from './header/header'
+import Navigation from './navigation/navigation'
+import Sidebar from './sidebar/sidebar'
 
 function EmployeesShowLayout({ children }: PropsWithChildren): JSX.Element {
   const employee = useAppSelector(getEmployee)
@@ -22,16 +22,16 @@ function EmployeesShowLayout({ children }: PropsWithChildren): JSX.Element {
 
   return (
     <PageLayout>
-      <Section>
-        <EmployeeHeader />
+      <Main>
+        <Header />
 
-        <EmployeeNavigation />
-
-        <SectionInner>
+        <Navigation />
+        
+        <Content>
           {children}
-          <EmployeeSidebar />
-        </SectionInner>
-      </Section>
+          <Sidebar />
+        </Content>
+      </Main>
     </PageLayout>
   )
 }

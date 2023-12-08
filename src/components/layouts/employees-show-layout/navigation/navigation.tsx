@@ -1,11 +1,11 @@
 import { generatePath } from 'react-router-dom'
-import { Navigation } from './styled'
+import { StyledNavigation } from './styled'
 import NavigationLink from './navigation-link/navigation-link'
 import { useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
 import { AppRoute } from '@/const'
 
-function EmployeeNavigation(): JSX.Element {
+function Navigation(): JSX.Element {
   const employee = useAppSelector(getEmployee)
 
   if (!employee) {
@@ -13,7 +13,7 @@ function EmployeeNavigation(): JSX.Element {
   }
 
   return (
-    <Navigation>
+    <StyledNavigation>
       <NavigationLink 
         href={generatePath(AppRoute.Employees.Show, { employeeId: employee.id })}
       >
@@ -49,8 +49,8 @@ function EmployeeNavigation(): JSX.Element {
       >
         Посещаемость
       </NavigationLink>
-    </Navigation>
+    </StyledNavigation>
   )
 }
 
-export default EmployeeNavigation
+export default Navigation

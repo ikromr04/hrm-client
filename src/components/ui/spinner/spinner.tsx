@@ -1,27 +1,26 @@
-import { Loader, StyledSpinner } from './styled'
+import { Span } from './styled'
 
 type SpinnerProps = {
   className?: string
   width?: number
-  stroke?: number
-  color?: string
+  height?: number
   [rest: string]: unknown
 }
 
-function Spinner(props: SpinnerProps): JSX.Element {
-  const { className, width, stroke, color, ...rest } = props
+function Spinner({ 
+  className,
+  width = 24,
+  height = 24,
+  ...rest
+}: SpinnerProps): JSX.Element {
 
   return (
-    <StyledSpinner
+    <Span
       className={className}
+      width={width}
+      height={height}
       {...rest}
-    >
-      <Loader
-        width={width}
-        stroke={stroke}
-        color={color}
-      />
-    </StyledSpinner>
+    ></Span>
   )
 }
 
