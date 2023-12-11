@@ -11,9 +11,12 @@ import { Dropdown } from '@/components/layouts/main-header/employee-menu/styled'
 import { useDropdown } from '@/hooks/use-dropdown'
 import DropdownMenu from '@/components/ui/dropdown-menu/dropdown-menu'
 import DropdownButton from '@/components/ui/dropdown-button/dropdown-button'
+import { getAuthUser } from '@/store/auth-slice/auth-selector'
+import { setAuthAvatarAction } from '@/store/auth-slice/auth-slice'
 
 function Avatar(): JSX.Element {
   const employee = useAppSelector(getEmployee)
+  const authUser = useAppSelector(getAuthUser)
   const avatar = useAppSelector(getEmployeeAvatar)
   const dispatch = useAppDispatch()
   const { ref, isOpen, setIsOpen } = useDropdown()
@@ -24,17 +27,20 @@ function Avatar(): JSX.Element {
   }
 
   const handleInputChange = async (evt: BaseSyntheticEvent) => {
-      const formData = new FormData()
-      formData.append('avatar', evt.target.files[0])
-      setIsLoading(true)
-      dispatch(updateEmployeesAvatarAction({
-        formData,
-        employeeId: employee.id,
-        successHandler(avatarPath) {
-          setIsLoading(false)
-          dispatch(setEmployeesAvatarAction(avatarPath))
-        },
-      }))
+    const formData = new FormData()
+    formData.append('avatar', evt.target.files[0])
+    setIsLoading(true)
+    dispatch(updateEmployeesAvatarAction({
+      formData,
+      employeeId: employee.id,
+      successHandler(avatarPath) {
+        setIsLoading(false)
+        dispatch(setEmployeesAvatarAction(avatarPath))
+        if (employee.id === authUser?.id) {
+          dispatch(setAuthAvatarAction(avatarPath))
+        }
+      },
+    }))
   }
 
   const handleDeleteAvatar = () => {
@@ -42,8 +48,11 @@ function Avatar(): JSX.Element {
     dispatch(deleteEmployeeAvatarAction({
       employeeId: employee.id,
       successHandler() {
-        dispatch(setEmployeesAvatarAction(null))
+        dispatch(setEmployeesAvatarAction(''))
         setIsLoading(false)
+        if (employee.id === authUser?.id) {
+          dispatch(setAuthAvatarAction(''))
+        }
       },
     }))
   }

@@ -17,11 +17,11 @@ function Header(): JSX.Element {
     return <></>
   }
 
-  const prevLink = generatePath(AppRoute.Employees.Show, { 
+  const prevLink = generatePath(AppRoute.Employees.Show, {
     employeeId: employee.previousEmployeeId 
   })
 
-  const nextLink = generatePath(AppRoute.Employees.Show, { 
+  const nextLink = generatePath(AppRoute.Employees.Show, {
     employeeId: employee.nextEmployeeId 
   })
 

@@ -1,43 +1,33 @@
-import { BaseSyntheticEvent, useState } from 'react'
-import { StyledBox, Form } from './styled'
+import { ChangeEvent, SyntheticEvent, useState } from 'react'
+import { Form, Main } from './styled'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { loginAction } from '@/store/employee-slice/employees-api-actions'
 import { AuthorizationStatus, AppRoute } from '@/const'
 import { Navigate } from 'react-router-dom'
-import { ValidationError } from '@/types/validation-error'
-import { getAuthorizationStatus } from '@/store/employee-slice/employees-selector'
 import MainLogo from '@/components/ui/main-logo/main-logo'
 import Title from '@/components/ui/title/title'
 import Text from '@/components/ui/text/text'
-import { LoginData } from '@/types/employee'
 import Button from '@/components/ui/button/button'
 import Input from '@/components/ui/input/input'
+import { useFormValidation } from '@/hooks/use-form-validation'
+import Spinner from '@/components/ui/spinner/spinner'
+import { getAuthStatus } from '@/store/auth-slice/auth-selector'
+import { loginAction } from '@/store/auth-slice/auth-api-actions'
 
 function LoginPage(): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus)
+  const { validationError, setValidationError, formChangeHandler } = useFormValidation()
+  const authorizationStatus = useAppSelector(getAuthStatus)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [password, setPassword] = useState('')
+  const [login, setLogin] = useState('')
   const dispatch = useAppDispatch()
-  const [loginData, setLoginData] = useState<LoginData>({ login: '', password: '' })
-  const [validationError, setValidationError] = useState<ValidationError>({ message: '' })
 
-  const handleFieldsInput = (evt: BaseSyntheticEvent): void => {
-    const loginDataCopy = JSON.parse(JSON.stringify(loginData))
-    loginDataCopy[evt.target.name] = evt.target.value
-    setLoginData(loginDataCopy)
-    const validationErrorCopy = JSON.parse(JSON.stringify(validationError))
-    validationErrorCopy.message = ''
-    if (validationErrorCopy?.errors?.[evt.target.name]) {
-      delete validationErrorCopy.errors[evt.target.name]
-    }
-    setValidationError(validationErrorCopy)
-  }
-
-  const handleSubmitButtonClick = (evt: BaseSyntheticEvent) => {
+  const handleFormSubmit = (evt: SyntheticEvent) => {
     evt.preventDefault()
-    evt.target.setAttribute('disabled', 'disabled')
+    setIsSubmitting(true)
     dispatch(loginAction({
-      loginData,
+      dto: { login, password },
       errorHandler(error) {
-        evt.target.removeAttribute('disabled')
+        setIsSubmitting(false)
         setValidationError(error)
       },
     }))
@@ -48,10 +38,11 @@ function LoginPage(): JSX.Element {
   }
 
   return (
-    <StyledBox tagName="main">
+    <Main tagName="main">
       <MainLogo />
       <Title>Добро пожаловать в Evolet</Title>
-      <Form>
+
+      <Form onSubmit={handleFormSubmit} onChange={formChangeHandler}>
         <Text error={validationError?.message ? true : false}>
           {validationError?.message 
             ? 'Неверные учетные данные' 
@@ -62,8 +53,8 @@ function LoginPage(): JSX.Element {
           name="login"
           type="text"
           placeholder="Логин"
-          defaultValue={loginData.login}
-          onInput={handleFieldsInput}
+          defaultValue={login}
+          onChange={(evt: ChangeEvent<HTMLInputElement>) => setLogin(evt.target.value)}
           errorMessage={validationError?.errors?.login?.[0]}
         />
 
@@ -71,20 +62,21 @@ function LoginPage(): JSX.Element {
           name="password"
           type="password"
           placeholder="Пароль"
-          defaultValue={loginData.password}
-          onInput={handleFieldsInput}
+          defaultValue={password}
+          onChange={(evt: ChangeEvent<HTMLInputElement>) => setPassword(evt.target.value)}
           errorMessage={validationError?.errors?.password?.[0]}
         />
 
         <Button
           type="submit"
           success
-          onClick={handleSubmitButtonClick}
+          disabled={isSubmitting}
         >
+          {isSubmitting && <Spinner />}
           Войти в систему
         </Button>
       </Form>
-    </StyledBox>
+    </Main>
   )
 }
 

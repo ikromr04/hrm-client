@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { StyledInfo } from '../info/styled';
+import { Span } from '../spinner/styled';
 
 export const StyledButton = styled('button').withConfig({
   shouldForwardProp: (props) => ![
@@ -35,11 +36,31 @@ export const StyledButton = styled('button').withConfig({
   height: 32px;
   cursor: pointer;
   transition-property: backgroud-color, color, box-shadow;
-  transition-duration: 0.3s;
+  transition-duration: 0.3s; 
+
+  &:active,
+  &:hover {
+    box-shadow: none;
+  }
+
+  &:hover ${StyledInfo},
+  &:focus ${StyledInfo} {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    box-shadow: none;
+  }
 
   ${({ success }) => success && css`
     background-color: #66bb6a;
     color: #ffffff;
+
+    &:disabled {
+      background-color: rgba(102, 187, 106, 48%);
+    }
   `}
 
   ${({ warning }) => warning && css`
@@ -61,21 +82,10 @@ export const StyledButton = styled('button').withConfig({
     height: 28px;
   `}
 
-  &:active,
-  &:hover {
-    box-shadow: none;
-  }
-
-  &:hover ${StyledInfo},
-  &:focus ${StyledInfo} {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  &:disabled {
-    pointer-events: none;
-    color: #9e9e9e;
-    background-color: #e0e0e0;
-    box-shadow: none;
+  ${Span} {
+    width: 16px;
+    height: 16px;
+    border-top: 2px solid #2979ff;
+    border-right: 2px solid transparent;
   }
 `;

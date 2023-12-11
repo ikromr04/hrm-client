@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AppRoute, AuthorizationStatus } from '@/const'
 import { useAppSelector } from '@/hooks'
-import { getAuthorizationStatus } from '@/store/employee-slice/employees-selector'
 import { AppSpinner } from './styled'
 import LoginPage from '../pages/login-page/login-page'
 import NotFoundPage from '../pages/not-found-page/not-found-page'
@@ -19,11 +18,12 @@ import EmployeesKPIPage from '../pages/employees/kpi-page/employees-kpi-page'
 import EmployeesAttendancePage 
   from '../pages/employees/attendance-page/employees-attendance-page'
 import Spinner from '../ui/spinner/spinner'
+import { getAuthStatus } from '@/store/auth-slice/auth-selector'
 
 function App(): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus)
+  const authStatus = useAppSelector(getAuthStatus)
 
-  if (authorizationStatus === AuthorizationStatus.Unknown) {
+  if (authStatus === AuthorizationStatus.Unknown) {
     return (
     <AppSpinner>
       <Spinner width={56} height={56} />

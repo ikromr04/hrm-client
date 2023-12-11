@@ -5,12 +5,12 @@ import App from './components/app/app'
 import { Provider } from 'react-redux'
 import { store } from './store'
 import GlobalStyle from './style/global-styles'
-import { checkAuthorizationAction } from './store/employee-slice/employees-api-actions'
 import dayjs from 'dayjs'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { checkAuthAction } from './store/auth-slice/auth-api-actions'
 
-store.dispatch(checkAuthorizationAction())
+store.dispatch(checkAuthAction())
 dayjs.locale('ru')
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -2,14 +2,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AxiosError, AxiosInstance } from 'axios'
 import { APIRoute } from '../../const'
-import { dropToken, saveToken } from '../../services/token'
 import { generatePath } from 'react-router-dom'
 import { ValidationError } from '../../types/validation-error'
 import {
   Activities,
   Activity,
   ActivityId,
-  AuthorizedEmployee,
   AvatarPath,
   Education,
   EducationId,
@@ -17,7 +15,6 @@ import {
   Employee,
   EmployeeLanguages,
   Employees,
-  LoginData,
   PersonalData
 } from '../../types/employee'
 import {
@@ -32,50 +29,6 @@ import {
 } from '../../adapters/employees'
 import { EmployeeQuickAddDTO, EmployeeUpdateDTO } from '../../dto/employees'
 import { EmployeeQuickAddResponse } from '../../response/employees'
-
-export const checkAuthorizationAction = createAsyncThunk<AuthorizedEmployee, undefined, {
-  extra: AxiosInstance
-}>(
-  'employees/checkAuthorization',
-  async (_arg, { extra: api }) => {
-    const { data } = await api.get(APIRoute.Auth.Login)
-    return adaptEmployeeToClient(data)
-  },
-)
-
-export const loginAction = createAsyncThunk<AuthorizedEmployee, {
-  loginData: LoginData,
-  errorHandler: (error: ValidationError) => void
-}, {
-  extra: AxiosInstance
-  rejectValue: ValidationError
-}>(
-  'employees/login',
-  async ({ loginData, errorHandler }, { extra: api, rejectWithValue }) => {
-    try {
-      const { data } = await api.post(APIRoute.Auth.Login, loginData)
-      saveToken(data.token)
-      return adaptEmployeeToClient(data)
-    } catch (err: any) {
-      const error: AxiosError<ValidationError> = err
-      if (!error.response) {
-        throw err
-      }
-      errorHandler(error.response.data)
-      return rejectWithValue(error.response.data)
-    }
-  },
-)
-
-export const logoutAction = createAsyncThunk<void, undefined, {
-  extra: AxiosInstance
-}>(
-  'employees/logout',
-  async (_arg, { extra: api }) => {
-    await api.delete(APIRoute.Auth.Logout)
-    dropToken()
-  },
-)
 
 export const fetchEmployeePersonalDataAction = createAsyncThunk<PersonalData, {
   employeeId: string

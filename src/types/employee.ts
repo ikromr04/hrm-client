@@ -2,18 +2,6 @@ import { Jobs } from './job';
 import { Language } from './language';
 import { Positions } from './position';
 
-export type LoginData = {
-  login: string;
-  password: string;
-};
-
-export type AuthorizedEmployee = {
-  id: string;
-  name: string;
-  surname: string;
-  avatar: string;
-};
-
 export type Employee = {
   id: string;
   name: string;

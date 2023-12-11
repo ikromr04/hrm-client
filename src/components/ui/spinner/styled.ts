@@ -9,6 +9,7 @@ export const Span = styled('span').withConfig({
   border-right: 3px solid transparent;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+  opacity: 1 !important;
 
   ${({ width, height }) => css`
     width: ${width}px;

@@ -1,7 +1,6 @@
-import { AuthorizationStatus, SliceName } from '../../const';
+import { SliceName } from '../../const';
 import {
   Activities,
-  AuthorizedEmployee,
   AvatarPath,
   Educations,
   Employee,
@@ -9,9 +8,6 @@ import {
   PersonalData
 } from '../../types/employee';
 import { State } from '../../types/state';
-
-export const getAuthorizationStatus = (state: State): AuthorizationStatus =>
-state[SliceName.Employee].authorizationStatus;
 
 export const getEmployee = (state: State): Employee | null =>
   state[SliceName.Employee].employee;
@@ -21,12 +17,6 @@ export const getEmployees = (state: State): Employees | null =>
 
 export const getEmployeeAvatar = (state: State): AvatarPath | null =>
   state[SliceName.Employee].employeeAvatar;
-
-export const getAuthorizedEmployee = (state: State): AuthorizedEmployee | null =>
-  state[SliceName.Employee].authorizedEmployee;
-
-export const getAuthorizedEmployeeAvatar = (state: State): AvatarPath | null =>
-  state[SliceName.Employee].authorizedEmployeeAvatar;
 
 export const getEmployeePersonalData = (state: State): PersonalData | null =>
   state[SliceName.Employee].employeePersonalData;

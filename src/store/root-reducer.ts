@@ -5,8 +5,10 @@ import { jobSlice } from './job-slice/job-slice';
 import { positionSlice } from './position-slice/position-slice';
 import { languageSlice } from './language-slice/language-slice';
 import { appSlice } from './app-slice/app-slice';
+import { authSlice } from './auth-slice/auth-slice';
 
 export const rootReducer = combineReducers({
+  [SliceName.Auth]: authSlice.reducer,
   [SliceName.App]: appSlice.reducer,
   [SliceName.Employee]: employeeSlice.reducer,
   [SliceName.Job]: jobSlice.reducer,

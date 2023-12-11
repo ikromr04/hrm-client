@@ -1,7 +1,7 @@
 import Box from '@/components/ui/box/box';
 import { styled } from 'styled-components';
 
-export const StyledBox = styled(Box)`
+export const Main = styled(Box)`
   display: flex;
   flex-direction: column;
   gap: 24px;
