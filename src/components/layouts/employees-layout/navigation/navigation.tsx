@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import { NavigationItem, StyledNavigation } from './styled'
+import { Nav, NavItem, NavLink } from './styled'
 import { AppRoute } from '@/const'
 import AddressBookIcon from '@/components/icons/address-book-icon'
 import Info from '@/components/ui/info/info'
@@ -9,22 +9,26 @@ function Navigation(): JSX.Element {
   const location = useLocation()
 
   return (
-    <StyledNavigation>
-      <NavigationItem
-        to={AppRoute.Employees.Index}
-        current={location.pathname === AppRoute.Employees.Index}
-      >
-        <AddressBookIcon width={16} height={16} />
-        <Info bottom>Сотрудники</Info>
-      </NavigationItem>
-      <NavigationItem
-        to={AppRoute.Employees.Structure}
-        current={location.pathname === AppRoute.Employees.Structure}
-      >
-        <SitemapIcon width={16} height={16} />
-        <Info bottom>Организационная <br /> структура</Info>
-      </NavigationItem>
-    </StyledNavigation>
+    <Nav>
+      <NavItem>
+        <NavLink
+          to={AppRoute.Employees.Index}
+          current={location.pathname === AppRoute.Employees.Index}
+        >
+          <AddressBookIcon width={16} height={16} />
+          <Info bottom>Сотрудники</Info>
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink
+          to={AppRoute.Employees.Structure}
+          current={location.pathname === AppRoute.Employees.Structure}
+          >
+          <SitemapIcon width={16} height={16} />
+          <Info bottom>Организационная <br /> структура</Info>
+        </NavLink>
+      </NavItem>
+    </Nav>
   )
 }
 

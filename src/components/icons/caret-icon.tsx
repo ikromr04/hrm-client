@@ -1,10 +1,14 @@
 type CaretIconProps = {
   className?: string
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
-function CaretIcon({ className, width, height }: CaretIconProps): JSX.Element {
+function CaretIcon({
+  className,
+  width = 16,
+  height = 16
+}: CaretIconProps): JSX.Element {
   return (
     <svg
       className={className}

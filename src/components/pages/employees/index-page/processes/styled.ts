@@ -14,9 +14,16 @@ export const Process = styled(Box)`
   align-items: center;
   padding: 8px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 110%;
+  transition-property: box-shadow;
+  transition-duration: .3s;
+
+  &:hover,
+  &:focus {
+    box-shadow: none;
+  }
 `;
 
 export const ProcessInner = styled('div')`

@@ -9,11 +9,12 @@ export const StyledInfo = styled('span').withConfig({
   align-items: center;
   justify-content: center;
   min-width: max-content;
-  height: 24px;
+  min-height: 24px;
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 13px;
   font-weight: 300;
+  text-align: center;
   line-height: 1;
   color: #ffffff;
   background-color: #212121;
