@@ -2,13 +2,13 @@ import PrivateRoute from '@/components/private-route/private-route'
 import PageNavigation from '../page-navigation/page-navigation'
 import { Layout, LayoutContainer, LayoutContent, LayoutMain } from './styled'
 import { PropsWithChildren } from 'react'
-import MainHeader from '../main-header/main-header'
+import PageHeader from '../page-header/page-header'
 
 function PageLayout({ children }: PropsWithChildren): JSX.Element {
   return (
     <PrivateRoute>
       <Layout>
-        <MainHeader />
+        <PageHeader />
 
         <LayoutContent>
           <LayoutContainer>

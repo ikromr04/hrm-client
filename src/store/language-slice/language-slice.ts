@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceName } from '../../const';
-import { Languages } from '../../types/language';
+import { Languages } from '../../types/languages';
 import { fetchLanguagesAction } from './language-api-actions';
 
 export type LanguageSlice = {

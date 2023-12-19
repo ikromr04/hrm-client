@@ -11,7 +11,7 @@ function PageNavigation(): JSX.Element {
   return (
     <Nav tagName="nav">
       <NavigationItem>
-        <NavigationLink href={AppRoute.Main}>
+        <NavigationLink href={AppRoute.Home}>
           <HomeIcon width={16} height={16} /> Главная страница
         </NavigationLink>
         <Info right>Главная страница</Info>

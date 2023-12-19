@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { EditButton } from './styled'
-import { Activity } from '@/types/employee'
+import { Activity } from '@/types/employees'
 import EditIcon from '@/components/icons/edit-icon'
 import Info from '@/components/ui/info/info'
 import Modal from '@/components/ui/modal/modal'

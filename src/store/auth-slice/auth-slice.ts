@@ -5,13 +5,13 @@ import { AuthUser } from '@/types/auth';
 
 export type AuthSlice = {
   authStatus: AuthorizationStatus
-  authUser: AuthUser | null
+  user: AuthUser | null
   authAvatar: string
 }
 
 const initialState: AuthSlice = {
   authStatus: AuthorizationStatus.Unknown,
-  authUser: null,
+  user: null,
   authAvatar: '',
 }
 
@@ -19,15 +19,19 @@ export const authSlice = createSlice({
   name: SliceName.Auth,
   initialState,
   reducers: {
-    setAuthAvatarAction: (state, action) => {
-      state.authAvatar = action.payload
+    setUsersAvatarAction: (state, action) => {
+      const user = state.user
+      if (user) {
+        user.avatar = action.payload
+      }
+      state.user = user
     },
   },
   extraReducers(builder) {
     builder
       .addCase(checkAuthAction.fulfilled, (state, action) => {
         state.authStatus = AuthorizationStatus.Auth
-        state.authUser = action.payload
+        state.user = action.payload
         state.authAvatar = action.payload.avatar
       })
       .addCase(checkAuthAction.rejected, (state) => {
@@ -35,7 +39,7 @@ export const authSlice = createSlice({
       })
       .addCase(loginAction.fulfilled, (state, action) => {
         state.authStatus = AuthorizationStatus.Auth
-        state.authUser = action.payload
+        state.user = action.payload
       })
       .addCase(loginAction.rejected, (state) => {
         state.authStatus = AuthorizationStatus.NoAuth
@@ -46,4 +50,4 @@ export const authSlice = createSlice({
   },
 })
 
-export const { setAuthAvatarAction } = authSlice.actions
+export const { setUsersAvatarAction } = authSlice.actions

@@ -1,6 +1,6 @@
 export type ValidationError = {
-  message: string;
+  message: string
   errors?: {
     [fieldName:string]: string[]
-  };
+  }
 }

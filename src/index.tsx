@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client'
 import App from './components/app/app'
 import { Provider } from 'react-redux'
 import { store } from './store'
-import GlobalStyle from './style/global-styles'
+import GlobalStyle from './styles/global-styles'
 import { checkAuthorizationAction } from './store/employee-slice/employees-api-actions'
 import dayjs from 'dayjs';
 import { ToastContainer } from 'react-toastify'

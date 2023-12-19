@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceName } from '../../const';
-import { Jobs } from '../../types/job';
+import { Jobs } from '../../types/jobs';
 import { fetchJobsAction } from './job-api-actions';
 
 export type JobSlice = {

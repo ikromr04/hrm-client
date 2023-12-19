@@ -1,5 +1,5 @@
 import Button from '@/components/ui/button/button';
-import Buttons from '@/components/ui/buttons/buttons';
+import Buttons from '@/components/ui/actions/actions';
 import styled from 'styled-components';
 
 export const CreateButton = styled(Button)`

@@ -1,10 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AppRoute, AuthorizationStatus } from '@/const'
 import { useAppSelector } from '@/hooks'
-import { AppSpinner } from './styled'
 import LoginPage from '../pages/login-page/login-page'
 import NotFoundPage from '../pages/not-found-page/not-found-page'
-import MainPage from '../pages/main-page/main-page'
+import HomePage from '../pages/home-page/home-page'
 import EmployeesPage from '../pages/employees/index-page/employees-page'
 import EmployeesStructurePage 
   from '../pages/employees/structure-page/employees-structure-page'
@@ -17,36 +16,32 @@ import EmployeesPIRPage from '../pages/employees/pir-page/employees-pir-page'
 import EmployeesKPIPage from '../pages/employees/kpi-page/employees-kpi-page'
 import EmployeesAttendancePage 
   from '../pages/employees/attendance-page/employees-attendance-page'
-import Spinner from '../ui/spinner/spinner'
 import { getAuthStatus } from '@/store/auth-slice/auth-selector'
+import AppLoading from '../ui/app-loading/app-loading'
 
 function App(): JSX.Element {
   const authStatus = useAppSelector(getAuthStatus)
 
   if (authStatus === AuthorizationStatus.Unknown) {
-    return (
-    <AppSpinner>
-      <Spinner width={56} height={56} />
-    </AppSpinner>
-    )
+    return <AppLoading />
   }
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Auth.Login} element={<LoginPage />} />
+        <Route path={AppRoute.Home} element={<HomePage />} />
 
-        <Route path={AppRoute.Main} element={<MainPage />} />
-
-        <Route path={AppRoute.Employees.Index} element={<EmployeesPage />} />
-        <Route path={AppRoute.Employees.Structure} element={<EmployeesStructurePage />} />
+        {/* <Route path={AppRoute.Employees.Index} element={<EmployeesPage />} /> */}
+        {/* <Route path={AppRoute.Employees.Structure} element={<EmployeesStructurePage />} /> */}
         <Route path={AppRoute.Employees.Show} element={<EmployeesShowPage />} />
-        <Route path={AppRoute.Employees.Work} element={<EmployeesWorkPage />} />
-        <Route path={AppRoute.Employees.Equipment} element={<EmployeesEquipmentPage />} />
-        <Route path={AppRoute.Employees.Vacation} element={<EmployeesVacationPage />} />
-        <Route path={AppRoute.Employees.PIR} element={<EmployeesPIRPage />} />
-        <Route path={AppRoute.Employees.KPI} element={<EmployeesKPIPage />} />
-        <Route path={AppRoute.Employees.Attendance} element={<EmployeesAttendancePage />} />
+        {/* <Route path={AppRoute.Employees.Work} element={<EmployeesWorkPage />} /> */}
+        {/* <Route path={AppRoute.Employees.Equipment} element={<EmployeesEquipmentPage />} /> */}
+        {/* <Route path={AppRoute.Employees.Vacation} element={<EmployeesVacationPage />} /> */}
+        {/* <Route path={AppRoute.Employees.PIR} element={<EmployeesPIRPage />} /> */}
+        {/* <Route path={AppRoute.Employees.KPI} element={<EmployeesKPIPage />} /> */}
+        {/* <Route path={AppRoute.Employees.Attendance} element={<EmployeesAttendancePage />} /> */}
+
+        <Route path={AppRoute.Auth.Login} element={<LoginPage />} />
 
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
       </Routes>

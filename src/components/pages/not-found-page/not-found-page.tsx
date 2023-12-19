@@ -20,7 +20,7 @@ function NotFoundPage(): JSX.Element {
         К сожалению, страница, которую вы ищете, не существует. Если вы уверены,
         что произошла ошибка, то сообщите своему администратору или дайте нам знать.
       </Text>
-      <Button href={AppRoute.Main} success>
+      <Button href={AppRoute.Home} success>
         <HomeIcon width={16} height={16} /> Вернуться на главную страницу
       </Button>
     </StyledPage>

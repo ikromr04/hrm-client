@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceName } from '../../const';
-import { Positions } from '../../types/position';
+import { Positions } from '../../types/positions';
 import { fetchPositionsAction } from './position-api-actions';
 
 export type PositionSlice = {

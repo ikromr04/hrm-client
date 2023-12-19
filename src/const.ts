@@ -1,20 +1,20 @@
 export const EMPTY_OPTION_LABEL = '--Выберите--'
 
 export const AppRoute = {
-  Main: '/',
+  Home: '/',
   Auth: {
     Login: '/auth/login',
   },
   Employees: {
     Index: '/employees',
     Structure: '/employees/structure',
-    Show: '/employees/:employeeId',
-    Work: '/employees/:employeeId/work',
-    Equipment: '/employees/:employeeId/equipment',
-    Vacation: '/employees/:employeeId/vacation',
-    PIR: '/employees/:employeeId/pir',
-    KPI: '/employees/:employeeId/kpi',
-    Attendance: '/employees/:employeeId/attendance',
+    Show: '/employees/:id',
+    Work: '/employees/:id/work',
+    Equipment: '/employees/:id/equipment',
+    Vacation: '/employees/:id/vacation',
+    PIR: '/employees/:id/pir',
+    KPI: '/employees/:id/kpi',
+    Attendance: '/employees/:id/attendance',
   },
   NotFound: '*',
 }
@@ -30,21 +30,23 @@ export const APIRoute = {
     Login: '/auth/login',
     Logout: '/auth/logout'
   },
-  Employees: '/employees',
-  EmployeesAvatar: '/employees/:employeeId/avatar',
-
-  EmployeesQuickAdd: '/employees/quick-add',
-  Employee: '/employees/:employeeId',
-  EmployeeJob: '/employees/:employeeId/job',
-  EmployeePersonalData: '/employees/:employeeId/personal',
-  EmployeeEducations: '/employees/:employeeId/educations',
-  EmployeeActivities: '/employees/:employeeId/activities',
-  EmployeeLanguages: '/employees/:employeeId/languages',
-  Education: '/educations/:educationId',
-  Activity: '/labor-activities/:activityId',
-  Jobs: '/jobs',
-  Positions: '/positions',
-  Languages: '/languages',
+  Employees: {
+    Index: '/employees',
+    Show: '/employees/:id',
+    Jobs: '/employees/:id/jobs',
+    Educations: '/employees/:id/educations',
+    Activities: '/employees/:id/activities',
+    Avatar: '/employees/:id/avatar',
+  },
+  Jobs: {
+    Index: '/jobs',
+  },
+  Positions: {
+    Index: '/positions'
+  },
+  Languages: {
+    Index: '/languages'
+  },
 }
 
 export enum SliceName {

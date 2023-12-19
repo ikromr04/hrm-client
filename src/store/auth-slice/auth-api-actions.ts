@@ -5,8 +5,8 @@ import { APIRoute } from '../../const'
 import { dropToken, saveToken } from '../../services/token'
 import { ValidationError } from '../../types/validation-error'
 import { AuthUser } from '@/types/auth'
-import { LoginDTO } from '@/dto/auth'
-import { LoginResponse } from '@/response/auth'
+import { LoginDTO } from '@/dto/auth-dto'
+import { LoginResponse } from '@/responses/auth-reponses'
 
 export const checkAuthAction = createAsyncThunk<AuthUser, undefined, {
   extra: AxiosInstance

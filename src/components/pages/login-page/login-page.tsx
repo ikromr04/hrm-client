@@ -34,7 +34,7 @@ function LoginPage(): JSX.Element {
   }
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
-    return <Navigate to={AppRoute.Main} />
+    return <Navigate to={AppRoute.Home} />
   }
 
   return (
