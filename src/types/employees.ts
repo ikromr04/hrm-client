@@ -29,6 +29,8 @@ export type Employee = {
     familyStatus?: string
     children?: string
   }
+  next: ID
+  previous: ID
 }
 
 export type Employees = Employee[]

@@ -3,7 +3,9 @@ import {
   EmployeePositions, 
   Header, 
   HeaderInner, 
-  EmployeeName 
+  EmployeeName, 
+  Jobs,
+  EmployeePosition
 } from './styled'
 import { useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
@@ -13,6 +15,8 @@ import ChevronLeftIcon from '@/components/icons/chevron-left-icon'
 import ChevronRightIcon from '@/components/icons/chevron-right-icon'
 import Actions from '@/components/ui/actions/actions'
 import EmployeeAvatar from './employee-avatar/employee-avatar'
+import { generatePath } from 'react-router-dom'
+import { AppRoute } from '@/const'
 
 function EmployeeHeader(): JSX.Element {
   const employee = useAppSelector(getEmployee)
@@ -30,21 +34,24 @@ function EmployeeHeader(): JSX.Element {
           <EmployeeName>
             {`${employee.surname} ${employee.name} ${employee.patronymic || ''}`}
           </EmployeeName>
-          {employee.jobs.length &&
-            <EmployeeJobs>
-              <BriefcaseIcon width={16} height={16} /> 
-              {employee.jobs.map(({ title }) => title).join(', ')}
-            </EmployeeJobs>}
+          <EmployeeJobs>
+            {employee.jobs.length ? <BriefcaseIcon width={16} height={16} /> : ''}
+            <Jobs>
+              {employee.jobs?.map(({ title }) => title).join(', ')}
+            </Jobs>
+          </EmployeeJobs>
           <EmployeePositions>
-            {employee.positions?.map(({ title }) => title).join(', ')}
+            {employee.positions?.map(({ title }) => (
+              <EmployeePosition key={title}>{title}</EmployeePosition>
+            ))}
           </EmployeePositions>
         </div>
 
         <Actions>
-          <Button>
+          <Button href={generatePath(AppRoute.Employees.Show, { id: employee.previous })}>
             <ChevronLeftIcon width={16} height={16} /> Предыдущий
           </Button>
-          <Button>
+          <Button href={generatePath(AppRoute.Employees.Show, { id: employee.next })}>
             Следующий <ChevronRightIcon width={16} height={16} />
           </Button>
         </Actions>

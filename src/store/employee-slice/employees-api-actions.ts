@@ -6,17 +6,17 @@ import { generatePath } from 'react-router-dom'
 import { Employee } from '@/types/employees'
 import { ID } from '@/types'
 
-// export const fetchEmployeePersonalDataAction = createAsyncThunk<PersonalData, {
-//   employeeId: string
-// }, {
-//   extra: AxiosInstance
-// }>(
-//   'employees/fetchEmployeePersonalData',
-//   async ({ employeeId }, { extra: api }) => {
-//     const { data } = await api.get(generatePath(APIRoute.EmployeePersonalData, { employeeId }))
-//     return adaptPersonalDataToClient(data)
-//   },
-// )
+export const fetchEmployeeAction = createAsyncThunk<Employee, {
+  id: ID
+}, {
+  extra: AxiosInstance
+}>(
+  'employees/fetchEmployee',
+  async ({ id }, { extra: api }) => {
+    const { data } = await api.get<Employee>(generatePath(APIRoute.Employees.Show, { id }))
+    return data
+  },
+)
 
 export const updateEmployeesAvatarAction = createAsyncThunk<void, {
   formData: FormData
@@ -28,7 +28,7 @@ export const updateEmployeesAvatarAction = createAsyncThunk<void, {
   'employees/updateAvatar',
   async ({ formData, id, successHandler }, { extra: api }) => {
     formData.append('_method', 'put')
-    const { data } = await api.post(
+    const { data } = await api.post<string>(
       generatePath(APIRoute.Employees.Avatar, { id }), formData
     )
     successHandler(data)
@@ -43,20 +43,8 @@ export const deleteEmployeesAvatarAction = createAsyncThunk<void, {
 }>(
   'employees/deleteAvatar',
   async ({ id, successHandler }, { extra: api }) => {
-    await api.delete(generatePath(APIRoute.Employees.Avatar, { id }))
+    await api.delete<string>(generatePath(APIRoute.Employees.Avatar, { id }))
     successHandler()
-  },
-)
-
-export const fetchEmployeeAction = createAsyncThunk<Employee, {
-  id: string
-}, {
-  extra: AxiosInstance
-}>(
-  'employees/fetchEmployee',
-  async ({ id }, { extra: api }) => {
-    const { data } = await api.get(generatePath(APIRoute.Employees.Show, { id }))
-    return data
   },
 )
 

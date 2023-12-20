@@ -18,7 +18,7 @@ function EmployeeLayout({ children }: PropsWithChildren): JSX.Element {
     if (params.id && params.id !== String(employee?.id)) {
       dispatch(fetchEmployeeAction({ id: params.id }))
     }
-  }, [dispatch, employee?.id, params.employeeId])
+  }, [dispatch, employee?.id, params.id])
 
   return (
     <PageLayout>

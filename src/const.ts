@@ -33,10 +33,8 @@ export const APIRoute = {
   Employees: {
     Index: '/employees',
     Show: '/employees/:id',
-    Jobs: '/employees/:id/jobs',
-    Educations: '/employees/:id/educations',
-    Activities: '/employees/:id/activities',
     Avatar: '/employees/:id/avatar',
+    Next: '/employees/:id/next',
   },
   Jobs: {
     Index: '/jobs',
