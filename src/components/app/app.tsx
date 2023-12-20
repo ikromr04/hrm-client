@@ -34,12 +34,12 @@ function App(): JSX.Element {
         {/* <Route path={AppRoute.Employees.Index} element={<EmployeesPage />} /> */}
         {/* <Route path={AppRoute.Employees.Structure} element={<EmployeesStructurePage />} /> */}
         <Route path={AppRoute.Employees.Show} element={<EmployeesShowPage />} />
-        {/* <Route path={AppRoute.Employees.Work} element={<EmployeesWorkPage />} /> */}
-        {/* <Route path={AppRoute.Employees.Equipment} element={<EmployeesEquipmentPage />} /> */}
-        {/* <Route path={AppRoute.Employees.Vacation} element={<EmployeesVacationPage />} /> */}
-        {/* <Route path={AppRoute.Employees.PIR} element={<EmployeesPIRPage />} /> */}
-        {/* <Route path={AppRoute.Employees.KPI} element={<EmployeesKPIPage />} /> */}
-        {/* <Route path={AppRoute.Employees.Attendance} element={<EmployeesAttendancePage />} /> */}
+        <Route path={AppRoute.Employees.Work} element={<EmployeesWorkPage />} />
+        <Route path={AppRoute.Employees.Equipment} element={<EmployeesEquipmentPage />} />
+        <Route path={AppRoute.Employees.Vacation} element={<EmployeesVacationPage />} />
+        <Route path={AppRoute.Employees.PIR} element={<EmployeesPIRPage />} />
+        <Route path={AppRoute.Employees.KPI} element={<EmployeesKPIPage />} />
+        <Route path={AppRoute.Employees.Attendance} element={<EmployeesAttendancePage />} />
 
         <Route path={AppRoute.Auth.Login} element={<LoginPage />} />
 

@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
-export const Navigation = styled('div')`
+export const List = styled('ul')`
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
 `;
+
+export const ListItem = styled('li')`
+  display: flex;
+`

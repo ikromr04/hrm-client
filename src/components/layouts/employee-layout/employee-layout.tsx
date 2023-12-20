@@ -25,9 +25,9 @@ function EmployeeLayout({ children }: PropsWithChildren): JSX.Element {
       <Layout>
         <EmployeeHeader />
 
-        {/* <EmployeeNavigation />
+        <EmployeeNavigation />
         
-        <LayoutContainer>
+        {/* <LayoutContainer>
           {children}
           <EmployeeSidebar />
         </LayoutContainer> */}

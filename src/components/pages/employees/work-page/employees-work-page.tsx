@@ -1,15 +1,14 @@
+import EmployeeLayout from '@/components/layouts/employee-layout/employee-layout'
 import LaborActivities from './labor-activities/labor-activities'
 import { Main } from './styled'
-import EmployeesShowLayout 
-  from '@/components/layouts/employees-show-layout/employees-show-layout'
 
 function EmployeesWorkPage(): JSX.Element {
   return (
-    <EmployeesShowLayout>
+    <EmployeeLayout>
       <Main>
-        <LaborActivities />
+        {/* <LaborActivities /> */}
       </Main>
-    </EmployeesShowLayout>
+    </EmployeeLayout>
   )
 }
 

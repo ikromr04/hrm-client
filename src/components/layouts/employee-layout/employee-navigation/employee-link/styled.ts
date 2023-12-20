@@ -17,7 +17,6 @@ export const StyledLink = styled(Link).withConfig({
   color: #6c86ab;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: .3s;
 
   ${({ isCurrent }) => isCurrent && css`
     border: 1px solid #dce5ef;

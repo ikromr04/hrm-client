@@ -6,7 +6,7 @@ type NavigationButtonProps = PropsWithChildren<{
   href: string
 }>
 
-function NavigationLink({
+function EmployeeLink({
   children,
   href,
 }: NavigationButtonProps): JSX.Element {
@@ -18,4 +18,4 @@ function NavigationLink({
   )
 }
 
-export default NavigationLink
+export default EmployeeLink
