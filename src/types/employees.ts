@@ -1,5 +1,6 @@
 import { ID } from '.'
 import { Jobs } from './jobs'
+import { Language } from './languages'
 import { Positions } from './positions'
 
 export type Employee = {
@@ -12,11 +13,7 @@ export type Employee = {
   startedWorkAt: Date
   jobs: Jobs
   positions: Positions
-  languages: {
-    id: ID
-    name: string
-    level: string
-  }[]
+  languages: EmployeeLanguage[]
   details: {
     birthDate?: Date
     gender?: string
@@ -34,3 +31,7 @@ export type Employee = {
 }
 
 export type Employees = Employee[]
+
+export type EmployeeLanguage = Language & { level: string }
+
+export type EmployeeLanguages = EmployeeLanguage[]

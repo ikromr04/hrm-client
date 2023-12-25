@@ -9,7 +9,6 @@ import Text from '@/components/ui/text/text'
 import Button from '@/components/ui/button/button'
 import Input from '@/components/ui/input/input'
 import { useFormValidation } from '@/hooks/use-form-validation'
-import Spinner from '@/components/ui/spinner/spinner'
 import { getAuthStatus } from '@/store/auth-slice/auth-selector'
 import { loginAction } from '@/store/auth-slice/auth-api-actions'
 
@@ -71,8 +70,8 @@ function LoginPage(): JSX.Element {
           type="submit"
           success
           disabled={isSubmitting}
+          loading={isSubmitting}
         >
-          {isSubmitting && <Spinner />}
           Войти в систему
         </Button>
       </Form>

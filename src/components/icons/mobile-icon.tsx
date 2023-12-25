@@ -1,9 +1,12 @@
 type MobileIconProps = {
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
-function MobileIcon({ width, height }: MobileIconProps): JSX.Element {
+function MobileIcon({
+  width = 16,
+  height = 16,
+}: MobileIconProps): JSX.Element {
   return (
     <svg
       viewBox="0 0 384 512"

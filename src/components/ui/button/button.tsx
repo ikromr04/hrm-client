@@ -1,10 +1,12 @@
 import { PropsWithChildren } from 'react'
 import { StyledButton } from './styled'
 import { Link } from 'react-router-dom'
+import Spinner from '../spinner/spinner'
 
 type ButtonProps = PropsWithChildren<{
   className?: string
   href?: string
+  loading?: boolean
   success?: boolean
   warning?: boolean
   error?: boolean
@@ -17,6 +19,7 @@ function Button({
   children,
   className,
   href,
+  loading,
   success,
   warning,
   error,
@@ -36,6 +39,7 @@ function Button({
       small={small}
       {...rest}
     >
+      {loading && <Spinner />}
       {children}
     </StyledButton>
   )

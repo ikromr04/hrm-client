@@ -7,11 +7,11 @@ import { Main } from './styled'
 function EmployeesShowPage(): JSX.Element {
   return (
     <EmployeeLayout>
-      {/* <Main>
-        <Employee />
+      <Main>
+        {/* <Employee />
         <PersonalData />
-        <EmployeeEducations />
-      </Main> */}
+        <EmployeeEducations /> */}
+      </Main>
     </EmployeeLayout>
   )
 }

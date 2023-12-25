@@ -27,10 +27,10 @@ function EmployeeLayout({ children }: PropsWithChildren): JSX.Element {
 
         <EmployeeNavigation />
         
-        {/* <LayoutContainer>
+        <LayoutContainer>
           {children}
           <EmployeeSidebar />
-        </LayoutContainer> */}
+        </LayoutContainer>
       </Layout>
     </PageLayout>
   )

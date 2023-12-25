@@ -5,6 +5,7 @@ export const List = styled('ul')`
   margin: 0;
   padding: 0;
   display: flex;
+  gap: 2px;
 `;
 
 export const ListItem = styled('li')`

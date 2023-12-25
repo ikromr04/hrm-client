@@ -8,4 +8,8 @@ export const StyledLink = styled(Link)`
   font-size: 14px;
   text-decoration: none;
   color: #1971d2;
+
+  &:empty {
+    display: none;
+  }
 `;

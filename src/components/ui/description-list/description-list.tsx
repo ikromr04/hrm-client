@@ -3,7 +3,6 @@ import { Dd, Dl, Dt } from './styled'
 
 type DescriptionListProps = {
   list: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any
   }
   detailed?: boolean

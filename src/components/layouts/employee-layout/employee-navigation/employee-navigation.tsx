@@ -20,6 +20,11 @@ function EmployeeNavigation(): JSX.Element {
         </EmployeeLink>
       </ListItem>
       <ListItem>
+        <EmployeeLink href={generatePath(AppRoute.Employees.Education, { id: employee.id })}>
+          Образование
+        </EmployeeLink>
+      </ListItem>
+      <ListItem>
         <EmployeeLink href={generatePath(AppRoute.Employees.Work, { id: employee.id })}>
           Работа
         </EmployeeLink>

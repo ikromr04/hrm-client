@@ -10,7 +10,7 @@ export const StyledModal = styled('div').withConfig({
   z-index: 2;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 24%);
   backdrop-filter: blur(1px);
   pointer-events: none;
   opacity: 0;

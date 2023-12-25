@@ -1,9 +1,12 @@
 type EditIconProps = {
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
-function EditIcon({ width, height }: EditIconProps): JSX.Element {
+function EditIcon({
+  width = 16,
+  height = 16,
+}: EditIconProps): JSX.Element {
   return (
     <svg
       viewBox="0 0 24 24"

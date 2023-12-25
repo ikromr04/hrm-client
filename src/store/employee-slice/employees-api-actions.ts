@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AxiosInstance } from 'axios'
 import { APIRoute } from '../../const'
 import { generatePath } from 'react-router-dom'
-import { Employee } from '@/types/employees'
+import { Employee, EmployeeLanguages } from '@/types/employees'
 import { ID } from '@/types'
 
 export const fetchEmployeeAction = createAsyncThunk<Employee, {
@@ -45,6 +45,23 @@ export const deleteEmployeesAvatarAction = createAsyncThunk<void, {
   async ({ id, successHandler }, { extra: api }) => {
     await api.delete<string>(generatePath(APIRoute.Employees.Avatar, { id }))
     successHandler()
+  },
+)
+
+export const updateEmployeesLanguagesAction = createAsyncThunk<Employee, {
+  id: ID
+  languages: EmployeeLanguages
+  successHandler: () => void
+}, {
+  extra: AxiosInstance
+}>(
+  'employees/updateLanguages',
+  async ({ id, languages, successHandler }, { extra: api }) => {
+    const { data } = await api.put<Employee>(
+      generatePath(APIRoute.Employees.Languages, { id }), { languages }
+    )
+    successHandler()
+    return data
   },
 )
 
@@ -187,26 +204,6 @@ export const deleteEmployeesAvatarAction = createAsyncThunk<void, {
 //     await api.delete(generatePath(APIRoute.Education, { educationId }))
 //     successHandler()
 //     return educationId
-//   },
-// )
-
-// export const crudEmployeeLanguagesAction = createAsyncThunk<EmployeeLanguages | null, {
-//   employeeId: string
-//   employeeLanguages: EmployeeLanguages | null
-//   successHandler: () => void
-// }, {
-//   extra: AxiosInstance
-// }>(
-//   'employees/crudEmployeeLanguages',
-//   async ({ employeeId, employeeLanguages, successHandler }, { extra: api }) => {
-//     const { data } = await api.post(
-//       generatePath(APIRoute.EmployeeLanguages, { employeeId }), { languages: employeeLanguages }
-//     )
-//     successHandler()
-//     if (!data) {
-//       return null
-//     }
-//     return adaptEmployeeLanguages(data)
 //   },
 // )
 

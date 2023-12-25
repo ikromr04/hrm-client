@@ -7,8 +7,6 @@ export const Dl = styled('dl').withConfig({
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 16px;
-  font-size: 14px;
-  color: #1d1d1d;
 
   ${({ detailed, detailedInverse }) => (detailed || detailedInverse) && css`
     display: flex;
@@ -19,30 +17,26 @@ export const Dl = styled('dl').withConfig({
 
   ${({ detailed }) => detailed && css`
     ${Dt} {
-      font-size: 12px;
+      font-size: 13px;
       margin-bottom: 2px;
     }
 
     ${Dd} {
-      font-size: 14px;
       margin-bottom: 2px;
 
       &:not(:last-of-type) {
-        margin-bottom: 16px;
+        margin-bottom: 8px;
       }
     }
   `}
 
   ${({ detailedInverse }) => detailedInverse && css`
     ${Dt} {
-      color: #1d1d1d;
       margin-bottom: 2px;
-      font-weight: 500;
     }
 
     ${Dd} {
-      font-size: 12px;
-      color: #6c86ab;
+      font-size: 13px;
 
       &:not(:last-of-type) {
         margin-bottom: 16px;
@@ -52,8 +46,8 @@ export const Dl = styled('dl').withConfig({
 `;
 
 export const Dt = styled('dt')`
-  color: #6c86ab;
-  `;
+  color: #90a4ae;
+`;
 
 export const Dd = styled('dd')`
   margin: 0;

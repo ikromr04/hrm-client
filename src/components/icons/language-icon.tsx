@@ -1,9 +1,12 @@
 type LanguageIconProps = {
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
-function LanguageIcon({ width, height }: LanguageIconProps): JSX.Element {
+function LanguageIcon({
+  width = 16,
+  height = 16,
+}: LanguageIconProps): JSX.Element {
   return (
     <svg
       viewBox="0 0 512 512"

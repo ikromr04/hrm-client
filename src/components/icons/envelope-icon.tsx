@@ -1,9 +1,12 @@
 type EnvelopeIconProps = {
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
-function EnvelopeIcon({ width, height }: EnvelopeIconProps): JSX.Element {
+function EnvelopeIcon({ 
+  width = 16,
+  height = 16,
+}: EnvelopeIconProps): JSX.Element {
   return (
     <svg
       viewBox="0 0 512 512"

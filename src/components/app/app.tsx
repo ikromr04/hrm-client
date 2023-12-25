@@ -31,9 +31,10 @@ function App(): JSX.Element {
       <Routes>
         <Route path={AppRoute.Home} element={<HomePage />} />
 
-        {/* <Route path={AppRoute.Employees.Index} element={<EmployeesPage />} /> */}
-        {/* <Route path={AppRoute.Employees.Structure} element={<EmployeesStructurePage />} /> */}
+        <Route path={AppRoute.Employees.Index} element={<EmployeesPage />} />
+        <Route path={AppRoute.Employees.Structure} element={<EmployeesStructurePage />} />
         <Route path={AppRoute.Employees.Show} element={<EmployeesShowPage />} />
+        <Route path={AppRoute.Employees.Education} element={<EmployeesShowPage />} />
         <Route path={AppRoute.Employees.Work} element={<EmployeesWorkPage />} />
         <Route path={AppRoute.Employees.Equipment} element={<EmployeesEquipmentPage />} />
         <Route path={AppRoute.Employees.Vacation} element={<EmployeesVacationPage />} />

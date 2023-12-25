@@ -9,6 +9,7 @@ export const AppRoute = {
     Index: '/employees',
     Structure: '/employees/structure',
     Show: '/employees/:id',
+    Education: '/employees/:id/education',
     Work: '/employees/:id/work',
     Equipment: '/employees/:id/equipment',
     Vacation: '/employees/:id/vacation',
@@ -34,7 +35,7 @@ export const APIRoute = {
     Index: '/employees',
     Show: '/employees/:id',
     Avatar: '/employees/:id/avatar',
-    Next: '/employees/:id/next',
+    Languages: '/employees/:id/languages',
   },
   Jobs: {
     Index: '/jobs',
