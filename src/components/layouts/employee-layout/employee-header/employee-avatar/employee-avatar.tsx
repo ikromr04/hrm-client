@@ -64,12 +64,8 @@ function EmployeeAvatar(): JSX.Element {
       >
         {isLoading && <Loading />}
         <Image
-          src={employee.avatar}
+          src={employee.avatar || defaultAvatar}
           alt={employee.name}
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null;
-            currentTarget.src=defaultAvatar;
-          }}
           width={144}
           height={144}
         />

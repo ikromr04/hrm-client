@@ -43,9 +43,7 @@ function LoginPage(): JSX.Element {
 
       <Form onSubmit={handleFormSubmit} onChange={formChangeHandler}>
         <Text error={validationError?.message ? true : false}>
-          {validationError?.message 
-            ? 'Неверные учетные данные' 
-            : 'Введите свои учетные данные'}
+          {validationError?.message || 'Введите свои учетные данные'}
         </Text>
 
         <Input

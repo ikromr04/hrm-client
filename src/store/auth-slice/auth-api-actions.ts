@@ -4,21 +4,21 @@ import { AxiosError, AxiosInstance } from 'axios'
 import { APIRoute } from '../../const'
 import { dropToken, saveToken } from '../../services/token'
 import { ValidationError } from '../../types/validation-error'
-import { AuthUser } from '@/types/auth'
 import { LoginDTO } from '@/dto/auth-dto'
 import { LoginResponse } from '@/responses/auth-reponses'
+import { User } from '@/types/auth'
 
-export const checkAuthAction = createAsyncThunk<AuthUser, undefined, {
+export const checkAuthAction = createAsyncThunk<User, undefined, {
   extra: AxiosInstance
 }>(
-  'auth/checkAuth',
+  'auth/check',
   async (_arg, { extra: api }) => {
-    const { data } = await api.get<AuthUser>(APIRoute.Auth.Login)
+    const { data } = await api.get<User>(APIRoute.Auth.Login)
     return data
   },
 )
 
-export const loginAction = createAsyncThunk<AuthUser, {
+export const loginAction = createAsyncThunk<User, {
   dto: LoginDTO,
   errorHandler: (error: ValidationError) => void
 }, {
@@ -47,7 +47,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
 }>(
   'auth/logout',
   async (_arg, { extra: api }) => {
-    await api.delete(APIRoute.Auth.Logout)
+    await api.delete(APIRoute.Auth.Login)
     dropToken()
   },
 )

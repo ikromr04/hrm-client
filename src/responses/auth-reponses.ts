@@ -1,6 +1,6 @@
 import { Token } from '@/services/token';
-import { AuthUser } from '@/types/auth';
+import { User } from '@/types/auth';
 
-export type LoginResponse = AuthUser & {
+export type LoginResponse = User & {
   token: Token
 }

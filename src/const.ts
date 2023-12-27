@@ -29,7 +29,6 @@ export enum AuthorizationStatus {
 export const APIRoute = {
   Auth: {
     Login: '/auth/login',
-    Logout: '/auth/logout'
   },
   Employees: {
     Index: '/employees',
