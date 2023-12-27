@@ -1,9 +1,12 @@
 type ChevronLeftIconProps = {
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
-function ChevronLeftIcon({ width, height }: ChevronLeftIconProps): JSX.Element {
+function ChevronLeftIcon({
+  width = 16,
+  height = 16,
+}: ChevronLeftIconProps): JSX.Element {
   return (
     <svg
       viewBox="0 0 320 512"

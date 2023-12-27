@@ -49,7 +49,7 @@ function EmployeeHeader(): JSX.Element {
 
         <Actions>
           <Button href={generatePath(AppRoute.Employees.Show, { id: employee.previous })}>
-            <ChevronLeftIcon width={16} height={16} /> Предыдущий
+            <ChevronLeftIcon /> Предыдущий
           </Button>
           <Button href={generatePath(AppRoute.Employees.Show, { id: employee.next })}>
             Следующий <ChevronRightIcon width={16} height={16} />
