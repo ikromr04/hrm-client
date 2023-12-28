@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { SliceName } from '../../const'
 import { Employee, Employees } from '../../types/employees'
-import { fetchEmployeeAction, updateEmployeesLanguagesAction } from './employees-api-actions'
+import {
+  fetchEmployeeAction, updateEmployeeAction,
+} from './employees-api-actions'
 
 export type EmployeesSlice = {
   employee: Employee | null
@@ -30,7 +32,7 @@ export const employeeSlice = createSlice({
       .addCase(fetchEmployeeAction.fulfilled, (state, action) => {
         state.employee = action.payload
       })
-      .addCase(updateEmployeesLanguagesAction.fulfilled, (state, action) => {
+      .addCase(updateEmployeeAction.fulfilled, (state, action) => {
         state.employee = action.payload
       })
   },

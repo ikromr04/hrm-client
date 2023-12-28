@@ -43,6 +43,22 @@ const GlobalStyle = createGlobalStyle`
     clip: rect(0 0 0 0);
     overflow: hidden;
   }
+
+  .shake {
+    animation: shake 150ms 2 linear;
+  }
+
+  @keyframes shake {
+    0% {
+      transform: translate(4px, 0);
+    }
+    50% {
+      transform: translate(-4px, 0);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
 `
 
 export default GlobalStyle

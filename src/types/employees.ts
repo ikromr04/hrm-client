@@ -13,8 +13,8 @@ export type Employee = {
   startedWorkAt: Date
   jobs: Jobs
   positions: Positions
-  languages: EmployeeLanguage[]
-  details: {
+  languages: EmployeeLanguages
+  details?: {
     birthDate?: Date
     gender?: string
     nationality?: string

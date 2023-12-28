@@ -1,3 +1,4 @@
+import { ForwardedRef, forwardRef } from 'react'
 import { ErrorMessage, Label, Span, StyledInput, Wrapper } from './styled'
 
 type InputProps = {
@@ -12,16 +13,16 @@ function Input({
   label,
   errorMessage,
   ...rest
-}: InputProps): JSX.Element {
+}: InputProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element {
   return (
     <Wrapper className={className}>
       <Label>
         <Span>{label}</Span>
-        <StyledInput error={errorMessage} {...rest} />
+        <StyledInput ref={ref} error={errorMessage} {...rest} />
       </Label>
       <ErrorMessage>{errorMessage}</ErrorMessage>
     </Wrapper>
   )
 }
 
-export default Input
+export default forwardRef(Input)

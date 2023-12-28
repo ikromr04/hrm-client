@@ -1,20 +1,51 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { AxiosInstance } from 'axios'
+import { AxiosError, AxiosInstance } from 'axios'
 import { APIRoute } from '../../const'
 import { generatePath } from 'react-router-dom'
-import { Employee, EmployeeLanguages } from '@/types/employees'
+import { Employee } from '@/types/employees'
 import { ID } from '@/types'
+import { EmployeesUpdateDTO } from '@/dto/employees-dto'
+import { ValidationError } from '@/types/validation-error'
 
 export const fetchEmployeeAction = createAsyncThunk<Employee, {
   id: ID
 }, {
   extra: AxiosInstance
 }>(
-  'employees/fetchEmployee',
+  'employees/fetch',
   async ({ id }, { extra: api }) => {
     const { data } = await api.get<Employee>(generatePath(APIRoute.Employees.Show, { id }))
     return data
+  },
+)
+
+export const updateEmployeeAction = createAsyncThunk<Employee, {
+  id: ID
+  dto: EmployeesUpdateDTO
+  errorHandler: (error: ValidationError) => void
+  successHandler: () => void
+}, {
+  extra: AxiosInstance
+  rejectValue: ValidationError
+}>(
+  'employees/update',
+  async (arg, { extra: api, rejectWithValue }) => {
+    const { dto, id, errorHandler, successHandler } = arg
+    try {
+      const { data } = await api.put<Employee>(
+        generatePath(APIRoute.Employees.Show, { id }), dto
+      )
+      successHandler()
+      return data
+    } catch (err: any) {
+      const error: AxiosError<ValidationError> = err
+      if (!error.response) {
+        throw err
+      }
+      errorHandler(error.response.data)
+      return rejectWithValue(error.response.data)
+    }
   },
 )
 
@@ -48,47 +79,20 @@ export const deleteEmployeesAvatarAction = createAsyncThunk<void, {
   },
 )
 
-export const updateEmployeesLanguagesAction = createAsyncThunk<Employee, {
-  id: ID
-  languages: EmployeeLanguages
-  successHandler: () => void
-}, {
-  extra: AxiosInstance
-}>(
-  'employees/updateLanguages',
-  async ({ id, languages, successHandler }, { extra: api }) => {
-    const { data } = await api.put<Employee>(
-      generatePath(APIRoute.Employees.Languages, { id }), { languages }
-    )
-    successHandler()
-    return data
-  },
-)
-
-// export const updateEmployeeAction = createAsyncThunk<Employee, {
-//   dto: EmployeeUpdateDTO
-//   employeeId: string
-//   errorHandler: (error: ValidationError) => void
+// export const updateEmployeesLanguagesAction = createAsyncThunk<Employee, {
+//   id: ID
+//   languages: EmployeeLanguages
 //   successHandler: () => void
 // }, {
 //   extra: AxiosInstance
-//   rejectValue: ValidationError
 // }>(
-//   'employees/updateEmployee',
-//   async (arg, { extra: api, rejectWithValue }) => {
-//     const { dto, employeeId, errorHandler, successHandler } = arg
-//     try {
-//       const { data } = await api.put(generatePath(APIRoute.Employee, { employeeId }), dto)
-//       successHandler()
-//       return adaptEmployeeToClient(data)
-//     } catch (err: any) {
-//       const error: AxiosError<ValidationError> = err
-//       if (!error.response) {
-//         throw err
-//       }
-//       errorHandler(error.response.data)
-//       return rejectWithValue(error.response.data)
-//     }
+//   'employees/updateLanguages',
+//   async ({ id, languages, successHandler }, { extra: api }) => {
+//     const { data } = await api.put<Employee>(
+//       generatePath(APIRoute.Employees.Languages, { id }), { languages }
+//     )
+//     successHandler()
+//     return data
 //   },
 // )
 

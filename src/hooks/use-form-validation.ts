@@ -6,9 +6,11 @@ export const useFormValidation = () => {
 
   const formChangeHandler = (evt: ChangeEvent<HTMLFormElement>) => 
     setValidationError((prevValidationError) => {
-      prevValidationError.message = ''
       if (prevValidationError?.errors?.[evt.target.name]) {
         delete prevValidationError.errors[evt.target.name]
+      }
+      if (prevValidationError.errors && !Object.keys(prevValidationError.errors).length) {
+        prevValidationError.message = ''
       }
       return prevValidationError
     })

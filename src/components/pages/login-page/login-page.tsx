@@ -67,7 +67,6 @@ function LoginPage(): JSX.Element {
         <Button
           type="submit"
           success
-          disabled={isSubmitting}
           loading={isSubmitting}
         >
           Войти в систему

@@ -37,6 +37,7 @@ function Button({
       error={error}
       large={large}
       small={small}
+      disabled={loading}
       {...rest}
     >
       {loading && <Spinner />}
