@@ -8,6 +8,7 @@ import PageLayout from '../page-layout/page-layout'
 import EmployeeHeader from './employee-header/employee-header'
 import EmployeeNavigation from './employee-navigation/employee-navigation'
 import EmployeeSidebar from './employee-sidebar/employee-sidebar'
+import Spinner from '@/components/ui/spinner/spinner'
 
 function EmployeeLayout({ children }: PropsWithChildren): JSX.Element {
   const employee = useAppSelector(getEmployee)
@@ -19,6 +20,14 @@ function EmployeeLayout({ children }: PropsWithChildren): JSX.Element {
       dispatch(fetchEmployeeAction({ id: params.id }))
     }
   }, [dispatch, employee?.id, params.id])
+
+  if (!employee) {
+    return (
+      <PageLayout>
+        <Spinner width={56} height={56} />
+      </PageLayout>
+    )
+  }
 
   return (
     <PageLayout>

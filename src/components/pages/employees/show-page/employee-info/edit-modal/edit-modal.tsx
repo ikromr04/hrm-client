@@ -1,32 +1,32 @@
+import { updateEmployeeAction } from '@/store/employee-slice/employees-api-actions'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { useFormValidation } from '@/hooks/use-form-validation'
+import { EmployeesUpdateDTO } from '@/dto/employees-dto'
 import Actions from '@/components/ui/actions/actions'
+import EditIcon from '@/components/icons/edit-icon'
 import Button from '@/components/ui/button/button'
 import Modal from '@/components/ui/modal/modal'
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
-import Form from '@/components/ui/form/form'
 import Input from '@/components/ui/input/input'
-import { useAppDispatch } from '@/hooks'
-import { EmployeesUpdateDTO } from '@/dto/employees-dto'
-import { useFormValidation } from '@/hooks/use-form-validation'
-import { updateEmployeeAction } from '@/store/employee-slice/employees-api-actions'
+import Form from '@/components/ui/form/form'
 import { Employee } from '@/types/employees'
-import { EditButton } from './styled'
-import EditIcon from '@/components/icons/edit-icon'
 import Info from '@/components/ui/info/info'
 import Text from '@/components/ui/text/text'
+import { useAppDispatch } from '@/hooks'
 import { toast } from 'react-toastify'
+import { EditButton } from './styled'
 
 type EditModalProps = {
   employee: Employee
 }
 
 function EditModal({ employee }: EditModalProps): JSX.Element {
-  const dispatch = useAppDispatch()
-  const [isOpen, setIsOpen] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [dto, setDTO] = useState<EmployeesUpdateDTO>(employee)
-  const [isDisabled, setIsDisabled] = useState(true)
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
+  const [dto, setDTO] = useState<EmployeesUpdateDTO>(employee)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const nameRef = useRef<HTMLInputElement | null>(null)
+  const [isDisabled, setIsDisabled] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     setDTO(employee)
@@ -60,18 +60,20 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
 
   const handleFormChange = (evt: ChangeEvent<HTMLFormElement>) => {
     formChangeHandler(evt)
-    setIsDisabled(() => {
-      if (validationError.message) {
-        return true
-      }
-      return false
-    })
     setDTO((prevDTO) => {
       const key = evt.target.name
       prevDTO = {
         ...prevDTO,
         [key]: evt.target.value
       }
+      setIsDisabled(() => {
+        if (
+          validationError.message || JSON.stringify(prevDTO) === JSON.stringify(employee)
+        ) {
+          return true
+        }
+        return false
+      })
       return prevDTO
     })
   }
@@ -100,24 +102,28 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
             label="Имя"
             defaultValue={dto.name}
             errorMessage={validationError.errors?.name?.[0]}
+            autoComplete="off"
           />
           <Input
             name="surname"
             label="Фамилия"
             defaultValue={dto.surname}
             errorMessage={validationError.errors?.surname?.[0]}
+            autoComplete="off"
           />
           <Input
             name="patronymic"
             label="Отчество"
             defaultValue={dto.patronymic}
             errorMessage={validationError.errors?.patronymic?.[0]}
+            autoComplete="off"
           />
           <Input
             name="login"
             label="Логин"
             defaultValue={dto.login}
             errorMessage={validationError.errors?.login?.[0]}
+            autoComplete="off"
           />
           <Input
             name="started_work_at"
@@ -125,6 +131,7 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
             label="Начало работы"
             defaultValue={dto.startedWorkAt}
             errorMessage={validationError.errors?.started_work_at?.[0]}
+            autoComplete="off"
           />
 
           <Actions>
