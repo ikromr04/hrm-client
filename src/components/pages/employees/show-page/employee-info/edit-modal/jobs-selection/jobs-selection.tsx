@@ -17,7 +17,7 @@ function JobsSelection({ value, onChange }: JobsSelectionProps): JSX.Element {
     !jobs && dispatch(fetchJobsAction())
   }, [jobs, dispatch])
 
-  if (!jobs) {
+  if (!Array.isArray(jobs)) {
     return <></>
   }
 

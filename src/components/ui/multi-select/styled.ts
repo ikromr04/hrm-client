@@ -82,7 +82,8 @@ export const Options = styled(Box)`
 `;
 
 export const Option = styled('button')`
-  display: flex;
+  display: grid;
+  grid-template-columns: 18px 1fr;
   align-items: center;
   gap: 8px;
   background-color: transparent;
@@ -91,6 +92,7 @@ export const Option = styled('button')`
   padding: 4px 8px;
   font-size: 14px;
   cursor: pointer;
+  text-align: start;
   transition-property: background-color;
   transition: .3s;
 

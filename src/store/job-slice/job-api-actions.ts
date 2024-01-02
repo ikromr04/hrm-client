@@ -6,7 +6,7 @@ import { Jobs } from '../../types/jobs'
 export const fetchJobsAction = createAsyncThunk<Jobs, undefined, {
   extra: AxiosInstance;
 }>(
-  'jobs/fetchJobs',
+  'jobs/fetch',
   async (_arg, { extra: api }) => {
     const { data } = await api.get(APIRoute.Jobs.Index)
     return data

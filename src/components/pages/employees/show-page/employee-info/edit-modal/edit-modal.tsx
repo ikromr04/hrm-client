@@ -15,6 +15,7 @@ import { useAppDispatch } from '@/hooks'
 import { toast } from 'react-toastify'
 import { EditButton } from './styled'
 import JobsSelection from './jobs-selection/jobs-selection'
+import PositionsSelection from './positions-selection/positions-selection'
 
 type EditModalProps = {
   employee: Employee
@@ -93,6 +94,17 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
     })
   }
 
+  const handlePositionsChange = (value: string[]) => {
+    setDTO((prevDTO) => {
+      prevDTO = {
+        ...prevDTO,
+        positions: value
+      }
+      setIsDisabled(() => validationError.message ? true : false)
+      return prevDTO
+    })
+  }
+
   return (
     <>
       <EditButton type="button" onClick={handleEditButtonClick}>
@@ -145,10 +157,16 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
           />
 
           {isOpen && 
-            <JobsSelection
-              value={employee.jobs.map(({ id }) => id)}
-              onChange={handleJobsChange}
-            />}
+            <>
+              <JobsSelection
+                value={employee.jobs.map(({ id }) => id)}
+                onChange={handleJobsChange}
+              />
+              <PositionsSelection
+                value={employee.positions.map(({ id }) => id)}
+                onChange={handlePositionsChange}
+              />
+            </>}
 
           <Actions>
             <Button
