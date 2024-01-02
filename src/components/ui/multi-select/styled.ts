@@ -4,15 +4,13 @@ import Box from '../box/box';
 export const Wrapper = styled('div').withConfig({
   shouldForwardProp: (props) => !['open'].includes(props),
 })<{ open: boolean }>`
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 4px;
 
   ${({ open }) => open && css`
-    ${SelectedOptions} {
-      border-radius: 4px 4px 0 0;
-    }
-
     ${Options} {
       opacity: 1;
       visibility: visible;
@@ -20,97 +18,83 @@ export const Wrapper = styled('div').withConfig({
   `}
 `;
 
-export const Inner = styled('div')`
+export const Label = styled('label')`
   position: relative;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   gap: 4px;
 `;
 
-export const Label = styled('span')`
+export const Span = styled('span')`
   font-size: 12px;
-  color: #000f30;
-  font-weight: 400;
+  line-height: 1;
+  color: #616161;
 
   &:empty {
     display: none;
   }
 `;
 
-export const SelectedOptions = styled('div').withConfig({
+export const StyledInput = styled('input').withConfig({
   shouldForwardProp: (props) => !['error'].includes(props),
 })<{ error?: string }>`
   display: flex;
-  font-size: 14px;
+  font-size: 15px;
   border-radius: 4px;
-  border: 1px solid #E5ECF3;
-  background-color: #F6F9FB;
+  border: 1px solid #e0e0e0;
+  background-color: #fafafa;
   min-height: 32px;
   max-height: 32px;
   padding: 4px 16px;
+  color: #616161;
   white-space: nowrap;
   align-items: center;
   overflow: hidden;
-  transition: .3s;
-
-  ${({ error }) => error && css`
-    border: 1px solid #f44336;
-  `};
+  user-select: none;
+  cursor: context-menu;
+  transition-property: background-color, border;
+  transition-duration: .3s;
 
   &:hover {
-    border: 1px solid #D3DFEB;
-    background-color: #EDF2F7;
+    background-color: #f5f5f5;
   }
 
   &:focus {
-    outline: none;
-    background-color: #F6F9FB;
-    border: 1px solid #0085ff;
-    box-shadow: none;
+    background-color: #ffffff;
   }
-`;
-
-export const SelectedOption = styled('div')`
-  display: flex;
-  align-items: center;
-  gap: 8px;
 `;
 
 export const Options = styled(Box)`
   position: absolute;
-  top: 100%;
+  top: calc(100% - 8px);
   left: 0;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: none;
-  font-size: 14px;
-  border-radius: 0 0 4px 4px;
-  padding: 8px 0;
+  border-radius: 0 0 8px 8px;
+  padding-top: 9px;
+  padding-bottom: 8px;
   opacity: 0;
   visibility: hidden;
   transition: .3s;
 `;
 
-export const Option = styled('label')`
+export const Option = styled('button')`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
-  padding: 4px;
+  background-color: transparent;
+  border: none;
+  color: #212121;
+  padding: 4px 8px;
+  font-size: 14px;
   cursor: pointer;
+  transition-property: background-color;
+  transition: .3s;
 
   &:hover {
-    background-color: #e3f2fd;
-  }
-`;
-
-export const ErrorMessage = styled('span')`
-  font-size: 12px;
-  color: #f44336;
-
-  &:empty {
-    display: none;
+    background-color: #e1f5fe;
   }
 `;

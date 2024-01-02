@@ -1,76 +1,90 @@
-import { BaseSyntheticEvent, useState } from 'react'
+import { useState } from 'react'
 import {
-  ErrorMessage,
-  Inner,
   Label,
   Option,
   Options,
-  SelectedOptions,
+  Span,
+  StyledInput,
   Wrapper,
 } from './styled'
 import { useOutsideClick } from '@/hooks/use-outside-click'
-import { EMPTY_OPTION_LABEL } from '@/const'
+import SquareCheckIcon from '@/components/icons/square-check-icon'
+import SquareIcon from '@/components/icons/square-icon'
 
 type MultiSelectProps = {
   className?: string
   label?: string
+  value: string[]
+  onChange: (value: string[]) => void
   options: { 
     value: string
     label: string 
   }[]
-  values: string[]
-  onChange: (values: string[]) => void
-  errorMessage?: string
+  placeholder?: string
 }
 
 function MultiSelect({
   className,
   label,
-  options,
-  values,
+  value,
   onChange,
-  errorMessage,
+  options,
+  placeholder,
 }: MultiSelectProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
-  const ref = useOutsideClick(() => setIsOpen(false))
+  const wrapperRef = useOutsideClick(() => setIsOpen(false))
+  const [values, setValues] = useState(value)
 
-  const handleOptionChange = (value: string) => (evt: BaseSyntheticEvent) => {
-    if (evt.target.checked) {
-      onChange([...values, value])
-      return
+  const handleOptionClick = (value: string) => () => {
+    let updatedValues = values
+    if (!value) {
+      updatedValues = []
+    } else if (!values.includes(value)) {
+      updatedValues = [...updatedValues, value]
+    } else {
+      updatedValues = values.filter((item) => item !== value)
     }
-
-    onChange(values.filter((item) => item !== value))
+    setValues(updatedValues)
+    onChange(updatedValues)
   }
 
   return (
     <Wrapper
-      ref={ref}
+      ref={wrapperRef}
       className={className}
       open={isOpen}
       onClick={() => setIsOpen(true)}
     >
-      <Inner>
-        <Label>{label}</Label>
-        <SelectedOptions error={errorMessage} tabIndex={0}>
-          {options.filter(({ value }) => values.includes(value))
-            .map(({ label }) => label).join(', ')}
-          {!values.length && EMPTY_OPTION_LABEL}
-        </SelectedOptions>
-        <Options>
-          {options.map(({ value, label }) => (
-            <Option key={value}>
-              <input
-                type="checkbox"
-                onChange={handleOptionChange(value)}
-                checked={values.includes(value)}
-              />
-              {label}
-            </Option>
-          ))}
-        </Options>
-      </Inner>
-      <ErrorMessage>{errorMessage}</ErrorMessage>
+      <Label>
+        <Span>{label}</Span>
+        <StyledInput
+          placeholder={placeholder}
+          value={options
+            .filter(({ value }) => values.includes(value))
+            .map(({ label }) => label).join(', ')
+          }
+          readOnly
+          onBlur={() => setIsOpen(false)}
+          onFocus={() => setIsOpen(true)}
+          onChange={() => {}}
+        />
+      </Label>
+      <Options>
+        {options.map(({ value, label }) => (
+          <Option
+            key={value}
+            type="button"
+            onBlur={() => setIsOpen(false)}
+            onFocus={() => setIsOpen(true)}
+            onClick={handleOptionClick(value)}
+          >
+            {(values.includes(value) || (!value && !values.length))
+              ? <SquareCheckIcon width={18} height={18} />
+              : <SquareIcon width={18} height={18} />}
+            {label}
+          </Option>
+        ))}
+      </Options>
     </Wrapper>
   )
 }

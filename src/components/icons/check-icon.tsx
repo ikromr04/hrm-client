@@ -1,9 +1,12 @@
 type CheckIconProps = {
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
-function CheckIcon({ width, height }: CheckIconProps): JSX.Element {
+function CheckIcon({
+  width = 16,
+  height = 16,
+}: CheckIconProps): JSX.Element {
   return (
     <svg
       viewBox="0 0 448 512"

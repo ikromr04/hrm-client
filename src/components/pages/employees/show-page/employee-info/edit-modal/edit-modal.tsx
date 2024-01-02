@@ -14,6 +14,7 @@ import Text from '@/components/ui/text/text'
 import { useAppDispatch } from '@/hooks'
 import { toast } from 'react-toastify'
 import { EditButton } from './styled'
+import JobsSelection from './jobs-selection/jobs-selection'
 
 type EditModalProps = {
   employee: Employee
@@ -81,6 +82,17 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
     setIsDisabled(true)
   }
 
+  const handleJobsChange = (value: string[]) => {
+    setDTO((prevDTO) => {
+      prevDTO = {
+        ...prevDTO,
+        jobs: value
+      }
+      setIsDisabled(() => validationError.message ? true : false)
+      return prevDTO
+    })
+  }
+
   return (
     <>
       <EditButton type="button" onClick={handleEditButtonClick}>
@@ -131,6 +143,12 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
             errorMessage={validationError.errors?.started_work_at?.[0]}
             autoComplete="off"
           />
+
+          {isOpen && 
+            <JobsSelection
+              value={employee.jobs.map(({ id }) => id)}
+              onChange={handleJobsChange}
+            />}
 
           <Actions>
             <Button
