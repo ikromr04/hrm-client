@@ -1,5 +1,5 @@
 import { updateEmployeeAction } from '@/store/employee-slice/employees-api-actions'
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import { useFormValidation } from '@/hooks/use-form-validation'
 import { EmployeesUpdateDTO } from '@/dto/employees-dto'
 import Actions from '@/components/ui/actions/actions'
@@ -21,21 +21,25 @@ type EditModalProps = {
 
 function EditModal({ employee }: EditModalProps): JSX.Element {
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
-  const [dto, setDTO] = useState<EmployeesUpdateDTO>(employee)
+  const { name, surname, login, avatar, startedWorkAt } = employee
+  const [dto, setDTO] = useState<EmployeesUpdateDTO>({
+    name, surname, login, avatar, started_work_at: startedWorkAt
+  })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const nameRef = useRef<HTMLInputElement | null>(null)
+  const surnameRef = useRef<HTMLInputElement | null>(null)
   const [isDisabled, setIsDisabled] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    setDTO(employee)
-  }, [employee])
-
   const handleEditButtonClick = () => {
     setIsOpen(true)
     setTimeout(() => {
-      nameRef.current?.focus()
+      if (surnameRef.current) {
+        const value = surnameRef.current.value
+        surnameRef.current.value = ''
+        surnameRef.current.focus()
+        surnameRef.current.value = value
+      }
     }, 150)
   }
 
@@ -46,14 +50,15 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
       id: employee.id,
       dto,
       errorHandler(error) {
-        setIsSubmitting(false)
         setValidationError(error)
+        setIsSubmitting(false)
         setIsDisabled(true)
       },
       successHandler() {
+        toast.success('Данные успешно обновлены.')
         setIsSubmitting(false)
         setIsDisabled(true)
-        toast.success('Данные успешно обновлены.')
+        setIsOpen(false)
       },
     }))
   }
@@ -61,26 +66,19 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
   const handleFormChange = (evt: ChangeEvent<HTMLFormElement>) => {
     formChangeHandler(evt)
     setDTO((prevDTO) => {
-      const key = evt.target.name
+      const keyName = evt.target.name
       prevDTO = {
         ...prevDTO,
-        [key]: evt.target.value
+        [keyName]: evt.target.value
       }
-      setIsDisabled(() => {
-        if (
-          validationError.message || JSON.stringify(prevDTO) === JSON.stringify(employee)
-        ) {
-          return true
-        }
-        return false
-      })
+      setIsDisabled(() => validationError.message ? true : false)
       return prevDTO
     })
   }
 
   const handleFormReset = () => {
     setIsOpen(false)
-    setDTO(employee)
+    setIsDisabled(true)
   }
 
   return (
@@ -97,31 +95,31 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
           onReset={handleFormReset}
         >
           <Input
-            ref={nameRef}
-            name="name"
-            label="Имя"
-            defaultValue={dto.name}
-            errorMessage={validationError.errors?.name?.[0]}
-            autoComplete="off"
-          />
-          <Input
+            ref={surnameRef}
             name="surname"
             label="Фамилия"
-            defaultValue={dto.surname}
+            defaultValue={employee.surname}
             errorMessage={validationError.errors?.surname?.[0]}
             autoComplete="off"
           />
           <Input
+            name="name"
+            label="Имя"
+            defaultValue={employee.name}
+            errorMessage={validationError.errors?.name?.[0]}
+            autoComplete="off"
+          />
+          <Input
             name="patronymic"
-            label="Отчество"
-            defaultValue={dto.patronymic}
+            label="Отчество (необязательное)"
+            defaultValue={employee.patronymic}
             errorMessage={validationError.errors?.patronymic?.[0]}
             autoComplete="off"
           />
           <Input
             name="login"
             label="Логин"
-            defaultValue={dto.login}
+            defaultValue={employee.login}
             errorMessage={validationError.errors?.login?.[0]}
             autoComplete="off"
           />
@@ -129,7 +127,7 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
             name="started_work_at"
             type="datetime-local"
             label="Начало работы"
-            defaultValue={dto.startedWorkAt}
+            defaultValue={employee.startedWorkAt}
             errorMessage={validationError.errors?.started_work_at?.[0]}
             autoComplete="off"
           />

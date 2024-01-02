@@ -19,7 +19,7 @@ function EmployeeInfo(): JSX.Element {
     <Box tagName="section">
       <BoxToolbar>
         <Title small>Сотрудник</Title>
-        <EditModal employee={employee} />
+        <EditModal key={employee.id} employee={employee} />
       </BoxToolbar>
 
       <BoxInner>
