@@ -20,8 +20,6 @@ function PositionsSelection({ value, onChange }: PositionsSelectionProps): JSX.E
   if (!Array.isArray(positions)) {
     return <></>
   }
-  console.log(positions);
-  
 
   return (
     <MultiSelect
