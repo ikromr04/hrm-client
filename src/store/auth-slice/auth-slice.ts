@@ -2,6 +2,7 @@ import { AuthorizationStatus, SliceName } from '@/const';
 import { createSlice } from '@reduxjs/toolkit';
 import { checkAuthAction, loginAction, logoutAction } from './auth-api-actions';
 import { User } from '@/types/auth';
+import { updateEmployeeAction } from '../employee-slice/employees-api-actions';
 
 export type AuthSlice = {
   authStatus: AuthorizationStatus
@@ -23,7 +24,7 @@ export const authSlice = createSlice({
         user.avatar = action.payload
       }
       state.user = user
-    },
+    }
   },
   extraReducers(builder) {
     builder
@@ -43,6 +44,11 @@ export const authSlice = createSlice({
       })
       .addCase(logoutAction.fulfilled, (state) => {
         state.authStatus = AuthorizationStatus.NoAuth
+      })
+      .addCase(updateEmployeeAction.fulfilled, (state, action) => {
+        if (state.user?.id === action.payload.id) {
+          state.user = action.payload
+        }
       })
   },
 })
