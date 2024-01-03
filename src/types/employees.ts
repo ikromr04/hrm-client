@@ -14,7 +14,7 @@ export type Employee = {
   jobs: Jobs
   positions: Positions
   languages: EmployeeLanguages
-  details?: {
+  details: {
     birthDate?: Date
     gender?: string
     nationality?: string
@@ -24,7 +24,7 @@ export type Employee = {
     tel1?: string
     tel2?: string
     familyStatus?: string
-    children?: string
+    children?: string[]
   }
   next: ID
   previous: ID

@@ -3,4 +3,4 @@ import styled from 'styled-components';
 
 export const EditButton = styled(Button)`
   margin-left: auto;
-`;
+`
