@@ -1,4 +1,5 @@
 export const EMPTY_OPTION_LABEL = '--Выберите--'
+export const GENDERS = ['Мужской', 'Женский']
 
 export const AppRoute = {
   Home: '/',

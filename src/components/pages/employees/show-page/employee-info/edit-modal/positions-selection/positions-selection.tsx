@@ -27,7 +27,7 @@ function PositionsSelection({ value, onChange }: PositionsSelectionProps): JSX.E
       value={value}
       onChange={onChange}
       options={[
-        { value: '', label: 'Не выбрать' },
+        { value: '', label: 'Не указано' },
         ...positions.map(({ id, title }) => ({ value: id, label: title }))
       ]}
     />

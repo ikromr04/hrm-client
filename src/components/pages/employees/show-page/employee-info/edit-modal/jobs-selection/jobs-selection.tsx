@@ -27,7 +27,7 @@ function JobsSelection({ value, onChange }: JobsSelectionProps): JSX.Element {
       value={value}
       onChange={onChange}
       options={[
-        { value: '', label: 'Не выбрать' },
+        { value: '', label: 'Не указано' },
         ...jobs.map(({ id, title }) => ({ value: id, label: title }))
       ]}
     />

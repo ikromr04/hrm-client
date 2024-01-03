@@ -14,6 +14,8 @@ import Text from '@/components/ui/text/text'
 import { useAppDispatch } from '@/hooks'
 import { toast } from 'react-toastify'
 import { EditButton } from './styled'
+import Select from '@/components/ui/select/select'
+import { GENDERS } from '@/const'
 
 type EditModalProps = {
   employee: Employee
@@ -29,6 +31,7 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
   const ref = useRef<HTMLInputElement | null>(null)
   const [isDisabled, setIsDisabled] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
+  const [gender, setGender] = useState('')
   const dispatch = useAppDispatch()
 
   const handleEditButtonClick = () => {
@@ -96,12 +99,14 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
             errorMessage={validationError.errors?.['details.birth_date']?.[0]}
             autoComplete="off"
           />
-          <Input
-            name="gender"
+          <Select
             label="Пол"
-            defaultValue={details.gender}
-            errorMessage={validationError.errors?.['details.gender']?.[0]}
-            autoComplete="off"
+            value={gender}
+            options={[
+              { value: '', label: 'Не указано' },
+              ...GENDERS.map((gender) => ({ value: gender, label: gender }))
+            ]}
+            onChange={(value) => setGender(value)}
           />
           <Input
             name="patronymic"
