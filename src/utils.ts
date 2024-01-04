@@ -24,3 +24,13 @@ export const debounce = <F extends (...args: any) => any>(
 }
 
 export const copy = (obj: object) => JSON.parse(JSON.stringify(obj))
+
+export const getYears = (from: number): string[] => {
+  const years = []
+  const currentYear = +dayjs().format('YYYY')
+
+  for (let year = from; year <= currentYear; year++) {
+    years.unshift(year.toString())
+  }
+  return years
+}

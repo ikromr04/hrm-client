@@ -1,5 +1,6 @@
-export const EMPTY_OPTION_LABEL = '--Выберите--'
 export const GENDERS = ['Мужской', 'Женский']
+export const FAMILY_STATUSES = ['Не женат', 'Не замужем', 'Женат', 'Замужем']
+export const NO_CHILDREN = 'Нет детей'
 
 export const AppRoute = {
   Home: '/',

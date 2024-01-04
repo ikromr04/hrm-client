@@ -23,9 +23,9 @@ type EditModalProps = {
 
 function EditModal({ employee }: EditModalProps): JSX.Element {
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
-  const { name, surname, login, avatar, startedWorkAt } = employee
+  const { name, surname, login, startedWorkAt } = employee
   const [dto, setDTO] = useState<EmployeesUpdateDTO>({
-    name, surname, login, avatar, started_work_at: startedWorkAt
+    name, surname, login, started_work_at: startedWorkAt
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const surnameRef = useRef<HTMLInputElement | null>(null)
@@ -81,6 +81,7 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
   const handleFormReset = () => {
     setIsOpen(false)
     setIsDisabled(true)
+    setValidationError({ message: '' })
   }
 
   const handleJobsChange = (value: string[]) => {
@@ -135,7 +136,7 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
           />
           <Input
             name="patronymic"
-            label="Отчество (необязательное)"
+            label="Отчество"
             defaultValue={employee.patronymic}
             errorMessage={validationError.errors?.patronymic?.[0]}
             autoComplete="off"

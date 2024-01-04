@@ -17,7 +17,12 @@ export const StyledModal = styled('div').withConfig({
   visibility: hidden;
   display: flex;
   justify-content: center;
+  overflow-y: scroll;
   transition: .3s;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 
   ${({ isOpen }) => isOpen && css`
     pointer-events: all;

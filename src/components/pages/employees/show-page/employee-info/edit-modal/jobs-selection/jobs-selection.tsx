@@ -23,11 +23,11 @@ function JobsSelection({ value, onChange }: JobsSelectionProps): JSX.Element {
 
   return (
     <MultiSelect
-      label="Должность (необязательное)"
+      label="Должность"
       value={value}
       onChange={onChange}
       options={[
-        { value: '', label: 'Не указано' },
+        { value: '', label: 'Не указать' },
         ...jobs.map(({ id, title }) => ({ value: id, label: title }))
       ]}
     />

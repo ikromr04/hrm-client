@@ -15,7 +15,9 @@ import { useAppDispatch } from '@/hooks'
 import { toast } from 'react-toastify'
 import { EditButton } from './styled'
 import Select from '@/components/ui/select/select'
-import { GENDERS } from '@/const'
+import { FAMILY_STATUSES, GENDERS, NO_CHILDREN } from '@/const'
+import MultiSelect from '@/components/ui/multi-select/multi-select'
+import { getYears } from '@/utils'
 
 type EditModalProps = {
   employee: Employee
@@ -23,15 +25,19 @@ type EditModalProps = {
 
 function EditModal({ employee }: EditModalProps): JSX.Element {
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
-  const { name, surname, login, avatar, startedWorkAt, details } = employee
+  const { name, surname, login, startedWorkAt, details } = employee
   const [dto, setDTO] = useState<EmployeesUpdateDTO>({
-    name, surname, login, avatar, started_work_at: startedWorkAt
+    name, surname, login, started_work_at: startedWorkAt,
+    details: {
+      gender: details.gender,
+      family_status: details.familyStatus,
+      children: details.children
+    }
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const ref = useRef<HTMLInputElement | null>(null)
   const [isDisabled, setIsDisabled] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
-  const [gender, setGender] = useState('')
   const dispatch = useAppDispatch()
 
   const handleEditButtonClick = () => {
@@ -65,8 +71,12 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
       const keyName = evt.target.name
       prevDTO = {
         ...prevDTO,
-        [keyName]: evt.target.value
+        details: {
+          ...prevDTO.details,
+          [keyName]: evt.target.value
+        }
       }
+      setValidationError({ message: ''})
       setIsDisabled(() => validationError.message ? true : false)
       return prevDTO
     })
@@ -75,6 +85,57 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
   const handleFormReset = () => {
     setIsOpen(false)
     setIsDisabled(true)
+    setValidationError({ message: '' })
+    setDTO({
+      name, surname, login, started_work_at: startedWorkAt,
+      details: {
+        gender: details.gender,
+        family_status: details.familyStatus,
+        children: details.children
+      }
+    })
+  }
+
+  const handleGenderChange = (value: string) => {
+    setDTO((prevDTO) => {
+      prevDTO = {
+        ...prevDTO,
+        details: {
+          ...prevDTO.details,
+          gender: value,
+        }
+      }
+      setIsDisabled(false)
+      return prevDTO
+    })
+  }
+
+  const handleFamilyStatusChange = (value: string) => {
+    setDTO((prevDTO) => {
+      prevDTO = {
+        ...prevDTO,
+        details: {
+          ...prevDTO.details,
+          family_status: value,
+        }
+      }
+      setIsDisabled(false)
+      return prevDTO
+    })
+  }
+
+  const handleChildrenChange = (value: string[]) => {
+    setDTO((prevDTO) => {
+      prevDTO = {
+        ...prevDTO,
+        details: {
+          ...prevDTO.details,
+          children: value,
+        }
+      }
+      setIsDisabled(false)
+      return prevDTO
+    })
   }
 
   return (
@@ -95,40 +156,82 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
             name="birth_date"
             type="datetime-local"
             label="Дата рождения"
+            onChange={formChangeHandler}
             defaultValue={details.birthDate}
             errorMessage={validationError.errors?.['details.birth_date']?.[0]}
             autoComplete="off"
           />
           <Select
             label="Пол"
-            value={gender}
+            value={dto.details?.gender || ''}
             options={[
               { value: '', label: 'Не указано' },
               ...GENDERS.map((gender) => ({ value: gender, label: gender }))
             ]}
-            onChange={(value) => setGender(value)}
+            onChange={handleGenderChange}
           />
           <Input
-            name="patronymic"
-            label="Отчество (необязательное)"
-            defaultValue={employee.patronymic}
-            errorMessage={validationError.errors?.patronymic?.[0]}
+            name="nationality"
+            label="Национальность"
+            defaultValue={details.nationality}
+            errorMessage={validationError.errors?.['details.nationality']?.[0]}
             autoComplete="off"
           />
           <Input
-            name="login"
-            label="Логин"
-            defaultValue={employee.login}
-            errorMessage={validationError.errors?.login?.[0]}
+            name="citizenship"
+            label="Гражданство"
+            defaultValue={details.citizenship}
+            errorMessage={validationError.errors?.['details.citizenship']?.[0]}
             autoComplete="off"
           />
           <Input
-            name="started_work_at"
-            type="datetime-local"
-            label="Начало работы"
-            defaultValue={employee.startedWorkAt}
-            errorMessage={validationError.errors?.started_work_at?.[0]}
+            name="address"
+            label="Адрес"
+            defaultValue={details.address}
+            errorMessage={validationError.errors?.['details.address']?.[0]}
             autoComplete="off"
+          />
+          <Input
+            name="email"
+            label="Электронная почта"
+            defaultValue={details.email}
+            errorMessage={validationError.errors?.['details.email']?.[0]}
+            autoComplete="off"
+          />
+          <Input
+            name="tel_1"
+            label="Тел 1"
+            defaultValue={details.tel1}
+            errorMessage={validationError.errors?.['details.tel_1']?.[0]}
+            autoComplete="off"
+          />
+          <Input
+            name="tel_2"
+            label="Тел 2"
+            defaultValue={details.tel2}
+            errorMessage={validationError.errors?.['details.tel_2']?.[0]}
+            autoComplete="off"
+          />
+          <Select
+            label="Семейное положение"
+            value={dto.details?.family_status || ''}
+            options={[
+              { value: '', label: 'Не указано' },
+              ...FAMILY_STATUSES.map((status) => ({ value: status, label: status }))
+            ]}
+            onChange={handleFamilyStatusChange}
+          />
+          <MultiSelect
+            key={JSON.stringify(isOpen)}
+            label="Дети (выберите год рождения)"
+            value={dto?.details?.children || []}
+            onChange={handleChildrenChange}
+            placeholder="Выберите возраст детей"
+            options={[
+              { value: '', label: 'Не указать' },
+              { value: NO_CHILDREN, label: NO_CHILDREN },
+              ...getYears(1970).map((year) => ({ value: year, label: year }))
+            ]}
           />
 
           <Actions>

@@ -10,17 +10,16 @@ import EditModal from './edit-modal/edit-modal'
 
 function EmployeeDetails(): JSX.Element {
   const employee = useAppSelector(getEmployee)
-  let children = ''
-  if (Array.isArray(employee?.details?.children)) {
-    children = employee?.details?.children?.map((date) => date).join(', ')
-    if (children?.length === 0) {
-      children = 'Нет'
-    }
-  }
 
   if (!employee) {
     return <></>
   }
+
+  const { details } = employee
+  const {
+    birthDate, gender, nationality, citizenship, address, email, tel1, tel2,
+    familyStatus, children
+  } = details
 
   return (
     <Box tagName="section">
@@ -32,16 +31,16 @@ function EmployeeDetails(): JSX.Element {
       <BoxInner>
         <DescriptionList
           list={{
-            'Дата рождения': dayjs(employee.details.birthDate).format('D MMM YYYY'),
-            'Пол': employee.details.gender,
-            'Национальность': employee.details.nationality,
-            'Гражданство': employee.details.citizenship,
-            'Адрес': employee.details.address,
-            'Эл. почта': employee.details.email,
-            'Телефон-1': employee.details.tel1,
-            'Телефон-2': employee.details.tel2,
-            'Семейное положение': employee.details.familyStatus,
-            'Дети': children,
+            'Дата рождения': birthDate && dayjs(birthDate).format('D MMM YYYY'),
+            'Пол': gender,
+            'Национальность': nationality,
+            'Гражданство': citizenship,
+            'Адрес': address,
+            'Эл. почта': email,
+            'Телефон-1': tel1,
+            'Телефон-2': tel2,
+            'Семейное положение': familyStatus,
+            'Дети': children?.map((child) => child).reverse().join(', '),
           }}
         />
       </BoxInner>

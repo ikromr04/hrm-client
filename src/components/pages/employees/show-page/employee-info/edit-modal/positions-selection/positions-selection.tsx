@@ -23,11 +23,11 @@ function PositionsSelection({ value, onChange }: PositionsSelectionProps): JSX.E
 
   return (
     <MultiSelect
-      label="Позиция (необязательное)"
+      label="Позиция"
       value={value}
       onChange={onChange}
       options={[
-        { value: '', label: 'Не указано' },
+        { value: '', label: 'Не указать' },
         ...positions.map(({ id, title }) => ({ value: id, label: title }))
       ]}
     />

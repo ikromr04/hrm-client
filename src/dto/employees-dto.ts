@@ -5,7 +5,6 @@ export type EmployeesUpdateDTO = {
   surname: string
   patronymic?: string
   login: string
-  avatar: string
   started_work_at: Date
   jobs?: ID[]
   positions?: ID[]
@@ -14,15 +13,15 @@ export type EmployeesUpdateDTO = {
     level: string
   }[]
   details?: {
-    birthDate?: Date
+    birth_date?: Date
     gender?: string
     nationality?: string
     citizenship?: string
     address?: string
     email?: string
-    tel1?: string
-    tel2?: string
-    familyStatus?: string
-    children?: string
+    tel_1?: string
+    tel_2?: string
+    family_status?: string
+    children?: string[]
   }
 }
