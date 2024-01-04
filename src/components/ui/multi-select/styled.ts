@@ -15,6 +15,10 @@ export const Wrapper = styled('div').withConfig({
       opacity: 1;
       visibility: visible;
     }
+
+    ${LabelInner} svg {
+      transform: translateY(-50%) scaleY(-1);
+    }
   `}
 `;
 
@@ -25,6 +29,18 @@ export const Label = styled('label')`
   flex-direction: column;
   gap: 4px;
 `;
+
+export const LabelInner = styled('span')`
+  position: relative;
+  
+  svg {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    transition: .3s;
+  }
+`
 
 export const Span = styled('span')`
   font-size: 12px;
@@ -44,9 +60,11 @@ export const StyledInput = styled('input').withConfig({
   border-radius: 4px;
   border: 1px solid #e0e0e0;
   background-color: #fafafa;
+  width: 100%;
   min-height: 32px;
   max-height: 32px;
   padding: 4px 16px;
+  padding-right: 32px;
   color: #616161;
   white-space: nowrap;
   align-items: center;
@@ -81,7 +99,6 @@ export const Options = styled(Box)`
   visibility: hidden;
   overflow-y: scroll;
   overflow-x: visible;
-  transition: .3s;
 
   &::-webkit-scrollbar {
     width: 8px;

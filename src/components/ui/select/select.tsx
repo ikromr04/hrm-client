@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {
   Label,
+  LabelInner,
   Option,
   Options,
   Span,
@@ -10,6 +11,7 @@ import {
 import { useOutsideClick } from '@/hooks/use-outside-click'
 import SquareCheckIcon from '@/components/icons/square-check-icon'
 import SquareIcon from '@/components/icons/square-icon'
+import CaretIcon from '@/components/icons/caret-icon'
 
 type SelectProps = {
   className?: string
@@ -43,14 +45,16 @@ function Select({
     >
       <Label>
         <Span>{label}</Span>
-        <StyledInput
-          placeholder={placeholder}
-          value={value}
-          readOnly
-          onBlur={() => setIsOpen(false)}
-          onFocus={() => setIsOpen(true)}
-          onChange={() => {}}
-        />
+        <LabelInner>
+          <StyledInput
+            placeholder={placeholder}
+            value={value}
+            readOnly
+            onBlur={() => setIsOpen(false)}
+            onFocus={() => setIsOpen(true)}
+            onChange={() => {}} />
+          <CaretIcon />
+        </LabelInner>
       </Label>
       <Options>
         {options.map((option) => (
