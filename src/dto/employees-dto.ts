@@ -1,11 +1,11 @@
 import { ID } from '@/types'
 
 export type EmployeesUpdateDTO = {
-  name: string
-  surname: string
+  name?: string
+  surname?: string
   patronymic?: string
-  login: string
-  started_work_at: Date
+  login?: string
+  started_work_at?: Date
   jobs?: ID[]
   positions?: ID[]
   languages?: {

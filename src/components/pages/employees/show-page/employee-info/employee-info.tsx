@@ -25,11 +25,11 @@ function EmployeeInfo(): JSX.Element {
       <BoxInner>
         <DescriptionList
           list={{
-            'Имя': employee.name,
             'Фамилия': employee.surname,
+            'Имя': employee.name,
             'Отчество': employee.patronymic,
             'Логин': employee.login,
-            'Начало работы': dayjs(employee?.startedWorkAt).format('D MMM YYYY').toString(),
+            'Начало работы': dayjs(employee.startedWorkAt).format('D MMM YYYY').toString(),
             'Должность': employee.jobs.map(({ title }) => title).join(', '),
             'Позиция': employee.positions.map(({ title }) => title).join(', '),
           }}
