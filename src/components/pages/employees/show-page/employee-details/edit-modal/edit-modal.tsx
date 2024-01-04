@@ -25,15 +25,11 @@ type EditModalProps = {
 
 function EditModal({ employee }: EditModalProps): JSX.Element {
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
-  const { name, surname, login, startedWorkAt, details } = employee
-  const [dto, setDTO] = useState<EmployeesUpdateDTO>({
-    name, surname, login, started_work_at: startedWorkAt,
-    details: {
-      gender: details.gender,
-      family_status: details.familyStatus,
-      children: details.children
-    }
-  })
+  const [dto, setDTO] = useState<EmployeesUpdateDTO>({ details: {
+    gender: employee.details.gender,
+    family_status: employee.details.familyStatus,
+    children: employee.details.children,
+  }})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const ref = useRef<HTMLInputElement | null>(null)
   const [isDisabled, setIsDisabled] = useState(true)
@@ -67,75 +63,43 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
 
   const handleFormChange = (evt: ChangeEvent<HTMLFormElement>) => {
     formChangeHandler(evt)
-    setDTO((prevDTO) => {
-      const keyName = evt.target.name
-      prevDTO = {
-        ...prevDTO,
-        details: {
-          ...prevDTO.details,
-          [keyName]: evt.target.value
-        }
-      }
-      setValidationError({ message: ''})
-      setIsDisabled(() => validationError.message ? true : false)
-      return prevDTO
-    })
+    setDTO((prevDTO) => ({
+      details: { ...prevDTO.details, [evt.target.name]: evt.target.value }
+    }))
+    setIsDisabled(() => validationError.message ? true : false)
+    setValidationError({ message: ''})
   }
 
   const handleFormReset = () => {
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO({
-      name, surname, login, started_work_at: startedWorkAt,
-      details: {
-        gender: details.gender,
-        family_status: details.familyStatus,
-        children: details.children
-      }
-    })
+    setDTO({ details: {
+      gender: employee.details.gender,
+      family_status: employee.details.familyStatus,
+      children: employee.details.children,
+    }})
   }
 
   const handleGenderChange = (value: string) => {
-    setDTO((prevDTO) => {
-      prevDTO = {
-        ...prevDTO,
-        details: {
-          ...prevDTO.details,
-          gender: value,
-        }
-      }
-      setIsDisabled(false)
-      return prevDTO
-    })
+    setDTO((prevDTO) => ({
+      details: { ...prevDTO.details, gender: value }
+    }))
+    setIsDisabled(false)
   }
 
   const handleFamilyStatusChange = (value: string) => {
-    setDTO((prevDTO) => {
-      prevDTO = {
-        ...prevDTO,
-        details: {
-          ...prevDTO.details,
-          family_status: value,
-        }
-      }
-      setIsDisabled(false)
-      return prevDTO
-    })
+    setDTO((prevDTO) => ({
+      details: { ...prevDTO.details, family_status: value }
+    }))
+    setIsDisabled(false)
   }
 
   const handleChildrenChange = (value: string[]) => {
-    setDTO((prevDTO) => {
-      prevDTO = {
-        ...prevDTO,
-        details: {
-          ...prevDTO.details,
-          children: value,
-        }
-      }
-      setIsDisabled(false)
-      return prevDTO
-    })
+    setDTO((prevDTO) => ({
+      details: { ...prevDTO.details, children: value }
+    }))
+    setIsDisabled(false)
   }
 
   return (
@@ -153,14 +117,19 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
         >
           <Input
             ref={ref}
+            key={(+isOpen).toString().padStart(2)}
+            name="nationality"
+            label="Национальность"
+            defaultValue={employee.details.nationality}
+            errorMessage={validationError.errors?.['details.nationality']?.[0]}
+            autoComplete="off" />
+          <Input
             name="birth_date"
             type="datetime-local"
             label="Дата рождения"
-            onChange={formChangeHandler}
-            defaultValue={details.birthDate}
+            defaultValue={employee.details.birthDate}
             errorMessage={validationError.errors?.['details.birth_date']?.[0]}
-            autoComplete="off"
-          />
+            autoComplete="off" />
           <Select
             label="Пол"
             value={dto.details?.gender || ''}
@@ -168,50 +137,37 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
               { value: '', label: 'Не указано' },
               ...GENDERS.map((gender) => ({ value: gender, label: gender }))
             ]}
-            onChange={handleGenderChange}
-          />
-          <Input
-            name="nationality"
-            label="Национальность"
-            defaultValue={details.nationality}
-            errorMessage={validationError.errors?.['details.nationality']?.[0]}
-            autoComplete="off"
-          />
+            onChange={handleGenderChange} />
           <Input
             name="citizenship"
             label="Гражданство"
-            defaultValue={details.citizenship}
+            defaultValue={employee.details.citizenship}
             errorMessage={validationError.errors?.['details.citizenship']?.[0]}
-            autoComplete="off"
-          />
+            autoComplete="off" />
           <Input
             name="address"
             label="Адрес"
-            defaultValue={details.address}
+            defaultValue={employee.details.address}
             errorMessage={validationError.errors?.['details.address']?.[0]}
-            autoComplete="off"
-          />
+            autoComplete="off" />
           <Input
             name="email"
             label="Электронная почта"
-            defaultValue={details.email}
+            defaultValue={employee.details.email}
             errorMessage={validationError.errors?.['details.email']?.[0]}
-            autoComplete="off"
-          />
+            autoComplete="off" />
           <Input
             name="tel_1"
             label="Тел 1"
-            defaultValue={details.tel1}
+            defaultValue={employee.details.tel1}
             errorMessage={validationError.errors?.['details.tel_1']?.[0]}
-            autoComplete="off"
-          />
+            autoComplete="off" />
           <Input
             name="tel_2"
             label="Тел 2"
-            defaultValue={details.tel2}
+            defaultValue={employee.details.tel2}
             errorMessage={validationError.errors?.['details.tel_2']?.[0]}
-            autoComplete="off"
-          />
+            autoComplete="off" />
           <Select
             label="Семейное положение"
             value={dto.details?.family_status || ''}
@@ -219,10 +175,9 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
               { value: '', label: 'Не указано' },
               ...FAMILY_STATUSES.map((status) => ({ value: status, label: status }))
             ]}
-            onChange={handleFamilyStatusChange}
-          />
+            onChange={handleFamilyStatusChange} />
           <MultiSelect
-            key={JSON.stringify(isOpen)}
+            key={(+isOpen).toString().padStart(3)}
             label="Дети (выберите год рождения)"
             value={dto?.details?.children || []}
             onChange={handleChildrenChange}
@@ -231,8 +186,7 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
               { value: '', label: 'Не указать' },
               { value: NO_CHILDREN, label: NO_CHILDREN },
               ...getYears(1970).map((year) => ({ value: year, label: year }))
-            ]}
-          />
+            ]} />
 
           <Actions>
             <Button

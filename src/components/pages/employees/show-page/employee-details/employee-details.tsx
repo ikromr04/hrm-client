@@ -31,9 +31,9 @@ function EmployeeDetails(): JSX.Element {
       <BoxInner>
         <DescriptionList
           list={{
+            'Национальность': nationality,
             'Дата рождения': birthDate && dayjs(birthDate).format('D MMM YYYY'),
             'Пол': gender,
-            'Национальность': nationality,
             'Гражданство': citizenship,
             'Адрес': address,
             'Эл. почта': email,
