@@ -142,7 +142,7 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
             autoComplete="off" />
           {jobs && 
             <MultiSelect
-              key={isOpen.toString()}
+              key={(+isOpen).toString().padStart(2)}
               label="Должность"
               value={employee.jobs.map(({ id }) => id)}
               onChange={handleJobsChange}
@@ -152,7 +152,7 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
               ]} />}
           {positions &&
             <MultiSelect
-              key={isOpen.toString().padStart(12)}
+              key={(+isOpen).toString().padStart(3)}
               label="Позиция"
               value={employee.positions.map(({ id }) => id)}
               onChange={handlePositionsChange}
