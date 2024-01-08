@@ -33,10 +33,12 @@ export const Dl = styled('dl').withConfig({
   ${({ detailedInverse }) => detailedInverse && css`
     ${Dt} {
       margin-bottom: 2px;
+      color: inherit;
     }
 
     ${Dd} {
       font-size: 13px;
+      color: #90a4ae;
 
       &:not(:last-of-type) {
         margin-bottom: 16px;

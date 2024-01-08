@@ -41,17 +41,16 @@ function Select({
       ref={wrapperRef}
       className={className}
       open={isOpen}
-      onClick={() => setIsOpen(true)}
     >
       <Label>
         <Span>{label}</Span>
         <LabelInner>
           <StyledInput
             placeholder={placeholder}
-            value={value}
+            value={options.find((option) => option.value === value)?.label}
             readOnly
             onBlur={() => setIsOpen(false)}
-            onFocus={() => setIsOpen(true)}
+            onClick={() => setIsOpen(!isOpen)}
             onChange={() => {}} />
           <CaretIcon />
         </LabelInner>
@@ -61,9 +60,10 @@ function Select({
           <Option
             key={option.value}
             type="button"
-            onBlur={() => setIsOpen(false)}
-            onFocus={() => setIsOpen(true)}
-            onClick={() => onChange(option.value)}
+            onClick={() => {
+              onChange(option.value)
+              setIsOpen(false)
+            }}
           >
             {option.value === value
               ? <SquareCheckIcon width={18} height={18} />

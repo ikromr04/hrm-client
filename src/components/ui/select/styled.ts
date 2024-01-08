@@ -5,7 +5,6 @@ export const Wrapper = styled('div').withConfig({
   shouldForwardProp: (props) => !['open'].includes(props),
 })<{ open: boolean }>`
   position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -85,15 +84,14 @@ export const StyledInput = styled('input').withConfig({
 
 export const Options = styled(Box)`
   position: absolute;
-  top: calc(100% - 8px);
+  top: 100%;
   left: 0;
-  z-index: 2;
+  z-index: 4;
   width: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 0 0 8px 8px;
-  padding-top: 9px;
-  padding-bottom: 8px;
+  padding: 8px 0;
   opacity: 0;
   visibility: hidden;
   overflow-y: scroll;

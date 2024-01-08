@@ -8,7 +8,7 @@ export const fetchLanguagesAction = createAsyncThunk<Languages, undefined, {
 }>(
   'languages/fetchLanguages',
   async (_arg, { extra: api }) => {
-    const { data } = await api.get(APIRoute.Languages.Index)
+    const { data } = await api.get<Languages>(APIRoute.Languages.Index)
     return data
   },
 )

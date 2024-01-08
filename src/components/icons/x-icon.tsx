@@ -1,9 +1,12 @@
 type XIconProps = {
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
-function XIcon({ width, height }: XIconProps): JSX.Element {
+function XIcon({
+  width = 16,
+  height = 16,
+}: XIconProps): JSX.Element {
   return (
     <svg
       viewBox="0 0 384 512"

@@ -1,60 +1,72 @@
-import { EmployeeLanguage, EmployeeLanguages } from '@/types/employees'
+import { EmployeeLanguage } from '@/types/employees'
 import { Languages } from '@/types/languages'
-import { BaseSyntheticEvent, Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import { Wrapper } from './styled'
 import Select from '@/components/ui/select/select'
 import Button from '@/components/ui/button/button'
-import XIcon from '@/components/icons/x-icon'
 import Info from '@/components/ui/info/info'
 import { languageLevelOptions } from '@/const'
+import { ID } from '@/types'
+import { EmployeesUpdateDTO } from '@/dto/employees-dto'
+import DeleteIcon from '@/components/icons/delete-icon'
 
 type LanguageFieldsProps = {
   currentLanguage: EmployeeLanguage
   languages: Languages
-  setEmployeeLanguages: Dispatch<SetStateAction<EmployeeLanguages>>
+  setDTO: Dispatch<SetStateAction<EmployeesUpdateDTO>>
 }
 
 function LanguageFields({
   currentLanguage,
   languages,
-  setEmployeeLanguages,
+  setDTO,
 }: LanguageFieldsProps): JSX.Element {
-  const handleLanguageChange = (evt: BaseSyntheticEvent) =>
-    setEmployeeLanguages((prevLanguages) => prevLanguages.map((prevLanguage) => {
-      if (prevLanguage.id === currentLanguage.id) {
-        return {
-          ...prevLanguage,
-          id: evt.target.value,
-          name: languages.find(({ id }) => (String(id) === evt.target.value))?.name || '',
+  const handleLanguageChange = (id: ID) =>
+    setDTO((prevDTO) => {
+      prevDTO.languages = prevDTO.languages?.map((prevLanguage) => {
+        if (prevLanguage.id === currentLanguage.id) {
+          return {
+            id,
+            name: languages.find((lang) => (lang.id === id))?.name || '',
+            level: prevLanguage.level,
+          }
         }
-      }
-      return prevLanguage
-    }))
+        return prevLanguage
+      })
+      return {...prevDTO}
+    })
 
-  const handleLevelChange = (evt: BaseSyntheticEvent) =>
-    setEmployeeLanguages((prevLanguages) => prevLanguages.map((prevLanguage) => {
-      if (prevLanguage.id === currentLanguage.id) {
-        return {
-          ...prevLanguage,
-          level: evt.target.value,
+  const handleLevelChange = (level: string) =>
+    setDTO((prevDTO) => {
+      prevDTO.languages = prevDTO.languages?.map((prevLanguage) => {
+        if (prevLanguage.id === currentLanguage.id) {
+          return {
+            ...prevLanguage,
+            level,
+          }
         }
-      }
-      return prevLanguage
-    }))
+        return prevLanguage
+      })
+      return {...prevDTO}
+    })
 
   const handleDeleteButtonClick = () =>
-    setEmployeeLanguages((prevLanguages) => prevLanguages.filter((prevLanguage) => (
-      prevLanguage.id !== currentLanguage.id
-    )))
+    setDTO((prevDTO) => {
+      prevDTO.languages = prevDTO.languages?.filter((prevLanguage) => (
+        prevLanguage.id !== currentLanguage.id
+      ))
+      return {...prevDTO}
+    })
 
   return (
     <Wrapper>
       <Select
+        key={currentLanguage.id}
         label="Язык"
+        value={currentLanguage.id}
         options={[
           ...languages.map((language) => ({ value: language.id, label: language.name }))
         ]}
-        value={currentLanguage.id}
         onChange={handleLanguageChange}
       />
       <Select
@@ -63,13 +75,8 @@ function LanguageFields({
         options={languageLevelOptions}
         onChange={handleLevelChange}
       />
-      <Button
-        type="button"
-        warning
-        onClick={handleDeleteButtonClick}
-      >
-        <XIcon width={16} height={16} />
-        <Info right>Удалить язык</Info>
+      <Button type="button" warning onClick={handleDeleteButtonClick}>
+        <DeleteIcon /> <Info right>Удалить язык</Info>
       </Button>
     </Wrapper>
   )

@@ -40,6 +40,7 @@ export const updateEmployeeAction = createAsyncThunk<Employee, {
       return data
     } catch (err: any) {
       const error: AxiosError<ValidationError> = err
+      
       if (!error.response) {
         throw err
       }

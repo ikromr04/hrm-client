@@ -1,4 +1,5 @@
 import { ID } from '@/types'
+import { EmployeeLanguages } from '@/types/employees'
 
 export type EmployeesUpdateDTO = {
   name?: string
@@ -8,10 +9,7 @@ export type EmployeesUpdateDTO = {
   started_work_at?: Date
   jobs?: ID[]
   positions?: ID[]
-  languages?: {
-    id: ID
-    level: string
-  }[]
+  languages?: EmployeeLanguages
   details?: {
     birth_date?: Date
     gender?: string

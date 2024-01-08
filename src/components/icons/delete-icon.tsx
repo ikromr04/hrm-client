@@ -1,9 +1,12 @@
 type DeleteIconProps = {
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
-function DeleteIcon({ width, height }: DeleteIconProps): JSX.Element {
+function DeleteIcon({
+  width = 16,
+  height = 16,
+}: DeleteIconProps): JSX.Element {
   return (
     <svg
       viewBox="0 0 24 24"

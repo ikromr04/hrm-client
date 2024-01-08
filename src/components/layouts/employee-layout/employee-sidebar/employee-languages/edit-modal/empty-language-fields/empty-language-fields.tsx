@@ -1,42 +1,42 @@
-import { BaseSyntheticEvent, Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { Wrapper } from './styled'
 import { Languages } from '@/types/languages'
-import { EmployeeLanguage, EmployeeLanguages } from '@/types/employees'
-import { EMPTY_OPTION_LABEL, languageLevelOptions } from '@/const'
+import { EmployeesUpdateDTO } from '@/dto/employees-dto'
+import { languageLevelOptions } from '@/const'
+import { EmployeeLanguage } from '@/types/employees'
+import { ID } from '@/types'
 import Select from '@/components/ui/select/select'
 
 type EmptyLanguageFieldsProps = {
   languages: Languages
-  setEmployeeLanguages: Dispatch<SetStateAction<EmployeeLanguages>>
+  setDTO: Dispatch<SetStateAction<EmployeesUpdateDTO>>
 }
 
 function EmptyLanguageFields({
   languages,
-  setEmployeeLanguages,
+  setDTO,
 }: EmptyLanguageFieldsProps): JSX.Element {
   const [level, setLevel] = useState(languageLevelOptions[0].value)
 
-  const handleLanguageChange = (evt: BaseSyntheticEvent) => {
+  const handleLanguageChange = (id: ID) => {
     const newEmployeeLanguage: EmployeeLanguage = {
-      id: evt.target.value,
-      name: languages.find(({ id }) => (String(id) === evt.target.value))?.name || '',
+      id,
+      name: languages.find(({ id }) => (String(id) === id))?.name || '',
       level,
     }
-    setEmployeeLanguages((prevLanguages) => {
-      return [
-        ...prevLanguages,
-        newEmployeeLanguage
-      ]
+    setDTO((prevDTO) => {
+      prevDTO.languages = [...(prevDTO.languages || []), newEmployeeLanguage]
+      return { ...prevDTO }
     })
-    evt.target.value = ''
   }
 
   return (
     <Wrapper>
       <Select
         label="Язык"
+        value=''
+        placeholder='Выберите язык'
         options={[
-          { value: '', label: EMPTY_OPTION_LABEL },
           ...languages.map((language) => ({ value: language.id, label: language.name }))
         ]}
         onChange={handleLanguageChange}
@@ -45,7 +45,7 @@ function EmptyLanguageFields({
         label="Уровень знания языка"
         value={level}
         options={languageLevelOptions}
-        onChange={(evt: BaseSyntheticEvent) => setLevel(evt.target.value)}
+        onChange={(level: string) => setLevel(level)}
       />
     </Wrapper>
   )
