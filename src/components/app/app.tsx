@@ -19,7 +19,7 @@ import EmployeesAttendancePage
 import { getAuthStatus } from '@/store/auth-slice/auth-selector'
 import AppLoading from '../ui/app-loading/app-loading'
 import EmployeesEducationPage 
-  from '../pages/employees/employees-education-page/employees-education-page'
+  from '../pages/employees/education-page/employees-education-page'
 
 function App(): JSX.Element {
   const authStatus = useAppSelector(getAuthStatus)
