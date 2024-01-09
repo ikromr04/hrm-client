@@ -7,7 +7,7 @@ import {
   Jobs,
   EmployeePosition
 } from './styled'
-import { useAppSelector } from '@/hooks'
+import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
 import BriefcaseIcon from '@/components/icons/briefcase-icon'
 import Button from '@/components/ui/button/button'
@@ -17,9 +17,11 @@ import Actions from '@/components/ui/actions/actions'
 import EmployeeAvatar from './employee-avatar/employee-avatar'
 import { generatePath } from 'react-router-dom'
 import { AppRoute } from '@/const'
+import { setEmployeeAction } from '@/store/employee-slice/employees-slice'
 
 function EmployeeHeader(): JSX.Element {
   const employee = useAppSelector(getEmployee)
+  const dispatch = useAppDispatch()
   
   if (!employee) {
     return <></>
@@ -48,10 +50,16 @@ function EmployeeHeader(): JSX.Element {
         </div>
 
         <Actions>
-          <Button href={generatePath(AppRoute.Employees.Show, { id: employee.previous })}>
+          <Button
+            href={generatePath(AppRoute.Employees.Show, { id: employee.previous })}
+            onClick={() => dispatch(setEmployeeAction(null))}
+          >
             <ChevronLeftIcon /> Предыдущий
           </Button>
-          <Button href={generatePath(AppRoute.Employees.Show, { id: employee.next })}>
+          <Button
+            href={generatePath(AppRoute.Employees.Show, { id: employee.next })}
+            onClick={() => dispatch(setEmployeeAction(null))}
+          >
             Следующий <ChevronRightIcon width={16} height={16} />
           </Button>
         </Actions>

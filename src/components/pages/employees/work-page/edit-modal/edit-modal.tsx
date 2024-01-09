@@ -7,51 +7,48 @@ import Form from '@/components/ui/form/form'
 import Actions from '@/components/ui/actions/actions'
 import Button from '@/components/ui/button/button'
 import { useAppDispatch } from '@/hooks'
-import { EducationsUpdateDTO } from '@/dto/educations-dto'
-import { updateEducationAction } from '@/store/api-actions'
+import { updateActivityAction } from '@/store/api-actions'
 import { toast } from 'react-toastify'
 import Input from '@/components/ui/input/input'
-import Select from '@/components/ui/select/select'
-import { educationFormOptions } from '@/const'
 import ColumnSpan from '@/components/ui/column-span/column-span'
-import { Education, Educations } from '@/types/educations'
 import EditIcon from '@/components/icons/edit-icon'
+import { Activities, Activity } from '@/types/activities'
+import { ActivitiesUpdateDTO } from '@/dto/activities-dto'
 
 type EditModalProps = {
-  education: Education
-  setEducations: Dispatch<SetStateAction<Educations | null>>
+  activity: Activity
+  setActivities: Dispatch<SetStateAction<Activities | null>>
 }
 
-function EditModal({ education, setEducations }: EditModalProps) {
+function EditModal({ activity, setActivities }: EditModalProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)
   const dispatch = useAppDispatch()
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
-  const [dto, setDTO] = useState<EducationsUpdateDTO>({})
+  const [dto, setDTO] = useState<ActivitiesUpdateDTO>({})
 
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()
     setIsSubmitting(true)
-    dispatch(updateEducationAction({
-      id: education.id,
+    dispatch(updateActivityAction({
+      id: activity.id,
       dto,
       errorHandler(error) {
         setValidationError(error)
         setIsSubmitting(false)
         setIsDisabled(true)
-        console.log(error)
       },
-      successHandler(education) {
+      successHandler(activity) {
         toast.success('Данные успешно обновлены.')
         setIsSubmitting(false)
         setIsDisabled(true)
         setIsOpen(false)
         setDTO({})
-        setEducations((prevEducations) => 
-          (prevEducations || []).map((prevEducation) => 
-            (prevEducation.id === education.id) ? education : prevEducation
+        setActivities((prevActivities) => 
+          (prevActivities || []).map((prevActivity) => 
+            (prevActivity.id === activity.id) ? activity : prevActivity
         ))
       },
     }))
@@ -82,11 +79,6 @@ function EditModal({ education, setEducations }: EditModalProps) {
     setDTO({})
   }
 
-  const handleEducationFormChange = (value: string) => {
-    setDTO((prevDTO) => ({ ...prevDTO, form: value }))
-    setIsDisabled(() => validationError.message ? true : false)
-  }
-
   return (
     <>
       <Button type="button" onClick={handleEditButtonClick}>
@@ -103,44 +95,31 @@ function EditModal({ education, setEducations }: EditModalProps) {
           <ColumnSpan>
             <Input
               ref={ref}
-              name="institution"
-              label="Учебное заведение"
-              defaultValue={education.institution}
-              errorMessage={validationError.errors?.institution?.[0]}
-              autoComplete="off" />
-          </ColumnSpan>
-          <ColumnSpan>
-            <Input
-              name="faculty"
-              label="Факультет"
-              defaultValue={education.faculty}
-              errorMessage={validationError.errors?.faculty?.[0]}
+              name="organization"
+              label="Организация"
+              defaultValue={activity.organization}
+              errorMessage={validationError.errors?.organization?.[0]}
               autoComplete="off" />
           </ColumnSpan>
           <Input
-            name="speciality"
-            label="Специальность"
-            defaultValue={education.speciality}
-            errorMessage={validationError.errors?.speciality?.[0]}
-            autoComplete="off" />
-          <Select
-            label="Форма обучения"
-            value={education.form}
-            onChange={handleEducationFormChange}
-            options={educationFormOptions} />
-          <Input
-            name="started_at"
-            type="datetime-local"
-            label="Год поступления"
-            defaultValue={education.startedAt}
-            errorMessage={validationError.errors?.started_at?.[0]}
+            name="job"
+            label="Должность"
+            defaultValue={activity.job}
+            errorMessage={validationError.errors?.job?.[0]}
             autoComplete="off" />
           <Input
-            name="graduated_at"
+            name="hired_at"
             type="datetime-local"
-            label="Год окончания"
-            defaultValue={education.graduatedAt}
-            errorMessage={validationError.errors?.graduated_at?.[0]}
+            label="Начало работы"
+            defaultValue={activity.hiredAt}
+            errorMessage={validationError.errors?.hired_at?.[0]}
+            autoComplete="off" />
+          <Input
+            name="dismissed_at"
+            type="datetime-local"
+            label="Дата уволнения"
+            defaultValue={activity.dismissedAt}
+            errorMessage={validationError.errors?.dismissed_at?.[0]}
             autoComplete="off" />
 
           <Actions>

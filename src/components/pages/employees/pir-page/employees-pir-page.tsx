@@ -5,7 +5,7 @@ function EmployeesPIRPage(): JSX.Element {
   return (
     <EmployeeLayout>
       <Main>
-        EmployeesPIRPage
+        Not implemented
       </Main>
     </EmployeeLayout>
   )

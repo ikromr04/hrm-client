@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AxiosError, AxiosInstance } from 'axios'
 import { APIRoute } from '../../const'
@@ -7,6 +8,7 @@ import { ID } from '@/types'
 import { EmployeesUpdateDTO } from '@/dto/employees-dto'
 import { ValidationError } from '@/types/validation-error'
 import { Educations } from '@/types/educations'
+import { Activities } from '@/types/activities'
 
 export const fetchEmployeeAction = createAsyncThunk<Employee, {
   id: ID
@@ -85,6 +87,19 @@ export const fetchEmployeesEducationsAction = createAsyncThunk<void, {
   'employees/fetchEducations',
   async ({ id, successHandler }, { extra: api }) => {
     const { data } = await api.get<Educations>(generatePath(APIRoute.Employees.Educations, { id }))
+    successHandler(data)
+  },
+)
+
+export const fetchEmployeesActivitiesAction = createAsyncThunk<void, {
+  id: ID
+  successHandler: (activities: Activities) => void
+}, {
+  extra: AxiosInstance
+}>(
+  'employees/fetchActivities',
+  async ({ id, successHandler }, { extra: api }) => {
+    const { data } = await api.get<Activities>(generatePath(APIRoute.Employees.Activities, { id }))
     successHandler(data)
   },
 )

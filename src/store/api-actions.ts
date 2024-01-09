@@ -7,6 +7,10 @@ import { Education } from '@/types/educations'
 import { ValidationError } from '@/types/validation-error'
 import { generatePath } from 'react-router-dom'
 import { ID } from '@/types'
+import { ActivitiesStoreDTO, ActivitiesUpdateDTO } from '@/dto/activities-dto'
+import { Activity } from '@/types/activities'
+
+// EDUCATIONS ACTIONS
 
 export const storeEducationAction = createAsyncThunk<void, {
   dto: EducationsStoreDTO
@@ -68,6 +72,72 @@ export const deleteEducationAction = createAsyncThunk<void, {
   'educations/delete',
   async ({ id, successHandler }, { extra: api }) => {
     await api.delete(generatePath(APIRoute.Educations.Show, { id }))
+    successHandler()
+  },
+)
+
+// ACTIVITIES ACTIONS
+
+export const storeActivityAction = createAsyncThunk<void, {
+  dto: ActivitiesStoreDTO
+  errorHandler: (error: ValidationError) => void
+  successHandler: (activity: Activity) => void
+}, {
+  extra: AxiosInstance
+  rejectValue: ValidationError
+}>(
+  'activities/store',
+  async ({ dto, errorHandler, successHandler }, { extra: api, rejectWithValue }) => {
+    try {
+      const { data } = await api.post<Activity>(APIRoute.Activities.Index, dto)
+      successHandler(data)
+    } catch (err: any) {
+      const error: AxiosError<ValidationError> = err
+      
+      if (!error.response) {
+        throw err
+      }
+      errorHandler(error.response.data)
+      return rejectWithValue(error.response.data)
+    }
+  },
+)
+
+export const updateActivityAction = createAsyncThunk<void, {
+  id: ID
+  dto: ActivitiesUpdateDTO
+  errorHandler: (error: ValidationError) => void
+  successHandler: (activity: Activity) => void
+}, {
+  extra: AxiosInstance
+  rejectValue: ValidationError
+}>(
+  'activities/update',
+  async ({ id, dto, errorHandler, successHandler }, { extra: api, rejectWithValue }) => {
+    try {
+      const { data } = await api.put<Activity>(generatePath(APIRoute.Activities.Show, { id }), dto)
+      successHandler(data)
+    } catch (err: any) {
+      const error: AxiosError<ValidationError> = err
+      
+      if (!error.response) {
+        throw err
+      }
+      errorHandler(error.response.data)
+      return rejectWithValue(error.response.data)
+    }
+  },
+)
+
+export const deleteActivityAction = createAsyncThunk<void, {
+  id: ID
+  successHandler: () => void
+}, {
+  extra: AxiosInstance
+}>(
+  'activities/delete',
+  async ({ id, successHandler }, { extra: api }) => {
+    await api.delete(generatePath(APIRoute.Activities.Show, { id }))
     successHandler()
   },
 )

@@ -9,21 +9,19 @@ import Form from '@/components/ui/form/form'
 import Actions from '@/components/ui/actions/actions'
 import Button from '@/components/ui/button/button'
 import { useAppDispatch } from '@/hooks'
-import { EducationsStoreDTO } from '@/dto/educations-dto'
-import { storeEducationAction } from '@/store/api-actions'
+import { storeActivityAction } from '@/store/api-actions'
 import { toast } from 'react-toastify'
 import { useParams } from 'react-router-dom'
 import Input from '@/components/ui/input/input'
-import Select from '@/components/ui/select/select'
-import { educationFormOptions } from '@/const'
 import ColumnSpan from '@/components/ui/column-span/column-span'
-import { Educations } from '@/types/educations'
+import { Activities } from '@/types/activities'
+import { ActivitiesStoreDTO } from '@/dto/activities-dto'
 
 type CreateModalProps = {
-  setEducations: Dispatch<SetStateAction<Educations | null>>
+  setActivities: Dispatch<SetStateAction<Activities | null>>
 }
 
-function CreateModal({ setEducations }: CreateModalProps) {
+function CreateModal({ setActivities }: CreateModalProps) {
   const [isOpen, setIsOpen] = useState(false)
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -31,31 +29,30 @@ function CreateModal({ setEducations }: CreateModalProps) {
   const ref = useRef<HTMLInputElement | null>(null)
   const dispatch = useAppDispatch()
   const params = useParams()
-  const [dto, setDTO] = useState<EducationsStoreDTO>({ user_id: params.id || '', institution: '',
-    faculty: '', form: 'Очно', speciality: '', started_at: '', graduated_at: ''})
+  const [dto, setDTO] = useState<ActivitiesStoreDTO>({ user_id: params.id || '', organization: '',
+    job: '', hired_at: '', dismissed_at: '' })
 
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()
     setIsSubmitting(true)
-    dispatch(storeEducationAction({
+    dispatch(storeActivityAction({
       dto,
       errorHandler(error) {
         setValidationError(error)
         setIsSubmitting(false)
         setIsDisabled(true)
       },
-      successHandler(education) {
-        toast.success('Образование успешно добавлено.')
+      successHandler(activity) {
+        toast.success('Деятельность успешно добавлена.')
         setIsSubmitting(false)
         setIsDisabled(true)
         setIsOpen(false)
-        setDTO({ user_id: params.id || '', institution: '', faculty: '',
-          form: 'Очно', speciality: '', started_at: '', graduated_at: ''})
-        setEducations((prevEducations) => {
-          if (prevEducations) {
-            return [ education, ...prevEducations ]
+        setDTO({ user_id: params.id || '', organization: '', job: '', hired_at: '', dismissed_at: '' })
+        setActivities((prevActivities) => {
+          if (prevActivities) {
+            return [ activity, ...prevActivities ]
           }
-          return [education]
+          return [activity]
         })
       },
     }))
@@ -83,13 +80,7 @@ function CreateModal({ setEducations }: CreateModalProps) {
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO({ user_id: params.id || '', institution: '', faculty: '',
-      form: 'Очно', speciality: '', started_at: '', graduated_at: ''})
-  }
-
-  const handleEducationFormChange = (value: string) => {
-    setDTO((prevDTO) => ({ ...prevDTO, form: value }))
-    setIsDisabled(() => validationError.message ? true : false)
+    setDTO({ user_id: params.id || '', organization: '', job: '', hired_at: '', dismissed_at: '' })
   }
 
   return (
@@ -108,44 +99,31 @@ function CreateModal({ setEducations }: CreateModalProps) {
           <ColumnSpan>
             <Input
               ref={ref}
-              name="institution"
-              label="Учебное заведение"
-              defaultValue={dto.institution}
-              errorMessage={validationError.errors?.institution?.[0]}
-              autoComplete="off" />
-          </ColumnSpan>
-          <ColumnSpan>
-            <Input
-              name="faculty"
-              label="Факультет"
-              defaultValue={dto.faculty}
-              errorMessage={validationError.errors?.faculty?.[0]}
+              name="organization"
+              label="Организация"
+              defaultValue={dto.organization}
+              errorMessage={validationError.errors?.organization?.[0]}
               autoComplete="off" />
           </ColumnSpan>
           <Input
-            name="speciality"
-            label="Специальность"
-            defaultValue={dto.speciality}
-            errorMessage={validationError.errors?.speciality?.[0]}
-            autoComplete="off" />
-          <Select
-            label="Форма обучения"
-            value={dto.form}
-            onChange={handleEducationFormChange}
-            options={educationFormOptions} />
-          <Input
-            name="started_at"
-            type="datetime-local"
-            label="Год поступления"
-            defaultValue={dto.started_at}
-            errorMessage={validationError.errors?.started_at?.[0]}
+            name="job"
+            label="Должность"
+            defaultValue={dto.job}
+            errorMessage={validationError.errors?.job?.[0]}
             autoComplete="off" />
           <Input
-            name="graduated_at"
+            name="hired_at"
             type="datetime-local"
-            label="Год окончания"
-            defaultValue={dto.graduated_at}
-            errorMessage={validationError.errors?.graduated_at?.[0]}
+            label="Начало работы"
+            defaultValue={dto.hired_at}
+            errorMessage={validationError.errors?.hired_at?.[0]}
+            autoComplete="off" />
+          <Input
+            name="dismissed_at"
+            type="datetime-local"
+            label="Дата уволнения"
+            defaultValue={dto.dismissed_at}
+            errorMessage={validationError.errors?.dismissed_at?.[0]}
             autoComplete="off" />
 
           <Actions>

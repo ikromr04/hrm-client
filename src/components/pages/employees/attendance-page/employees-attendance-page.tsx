@@ -5,7 +5,7 @@ function EmployeesAttendancePage(): JSX.Element {
   return (
     <EmployeeLayout>
       <Main>
-        EmployeesAttendancePage
+        Not implemented
       </Main>
     </EmployeeLayout>
   )

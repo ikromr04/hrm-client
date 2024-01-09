@@ -5,7 +5,7 @@ function EmployeesKPIPage(): JSX.Element {
   return (
     <EmployeeLayout>
       <Main>
-        EmployeesKPIPage
+        Not implemented
       </Main>
     </EmployeeLayout>
   )

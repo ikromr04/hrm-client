@@ -26,6 +26,9 @@ export const employeeSlice = createSlice({
       }
       state.employee = employee
     },
+    setEmployeeAction: (state, action) => {
+      state.employee = action.payload
+    }
   },
   extraReducers(builder) {
     builder
@@ -38,4 +41,4 @@ export const employeeSlice = createSlice({
   },
 })
 
-export const { setEmployeesAvatarAction } = employeeSlice.actions
+export const { setEmployeesAvatarAction, setEmployeeAction } = employeeSlice.actions

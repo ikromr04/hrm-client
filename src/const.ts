@@ -38,6 +38,7 @@ export const APIRoute = {
     Avatar: '/employees/:id/avatar',
     Languages: '/employees/:id/languages',
     Educations: '/employees/:id/educations',
+    Activities: '/employees/:id/activities',
   },
   Jobs: {
     Index: '/jobs',
@@ -51,6 +52,10 @@ export const APIRoute = {
   Educations: {
     Index: '/educations',
     Show: '/educations/:id',
+  },
+  Activities: {
+    Index: '/activities',
+    Show: '/activities/:id',
   },
 }
 

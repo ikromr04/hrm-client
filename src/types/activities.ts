@@ -3,10 +3,10 @@ import { ID } from '.'
 export type Activity = {
   id: ID
   userId: ID
-  hiredAt: Date
-  dismissedAt: Date
   organization: string
   job: string
+  hiredAt: Date
+  dismissedAt: Date
 }
 
 export type Activities = Activity[]

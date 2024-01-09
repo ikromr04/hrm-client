@@ -41,7 +41,6 @@ function EditModal({ education, setEducations }: EditModalProps) {
         setValidationError(error)
         setIsSubmitting(false)
         setIsDisabled(true)
-        console.log(error)
       },
       successHandler(education) {
         toast.success('Данные успешно обновлены.')

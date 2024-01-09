@@ -3,7 +3,7 @@ import EmployeesLayout from '@/components/layouts/employees-layout/employees-lay
 function EmployeesStructurePage(): JSX.Element {
   return (
     <EmployeesLayout>
-      EmployeesStructurePage
+      Not implemented
     </EmployeesLayout>
   )
 }

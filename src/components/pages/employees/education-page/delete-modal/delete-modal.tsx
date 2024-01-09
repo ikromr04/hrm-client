@@ -40,7 +40,7 @@ function DeleteModal({ education, setEducations }: DeleteModalProps) {
   return (
     <>
       <Button type="button" onClick={() => setIsOpen(true)}>
-        <DeleteIcon /> <Info top>Добавить</Info>
+        <DeleteIcon /> <Info top>Удалить</Info>
       </Button>
       <Modal isOpen={isOpen}>
         <Form onSubmit={handleFormSubmit}>
