@@ -1,5 +1,3 @@
-import PlusIcon from '@/components/icons/plus-icon'
-import { CreateButton } from './styled'
 import Info from '@/components/ui/info/info'
 import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from 'react'
 import Modal from '@/components/ui/modal/modal'
@@ -9,59 +7,57 @@ import Form from '@/components/ui/form/form'
 import Actions from '@/components/ui/actions/actions'
 import Button from '@/components/ui/button/button'
 import { useAppDispatch } from '@/hooks'
-import { EducationsStoreDTO } from '@/dto/educations-dto'
-import { storeEducationAction } from '@/store/api-actions'
+import { EducationsUpdateDTO } from '@/dto/educations-dto'
+import { updateEducationAction } from '@/store/api-actions'
 import { toast } from 'react-toastify'
-import { useParams } from 'react-router-dom'
 import Input from '@/components/ui/input/input'
 import Select from '@/components/ui/select/select'
 import { educationFormOptions } from '@/const'
 import ColumnSpan from '@/components/ui/column-span/column-span'
-import { Educations } from '@/types/educations'
+import { Education, Educations } from '@/types/educations'
+import EditIcon from '@/components/icons/edit-icon'
 
-type CreateModalProps = {
+type EditModalProps = {
+  education: Education
   setEducations: Dispatch<SetStateAction<Educations | null>>
 }
 
-function CreateModal({ setEducations }: CreateModalProps) {
+function EditModal({ education, setEducations }: EditModalProps) {
   const [isOpen, setIsOpen] = useState(false)
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)
   const ref = useRef<HTMLInputElement | null>(null)
   const dispatch = useAppDispatch()
-  const params = useParams()
-  const [dto, setDTO] = useState<EducationsStoreDTO>({ user_id: params.id || '', institution: '',
-    faculty: '', form: 'Очно', speciality: '', started_at: '', graduated_at: ''})
+  const [dto, setDTO] = useState<EducationsUpdateDTO>({})
 
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()
     setIsSubmitting(true)
-    dispatch(storeEducationAction({
+    dispatch(updateEducationAction({
+      id: education.id,
       dto,
       errorHandler(error) {
         setValidationError(error)
         setIsSubmitting(false)
         setIsDisabled(true)
+        console.log(error)
       },
       successHandler(education) {
-        toast.success('Образование успешно добавлено.')
+        toast.success('Данные успешно обновлены.')
         setIsSubmitting(false)
         setIsDisabled(true)
         setIsOpen(false)
-        setDTO({ user_id: params.id || '', institution: '', faculty: '',
-          form: 'Очно', speciality: '', started_at: '', graduated_at: ''})
-        setEducations((prevEducations) => {
-          if (prevEducations) {
-            return [ education, ...prevEducations ]
-          }
-          return [education]
-        })
+        setDTO({})
+        setEducations((prevEducations) => 
+          (prevEducations || []).map((prevEducation) => 
+            (prevEducation.id === education.id) ? education : prevEducation
+        ))
       },
     }))
   }
 
-  const handleCreateButtonClick = () => {
+  const handleEditButtonClick = () => {
     setIsOpen(true)
     setTimeout(() => {
       if (ref.current) {
@@ -83,8 +79,7 @@ function CreateModal({ setEducations }: CreateModalProps) {
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO({ user_id: params.id || '', institution: '', faculty: '',
-      form: 'Очно', speciality: '', started_at: '', graduated_at: ''})
+    setDTO({})
   }
 
   const handleEducationFormChange = (value: string) => {
@@ -94,9 +89,9 @@ function CreateModal({ setEducations }: CreateModalProps) {
 
   return (
     <>
-      <CreateButton type="button" onClick={handleCreateButtonClick}>
-        <PlusIcon /> <Info top>Добавить</Info>
-      </CreateButton>
+      <Button type="button" onClick={handleEditButtonClick}>
+        <EditIcon /> <Info top>Добавить</Info>
+      </Button>
       <Modal isOpen={isOpen}>
         <Text error>{validationError?.message}</Text> <br />
         <Form
@@ -110,7 +105,7 @@ function CreateModal({ setEducations }: CreateModalProps) {
               ref={ref}
               name="institution"
               label="Учебное заведение"
-              defaultValue={dto.institution}
+              defaultValue={education.institution}
               errorMessage={validationError.errors?.institution?.[0]}
               autoComplete="off" />
           </ColumnSpan>
@@ -118,33 +113,33 @@ function CreateModal({ setEducations }: CreateModalProps) {
             <Input
               name="faculty"
               label="Факультет"
-              defaultValue={dto.faculty}
+              defaultValue={education.faculty}
               errorMessage={validationError.errors?.faculty?.[0]}
               autoComplete="off" />
           </ColumnSpan>
           <Input
             name="speciality"
             label="Специальность"
-            defaultValue={dto.speciality}
+            defaultValue={education.speciality}
             errorMessage={validationError.errors?.speciality?.[0]}
             autoComplete="off" />
           <Select
             label="Форма обучения"
-            value={dto.form}
+            value={education.form}
             onChange={handleEducationFormChange}
             options={educationFormOptions} />
           <Input
             name="started_at"
             type="datetime-local"
             label="Год поступления"
-            defaultValue={dto.started_at}
+            defaultValue={education.startedAt}
             errorMessage={validationError.errors?.started_at?.[0]}
             autoComplete="off" />
           <Input
             name="graduated_at"
             type="datetime-local"
             label="Год окончания"
-            defaultValue={dto.graduated_at}
+            defaultValue={education.graduatedAt}
             errorMessage={validationError.errors?.graduated_at?.[0]}
             autoComplete="off" />
 
@@ -155,7 +150,7 @@ function CreateModal({ setEducations }: CreateModalProps) {
               loading={isSubmitting}
               disabled={isDisabled || isSubmitting}
             >
-              Добавить
+              Сохранить
             </Button>
             <Button type="reset" error>
               Отмена
@@ -167,4 +162,4 @@ function CreateModal({ setEducations }: CreateModalProps) {
   )
 }
 
-export default CreateModal
+export default EditModal

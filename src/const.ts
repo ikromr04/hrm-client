@@ -49,7 +49,8 @@ export const APIRoute = {
     Index: '/languages'
   },
   Educations: {
-    Index: '/educations'
+    Index: '/educations',
+    Show: '/educations/:id',
   },
 }
 

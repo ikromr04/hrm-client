@@ -1,5 +1,5 @@
 import EmployeeLayout from '@/components/layouts/employee-layout/employee-layout'
-import { Main } from './styled'
+import { EducationActions, Main } from './styled'
 import Box from '@/components/ui/box/box'
 import BoxToolbar from '@/components/ui/box-toolbar/box-toolbar'
 import BoxInner from '@/components/ui/box-inner/box-inner'
@@ -15,6 +15,7 @@ import { fetchEmployeesEducationsAction } from '@/store/employee-slice/employees
 import Spinner from '@/components/ui/spinner/spinner'
 import CreateModal from './create-modal/create-modal'
 import { useParams } from 'react-router-dom'
+import EditModal from './edit-modal/edit-modal'
 
 function EmployeesEducationPage() {
   const [educations, setEducations] = useState<Educations | null>(null)
@@ -42,6 +43,9 @@ function EmployeesEducationPage() {
             <Fragment key={education.id}>
               {index > 0 && <Hr />}
               <BoxInner>
+                <EducationActions>
+                  <EditModal education={education} setEducations={setEducations} />
+                </EducationActions>
                 <DescriptionList
                   list={{
                     'Учебное заведение': education.institution,
