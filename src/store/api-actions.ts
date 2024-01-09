@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AxiosError, AxiosInstance } from 'axios'
 import { APIRoute } from '../const'
@@ -58,3 +59,15 @@ export const updateEducationAction = createAsyncThunk<void, {
   },
 )
 
+export const deleteEducationAction = createAsyncThunk<void, {
+  id: ID
+  successHandler: () => void
+}, {
+  extra: AxiosInstance
+}>(
+  'educations/delete',
+  async ({ id, successHandler }, { extra: api }) => {
+    await api.delete(generatePath(APIRoute.Educations.Show, { id }))
+    successHandler()
+  },
+)

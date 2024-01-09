@@ -16,6 +16,7 @@ import Spinner from '@/components/ui/spinner/spinner'
 import CreateModal from './create-modal/create-modal'
 import { useParams } from 'react-router-dom'
 import EditModal from './edit-modal/edit-modal'
+import DeleteModal from './delete-modal/delete-modal'
 
 function EmployeesEducationPage() {
   const [educations, setEducations] = useState<Educations | null>(null)
@@ -45,6 +46,7 @@ function EmployeesEducationPage() {
               <BoxInner>
                 <EducationActions>
                   <EditModal education={education} setEducations={setEducations} />
+                  <DeleteModal education={education} setEducations={setEducations} />
                 </EducationActions>
                 <DescriptionList
                   list={{

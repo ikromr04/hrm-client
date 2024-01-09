@@ -24,11 +24,11 @@ type EditModalProps = {
 
 function EditModal({ education, setEducations }: EditModalProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)
-  const ref = useRef<HTMLInputElement | null>(null)
   const dispatch = useAppDispatch()
+  const { formChangeHandler, setValidationError, validationError } = useFormValidation()
+  const ref = useRef<HTMLInputElement | null>(null)
   const [dto, setDTO] = useState<EducationsUpdateDTO>({})
 
   const handleFormSubmit = (evt: SubmitEvent) => {
@@ -90,7 +90,7 @@ function EditModal({ education, setEducations }: EditModalProps) {
   return (
     <>
       <Button type="button" onClick={handleEditButtonClick}>
-        <EditIcon /> <Info top>Добавить</Info>
+        <EditIcon /> <Info top>Редактировать</Info>
       </Button>
       <Modal isOpen={isOpen}>
         <Text error>{validationError?.message}</Text> <br />
