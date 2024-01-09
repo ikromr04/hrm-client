@@ -18,6 +18,8 @@ import EmployeesAttendancePage
   from '../pages/employees/attendance-page/employees-attendance-page'
 import { getAuthStatus } from '@/store/auth-slice/auth-selector'
 import AppLoading from '../ui/app-loading/app-loading'
+import EmployeesEducationPage 
+  from '../pages/employees/employees-education-page/employees-education-page'
 
 function App(): JSX.Element {
   const authStatus = useAppSelector(getAuthStatus)
@@ -34,7 +36,7 @@ function App(): JSX.Element {
         <Route path={AppRoute.Employees.Index} element={<EmployeesPage />} />
         <Route path={AppRoute.Employees.Structure} element={<EmployeesStructurePage />} />
         <Route path={AppRoute.Employees.Show} element={<EmployeesShowPage />} />
-        <Route path={AppRoute.Employees.Education} element={<EmployeesShowPage />} />
+        <Route path={AppRoute.Employees.Education} element={<EmployeesEducationPage />} />
         <Route path={AppRoute.Employees.Work} element={<EmployeesWorkPage />} />
         <Route path={AppRoute.Employees.Equipment} element={<EmployeesEquipmentPage />} />
         <Route path={AppRoute.Employees.Vacation} element={<EmployeesVacationPage />} />

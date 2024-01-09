@@ -41,7 +41,7 @@ export const Dl = styled('dl').withConfig({
       color: #90a4ae;
 
       &:not(:last-of-type) {
-        margin-bottom: 16px;
+        margin-bottom: 8px;
       }
     }
   `}
