@@ -1,9 +1,12 @@
 type HomeIconProps = {
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
-function HomeIcon({ width, height }: HomeIconProps): JSX.Element {
+function HomeIcon({
+  width = 16,
+  height = 16,
+}: HomeIconProps): JSX.Element {
   return (
     <svg
       viewBox="0 0 24 24"

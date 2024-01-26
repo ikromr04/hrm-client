@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 
 type DropdownMenuProps = PropsWithChildren<{
   className?: string
-  isOpen: boolean
+  isOpen?: boolean
   [rest: string]: unknown
 }>
 

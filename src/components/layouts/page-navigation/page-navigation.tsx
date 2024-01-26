@@ -1,32 +1,41 @@
-import { NavigationItem, Nav } from './styled'
-import NavigationLink from './navigation-link/navigation-link'
+import { Nav } from './styled'
 import ToggleButton from './toggle-button/toggle-button'
 import { AppRoute } from '@/const'
 import HomeIcon from '@/components/icons/home-icon'
-import Info from '@/components/ui/info/info'
 import Hr from '@/components/ui/hr/hr'
 import AddressBookIcon from '@/components/icons/address-book-icon'
+import NavItem from './nav-Item/nav-item'
+import SettingsIcon from '@/components/icons/settings-icon'
 
 function PageNavigation(): JSX.Element {
   return (
     <Nav tagName="nav">
-      <NavigationItem>
-        <NavigationLink href={AppRoute.Home}>
-          <HomeIcon width={16} height={16} /> Главная страница
-        </NavigationLink>
-        <Info right>Главная страница</Info>
-      </NavigationItem>
+      <NavItem
+        title="Главная страница"
+        icon={<HomeIcon />}
+        href={AppRoute.Home}
+      />
 
       <Hr />
 
-      <NavigationItem>
-        <NavigationLink href={AppRoute.Employees.Index}>
-          <AddressBookIcon width={16} height={16} /> Сотрудники
-        </NavigationLink>
-        <Info right>Сотрудники</Info>
-      </NavigationItem>
+      <NavItem
+        title="Сотрудники"
+        icon={<AddressBookIcon />}
+        href={AppRoute.Employees.Index}
+      />
 
       <Hr />
+
+      <NavItem
+        title="Панель управления"
+        icon={<SettingsIcon />}
+        links={[
+          { title: 'Должности', href: AppRoute.Dashboard.Jobs },
+          { title: 'Позиции', href: AppRoute.Dashboard.Positions },
+          { title: 'Языки', href: AppRoute.Dashboard.Languages },
+          { title: 'Отделы', href: AppRoute.Dashboard.Departments },
+        ]}
+      />
 
       <ToggleButton />
     </Nav>
