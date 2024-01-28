@@ -4,7 +4,6 @@ import { Employee, Employees } from '../../types/employees'
 import {
   fetchEmployeeAction, fetchEmployeesAction, storeEmployeeAction, updateEmployeeAction,
 } from './employees-api-actions'
-import { storeAuthAction } from '../auth-slice/auth-api-actions'
 
 export type EmployeesSlice = {
   employee: Employee | null
@@ -38,9 +37,6 @@ export const employeeSlice = createSlice({
       })
       .addCase(fetchEmployeeAction.fulfilled, (state, action) => {
         state.employee = action.payload
-      })
-      .addCase(storeAuthAction.fulfilled, (state) => {
-        state.employees = null
       })
       .addCase(updateEmployeeAction.fulfilled, (state, action) => {
         state.employee = action.payload
