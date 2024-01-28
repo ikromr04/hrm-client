@@ -39,7 +39,7 @@ export const updateEmployeeAction = createAsyncThunk<Employee, {
   successHandler: () => void
 }, {
   extra: AxiosInstance
-  rejectValue: ValidationError
+  rejectWithValue: ValidationError
 }>(
   'employees/update',
   async (arg, { extra: api, rejectWithValue }) => {

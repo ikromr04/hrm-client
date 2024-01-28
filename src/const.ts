@@ -50,12 +50,15 @@ export const APIRoute = {
   },
   Jobs: {
     Index: '/jobs',
+    Show: '/jobs/:id',
   },
   Positions: {
-    Index: '/positions'
+    Index: '/positions',
+    Show: '/positions/:id',
   },
   Languages: {
-    Index: '/languages'
+    Index: '/languages',
+    Show: '/languages/:id',
   },
   Educations: {
     Index: '/educations',

@@ -4,12 +4,12 @@ import { Languages } from '../../types/languages';
 import { fetchLanguagesAction } from './language-api-actions';
 
 export type LanguageSlice = {
-  languages: Languages | null;
-};
+  languages: Languages | null
+}
 
 const initialState: LanguageSlice = {
-  languages: null,
-};
+  languages: null
+}
 
 export const languageSlice = createSlice({
   name: SliceName.Language,
@@ -18,7 +18,7 @@ export const languageSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchLanguagesAction.fulfilled, (state, action) => {
-        state.languages = action.payload;
-      });
+        state.languages = action.payload
+      })
   },
-});
+})

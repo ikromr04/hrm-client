@@ -44,6 +44,8 @@ function App(): JSX.Element {
         <Route path={AppRoute.Employees.KPI} element={<EmployeesKPIPage />} />
         <Route path={AppRoute.Employees.Attendance} element={<EmployeesAttendancePage />} />
 
+        <Route path={AppRoute.Dashboard.Jobs} element={<LoginPage />} />
+
         <Route path={AppRoute.Auth.Login} element={<LoginPage />} />
 
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />

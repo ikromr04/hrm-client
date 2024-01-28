@@ -4,12 +4,12 @@ import { Positions } from '../../types/positions';
 import { fetchPositionsAction } from './position-api-actions';
 
 export type PositionSlice = {
-  positions: Positions | null;
+  positions: Positions | null
 };
 
 const initialState: PositionSlice = {
-  positions: null,
-};
+  positions: null
+}
 
 export const positionSlice = createSlice({
   name: SliceName.Job,
@@ -19,6 +19,6 @@ export const positionSlice = createSlice({
     builder
       .addCase(fetchPositionsAction.fulfilled, (state, action) => {
         state.positions = action.payload;
-      });
+      })
   },
-});
+})
