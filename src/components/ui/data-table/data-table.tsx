@@ -8,7 +8,7 @@ export type DataTableRows = {
 export type DataTableColumns = {
   field: string
   headerName: string
-  width: number
+  width?: number
 }[]
 
 type DataTableProps = {

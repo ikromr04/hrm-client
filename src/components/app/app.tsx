@@ -20,6 +20,7 @@ import { getAuthStatus } from '@/store/auth-slice/auth-selector'
 import AppLoading from '../ui/app-loading/app-loading'
 import EmployeesEducationPage 
   from '../pages/employees/education-page/employees-education-page'
+import DashboardJobsPage from '../pages/dashboard/jobs-page/dashboard-jobs-page'
 
 function App(): JSX.Element {
   const authStatus = useAppSelector(getAuthStatus)
@@ -44,7 +45,7 @@ function App(): JSX.Element {
         <Route path={AppRoute.Employees.KPI} element={<EmployeesKPIPage />} />
         <Route path={AppRoute.Employees.Attendance} element={<EmployeesAttendancePage />} />
 
-        <Route path={AppRoute.Dashboard.Jobs} element={<LoginPage />} />
+        <Route path={AppRoute.Dashboard.Jobs} element={<DashboardJobsPage />} />
 
         <Route path={AppRoute.Auth.Login} element={<LoginPage />} />
 

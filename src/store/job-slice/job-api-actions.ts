@@ -71,7 +71,7 @@ export const updateJobAction = createAsyncThunk<Job, {
   },
 )
 
-export const deleteJobAction = createAsyncThunk<void, {
+export const deleteJobAction = createAsyncThunk<ID, {
   id: ID
   successHandler: () => void
  }, {
@@ -81,5 +81,6 @@ export const deleteJobAction = createAsyncThunk<void, {
   async ({ id, successHandler }, { extra: api }) => {
     await api.delete(generatePath(APIRoute.Jobs.Show, { id }))
     successHandler()
+    return id
   },
 )

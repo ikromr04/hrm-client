@@ -61,9 +61,11 @@ export const Th = styled('th').withConfig({
   padding: 4px 16px;
   padding: 8px 16px;
   justify-content: flex-start;
+  flex-grow: 1;
 
   ${({ width }) => width && css`
-    width: ${width}px;
+    min-width: ${width}px;
+    max-width: ${width}px;
   `}
 `
 
@@ -73,8 +75,10 @@ export const Td = styled('td').withConfig({
   display: flex;
   padding: 8px 16px;
   word-break: break-word;
+  flex-grow: 1;
 
   ${({ width }) => width && css`
-    width: ${width}px;
+    min-width: ${width}px;
+    max-width: ${width}px;
   `}
 `
