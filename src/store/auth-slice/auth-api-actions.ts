@@ -5,7 +5,7 @@ import { APIRoute } from '../../const'
 import { dropToken, saveToken } from '../../services/token'
 import { ValidationError } from '../../types/validation-error'
 import { LoginDTO } from '@/dto/auth-dto'
-import { AuthStoreResponse, LoginResponse } from '@/responses/auth-reponses'
+import { LoginResponse } from '@/responses/auth-reponses'
 import { User } from '@/types/auth'
 
 export const checkAuthAction = createAsyncThunk<User, undefined, {
