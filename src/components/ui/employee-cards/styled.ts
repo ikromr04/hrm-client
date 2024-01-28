@@ -8,7 +8,9 @@ export const List = styled('ul')`
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   overflow-y: auto;
+  padding: 4px;
   padding-right: 8px;
+  margin: -4px;
   margin-right: -8px;
 
   &::-webkit-scrollbar {

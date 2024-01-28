@@ -50,7 +50,7 @@ function EmployeesCard({ employee }: EmployeesCardProps): JSX.Element {
           </Title>
           <Text>{employee.jobs.map(({ title }) => title).join(', ')}</Text>
           <PositionsWrapper>
-            {filter.positions.isShown &&employee.positions.map(({ id, title }) => (<Accent key={id}>{title}</Accent>))}
+            {filter.positions.isShown && employee.positions.map(({ id, title }) => (<Accent key={id}>{title}</Accent>))}
           </PositionsWrapper>
         </div>
       </Header>
