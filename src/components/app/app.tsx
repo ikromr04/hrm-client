@@ -21,6 +21,7 @@ import AppLoading from '../ui/app-loading/app-loading'
 import EmployeesEducationPage 
   from '../pages/employees/education-page/employees-education-page'
 import DashboardJobsPage from '../pages/dashboard/jobs-page/dashboard-jobs-page'
+import DashboardPositionsPage from '../pages/dashboard/positions-page/dashboard-positions-page'
 
 function App(): JSX.Element {
   const authStatus = useAppSelector(getAuthStatus)
@@ -46,6 +47,7 @@ function App(): JSX.Element {
         <Route path={AppRoute.Employees.Attendance} element={<EmployeesAttendancePage />} />
 
         <Route path={AppRoute.Dashboard.Jobs} element={<DashboardJobsPage />} />
+        <Route path={AppRoute.Dashboard.Positions} element={<DashboardPositionsPage />} />
 
         <Route path={AppRoute.Auth.Login} element={<LoginPage />} />
 

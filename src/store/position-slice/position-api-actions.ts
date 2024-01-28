@@ -71,7 +71,7 @@ export const updatePositionAction = createAsyncThunk<Position, {
   },
 )
 
-export const deletePositionAction = createAsyncThunk<void, {
+export const deletePositionAction = createAsyncThunk<ID, {
   id: ID
   successHandler: () => void
  }, {
@@ -81,5 +81,6 @@ export const deletePositionAction = createAsyncThunk<void, {
   async ({ id, successHandler }, { extra: api }) => {
     await api.delete(generatePath(APIRoute.Positions.Show, { id }))
     successHandler()
+    return id
   },
 )

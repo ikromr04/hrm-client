@@ -8,9 +8,9 @@ import Button from '@/components/ui/button/button'
 import { useAppDispatch } from '@/hooks'
 import { toast } from 'react-toastify'
 import Input from '@/components/ui/input/input'
-import { JobsStoreDTO } from '@/dto/jobs-dto'
-import { storeJobAction } from '@/store/job-slice/job-api-actions'
 import PlusIcon from '@/components/icons/plus-icon'
+import { PositionsStoreDTO } from '@/dto/positions-dto'
+import { storePositionAction } from '@/store/position-slice/position-api-actions'
 
 function AddModal(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
@@ -19,12 +19,12 @@ function AddModal(): JSX.Element {
   const dispatch = useAppDispatch()
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
-  const [dto, setDTO] = useState<JobsStoreDTO>({ title: '' })
+  const [dto, setDTO] = useState<PositionsStoreDTO>({ title: '' })
 
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()
     setIsSubmitting(true)
-    dispatch(storeJobAction({
+    dispatch(storePositionAction({
       dto,
       errorHandler(error) {
         setValidationError(error)
@@ -32,7 +32,7 @@ function AddModal(): JSX.Element {
         setIsDisabled(true)
       },
       successHandler() {
-        toast.success('Должность успешно добавлен.')
+        toast.success('Позиция успешно добавлен.')
         setIsSubmitting(false)
         setIsDisabled(true)
         setIsOpen(false)

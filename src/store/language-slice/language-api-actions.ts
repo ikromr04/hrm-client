@@ -71,7 +71,7 @@ export const updateLanguageAction = createAsyncThunk<Language, {
   },
 )
 
-export const deleteLanguageAction = createAsyncThunk<void, {
+export const deleteLanguageAction = createAsyncThunk<ID, {
   id: ID
   successHandler: () => void
  }, {
@@ -81,5 +81,6 @@ export const deleteLanguageAction = createAsyncThunk<void, {
   async ({ id, successHandler }, { extra: api }) => {
     await api.delete(generatePath(APIRoute.Languages.Show, { id }))
     successHandler()
+    return id
   },
 )

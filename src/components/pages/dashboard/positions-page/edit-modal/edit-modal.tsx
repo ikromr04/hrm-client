@@ -8,23 +8,28 @@ import Button from '@/components/ui/button/button'
 import { useAppDispatch } from '@/hooks'
 import { toast } from 'react-toastify'
 import Input from '@/components/ui/input/input'
-import { JobsStoreDTO } from '@/dto/jobs-dto'
-import { storeJobAction } from '@/store/job-slice/job-api-actions'
-import PlusIcon from '@/components/icons/plus-icon'
+import { Position } from '@/types/positions'
+import { updatePositionAction } from '@/store/position-slice/position-api-actions'
+import { PositionsStoreDTO } from '@/dto/positions-dto'
 
-function AddModal(): JSX.Element {
+type EditModalProps = {
+  position: Position
+}
+
+function EditModal({ position }: EditModalProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)
   const dispatch = useAppDispatch()
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
-  const [dto, setDTO] = useState<JobsStoreDTO>({ title: '' })
+  const [dto, setDTO] = useState<PositionsStoreDTO>({ title: position.title })
 
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()
     setIsSubmitting(true)
-    dispatch(storeJobAction({
+    dispatch(updatePositionAction({
+      id: position.id,
       dto,
       errorHandler(error) {
         setValidationError(error)
@@ -32,16 +37,16 @@ function AddModal(): JSX.Element {
         setIsDisabled(true)
       },
       successHandler() {
-        toast.success('Должность успешно добавлен.')
+        toast.success('Данные успешно обновлены.')
         setIsSubmitting(false)
         setIsDisabled(true)
         setIsOpen(false)
-        setDTO({ title: '' })
+        setDTO({ title: position.title })
       },
     }))
   }
 
-  const handleAddButtonClick = () => {
+  const handleEditButtonClick = () => {
     setIsOpen(true)
     setTimeout(() => {
       if (ref.current) {
@@ -63,13 +68,13 @@ function AddModal(): JSX.Element {
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO({ title: '' })
+    setDTO({ title: position.title })
   }
 
   return (
     <>
-      <Button type="button" success onClick={handleAddButtonClick}>
-        <PlusIcon /> Добавить
+      <Button type="button" warning onClick={handleEditButtonClick}>
+        Редактировать
       </Button>
       <Modal isOpen={isOpen}>
         <Text error>{validationError?.message}</Text> <br />
@@ -80,7 +85,6 @@ function AddModal(): JSX.Element {
         >
           <Input
             ref={ref}
-            key={isOpen.toString()}
             name="title"
             label="Название"
             defaultValue={dto.title}
@@ -106,4 +110,4 @@ function AddModal(): JSX.Element {
   )
 }
 
-export default AddModal
+export default EditModal

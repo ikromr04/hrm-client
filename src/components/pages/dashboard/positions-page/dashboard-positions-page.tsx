@@ -1,7 +1,5 @@
 import PageLayout from '@/components/layouts/page-layout/page-layout'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { fetchJobsAction } from '@/store/job-slice/job-api-actions'
-import { getJobs } from '@/store/job-slice/job-selector'
 import { useEffect } from 'react'
 import { Header, Main } from '../styled'
 import Title from '@/components/ui/title/title'
@@ -11,22 +9,24 @@ import Spinner from '@/components/ui/spinner/spinner'
 import AddModal from './add-modal/add-modal'
 import EditModal from './edit-modal/edit-modal'
 import DeleteModal from './delete-modal/delete-modal'
+import { getPositions } from '@/store/position-slice/position-selector'
+import { fetchPositionsAction } from '@/store/position-slice/position-api-actions'
 
-function DashboardJobsPage() {
-  const jobs = useAppSelector(getJobs)
+function DashboardPositionsPage() {
+  const positions = useAppSelector(getPositions)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    !jobs && dispatch(fetchJobsAction())
-  }, [jobs, dispatch])
+    !positions && dispatch(fetchPositionsAction())
+  }, [positions, dispatch])
   
-  const rows: DataTableRows = (jobs || []).map((job, index) => ({
+  const rows: DataTableRows = (positions || []).map((position, index) => ({
     count: ++index,
-    title: job.title,
+    title: position.title,
     actions:
       <Actions>
-        <EditModal job={job} />
-        <DeleteModal job={job} />
+        <EditModal position={position} />
+        <DeleteModal position={position} />
       </Actions>
   }))
 
@@ -40,15 +40,15 @@ function DashboardJobsPage() {
     <PageLayout>
       <Main>
         <Header>
-          <Title tagName="h1">Список должностей</Title>
+          <Title tagName="h1">Список позиций</Title>
 
           <AddModal />
         </Header>
 
-        {!jobs
+        {!positions
           ? <Spinner />
           : <DataTable
-              key={jobs.length}
+              key={positions.length}
               stickyHeader
               rows={rows}
               columns={columns} />}
@@ -57,4 +57,4 @@ function DashboardJobsPage() {
   )
 }
 
-export default DashboardJobsPage
+export default DashboardPositionsPage
