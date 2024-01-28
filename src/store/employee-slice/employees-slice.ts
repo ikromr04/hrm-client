@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { SliceName } from '../../const'
 import { Employee, Employees } from '../../types/employees'
 import {
-  fetchEmployeeAction, fetchEmployeesAction, updateEmployeeAction,
+  fetchEmployeeAction, fetchEmployeesAction, storeEmployeeAction, updateEmployeeAction,
 } from './employees-api-actions'
 import { storeAuthAction } from '../auth-slice/auth-api-actions'
 
@@ -45,6 +45,9 @@ export const employeeSlice = createSlice({
       .addCase(updateEmployeeAction.fulfilled, (state, action) => {
         state.employee = action.payload
         state.employees = null
+      })
+      .addCase(storeEmployeeAction.fulfilled, (state, action) => {
+        state.employees = [action.payload, ...(state.employees || [])]
       })
   },
 })

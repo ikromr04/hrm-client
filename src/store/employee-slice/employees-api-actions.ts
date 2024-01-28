@@ -5,7 +5,7 @@ import { APIRoute } from '../../const'
 import { generatePath } from 'react-router-dom'
 import { Employee, Employees } from '@/types/employees'
 import { ID } from '@/types'
-import { EmployeesUpdateDTO } from '@/dto/employees-dto'
+import { EmployeesStoreDTO, EmployeesUpdateDTO } from '@/dto/employees-dto'
 import { ValidationError } from '@/types/validation-error'
 import { Educations } from '@/types/educations'
 import { Activities } from '@/types/activities'
@@ -29,6 +29,33 @@ export const fetchEmployeeAction = createAsyncThunk<Employee, {
   async ({ id }, { extra: api }) => {
     const { data } = await api.get<Employee>(generatePath(APIRoute.Employees.Show, { id }))
     return data
+  },
+)
+
+export const storeEmployeeAction = createAsyncThunk<Employee, {
+  dto: EmployeesStoreDTO
+  errorHandler: (error: ValidationError) => void
+  successHandler: (employee: Employee) => void
+}, {
+  extra: AxiosInstance
+  rejectWithValue: ValidationError
+}>(
+  'employees/store',
+  async (arg, { extra: api, rejectWithValue }) => {
+    const { dto, errorHandler, successHandler } = arg
+    try {
+      const { data } = await api.post<Employee>(APIRoute.Employees.Index, dto)
+      successHandler(data)
+      return data
+    } catch (err: any) {
+      const error: AxiosError<ValidationError> = err
+      
+      if (!error.response) {
+        throw err
+      }
+      errorHandler(error.response.data)
+      return rejectWithValue(error.response.data)
+    }
   },
 )
 
