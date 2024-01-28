@@ -19,6 +19,8 @@ import { getJobs } from '@/store/job-slice/job-selector'
 import { fetchJobsAction } from '@/store/job-slice/job-api-actions'
 import { getPositions } from '@/store/position-slice/position-selector'
 import { fetchPositionsAction } from '@/store/position-slice/position-api-actions'
+import { getDepartments } from '@/store/department-slice/department-selector'
+import { fetchDepartmentsAction } from '@/store/department-slice/department-api-actions'
 
 type EditModalProps = {
   employee: Employee
@@ -32,13 +34,15 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
   const [dto, setDTO] = useState<EmployeesUpdateDTO>({})
   const [isOpen, setIsOpen] = useState(false)
   const dispatch = useAppDispatch()
+  const departments = useAppSelector(getDepartments)
   const jobs = useAppSelector(getJobs)
   const positions = useAppSelector(getPositions)
 
   useEffect(() => {
+    !departments && dispatch(fetchDepartmentsAction())
     !jobs && dispatch(fetchJobsAction())
     !positions && dispatch(fetchPositionsAction())
-  }, [jobs, positions, dispatch])
+  }, [departments, jobs, positions, dispatch])
 
   const handleEditButtonClick = () => {
     setIsOpen(true)
@@ -83,6 +87,11 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
     setIsDisabled(true)
     setValidationError({ message: '' })
     setDTO({})
+  }
+
+  const handleDepartmentsChange = (value: string[]) => {
+    setDTO((prevDTO) => ({ ...prevDTO, departments: value }))
+    setIsDisabled(() => validationError.message ? true : false)
   }
 
   const handleJobsChange = (value: string[]) => {
@@ -140,9 +149,19 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
             defaultValue={employee.startedWorkAt}
             errorMessage={validationError.errors?.started_work_at?.[0]}
             autoComplete="off" />
-          {jobs && 
+          {departments && 
             <MultiSelect
               key={(+isOpen).toString().padStart(2)}
+              label="Отдел"
+              value={employee.departments.map(({ id }) => id)}
+              onChange={handleDepartmentsChange}
+              options={[
+                { value: '', label: 'Не указать' }, 
+                ...departments.map(({ id, title }) => ({ value: id, label: title }))
+              ]} />}
+          {jobs && 
+            <MultiSelect
+              key={(+isOpen).toString().padStart(3)}
               label="Должность"
               value={employee.jobs.map(({ id }) => id)}
               onChange={handleJobsChange}
@@ -152,7 +171,7 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
               ]} />}
           {positions &&
             <MultiSelect
-              key={(+isOpen).toString().padStart(3)}
+              key={(+isOpen).toString().padStart(4)}
               label="Позиция"
               value={employee.positions.map(({ id }) => id)}
               onChange={handlePositionsChange}

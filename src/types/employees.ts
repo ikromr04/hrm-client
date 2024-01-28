@@ -1,4 +1,5 @@
 import { ID } from '.'
+import { Departments } from './departments'
 import { Jobs } from './jobs'
 import { Language } from './languages'
 import { Positions } from './positions'
@@ -11,6 +12,7 @@ export type Employee = {
   login: string
   avatar: string
   startedWorkAt: Date
+  departments: Departments
   jobs: Jobs
   positions: Positions
   languages: EmployeeLanguages

@@ -30,6 +30,7 @@ function EmployeeInfo(): JSX.Element {
             'Отчество': employee.patronymic,
             'Логин': employee.login,
             'Начало работы': dayjs(employee.startedWorkAt).format('D MMM YYYY').toString(),
+            'Отдел': employee.departments.map(({ title }) => title).join(', '),
             'Должность': employee.jobs.map(({ title }) => title).join(', '),
             'Позиция': employee.positions.map(({ title }) => title).join(', '),
           }}

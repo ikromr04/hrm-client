@@ -4,7 +4,6 @@ import { Employee, Employees } from '../../types/employees'
 import {
   fetchEmployeeAction, fetchEmployeesAction, updateEmployeeAction,
 } from './employees-api-actions'
-import { copy } from '@/utils'
 import { storeAuthAction } from '../auth-slice/auth-api-actions'
 
 export type EmployeesSlice = {
@@ -45,11 +44,7 @@ export const employeeSlice = createSlice({
       })
       .addCase(updateEmployeeAction.fulfilled, (state, action) => {
         state.employee = action.payload
-        if (state.employees) {
-          let employees: Employees = copy(state.employees)
-          employees = employees.filter((employee) => String(employee.id) !== String(action.payload.id))
-          state.employees = [...employees, action.payload]
-        }
+        state.employees = null
       })
   },
 })
