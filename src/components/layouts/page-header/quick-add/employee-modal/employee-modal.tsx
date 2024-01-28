@@ -4,14 +4,19 @@ import Form from '@/components/ui/form/form'
 import Input from '@/components/ui/input/input'
 import Modal from '@/components/ui/modal/modal'
 import Text from '@/components/ui/text/text'
-import { AuthStoreDTO } from '@/dto/auth-dto'
-import { useAppDispatch } from '@/hooks'
+import { useAppDispatch, useAppSelector } from '@/hooks'
 import { useFormValidation } from '@/hooks/use-form-validation'
-import { AuthStoreResponse } from '@/responses/auth-reponses'
-import { storeAuthAction } from '@/store/auth-slice/auth-api-actions'
-import { BaseSyntheticEvent, ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
-import { Response } from './styled'
-import CopyBox from '@/components/ui/copy-box/copy-box'
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
+import { EmployeesStoreDTO } from '@/dto/employees-dto'
+import { getDepartments } from '@/store/department-slice/department-selector'
+import { getJobs } from '@/store/job-slice/job-selector'
+import { getPositions } from '@/store/position-slice/position-selector'
+import { fetchDepartmentsAction } from '@/store/department-slice/department-api-actions'
+import { fetchJobsAction } from '@/store/job-slice/job-api-actions'
+import { fetchPositionsAction } from '@/store/position-slice/position-api-actions'
+import { storeEmployeeAction } from '@/store/employee-slice/employees-api-actions'
+import { toast } from 'react-toastify'
+import MultiSelect from '@/components/ui/multi-select/multi-select'
 
 type EmployeeModalProps = {
   isOpen: boolean
@@ -21,13 +26,18 @@ type EmployeeModalProps = {
 function EmployeeModal({ isOpen, setIsOpen }: EmployeeModalProps): JSX.Element {
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
-  const [dto, setDTO] = useState<AuthStoreDTO>({ name: '', surname: '', login: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)
+  const [dto, setDTO] = useState<EmployeesStoreDTO>({ name: '', surname: '', login: ''})
   const dispatch = useAppDispatch()
-  const [response, setResponse] = useState<AuthStoreResponse | null>(null)
+  const departments = useAppSelector(getDepartments)
+  const jobs = useAppSelector(getJobs)
+  const positions = useAppSelector(getPositions)
 
   useEffect(() => {
+    !departments && dispatch(fetchDepartmentsAction())
+    !jobs && dispatch(fetchJobsAction())
+    !positions && dispatch(fetchPositionsAction())
     setTimeout(() => {
       if (ref.current) {
         const value = ref.current.value
@@ -36,24 +46,23 @@ function EmployeeModal({ isOpen, setIsOpen }: EmployeeModalProps): JSX.Element {
         ref.current.value = value
       }
     }, 150)
-  }, [isOpen])
+  }, [departments, jobs, positions, dispatch, isOpen])
 
-  const handleFormSubmit = (evt: BaseSyntheticEvent) => {
+  const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()
     setIsSubmitting(true)
-    dispatch(storeAuthAction({
+    dispatch(storeEmployeeAction({
       dto,
       errorHandler(error) {
         setValidationError(error)
         setIsSubmitting(false)
         setIsDisabled(true)
       },
-      successHandler(response) {
+      successHandler() {
+        toast.success('Новый сотрудник успешно добавлен.')
         setIsSubmitting(false)
         setIsDisabled(true)
-        evt.target.reset()
-        setDTO({ name: '', surname: '', login: '' })
-        setResponse(response)
+        setIsOpen(false)
       },
     }))
   }
@@ -62,68 +71,112 @@ function EmployeeModal({ isOpen, setIsOpen }: EmployeeModalProps): JSX.Element {
     formChangeHandler(evt)
     setDTO((prevDTO) => ({ ...prevDTO, [evt.target.name]: evt.target.value }))
     setIsDisabled(() => validationError.message ? true : false)
-    setResponse(null)
   }
 
-  const handleResetButtonClick = () => {
+  const handleFormReset = () => {
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO({ name: '', surname: '', login: '' })
-    setResponse(null)
+    setDTO({ name: '', surname: '', login: ''})
+  }
+
+  const handleDepartmentsChange = (value: string[]) => {
+    setDTO((prevDTO) => ({ ...prevDTO, departments: value }))
+    setIsDisabled(() => validationError.message ? true : false)
+  }
+
+  const handleJobsChange = (value: string[]) => {
+    setDTO((prevDTO) => ({ ...prevDTO, jobs: value }))
+    setIsDisabled(() => validationError.message ? true : false)
+  }
+
+  const handlePositionsChange = (value: string[]) => {
+    setDTO((prevDTO) => ({ ...prevDTO, positions: value }))
+    setIsDisabled(() => validationError.message ? true : false)
   }
 
   return (
     <Modal isOpen={isOpen}>
-      {response &&
-        <Response>
-          <Text success>Сотрудник успешно добавлен</Text>
-          <CopyBox copyText={`Логин: ${response.login}\nПароль: ${response.password}`}>
-            Логин: {response.login} <br />
-            Пароль: {response.password}
-          </CopyBox>
-        </Response>
-      }
       <Text error>{validationError?.message}</Text> <br />
       <Form
-        onSubmit={handleFormSubmit}
-        onChange={handleFormChange}
-      >
-        <Input
-          ref={ref}
-          name="name"
-          label="Имя"
-          errorMessage={validationError.errors?.name?.[0]}
-          autoComplete="off" />
-        <Input
-          name="surname"
-          label="Фамилия"
-          errorMessage={validationError.errors?.surname?.[0]}
-          autoComplete="off" />
-        <Input
-          name="login"
-          label="Логин"
-          errorMessage={validationError.errors?.login?.[0]}
-          autoComplete="off" />
+          grid
+          onSubmit={handleFormSubmit}
+          onChange={handleFormChange}
+          onReset={handleFormReset}
+        >
+          <Input
+            ref={ref}
+            name="surname"
+            label="Фамилия"
+            errorMessage={validationError.errors?.surname?.[0]}
+            autoComplete="off" />
+          <Input
+            name="name"
+            label="Имя"
+            errorMessage={validationError.errors?.name?.[0]}
+            autoComplete="off" />
+          <Input
+            name="patronymic"
+            label="Отчество (необязательное)"
+            errorMessage={validationError.errors?.patronymic?.[0]}
+            autoComplete="off" />
+          <Input
+            name="login"
+            label="Логин"
+            defaultValue={dto.login}
+            errorMessage={validationError.errors?.login?.[0]}
+            autoComplete="off" />
+          <Input
+            name="started_work_at (необязательное)"
+            type="datetime-local"
+            label="Начало работы"
+            errorMessage={validationError.errors?.started_work_at?.[0]}
+            autoComplete="off" />
+          {departments && 
+            <MultiSelect
+              key={(+isOpen).toString().padStart(2)}
+              label="Отдел (необязательное)"
+              value={[]}
+              onChange={handleDepartmentsChange}
+              options={[
+                { value: '', label: 'Не указать' }, 
+                ...departments.map(({ id, title }) => ({ value: id, label: title }))
+              ]} />}
+          {jobs && 
+            <MultiSelect
+              key={(+isOpen).toString().padStart(3)}
+              label="Должность (необязательное)"
+              value={[]}
+              onChange={handleJobsChange}
+              options={[
+                { value: '', label: 'Не указать' }, 
+                ...jobs.map(({ id, title }) => ({ value: id, label: title }))
+              ]} />}
+          {positions &&
+            <MultiSelect
+              key={(+isOpen).toString().padStart(4)}
+              label="Позиция (необязательное)"
+              value={[]}
+              onChange={handlePositionsChange}
+              options={[
+                { value: '', label: 'Не указать' },
+                ...positions.map(({ id, title }) => ({ value: id, label: title }))
+              ]} />}
 
-        <Actions>
-          <Button
-            type="submit"
-            success
-            loading={isSubmitting}
-            disabled={isDisabled || isSubmitting}
-          >
-            Добавить
-          </Button>
-          <Button
-            type="reset"
-            error
-            onClick={handleResetButtonClick}
-          >
-            Отмена
-          </Button>
-        </Actions>
-      </Form>
+          <Actions>
+            <Button
+              type="submit"
+              success
+              loading={isSubmitting}
+              disabled={isDisabled || isSubmitting}
+            >
+              Добавить
+            </Button>
+            <Button type="reset" error>
+              Отмена
+            </Button>
+          </Actions>
+        </Form>
     </Modal>
   )
 }

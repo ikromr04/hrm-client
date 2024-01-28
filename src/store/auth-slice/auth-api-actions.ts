@@ -4,7 +4,7 @@ import { AxiosError, AxiosInstance } from 'axios'
 import { APIRoute } from '../../const'
 import { dropToken, saveToken } from '../../services/token'
 import { ValidationError } from '../../types/validation-error'
-import { AuthStoreDTO, LoginDTO } from '@/dto/auth-dto'
+import { LoginDTO } from '@/dto/auth-dto'
 import { AuthStoreResponse, LoginResponse } from '@/responses/auth-reponses'
 import { User } from '@/types/auth'
 
@@ -49,29 +49,5 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   async (_arg, { extra: api }) => {
     await api.delete(APIRoute.Auth.Login)
     dropToken()
-  },
-)
-
-export const storeAuthAction = createAsyncThunk<void, {
-  dto: AuthStoreDTO
-  errorHandler: (error: ValidationError) => void
-  successHandler: (response: AuthStoreResponse) => void
-}, {
-  extra: AxiosInstance
-  rejectWithValue: ValidationError
-}>(
-  'auth/store',
-  async ({ dto, errorHandler, successHandler }, { extra: api, rejectWithValue }) => {
-    try {
-      const { data } = await api.post<AuthStoreResponse>(APIRoute.Auth.Index, dto)
-      successHandler(data)
-    } catch (err: any) {
-      const error: AxiosError<ValidationError> = err
-      if (!error.response) {
-        throw err
-      }
-      errorHandler(error.response.data)
-      return rejectWithValue(error.response.data)
-    }
   },
 )
