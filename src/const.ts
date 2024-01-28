@@ -60,6 +60,10 @@ export const APIRoute = {
     Index: '/languages',
     Show: '/languages/:id',
   },
+  Departments: {
+    Index: '/departments',
+    Show: '/departments/:id',
+  },
   Educations: {
     Index: '/educations',
     Show: '/educations/:id',
@@ -77,6 +81,7 @@ export enum SliceName {
   Job = 'Job',
   Position = 'Position',
   Language = 'Language',
+  Department = 'Department',
 }
 
 export const languageLevelOptions = [

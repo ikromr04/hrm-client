@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 import Input from '@/components/ui/input/input'
 import { Language } from '@/types/languages'
 import { updateLanguageAction } from '@/store/language-slice/language-api-actions'
-import { LanguagesStoreDTO } from '@/dto/languages-dto'
+import { LanguagesUpdateDTO } from '@/dto/languages-dto'
 
 type EditModalProps = {
   language: Language
@@ -23,7 +23,7 @@ function EditModal({ language }: EditModalProps): JSX.Element {
   const dispatch = useAppDispatch()
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
-  const [dto, setDTO] = useState<LanguagesStoreDTO>({ name: language.name })
+  const [dto, setDTO] = useState<LanguagesUpdateDTO>({ name: language.name })
 
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()

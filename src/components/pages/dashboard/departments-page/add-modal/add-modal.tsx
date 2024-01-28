@@ -9,8 +9,8 @@ import { useAppDispatch } from '@/hooks'
 import { toast } from 'react-toastify'
 import Input from '@/components/ui/input/input'
 import PlusIcon from '@/components/icons/plus-icon'
-import { PositionsStoreDTO } from '@/dto/positions-dto'
-import { storePositionAction } from '@/store/position-slice/position-api-actions'
+import { DepartmentsStoreDTO } from '@/dto/departments-dto'
+import { storeDepartmentAction } from '@/store/department-slice/department-api-actions'
 
 function AddModal(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
@@ -19,12 +19,12 @@ function AddModal(): JSX.Element {
   const dispatch = useAppDispatch()
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
-  const [dto, setDTO] = useState<PositionsStoreDTO>({ title: '' })
+  const [dto, setDTO] = useState<DepartmentsStoreDTO>({ title: '' })
 
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()
     setIsSubmitting(true)
-    dispatch(storePositionAction({
+    dispatch(storeDepartmentAction({
       dto,
       errorHandler(error) {
         setValidationError(error)
@@ -32,7 +32,7 @@ function AddModal(): JSX.Element {
         setIsDisabled(true)
       },
       successHandler() {
-        toast.success('Позиция успешно добавлена.')
+        toast.success('Отдел успешно добавлен.')
         setIsSubmitting(false)
         setIsDisabled(true)
         setIsOpen(false)

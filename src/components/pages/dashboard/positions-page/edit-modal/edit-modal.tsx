@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 import Input from '@/components/ui/input/input'
 import { Position } from '@/types/positions'
 import { updatePositionAction } from '@/store/position-slice/position-api-actions'
-import { PositionsStoreDTO } from '@/dto/positions-dto'
+import { PositionsUpdateDTO } from '@/dto/positions-dto'
 
 type EditModalProps = {
   position: Position
@@ -23,7 +23,7 @@ function EditModal({ position }: EditModalProps): JSX.Element {
   const dispatch = useAppDispatch()
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
-  const [dto, setDTO] = useState<PositionsStoreDTO>({ title: position.title })
+  const [dto, setDTO] = useState<PositionsUpdateDTO>({ title: position.title })
 
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()

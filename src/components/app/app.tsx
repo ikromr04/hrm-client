@@ -23,6 +23,7 @@ import EmployeesEducationPage
 import DashboardJobsPage from '../pages/dashboard/jobs-page/dashboard-jobs-page'
 import DashboardPositionsPage from '../pages/dashboard/positions-page/dashboard-positions-page'
 import DashboardLanguagesPage from '../pages/dashboard/languages-page/dashboard-languages-page'
+import DashboardDepartmentsPage from '../pages/dashboard/departments-page/dashboard-departments-page'
 
 function App(): JSX.Element {
   const authStatus = useAppSelector(getAuthStatus)
@@ -50,6 +51,7 @@ function App(): JSX.Element {
         <Route path={AppRoute.Dashboard.Jobs} element={<DashboardJobsPage />} />
         <Route path={AppRoute.Dashboard.Positions} element={<DashboardPositionsPage />} />
         <Route path={AppRoute.Dashboard.Languages} element={<DashboardLanguagesPage />} />
+        <Route path={AppRoute.Dashboard.Departments} element={<DashboardDepartmentsPage />} />
 
         <Route path={AppRoute.Auth.Login} element={<LoginPage />} />
 

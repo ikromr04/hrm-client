@@ -8,7 +8,7 @@ import Button from '@/components/ui/button/button'
 import { useAppDispatch } from '@/hooks'
 import { toast } from 'react-toastify'
 import Input from '@/components/ui/input/input'
-import { JobsStoreDTO } from '@/dto/jobs-dto'
+import { JobsUpdateDTO } from '@/dto/jobs-dto'
 import { updateJobAction } from '@/store/job-slice/job-api-actions'
 import { Job } from '@/types/jobs'
 
@@ -23,7 +23,7 @@ function EditModal({ job }: EditModalProps): JSX.Element {
   const dispatch = useAppDispatch()
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
-  const [dto, setDTO] = useState<JobsStoreDTO>({ title: job.title })
+  const [dto, setDTO] = useState<JobsUpdateDTO>({ title: job.title })
 
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()
