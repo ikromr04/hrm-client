@@ -6,14 +6,14 @@ import Actions from '@/components/ui/actions/actions'
 import Button from '@/components/ui/button/button'
 import { useAppDispatch } from '@/hooks'
 import { toast } from 'react-toastify'
-import { Position } from '@/types/positions'
-import { deletePositionAction } from '@/store/position-slice/position-api-actions'
+import { Language } from '@/types/languages'
+import { deleteLanguageAction } from '@/store/language-slice/language-api-actions'
 
 type DeleteModalProps = {
-  position: Position
+  language: Language
 }
 
-function DeleteModal({ position }: DeleteModalProps): JSX.Element {
+function DeleteModal({ language }: DeleteModalProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const dispatch = useAppDispatch()
@@ -21,8 +21,8 @@ function DeleteModal({ position }: DeleteModalProps): JSX.Element {
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()
     setIsSubmitting(true)
-    dispatch(deletePositionAction({
-      id: position.id,
+    dispatch(deleteLanguageAction({
+      id: language.id,
       successHandler() {
         toast.success('Данные успешно обновлены.')
         setIsSubmitting(false)
@@ -37,7 +37,7 @@ function DeleteModal({ position }: DeleteModalProps): JSX.Element {
         Удалить
       </Button>
       <Modal isOpen={isOpen}>
-        <Text>Вы уверены что хотите удалить позицию "{position.title}"?</Text> <br />
+        <Text>Вы уверены что хотите удалить язык "{language.name}"?</Text> <br />
         <Form onSubmit={handleFormSubmit}>
           <Actions>
             <Button
