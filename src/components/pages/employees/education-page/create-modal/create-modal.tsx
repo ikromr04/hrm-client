@@ -135,14 +135,14 @@ function CreateModal({ setEducations }: CreateModalProps) {
             options={educationFormOptions} />
           <Input
             name="started_at"
-            type="datetime-local"
+            type="datet"
             label="Год поступления"
             defaultValue={dto.started_at}
             errorMessage={validationError.errors?.started_at?.[0]}
             autoComplete="off" />
           <Input
             name="graduated_at"
-            type="datetime-local"
+            type="datet"
             label="Год окончания"
             defaultValue={dto.graduated_at}
             errorMessage={validationError.errors?.graduated_at?.[0]}

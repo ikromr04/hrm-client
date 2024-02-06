@@ -7,7 +7,7 @@ export const Table = styled('table')`
   border-radius: 8px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 8%);
   max-width: 100%;
-  overflow: auto;
+  overflow-x: auto;
   max-height: 100%;
 
   &::-webkit-scrollbar {
@@ -44,6 +44,22 @@ export const Tbody = styled('tbody')`
   display: flex;
   flex-direction: column;
   min-width: max-content;
+  max-width: 100%;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #ffffff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #bdbdbd;
+    border-radius: 2px;
+  }
 `
 
 export const Tr = styled('tr')`

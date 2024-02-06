@@ -166,9 +166,9 @@ function AddEmployee(): JSX.Element {
             errorMessage={validationError.errors?.login?.[0]}
             autoComplete="off" />
           <Input
-            name="started_work_at (необязательное)"
-            type="datetime-local"
-            label="Начало работы"
+            name="started_work_at"
+            type="date"
+            label="Начало работы (необязательное)"
             errorMessage={validationError.errors?.started_work_at?.[0]}
             autoComplete="off" />
           {departments && 
@@ -211,7 +211,7 @@ function AddEmployee(): JSX.Element {
           <Input
             data-details="details"
             name="birth_date"
-            type="datetime-local"
+            type="date"
             label="Дата рождения (необязательное)"
             errorMessage={validationError.errors?.['details.birth_date']?.[0]}
             autoComplete="off" />

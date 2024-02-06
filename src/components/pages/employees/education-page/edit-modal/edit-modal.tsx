@@ -129,14 +129,14 @@ function EditModal({ education, setEducations }: EditModalProps) {
             options={educationFormOptions} />
           <Input
             name="started_at"
-            type="datetime-local"
+            type="date"
             label="Год поступления"
             defaultValue={education.startedAt}
             errorMessage={validationError.errors?.started_at?.[0]}
             autoComplete="off" />
           <Input
             name="graduated_at"
-            type="datetime-local"
+            type="date"
             label="Год окончания"
             defaultValue={education.graduatedAt}
             errorMessage={validationError.errors?.graduated_at?.[0]}

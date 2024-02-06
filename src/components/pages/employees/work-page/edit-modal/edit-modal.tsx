@@ -109,14 +109,14 @@ function EditModal({ activity, setActivities }: EditModalProps): JSX.Element {
             autoComplete="off" />
           <Input
             name="hired_at"
-            type="datetime-local"
+            type="date"
             label="Начало работы"
             defaultValue={activity.hiredAt}
             errorMessage={validationError.errors?.hired_at?.[0]}
             autoComplete="off" />
           <Input
             name="dismissed_at"
-            type="datetime-local"
+            type="date"
             label="Дата уволнения"
             defaultValue={activity.dismissedAt}
             errorMessage={validationError.errors?.dismissed_at?.[0]}

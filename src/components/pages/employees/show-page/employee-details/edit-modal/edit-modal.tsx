@@ -125,7 +125,7 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
             autoComplete="off" />
           <Input
             name="birth_date"
-            type="datetime-local"
+            type="date"
             label="Дата рождения"
             defaultValue={employee.details?.birthDate}
             errorMessage={validationError.errors?.['details.birth_date']?.[0]}

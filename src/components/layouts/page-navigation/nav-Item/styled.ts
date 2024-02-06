@@ -6,6 +6,7 @@ import styled, { css } from 'styled-components';
 export const SubItems = styled(DropdownMenu)`
   top: 0;
   left: calc(100% + 4px);
+  min-width: 160px;
 `
 
 export const Item = styled('div')`

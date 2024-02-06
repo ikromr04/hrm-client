@@ -86,7 +86,7 @@ function EditModal({ job }: EditModalProps): JSX.Element {
           <Input
             ref={ref}
             name="title"
-            label="Название"
+            label="Должность"
             defaultValue={dto.title}
             errorMessage={validationError.errors?.title?.[0]}
             autoComplete="off" />

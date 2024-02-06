@@ -113,14 +113,14 @@ function CreateModal({ setActivities }: CreateModalProps) {
             autoComplete="off" />
           <Input
             name="hired_at"
-            type="datetime-local"
+            type="date"
             label="Начало работы"
             defaultValue={dto.hired_at}
             errorMessage={validationError.errors?.hired_at?.[0]}
             autoComplete="off" />
           <Input
             name="dismissed_at"
-            type="datetime-local"
+            type="date"
             label="Дата уволнения"
             defaultValue={dto.dismissed_at}
             errorMessage={validationError.errors?.dismissed_at?.[0]}

@@ -59,14 +59,14 @@ function DetailsFilter() {
           onChange={(evt: ChangeEvent<HTMLInputElement>) =>
             handleFilterChange('startedWorkAt', 'isShown', evt.target.checked)} />
         <Input
-          type="datetime-local"
+          type="date"
           horizontal
           label="От:"
           value={filter.details.startedWorkAt.from}
           onChange={(evt: ChangeEvent<HTMLInputElement>) =>
             handleFilterChange('startedWorkAt', 'from', evt.target.value)} />
         <Input
-          type="datetime-local"
+          type="date"
           horizontal
           label="До:"
           value={filter.details.startedWorkAt.to}
@@ -94,14 +94,14 @@ function DetailsFilter() {
           onChange={(evt: ChangeEvent<HTMLInputElement>) =>
             handleFilterChange('birthDate', 'isShown', evt.target.checked)} />
         <Input
-          type="datetime-local"
+          type="date"
           horizontal
           label="От:"
           value={filter.details.birthDate.from}
           onChange={(evt: ChangeEvent<HTMLInputElement>) =>
             handleFilterChange('birthDate', 'from', evt.target.value)} />
         <Input
-          type="datetime-local"
+          type="date"
           horizontal
           label="До:"
           value={filter.details.birthDate.to}

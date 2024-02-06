@@ -144,7 +144,7 @@ function EditModal({ employee }: EditModalProps): JSX.Element {
             autoComplete="off" />
           <Input
             name="started_work_at"
-            type="datetime-local"
+            type="date"
             label="Начало работы"
             defaultValue={employee.startedWorkAt}
             errorMessage={validationError.errors?.started_work_at?.[0]}

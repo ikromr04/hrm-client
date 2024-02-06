@@ -69,7 +69,7 @@ function AddModal(): JSX.Element {
   return (
     <>
       <Button type="button" success onClick={handleAddButtonClick}>
-        <PlusIcon /> Добавить
+        <PlusIcon /> Добавить язык
       </Button>
       <Modal isOpen={isOpen}>
         <Text error>{validationError?.message}</Text> <br />
@@ -82,7 +82,7 @@ function AddModal(): JSX.Element {
             ref={ref}
             key={isOpen.toString()}
             name="name"
-            label="Название"
+            label="Язык"
             defaultValue={dto.name}
             errorMessage={validationError.errors?.name?.[0]}
             autoComplete="off" />

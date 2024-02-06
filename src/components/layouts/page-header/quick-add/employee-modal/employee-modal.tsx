@@ -128,7 +128,7 @@ function EmployeeModal({ isOpen, setIsOpen }: EmployeeModalProps): JSX.Element {
             autoComplete="off" />
           <Input
             name="started_work_at (необязательное)"
-            type="datetime-local"
+            type="date"
             label="Начало работы"
             errorMessage={validationError.errors?.started_work_at?.[0]}
             autoComplete="off" />
