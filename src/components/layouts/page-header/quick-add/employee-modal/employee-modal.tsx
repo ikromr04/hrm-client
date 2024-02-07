@@ -99,84 +99,84 @@ function EmployeeModal({ isOpen, setIsOpen }: EmployeeModalProps): JSX.Element {
     <Modal isOpen={isOpen}>
       <Text error>{validationError?.message}</Text> <br />
       <Form
-          grid
-          onSubmit={handleFormSubmit}
-          onChange={handleFormChange}
-          onReset={handleFormReset}
-        >
-          <Input
-            ref={ref}
-            name="surname"
-            label="Фамилия"
-            errorMessage={validationError.errors?.surname?.[0]}
-            autoComplete="off" />
-          <Input
-            name="name"
-            label="Имя"
-            errorMessage={validationError.errors?.name?.[0]}
-            autoComplete="off" />
-          <Input
-            name="patronymic"
-            label="Отчество (необязательное)"
-            errorMessage={validationError.errors?.patronymic?.[0]}
-            autoComplete="off" />
-          <Input
-            name="login"
-            label="Логин"
-            defaultValue={dto.login}
-            errorMessage={validationError.errors?.login?.[0]}
-            autoComplete="off" />
-          <Input
-            name="started_work_at (необязательное)"
-            type="date"
-            label="Начало работы"
-            errorMessage={validationError.errors?.started_work_at?.[0]}
-            autoComplete="off" />
-          {departments && 
-            <MultiSelect
-              key={(+isOpen).toString().padStart(2)}
-              label="Отдел (необязательное)"
-              value={[]}
-              onChange={handleDepartmentsChange}
-              options={[
-                { value: '', label: 'Не указать' }, 
-                ...departments.map(({ id, title }) => ({ value: id, label: title }))
-              ]} />}
-          {jobs && 
-            <MultiSelect
-              key={(+isOpen).toString().padStart(3)}
-              label="Должность (необязательное)"
-              value={[]}
-              onChange={handleJobsChange}
-              options={[
-                { value: '', label: 'Не указать' }, 
-                ...jobs.map(({ id, title }) => ({ value: id, label: title }))
-              ]} />}
-          {positions &&
-            <MultiSelect
-              key={(+isOpen).toString().padStart(4)}
-              label="Позиция (необязательное)"
-              value={[]}
-              onChange={handlePositionsChange}
-              options={[
-                { value: '', label: 'Не указать' },
-                ...positions.map(({ id, title }) => ({ value: id, label: title }))
-              ]} />}
+        key={isOpen.toString().padStart(1, '0')}
+        grid
+        onSubmit={handleFormSubmit}
+        onChange={handleFormChange}
+        onReset={handleFormReset}
+      >
+        <Input
+          ref={ref}
+          name="surname"
+          label="Фамилия"
+          errorMessage={validationError.errors?.surname?.[0]}
+          autoComplete="off" />
+        <Input
+          name="name"
+          label="Имя"
+          errorMessage={validationError.errors?.name?.[0]}
+          autoComplete="off" />
+        <Input
+          name="patronymic"
+          label="Отчество (необязательное)"
+          errorMessage={validationError.errors?.patronymic?.[0]}
+          autoComplete="off" />
+        <Input
+          name="login"
+          label="Логин"
+          errorMessage={validationError.errors?.login?.[0]}
+          autoComplete="off" />
+        <Input
+          name="started_work_at (необязательное)"
+          type="date"
+          label="Начало работы"
+          errorMessage={validationError.errors?.started_work_at?.[0]}
+          autoComplete="off" />
+        {departments && 
+          <MultiSelect
+            key={(+isOpen).toString().padStart(2)}
+            label="Отдел (необязательное)"
+            value={[]}
+            onChange={handleDepartmentsChange}
+            options={[
+              { value: '', label: 'Не указать' }, 
+              ...departments.map(({ id, title }) => ({ value: id, label: title }))
+            ]} />}
+        {jobs && 
+          <MultiSelect
+            key={(+isOpen).toString().padStart(3)}
+            label="Должность (необязательное)"
+            value={[]}
+            onChange={handleJobsChange}
+            options={[
+              { value: '', label: 'Не указать' }, 
+              ...jobs.map(({ id, title }) => ({ value: id, label: title }))
+            ]} />}
+        {positions &&
+          <MultiSelect
+            key={(+isOpen).toString().padStart(4)}
+            label="Позиция (необязательное)"
+            value={[]}
+            onChange={handlePositionsChange}
+            options={[
+              { value: '', label: 'Не указать' },
+              ...positions.map(({ id, title }) => ({ value: id, label: title }))
+            ]} />}
 
-          <Actions>
-            <Button
-              type="submit"
-              success
-              loading={isSubmitting}
-              disabled={isDisabled || isSubmitting}
-            >
-              Добавить
-            </Button>
-            <Button type="reset" error>
-              Отмена
-            </Button>
-          </Actions>
-        </Form>
+        <Actions>
+          <Button
+            type="submit"
+            success
+            loading={isSubmitting}
+            disabled={isDisabled || isSubmitting}
+          >
+            Добавить
+          </Button>
+          <Button type="reset" error>
+            Отмена
+          </Button>
+        </Actions>
+      </Form>
     </Modal>
   )
 }
