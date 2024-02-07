@@ -138,6 +138,7 @@ function AddEmployee(): JSX.Element {
       <Modal isOpen={isOpen}>
         <Text error>{validationError?.message}</Text> <br />
         <Form
+          key={isOpen.toString().padStart(1, '0')}
           grid
           onSubmit={handleFormSubmit}
           onChange={handleFormChange}
@@ -162,7 +163,6 @@ function AddEmployee(): JSX.Element {
           <Input
             name="login"
             label="Логин"
-            defaultValue={dto.login}
             errorMessage={validationError.errors?.login?.[0]}
             autoComplete="off" />
           <Input
