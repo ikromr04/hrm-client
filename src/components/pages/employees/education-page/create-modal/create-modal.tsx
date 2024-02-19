@@ -1,7 +1,7 @@
 import PlusIcon from '@/components/icons/plus-icon'
 import { CreateButton } from './styled'
 import Info from '@/components/ui/info/info'
-import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from 'react'
+import { ChangeEvent, Dispatch, ReactNode, SetStateAction, useRef, useState } from 'react'
 import Modal from '@/components/ui/modal/modal'
 import Text from '@/components/ui/text/text'
 import { useFormValidation } from '@/hooks/use-form-validation'
@@ -19,11 +19,11 @@ import { educationFormOptions } from '@/const'
 import { Educations } from '@/types/educations'
 import Colspan from '@/components/ui/colspan/colspan'
 
-type CreateModalProps = {
+function CreateModal({
+  setEducations
+}: {
   setEducations: Dispatch<SetStateAction<Educations | null>>
-}
-
-function CreateModal({ setEducations }: CreateModalProps) {
+}): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const [isSubmitting, setIsSubmitting] = useState(false)

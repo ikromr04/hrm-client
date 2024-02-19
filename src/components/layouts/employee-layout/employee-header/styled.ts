@@ -1,10 +1,10 @@
-import Title from '@/components/ui/title/title';
-import styled from 'styled-components';
+import Title from '@/components/ui/title/title'
+import styled from 'styled-components'
 
 export const Header = styled('header')`
   display: flex;
   gap: 16px;
-`;
+`
 
 export const HeaderInner = styled('div')`
   display: flex;
@@ -13,11 +13,11 @@ export const HeaderInner = styled('div')`
   gap: 32px;
   flex-grow: 1;
   padding-top: 80px;
-`;
+`
 
 export const EmployeeName = styled(Title)`
   margin-bottom: 16px;
-`;
+`
 
 export const EmployeeDetail = styled('div')`
   display: grid;
@@ -39,7 +39,7 @@ export const EmployeeDetail = styled('div')`
       display: none;
     }
   }
-`;
+`
 
 export const EmployeePositions = styled('ol')`
   list-style: none;

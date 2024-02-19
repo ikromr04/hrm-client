@@ -1,13 +1,5 @@
+import { ReactNode } from 'react'
 import { StyledTitle } from './styled'
-import { PropsWithChildren } from 'react'
-
-type TitleProps = PropsWithChildren<{
-  className?: string
-  tagName?: string
-  small?: boolean
-  large?: boolean
-  [rest: string]: unknown
-}>
 
 function Title({
   children,
@@ -16,7 +8,14 @@ function Title({
   small,
   large,
   ...rest
-}: TitleProps): JSX.Element {
+}: {
+  children: ReactNode
+  className?: string
+  tagName?: string
+  small?: boolean
+  large?: boolean
+  [rest: string]: unknown
+}): ReactNode {
   return (
     <StyledTitle
       className={className}

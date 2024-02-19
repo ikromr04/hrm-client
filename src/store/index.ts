@@ -1,8 +1,8 @@
-import { rootReducer } from './root-reducer';
-import { createAPI } from './../services/api';
-import { configureStore } from '@reduxjs/toolkit';
+import { rootReducer } from './root-reducer'
+import { createAPI } from './../services/api'
+import { configureStore } from '@reduxjs/toolkit'
 
-export const api = createAPI();
+export const api = createAPI()
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -13,5 +13,4 @@ export const store = configureStore({
       },
       serializableCheck: false,
     }),
-});
-
+})

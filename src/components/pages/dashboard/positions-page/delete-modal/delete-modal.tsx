@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import Modal from '@/components/ui/modal/modal'
 import Text from '@/components/ui/text/text'
 import Form from '@/components/ui/form/form'
@@ -9,11 +9,11 @@ import { toast } from 'react-toastify'
 import { Position } from '@/types/positions'
 import { deletePositionAction } from '@/store/position-slice/position-api-actions'
 
-type DeleteModalProps = {
+function DeleteModal({
+  position
+}: {
   position: Position
-}
-
-function DeleteModal({ position }: DeleteModalProps): JSX.Element {
+}): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const dispatch = useAppDispatch()

@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import Box from '../box/box';
+import styled, { css } from 'styled-components'
+import Box from '../box/box'
 
 export const Wrapper = styled('div').withConfig({
   shouldForwardProp: (props) => !['open'].includes(props),
@@ -19,7 +19,7 @@ export const Wrapper = styled('div').withConfig({
       transform: translateY(-50%) scaleY(-1);
     }
   `}
-`;
+`
 
 export const Label = styled('label')`
   position: relative;
@@ -27,7 +27,7 @@ export const Label = styled('label')`
   display: flex;
   flex-direction: column;
   gap: 4px;
-`;
+`
 
 export const LabelInner = styled('span')`
   position: relative;
@@ -49,7 +49,7 @@ export const Span = styled('span')`
   &:empty {
     display: none;
   }
-`;
+`
 
 export const StyledInput = styled('input').withConfig({
   shouldForwardProp: (props) => !['error'].includes(props),
@@ -80,7 +80,7 @@ export const StyledInput = styled('input').withConfig({
   &:focus {
     background-color: #ffffff;
   }
-`;
+`
 
 export const Options = styled(Box)`
   position: absolute;
@@ -109,7 +109,7 @@ export const Options = styled(Box)`
     background-color: transparent;
     border-left: 4px solid #bdbdbd;
   }
-`;
+`
 
 export const Option = styled('button')`
   display: grid;
@@ -129,4 +129,4 @@ export const Option = styled('button')`
   &:hover {
     background-color: #e1f5fe;
   }
-`;
+`

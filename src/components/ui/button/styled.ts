@@ -1,15 +1,9 @@
-import styled, { css } from 'styled-components';
-import { StyledInfo } from '../info/styled';
-import { Span } from '../spinner/styled';
+import styled, { css } from 'styled-components'
+import { StyledInfo } from '../info/styled'
+import { Span } from '../spinner/styled'
 
 export const StyledButton = styled('button').withConfig({
-  shouldForwardProp: (props) => ![
-      'success', 
-      'warning', 
-      'error', 
-      'large',
-      'small'
-    ].includes(props),
+  shouldForwardProp: (props) => !['success', 'warning', 'error', 'large', 'small'].includes(props),
 })<{ 
   success?: boolean, 
   warning?: boolean, 
@@ -90,4 +84,4 @@ export const StyledButton = styled('button').withConfig({
     border-top: 2px solid #2979ff;
     border-right: 2px solid transparent;
   }
-`;
+`

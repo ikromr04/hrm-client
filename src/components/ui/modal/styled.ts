@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import Box from '../box/box';
+import styled, { css } from 'styled-components'
+import Box from '../box/box'
 
 export const StyledModal = styled('div').withConfig({
   shouldForwardProp: (props) => !['isOpen'].includes(props),
@@ -33,7 +33,7 @@ export const StyledModal = styled('div').withConfig({
       transform: translateX(-50%) translateY(32px);
     }
   `}
-`;
+`
 
 export const ModalInner = styled(Box)`
   position: fixed;
@@ -43,4 +43,4 @@ export const ModalInner = styled(Box)`
   z-index: 3;
   padding: 24px 32px;
   transition: .3s;
-`;
+`

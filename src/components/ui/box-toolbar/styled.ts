@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const StyledToolbar = styled('div')`
   display: flex;
@@ -9,4 +9,4 @@ export const StyledToolbar = styled('div')`
   border-bottom: 1px solid #dce5ef;
   border-radius: 8px 8px 0 0;
   background-color: #f9f9f9;
-`;
+`

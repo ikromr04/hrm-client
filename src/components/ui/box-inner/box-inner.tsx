@@ -1,12 +1,15 @@
-import { PropsWithChildren } from 'react'
+import { ReactNode } from 'react'
 import { StyledBoxInner } from './styled'
 
-type BoxInnerProps = PropsWithChildren<{
+function BoxInner({
+  children,
+  clasName,
+  tagName,
+}: {
+  children: ReactNode
   clasName?: string
   tagName?: string
-}>
-
-function BoxInner({ children, clasName, tagName }: BoxInnerProps): JSX.Element {
+}): ReactNode {
   return (
     <StyledBoxInner
       className={clasName}

@@ -10,8 +10,6 @@ import { ID } from '@/types'
 import { ActivitiesStoreDTO, ActivitiesUpdateDTO } from '@/dto/activities-dto'
 import { Activity } from '@/types/activities'
 
-// EDUCATIONS ACTIONS
-
 export const storeEducationAction = createAsyncThunk<void, {
   dto: EducationsStoreDTO
   errorHandler: (error: ValidationError) => void
@@ -75,8 +73,6 @@ export const deleteEducationAction = createAsyncThunk<void, {
     successHandler()
   },
 )
-
-// ACTIVITIES ACTIONS
 
 export const storeActivityAction = createAsyncThunk<void, {
   dto: ActivitiesStoreDTO

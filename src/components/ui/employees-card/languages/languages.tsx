@@ -3,12 +3,13 @@ import DescriptionList from '../../description-list/description-list'
 import { EmptyText, Section, SectionTitle } from './styled'
 import { useAppSelector } from '@/hooks'
 import { getEmployeesFilter } from '@/store/app-slice/app-selector'
+import { ReactNode } from 'react'
 
-type LanguagesProps = {
+function Languages({
+  employee
+}: {
   employee: Employee
-}
-
-function Languages({ employee }: LanguagesProps): JSX.Element {
+}): ReactNode {
   const filter = useAppSelector(getEmployeesFilter)
 
   if (!employee || !filter.languages.isShown) {

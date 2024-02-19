@@ -2,7 +2,7 @@ import PageLayout from '@/components/layouts/page-layout/page-layout'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { fetchJobsAction } from '@/store/job-slice/job-api-actions'
 import { getJobs } from '@/store/job-slice/job-selector'
-import { useEffect } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { Header, Main } from '../styled'
 import Title from '@/components/ui/title/title'
 import DataTable, { DataTableColumns, DataTableRows } from '@/components/ui/data-table/data-table'
@@ -12,7 +12,7 @@ import AddModal from './add-modal/add-modal'
 import EditModal from './edit-modal/edit-modal'
 import DeleteModal from './delete-modal/delete-modal'
 
-function DashboardJobsPage() {
+function DashboardJobsPage(): ReactNode {
   const jobs = useAppSelector(getJobs)
   const dispatch = useAppDispatch()
 

@@ -1,9 +1,12 @@
-type UsersIconProps = {
-  width: number
-  height: number
-}
+import { ReactNode } from 'react'
 
-function UsersIcon({ width, height }: UsersIconProps): JSX.Element {
+function UsersIcon({
+  width = 16,
+  height = 16,
+}: {
+  width?: number
+  height?: number
+}): ReactNode {
   return (
     <svg
       viewBox="0 0 640 512"

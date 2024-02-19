@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 export const StyledLink = styled(Link)`
   display: inline-flex;
@@ -12,4 +12,4 @@ export const StyledLink = styled(Link)`
   &:empty {
     display: none;
   }
-`;
+`

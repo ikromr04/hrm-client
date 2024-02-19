@@ -1,19 +1,7 @@
-import { PropsWithChildren } from 'react'
+import { ReactNode } from 'react'
 import { StyledButton } from './styled'
 import { Link } from 'react-router-dom'
 import Spinner from '../spinner/spinner'
-
-type ButtonProps = PropsWithChildren<{
-  className?: string
-  href?: string
-  loading?: boolean
-  success?: boolean
-  warning?: boolean
-  error?: boolean
-  large?: boolean
-  small?: boolean
-  [rest: string]: unknown
-}>
 
 function Button({
   children,
@@ -26,7 +14,18 @@ function Button({
   large,
   small,
   ...rest
-}: ButtonProps): JSX.Element {
+}: {
+  children: ReactNode
+  className?: string
+  href?: string
+  loading?: boolean
+  success?: boolean
+  warning?: boolean
+  error?: boolean
+  large?: boolean
+  small?: boolean
+  [rest: string]: unknown
+}): ReactNode {
   return (
     <StyledButton
       className={className}

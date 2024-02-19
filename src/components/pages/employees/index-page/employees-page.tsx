@@ -1,38 +1,52 @@
-import EmployeesLayout from '@/components/layouts/employees-layout/employees-layout'
 import Processes from './processes/processes'
-import { ActionsButton, ActionsItem, ActionsList, Main, Toolbar } from './styled'
+import { ActionsButton, ActionsItem, ActionsList, Header, Main, Toolbar } from './styled'
 import SearchField from '@/components/ui/search-field/search-field'
 import Info from '@/components/ui/info/info'
 import GridIcon from '@/components/icons/grid-icon'
 import ListIcon from '@/components/icons/list-icon'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, ReactNode, useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getEmployees } from '@/store/employee-slice/employees-selector'
 import { fetchEmployeesAction } from '@/store/employee-slice/employees-api-actions'
 import { Link } from 'react-router-dom'
 import EmployeesList from './employees-list/employees-list'
 import EmployeesFilter from './employees-filter/employee-filter'
+import PageLayout from '@/components/layouts/page-layout/page-layout'
+import Title from '@/components/ui/title/title'
+import Button from '@/components/ui/button/button'
+import CaretIcon from '@/components/icons/caret-icon'
+import AddEmployee from './add-employee/add-employee'
+import { useEmployeesExport } from '@/hooks/use-employees-export'
+import EmployeesNavigation from '@/components/layouts/employees-navigation/employees-navigation'
 
-function EmployeesPage(): JSX.Element {
+function EmployeesPage(): ReactNode {
   const employees = useAppSelector(getEmployees)
   const dispatch = useAppDispatch()
   const [keyword, setKeyword] = useState('')
 
-const filteredEmployees = employees ? employees.filter((employee) => 
-  (`${employee.surname} ${employee.name} ${employee.patronymic}`).toLowerCase().includes(keyword.toLowerCase())
-  || employee.login.toLowerCase().includes(keyword.toLowerCase())
-  || (keyword ? (employee.details?.tel1?.toLowerCase().includes(keyword.toLowerCase()) || employee.details?.tel2?.toLowerCase().includes(keyword.toLowerCase())) : true)
-  || (keyword ? employee.details?.email?.toLowerCase().includes(keyword.toLowerCase()) : true)
-) : null
+  const filteredEmployees = employees ? employees.filter((employee) => 
+    (`${employee.surname} ${employee.name} ${employee.patronymic}`).toLowerCase().includes(keyword.toLowerCase())
+    || employee.login.toLowerCase().includes(keyword.toLowerCase())
+    || (keyword ? (employee.details?.tel1?.toLowerCase().includes(keyword.toLowerCase()) || employee.details?.tel2?.toLowerCase().includes(keyword.toLowerCase())) : true)
+    || (keyword ? employee.details?.email?.toLowerCase().includes(keyword.toLowerCase()) : true)
+  ) : null
 
   useEffect(() => {
     !employees && dispatch(fetchEmployeesAction())
   }, [employees, dispatch])
 
   return (
-    <EmployeesLayout>
+    <PageLayout>
       <Main>
-        <h2 className="visually-hidden">Список сотрудников</h2>
+        <Header>
+          <Title tagName="h1">Справочник сотрудников</Title>
+
+          <EmployeesNavigation />
+          <Button type="button" onClick={useEmployeesExport()}>
+            Экспорт <CaretIcon />
+          </Button>
+          <AddEmployee />
+        </Header>
 
         <Processes />
 
@@ -58,10 +72,10 @@ const filteredEmployees = employees ? employees.filter((employee) =>
             </ActionsItem>
           </ActionsList>
         </Toolbar>
-      </Main>
 
-      <EmployeesList employees={filteredEmployees} />
-    </EmployeesLayout>
+        <EmployeesList employees={filteredEmployees} />
+      </Main>
+    </PageLayout>
   )
 }
 

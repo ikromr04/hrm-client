@@ -1,12 +1,12 @@
-type CopiedIconProps = {
-  width?: number
-  height?: number
-}
+import { ReactNode } from 'react'
 
 function CopiedIcon({
   width = 16,
   height = 16,
-}: CopiedIconProps): JSX.Element {
+}: {
+  width?: number
+  height?: number
+}): ReactNode {
   return (
     <svg
       viewBox="0 0 448 512"

@@ -14,4 +14,3 @@ export type ActivitiesUpdateDTO = {
   hired_at?: Date
   dismissed_at?: Date
 }
-

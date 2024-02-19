@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { PropsWithChildren, useEffect } from 'react'
+import { PropsWithChildren, ReactNode, useEffect } from 'react'
 import { Layout, LayoutContainer } from './styled'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
@@ -10,7 +10,7 @@ import EmployeeNavigation from './employee-navigation/employee-navigation'
 import EmployeeSidebar from './employee-sidebar/employee-sidebar'
 import Spinner from '@/components/ui/spinner/spinner'
 
-function EmployeeLayout({ children }: PropsWithChildren): JSX.Element {
+function EmployeeLayout({ children }: PropsWithChildren): ReactNode {
   const employee = useAppSelector(getEmployee)
   const dispatch = useAppDispatch()
   const params = useParams()

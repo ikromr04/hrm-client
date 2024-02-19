@@ -1,10 +1,11 @@
+import { ReactNode } from 'react'
 import DescriptionList from '@/components/ui/description-list/description-list'
 import Text from '@/components/ui/text/text'
 import { useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
 import { EmployeeLanguage } from '@/types/employees'
 
-function LanguagesList(): JSX.Element {
+function LanguagesList(): ReactNode {
   const employee = useAppSelector(getEmployee)
 
   if (!employee) {

@@ -1,6 +1,6 @@
-import { StyledInfo } from '@/components/ui/info/styled';
-import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import { StyledInfo } from '@/components/ui/info/styled'
+import { Link } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 
 export const Nav = styled('ul')`
   list-style: none;
@@ -8,7 +8,7 @@ export const Nav = styled('ul')`
   padding: 0;
   display: flex;
   gap: 8px;
-`;
+`
 
 export const NavItem = styled('li')`
   position: relative;
@@ -39,4 +39,4 @@ export const NavLink = styled(Link).withConfig({
     background-color: white;
     box-shadow: 0 0px 4px rgba(0, 0, 0, 4%);
   `}
-`;
+`

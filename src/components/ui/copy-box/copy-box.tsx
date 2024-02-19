@@ -1,11 +1,13 @@
-import { PropsWithChildren } from 'react'
+import { ReactNode } from 'react'
 import { Button, StyledBox } from './styled'
 
-type CopyBoxProps = PropsWithChildren<{
+function CopyBox({
+  children,
+  copyText,
+}: {
+  children: ReactNode
   copyText?: string
-}>
-
-function CopyBox({ children, copyText }: CopyBoxProps): JSX.Element {
+}): ReactNode {
   return (
     <StyledBox>
       <Button copyText={copyText} />

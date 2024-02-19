@@ -4,13 +4,13 @@ import Select from '@/components/ui/select/select'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getEmployeesFilter } from '@/store/app-slice/app-selector'
 import { getLanguages } from '@/store/language-slice/language-selector'
-import { ChangeEvent, useEffect } from 'react'
+import { ChangeEvent, ReactNode, useEffect } from 'react'
 import { fetchLanguagesAction } from '@/store/language-slice/language-api-actions'
 import { setEmployeesFilterAction } from '@/store/app-slice/app-slice'
 import { languageLevelOptions } from '@/const'
 import { FormElement} from '../styled'
 
-function LanguagesFilter() {
+function LanguagesFilter(): ReactNode {
   const filter = useAppSelector(getEmployeesFilter)
   const languages = useAppSelector(getLanguages)
   const dispatch = useAppDispatch()

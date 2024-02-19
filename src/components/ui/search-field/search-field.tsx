@@ -1,12 +1,14 @@
 import SearchIcon from '@/components/icons/search-icon'
 import { Icon, Input, Wrapper } from './styled'
+import { ReactNode } from 'react'
 
-type SearchFieldProps = {
+function SearchField({
+  className,
+  ...rest
+}: {
   className?: string
   [rest: string]: unknown
-}
-
-function SearchField({ className, ...rest }: SearchFieldProps): JSX.Element {
+}): ReactNode {
   return (
     <Wrapper className={className}>
       <Icon>

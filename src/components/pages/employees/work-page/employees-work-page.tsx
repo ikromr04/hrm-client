@@ -4,7 +4,7 @@ import Box from '@/components/ui/box/box'
 import BoxToolbar from '@/components/ui/box-toolbar/box-toolbar'
 import BoxInner from '@/components/ui/box-inner/box-inner'
 import Title from '@/components/ui/title/title'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, ReactNode, useEffect, useState } from 'react'
 import Text from '@/components/ui/text/text'
 import Hr from '@/components/ui/hr/hr'
 import DescriptionList from '@/components/ui/description-list/description-list'
@@ -17,7 +17,7 @@ import EditModal from './edit-modal/edit-modal'
 import DeleteModal from './delete-modal/delete-modal'
 import { Activities } from '@/types/activities'
 
-function EmployeesWorkPage() {
+function EmployeesWorkPage(): ReactNode {
   const [activities, setActivities] = useState<Activities | null>(null)
   const dispatch = useAppDispatch()
   const params = useParams()

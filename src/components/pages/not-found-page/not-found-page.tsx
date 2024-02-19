@@ -5,8 +5,9 @@ import HomeIcon from '@/components/icons/home-icon'
 import { AppRoute } from '@/const'
 import { StyledPage } from './styled'
 import notFoundImage from '@/assets/static/404.svg'
+import { ReactNode } from 'react'
 
-function NotFoundPage(): JSX.Element {
+function NotFoundPage(): ReactNode {
   return (
     <StyledPage tagName="main">
       <img

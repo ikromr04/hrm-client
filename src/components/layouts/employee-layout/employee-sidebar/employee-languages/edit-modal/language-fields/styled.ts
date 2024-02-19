@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Wrapper = styled('div')`
   position: relative;
@@ -7,4 +7,4 @@ export const Wrapper = styled('div')`
   gap: 8px;
   align-items: end;
   margin-bottom: 16px;
-`;
+`

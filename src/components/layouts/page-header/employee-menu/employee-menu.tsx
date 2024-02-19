@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { Dropdown, Avatar, StyledButton, DropdownIcon } from './styled'
 import { AppRoute } from '@/const'
 import Hr from '@/components/ui/hr/hr'
@@ -10,7 +11,7 @@ import { getUser } from '@/store/auth-slice/auth-selector'
 import { logoutAction } from '@/store/auth-slice/auth-api-actions'
 import { useDropdown } from '@/hooks/use-dropdown'
 
-function EmployeeMenu(): JSX.Element {
+function EmployeeMenu(): ReactNode {
   const user = useAppSelector(getUser)
   const dispatch = useAppDispatch()
   const { ref, isOpen, setIsOpen } = useDropdown()
@@ -28,8 +29,8 @@ function EmployeeMenu(): JSX.Element {
           height={32}
           alt={user.name}
           onError={({ currentTarget }) => {
-            currentTarget.onerror = null;
-            currentTarget.src=defaultAvatar;
+            currentTarget.onerror = null
+            currentTarget.src=defaultAvatar
           }}
         />
         {user.name}

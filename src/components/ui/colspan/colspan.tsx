@@ -1,11 +1,13 @@
-import { PropsWithChildren } from 'react'
+import { ReactNode } from 'react'
 import { Column } from './styled'
 
-type ColspanProps = PropsWithChildren<{
+function Colspan({
+  children,
+  span = 1,
+}: {
+  children: ReactNode
   span?: number
-}>
-
-function Colspan({ children, span = 1 }: ColspanProps): JSX.Element {
+}): ReactNode {
   return (
     <Column span={span}>{children}</Column>
   )

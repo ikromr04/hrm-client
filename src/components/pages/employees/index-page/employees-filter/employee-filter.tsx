@@ -1,6 +1,6 @@
 import FilterIcon from '@/components/icons/filter-icon'
 import { ButtonWrapper, FilterButton, FilterCaret, Form, FormElement, FormTitle } from './styled'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, ReactNode, useEffect, useState } from 'react'
 import Title from '@/components/ui/title/title'
 import LanguagesFilter from './languages-filter/languages-filter'
 import DetailsFilter from './details-filter/details-filter'
@@ -19,7 +19,7 @@ import Select from '@/components/ui/select/select'
 import Button from '@/components/ui/button/button'
 import XIcon from '@/components/icons/x-icon'
 
-function EmployeeFilter(): JSX.Element {
+function EmployeeFilter(): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const filter = useAppSelector(getEmployeesFilter)
   const dispatch = useAppDispatch()

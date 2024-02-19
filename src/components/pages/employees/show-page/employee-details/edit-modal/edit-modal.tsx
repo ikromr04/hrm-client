@@ -1,5 +1,5 @@
 import { updateEmployeeAction } from '@/store/employee-slice/employees-api-actions'
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, ReactNode, useRef, useState } from 'react'
 import { useFormValidation } from '@/hooks/use-form-validation'
 import { EmployeesUpdateDTO } from '@/dto/employees-dto'
 import Actions from '@/components/ui/actions/actions'
@@ -19,11 +19,11 @@ import { FAMILY_STATUSES, GENDERS, NO_CHILDREN } from '@/const'
 import MultiSelect from '@/components/ui/multi-select/multi-select'
 import { getYears } from '@/utils/employees'
 
-type EditModalProps = {
+function EditModal({
+  employee
+}: {
   employee: Employee
-}
-
-function EditModal({ employee }: EditModalProps): JSX.Element {
+}): ReactNode {
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const [dto, setDTO] = useState<EmployeesUpdateDTO>({ details: {
     gender: employee.details?.gender,

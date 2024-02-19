@@ -1,7 +1,7 @@
-import { Menu } from '@/components/ui/dropdown-menu/styled';
-import { StyledInfo } from '@/components/ui/info/styled';
-import Spinner from '@/components/ui/spinner/spinner';
-import styled from 'styled-components';
+import { Menu } from '@/components/ui/dropdown-menu/styled'
+import { StyledInfo } from '@/components/ui/info/styled'
+import Spinner from '@/components/ui/spinner/spinner'
+import styled from 'styled-components'
 
 export const Dropdown = styled('div')`
   position: relative;

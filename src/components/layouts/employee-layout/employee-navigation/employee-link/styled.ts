@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 
 export const StyledLink = styled(Link).withConfig({
   shouldForwardProp: (props) => !['isCurrent'].includes(props),
@@ -24,4 +24,4 @@ export const StyledLink = styled(Link).withConfig({
     background-color: white;
     pointer-events: none;
   `}
-`;
+`

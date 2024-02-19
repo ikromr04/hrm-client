@@ -1,12 +1,12 @@
-type CallIconProps = {
-  width?: number
-  height?: number
-}
+import { ReactNode } from 'react'
 
 function CallIcon({
   width = 16,
   height = 16,
-}: CallIconProps): JSX.Element {
+}: {
+  width?: number
+  height?: number
+}): ReactNode {
   return (
     <svg
       viewBox="0 0 22 22"

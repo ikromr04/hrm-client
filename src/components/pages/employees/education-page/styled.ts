@@ -1,5 +1,5 @@
-import { StyledToolbar } from '@/components/ui/box-toolbar/styled';
-import styled from 'styled-components';
+import { StyledToolbar } from '@/components/ui/box-toolbar/styled'
+import styled from 'styled-components'
 
 export const Main = styled('main')`
   display: flex;
@@ -8,7 +8,7 @@ export const Main = styled('main')`
   ${StyledToolbar} {
     margin-bottom: 8px;
   }
-`;
+`
 
 export const EducationActions = styled('div')`
   position: absolute;

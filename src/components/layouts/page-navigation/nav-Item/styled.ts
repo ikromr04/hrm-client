@@ -1,7 +1,7 @@
-import DropdownButton from '@/components/ui/dropdown-button/dropdown-button';
-import DropdownMenu from '@/components/ui/dropdown-menu/dropdown-menu';
-import { StyledInfo } from '@/components/ui/info/styled';
-import styled, { css } from 'styled-components';
+import DropdownButton from '@/components/ui/dropdown-button/dropdown-button'
+import DropdownMenu from '@/components/ui/dropdown-menu/dropdown-menu'
+import { StyledInfo } from '@/components/ui/info/styled'
+import styled, { css } from 'styled-components'
 
 export const SubItems = styled(DropdownMenu)`
   top: 0;
@@ -80,7 +80,7 @@ export const Button = styled('button').withConfig({
       color: #6c86ab;
     }
   `}
-`;
+`
 
 export const SubItem = styled(DropdownButton)`
   color: inherit;

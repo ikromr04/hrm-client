@@ -1,6 +1,6 @@
-import SquareCheckIcon from '@/components/icons/square-check-icon';
-import SquareIcon from '@/components/icons/square-icon';
-import styled, { css } from 'styled-components';
+import SquareCheckIcon from '@/components/icons/square-check-icon'
+import SquareIcon from '@/components/icons/square-icon'
+import styled, { css } from 'styled-components'
 
 export const Label = styled('label').withConfig({
   shouldForwardProp: (props) => !['large', 'bold'].includes(props),

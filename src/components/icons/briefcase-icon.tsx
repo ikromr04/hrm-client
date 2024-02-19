@@ -1,12 +1,12 @@
-type BriefcaseIconProps = {
-  width?: number
-  height?: number
-}
+import { ReactNode } from 'react'
 
 function BriefcaseIcon({
   width = 16,
   height = 16,
-}: BriefcaseIconProps): JSX.Element {
+}: {
+  width?: number
+  height?: number
+}): ReactNode {
   return (
     <svg
       viewBox="0 0 24 24"

@@ -5,27 +5,24 @@ import LoginPage from '../pages/login-page/login-page'
 import NotFoundPage from '../pages/not-found-page/not-found-page'
 import HomePage from '../pages/home-page/home-page'
 import EmployeesPage from '../pages/employees/index-page/employees-page'
-import EmployeesStructurePage 
-  from '../pages/employees/structure-page/employees-structure-page'
+import EmployeesStructurePage from '../pages/employees/structure-page/employees-structure-page'
 import EmployeesShowPage from '../pages/employees/show-page/employees-show-page'
 import EmployeesWorkPage from '../pages/employees/work-page/employees-work-page'
-import EmployeesEquipmentPage 
-  from '../pages/employees/equipment-page/employees-equipment-page'
+import EmployeesEquipmentPage from '../pages/employees/equipment-page/employees-equipment-page'
 import EmployeesVacationPage from '../pages/employees/vacation-page/employees-vacation-page'
 import EmployeesPIRPage from '../pages/employees/pir-page/employees-pir-page'
 import EmployeesKPIPage from '../pages/employees/kpi-page/employees-kpi-page'
-import EmployeesAttendancePage 
-  from '../pages/employees/attendance-page/employees-attendance-page'
+import EmployeesAttendancePage from '../pages/employees/attendance-page/employees-attendance-page'
 import { getAuthStatus } from '@/store/auth-slice/auth-selector'
 import AppLoading from '../ui/app-loading/app-loading'
-import EmployeesEducationPage 
-  from '../pages/employees/education-page/employees-education-page'
+import EmployeesEducationPage from '../pages/employees/education-page/employees-education-page'
 import DashboardJobsPage from '../pages/dashboard/jobs-page/dashboard-jobs-page'
 import DashboardPositionsPage from '../pages/dashboard/positions-page/dashboard-positions-page'
 import DashboardLanguagesPage from '../pages/dashboard/languages-page/dashboard-languages-page'
 import DashboardDepartmentsPage from '../pages/dashboard/departments-page/dashboard-departments-page'
+import { ReactNode } from 'react'
 
-function App(): JSX.Element {
+function App(): ReactNode {
   const authStatus = useAppSelector(getAuthStatus)
 
   if (authStatus === AuthorizationStatus.Unknown) {

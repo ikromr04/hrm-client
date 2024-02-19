@@ -1,9 +1,12 @@
-type BookIconProps = {
-  width: number
-  height: number
-}
+import { ReactNode } from 'react'
 
-function BookIcon({ width, height }: BookIconProps): JSX.Element {
+function BookIcon({
+  width = 16,
+  height = 16,
+}: {
+  width?: number
+  height?: number
+}): ReactNode {
   return (
     <svg
       viewBox="0 0 24 24"

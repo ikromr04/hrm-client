@@ -1,9 +1,8 @@
-import { BaseSyntheticEvent, useRef, useState } from 'react'
+import { BaseSyntheticEvent, ReactNode, useRef, useState } from 'react'
 import { Image, Button, Loading, Dropdown } from './styled'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
-import { deleteEmployeesAvatarAction, updateEmployeesAvatarAction } 
-  from '@/store/employee-slice/employees-api-actions'
+import { deleteEmployeesAvatarAction, updateEmployeesAvatarAction } from '@/store/employee-slice/employees-api-actions'
 import { setEmployeesAvatarAction } from '@/store/employee-slice/employees-slice'
 import Info from '@/components/ui/info/info'
 import defaultAvatar from '@/assets/static/default-avatar.png'
@@ -13,7 +12,7 @@ import DropdownButton from '@/components/ui/dropdown-button/dropdown-button'
 import { getUser } from '@/store/auth-slice/auth-selector'
 import { setUsersAvatarAction } from '@/store/auth-slice/auth-slice'
 
-function EmployeeAvatar(): JSX.Element {
+function EmployeeAvatar(): ReactNode {
   const employee = useAppSelector(getEmployee)
   const user = useAppSelector(getUser)
   const dispatch = useAppDispatch()

@@ -1,10 +1,5 @@
-import { 
-  EmployeeDetail, 
-  EmployeePositions, 
-  Header, 
-  HeaderInner, 
-  EmployeeName, 
-} from './styled'
+import { ReactNode } from 'react'
+import { EmployeeDetail, EmployeePositions, Header, HeaderInner, EmployeeName } from './styled'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
 import BriefcaseIcon from '@/components/icons/briefcase-icon'
@@ -19,7 +14,7 @@ import { setEmployeeAction } from '@/store/employee-slice/employees-slice'
 import Accent from '@/components/ui/accent/accent'
 import MapPin from '@/components/icons/map-pin-icon'
 
-function EmployeeHeader(): JSX.Element {
+function EmployeeHeader(): ReactNode {
   const employee = useAppSelector(getEmployee)
   const dispatch = useAppDispatch()
   

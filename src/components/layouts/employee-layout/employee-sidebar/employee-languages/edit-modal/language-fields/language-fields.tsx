@@ -1,6 +1,6 @@
 import { EmployeeLanguage } from '@/types/employees'
 import { Languages } from '@/types/languages'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, ReactNode, SetStateAction } from 'react'
 import { Wrapper } from './styled'
 import Select from '@/components/ui/select/select'
 import Button from '@/components/ui/button/button'
@@ -10,17 +10,15 @@ import { ID } from '@/types'
 import { EmployeesUpdateDTO } from '@/dto/employees-dto'
 import DeleteIcon from '@/components/icons/delete-icon'
 
-type LanguageFieldsProps = {
-  currentLanguage: EmployeeLanguage
-  languages: Languages
-  setDTO: Dispatch<SetStateAction<EmployeesUpdateDTO>>
-}
-
 function LanguageFields({
   currentLanguage,
   languages,
   setDTO,
-}: LanguageFieldsProps): JSX.Element {
+}: {
+  currentLanguage: EmployeeLanguage
+  languages: Languages
+  setDTO: Dispatch<SetStateAction<EmployeesUpdateDTO>>
+}): ReactNode {
   const handleLanguageChange = (id: ID) =>
     setDTO((prevDTO) => {
       prevDTO.languages = prevDTO.languages?.map((prevLanguage) => {

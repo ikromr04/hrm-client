@@ -1,5 +1,5 @@
 import { updateEmployeeAction } from '@/store/employee-slice/employees-api-actions'
-import { useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { EmployeesUpdateDTO } from '@/dto/employees-dto'
 import Actions from '@/components/ui/actions/actions'
 import EditIcon from '@/components/icons/edit-icon'
@@ -18,7 +18,7 @@ import { Languages } from '@/types/languages'
 import { EmployeeLanguage } from '@/types/employees'
 import EmptyLanguageFields from './empty-language-fields/empty-language-fields'
 
-function EditModal(): JSX.Element {
+function EditModal(): ReactNode {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [dto, setDTO] = useState<EmployeesUpdateDTO>({})
   const [isOpen, setIsOpen] = useState(false)
@@ -60,10 +60,10 @@ function EditModal(): JSX.Element {
   const getFilteredLanguages = (language?: EmployeeLanguage): Languages =>
     languages.filter((lang) => {
       if (language?.id === lang.id) {
-        return true;
+        return true
       }
-      return !dto.languages?.map(({ id }) => id).includes(lang.id);
-    });
+      return !dto.languages?.map(({ id }) => id).includes(lang.id)
+    })
 
   return (
     <>

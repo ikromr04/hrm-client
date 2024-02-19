@@ -8,12 +8,13 @@ import TextLink from '@/components/ui/text-link/text-link'
 import MobileIcon from '@/components/icons/mobile-icon'
 import BoxInner from '@/components/ui/box-inner/box-inner'
 import DescriptionList from '@/components/ui/description-list/description-list'
-import dayjs from 'dayjs';
+import dayjs from 'dayjs'
 import { useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
 import { getWorkTime } from '@/utils/employees'
+import { ReactNode } from 'react'
 
-function EmployeeSidebar(): JSX.Element {
+function EmployeeSidebar(): ReactNode {
   const employee = useAppSelector(getEmployee)
 
   if (!employee) {

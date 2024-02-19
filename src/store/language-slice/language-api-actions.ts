@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosError, AxiosInstance } from 'axios';
-import { APIRoute } from '../../const';
-import { Language, Languages } from '../../types/languages';
-import { LanguagesStoreDTO, LanguagesUpdateDTO } from '@/dto/languages-dto';
-import { ValidationError } from '@/types/validation-error';
-import { ID } from '@/types';
-import { generatePath } from 'react-router-dom';
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import { AxiosError, AxiosInstance } from 'axios'
+import { APIRoute } from '../../const'
+import { Language, Languages } from '../../types/languages'
+import { LanguagesStoreDTO, LanguagesUpdateDTO } from '@/dto/languages-dto'
+import { ValidationError } from '@/types/validation-error'
+import { ID } from '@/types'
+import { generatePath } from 'react-router-dom'
 
 export const fetchLanguagesAction = createAsyncThunk<Languages, undefined, {
   extra: AxiosInstance

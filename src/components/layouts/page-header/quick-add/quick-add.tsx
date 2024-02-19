@@ -1,14 +1,14 @@
-import PlusIcon from '@/components/icons/plus-icon';
-import Button from '@/components/ui/button/button';
-import Info from '@/components/ui/info/info';
-import { Dropdown } from './styled';
-import DropdownMenu from '@/components/ui/dropdown-menu/dropdown-menu';
-import { useDropdown } from '@/hooks/use-dropdown';
-import { useState } from 'react';
-import DropdownButton from '@/components/ui/dropdown-button/dropdown-button';
-import EmployeeModal from './employee-modal/employee-modal';
+import PlusIcon from '@/components/icons/plus-icon'
+import Button from '@/components/ui/button/button'
+import Info from '@/components/ui/info/info'
+import { Dropdown } from './styled'
+import DropdownMenu from '@/components/ui/dropdown-menu/dropdown-menu'
+import { useDropdown } from '@/hooks/use-dropdown'
+import { ReactNode, useState } from 'react'
+import DropdownButton from '@/components/ui/dropdown-button/dropdown-button'
+import EmployeeModal from './employee-modal/employee-modal'
 
-function QuickAdd(): JSX.Element {
+function QuickAdd(): ReactNode {
   const { ref, isOpen, setIsOpen } = useDropdown()
   const [isEmployeeModalOpen, setIsEmployeeModalOpen] = useState(false)
 

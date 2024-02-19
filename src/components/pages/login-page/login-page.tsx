@@ -1,4 +1,4 @@
-import { ChangeEvent, SyntheticEvent, useState } from 'react'
+import { ChangeEvent, ReactNode, SyntheticEvent, useState } from 'react'
 import { Form, Main } from './styled'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { AuthorizationStatus, AppRoute } from '@/const'
@@ -12,7 +12,7 @@ import { useFormValidation } from '@/hooks/use-form-validation'
 import { getAuthStatus } from '@/store/auth-slice/auth-selector'
 import { loginAction } from '@/store/auth-slice/auth-api-actions'
 
-function LoginPage(): JSX.Element {
+function LoginPage(): ReactNode {
   const { validationError, setValidationError, formChangeHandler } = useFormValidation()
   const authorizationStatus = useAppSelector(getAuthStatus)
   const [isSubmitting, setIsSubmitting] = useState(false)

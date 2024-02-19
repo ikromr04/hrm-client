@@ -6,7 +6,7 @@ import Modal from '@/components/ui/modal/modal'
 import Text from '@/components/ui/text/text'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { useFormValidation } from '@/hooks/use-form-validation'
-import { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, Dispatch, ReactNode, SetStateAction, useEffect, useRef, useState } from 'react'
 import { EmployeesStoreDTO } from '@/dto/employees-dto'
 import { getDepartments } from '@/store/department-slice/department-selector'
 import { getJobs } from '@/store/job-slice/job-selector'
@@ -18,12 +18,13 @@ import { storeEmployeeAction } from '@/store/employee-slice/employees-api-action
 import { toast } from 'react-toastify'
 import MultiSelect from '@/components/ui/multi-select/multi-select'
 
-type EmployeeModalProps = {
+function EmployeeModal({
+  isOpen,
+  setIsOpen,
+}: {
   isOpen: boolean
   setIsOpen: Dispatch<SetStateAction<boolean>>
-}
-
-function EmployeeModal({ isOpen, setIsOpen }: EmployeeModalProps): JSX.Element {
+}): ReactNode {
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)

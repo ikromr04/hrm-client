@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, ReactNode, useRef, useState } from 'react'
 import Modal from '@/components/ui/modal/modal'
 import Text from '@/components/ui/text/text'
 import { useFormValidation } from '@/hooks/use-form-validation'
@@ -12,7 +12,7 @@ import PlusIcon from '@/components/icons/plus-icon'
 import { LanguagesStoreDTO } from '@/dto/languages-dto'
 import { storeLanguageAction } from '@/store/language-slice/language-api-actions'
 
-function AddModal(): JSX.Element {
+function AddModal(): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)

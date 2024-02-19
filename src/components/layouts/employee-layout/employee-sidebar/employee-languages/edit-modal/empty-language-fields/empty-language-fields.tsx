@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, ReactNode, SetStateAction, useState } from 'react'
 import { Wrapper } from './styled'
 import { Languages } from '@/types/languages'
 import { EmployeesUpdateDTO } from '@/dto/employees-dto'
@@ -7,15 +7,13 @@ import { EmployeeLanguage } from '@/types/employees'
 import { ID } from '@/types'
 import Select from '@/components/ui/select/select'
 
-type EmptyLanguageFieldsProps = {
-  languages: Languages
-  setDTO: Dispatch<SetStateAction<EmployeesUpdateDTO>>
-}
-
 function EmptyLanguageFields({
   languages,
   setDTO,
-}: EmptyLanguageFieldsProps): JSX.Element {
+}: {
+  languages: Languages
+  setDTO: Dispatch<SetStateAction<EmployeesUpdateDTO>>
+}): ReactNode {
   const [level, setLevel] = useState(languageLevelOptions[0].value)
 
   const handleLanguageChange = (id: ID) => {

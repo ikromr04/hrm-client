@@ -11,7 +11,7 @@ export const List = styled('ul')`
   padding: 4px;
   padding-right: 8px;
   margin: -4px;
-  margin-right: -8px;
+  margin-right: -16px;
 
   &::-webkit-scrollbar {
     width: 8px;

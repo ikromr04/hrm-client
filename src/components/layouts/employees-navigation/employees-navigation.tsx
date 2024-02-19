@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Nav, NavItem, NavLink } from './styled'
 import { AppRoute } from '@/const'
@@ -5,7 +6,7 @@ import AddressBookIcon from '@/components/icons/address-book-icon'
 import Info from '@/components/ui/info/info'
 import SitemapIcon from '@/components/icons/sitemap-icon'
 
-function Navigation(): JSX.Element {
+function EmployeesNavigation(): ReactNode {
   const location = useLocation()
 
   return (
@@ -16,7 +17,7 @@ function Navigation(): JSX.Element {
           current={location.pathname === AppRoute.Employees.Index}
         >
           <AddressBookIcon width={16} height={16} />
-          <Info bottom>Сотрудники</Info>
+          <Info bottom>Справочник <br /> сотрудников</Info>
         </NavLink>
       </NavItem>
       <NavItem>
@@ -32,4 +33,4 @@ function Navigation(): JSX.Element {
   )
 }
 
-export default Navigation
+export default EmployeesNavigation

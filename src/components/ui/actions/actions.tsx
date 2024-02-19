@@ -1,14 +1,14 @@
-import { PropsWithChildren } from 'react'
+import { ReactNode } from 'react'
 import { Wrapper } from './styled'
 
-type ActionsProps = PropsWithChildren<{
+function Actions({
+  children,
+  className,
+}: {
+  children: ReactNode
   className?: string
-}>
-
-function Actions({ className, children }: ActionsProps): JSX.Element {
-  return (
-    <Wrapper className={className}>{children}</Wrapper>
-  )
+}): ReactNode {
+  return <Wrapper className={className}>{children}</Wrapper>
 }
 
 export default Actions

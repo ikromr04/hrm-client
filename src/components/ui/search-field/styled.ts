@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Wrapper = styled('div')`
   position: relative;
   display: flex;
   flex-grow: 1;
-`;
+`
 
 export const Icon = styled('span')`
   position: absolute;
@@ -17,7 +17,7 @@ export const Icon = styled('span')`
   align-items: center;
   justify-content: center;
   color: #898989;
-`;
+`
 
 export const Input = styled('input')`
   display: flex;
@@ -34,4 +34,4 @@ export const Input = styled('input')`
   &::placeholder {
     color: #898989;
   }
-`;
+`

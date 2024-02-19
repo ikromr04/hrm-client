@@ -1,10 +1,10 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 4px;
-`;
+`
 
 export const Label = styled('label').withConfig({
   shouldForwardProp: (props) => !['horizontal'].includes(props),
@@ -17,7 +17,7 @@ export const Label = styled('label').withConfig({
     flex-direction: row;
     align-items: baseline;
   `}
-`;
+`
 
 export const Span = styled('span')`
   font-size: 12px;
@@ -27,7 +27,7 @@ export const Span = styled('span')`
   &:empty {
     display: none;
   }
-`;
+`
 
 export const StyledInput = styled('input').withConfig({
   shouldForwardProp: (props) => !['error', 'width'].includes(props),
@@ -63,7 +63,7 @@ export const StyledInput = styled('input').withConfig({
   &::placeholder {
     color: #9e9e9e;
   }
-`;
+`
 
 export const ErrorMessage = styled('span')`
   font-size: 12px;
@@ -73,4 +73,4 @@ export const ErrorMessage = styled('span')`
   &:empty {
     display: none;
   }
-`;
+`

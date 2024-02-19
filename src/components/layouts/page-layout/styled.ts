@@ -1,5 +1,5 @@
-import Container from '@/components/ui/container/container';
-import { css, styled } from 'styled-components';
+import Container from '@/components/ui/container/container'
+import { css, styled } from 'styled-components'
 
 export const Layout = styled('div')`
   display: grid;

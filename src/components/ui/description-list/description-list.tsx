@@ -1,21 +1,20 @@
-import { Fragment } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Fragment, ReactNode } from 'react'
 import { Dd, Dl, Dt, Item } from './styled'
-
-type DescriptionListProps = {
-  list: {
-    [key: string]: any
-  }
-  detailed?: boolean
-  detailedInverse?: boolean
-  columns?: number
-}
 
 function DescriptionList({
   list,
   detailed,
   detailedInverse,
   columns
-}: DescriptionListProps): JSX.Element {
+}: {
+  list: {
+    [key: string]: any
+  }
+  detailed?: boolean
+  detailedInverse?: boolean
+  columns?: number
+}): ReactNode {
   const ItemsTagName = columns ? Item : Fragment
 
   return (

@@ -1,12 +1,12 @@
-type HomeIconProps = {
-  width?: number
-  height?: number
-}
+import { ReactNode } from 'react'
 
 function HomeIcon({
   width = 16,
   height = 16,
-}: HomeIconProps): JSX.Element {
+}: {
+  width?: number
+  height?: number
+}): ReactNode {
   return (
     <svg
       viewBox="0 0 24 24"

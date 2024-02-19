@@ -1,7 +1,7 @@
 import PlusIcon from '@/components/icons/plus-icon'
 import { CreateButton } from './styled'
 import Info from '@/components/ui/info/info'
-import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from 'react'
+import { ChangeEvent, Dispatch, ReactNode, SetStateAction, useRef, useState } from 'react'
 import Modal from '@/components/ui/modal/modal'
 import Text from '@/components/ui/text/text'
 import { useFormValidation } from '@/hooks/use-form-validation'
@@ -17,11 +17,11 @@ import { Activities } from '@/types/activities'
 import { ActivitiesStoreDTO } from '@/dto/activities-dto'
 import Colspan from '@/components/ui/colspan/colspan'
 
-type CreateModalProps = {
+function CreateModal({
+  setActivities
+}: {
   setActivities: Dispatch<SetStateAction<Activities | null>>
-}
-
-function CreateModal({ setActivities }: CreateModalProps) {
+}): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const [isSubmitting, setIsSubmitting] = useState(false)

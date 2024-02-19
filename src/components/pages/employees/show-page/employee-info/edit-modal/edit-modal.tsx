@@ -1,5 +1,5 @@
 import { updateEmployeeAction } from '@/store/employee-slice/employees-api-actions'
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, ReactNode, useEffect, useRef, useState } from 'react'
 import { useFormValidation } from '@/hooks/use-form-validation'
 import { EmployeesUpdateDTO } from '@/dto/employees-dto'
 import Actions from '@/components/ui/actions/actions'
@@ -22,11 +22,11 @@ import { fetchPositionsAction } from '@/store/position-slice/position-api-action
 import { getDepartments } from '@/store/department-slice/department-selector'
 import { fetchDepartmentsAction } from '@/store/department-slice/department-api-actions'
 
-type EditModalProps = {
+function EditModal({
+  employee
+}: {
   employee: Employee
-}
-
-function EditModal({ employee }: EditModalProps): JSX.Element {
+}): ReactNode {
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)

@@ -1,5 +1,5 @@
 import { storeEmployeeAction } from '@/store/employee-slice/employees-api-actions'
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, ReactNode, useEffect, useRef, useState } from 'react'
 import { useFormValidation } from '@/hooks/use-form-validation'
 import { EmployeesStoreDTO } from '@/dto/employees-dto'
 import Actions from '@/components/ui/actions/actions'
@@ -22,7 +22,7 @@ import Select from '@/components/ui/select/select'
 import { FAMILY_STATUSES, GENDERS, NO_CHILDREN } from '@/const'
 import { getYears } from '@/utils/employees'
 
-function AddEmployee(): JSX.Element {
+function AddEmployee(): ReactNode {
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)

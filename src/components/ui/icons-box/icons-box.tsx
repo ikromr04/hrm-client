@@ -1,11 +1,13 @@
+import { ReactNode } from 'react'
 import { StyledIconsBox } from './styled'
 
-type IconsBoxProps = {
-  icon: JSX.Element
+function IconsBox({
+  icon,
+  color
+}: {
+  icon: ReactNode
   color?: string
-}
-
-function IconsBox({ icon, color }: IconsBoxProps): JSX.Element {
+}): ReactNode {
   return (
     <StyledIconsBox color={color}>{icon}</StyledIconsBox>
   )

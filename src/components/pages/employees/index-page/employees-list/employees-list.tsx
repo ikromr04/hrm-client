@@ -8,12 +8,13 @@ import { Employees } from '@/types/employees'
 import { filterEmployees } from '@/utils/employees'
 import { useLocation } from 'react-router-dom'
 import { Wrapper } from './styled'
+import { ReactNode } from 'react'
 
-type EmployeesListProps = {
+function EmployeesList({
+  employees
+}: {
   employees: Employees | null
-}
-
-function EmployeesList({ employees }: EmployeesListProps) {
+}): ReactNode {
   const searchParams = new URLSearchParams(useLocation().search)
   const view = searchParams.get('view')
   const filter = useAppSelector(getEmployeesFilter)
@@ -32,7 +33,7 @@ function EmployeesList({ employees }: EmployeesListProps) {
       if (a < b) {
         return (filter.order.type === 'asc') ? -1 : 1
       }
-      return 0;
+      return 0
     }
     if (
       (filter.order.by === 'surname')
@@ -50,8 +51,8 @@ function EmployeesList({ employees }: EmployeesListProps) {
     ) {
       return (filter.order.type === 'asc') ? -1 : 1
     }
-    return 0;
-  });
+    return 0
+  })
 
   return (
     <Wrapper>

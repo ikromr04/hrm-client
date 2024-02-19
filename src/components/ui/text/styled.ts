@@ -1,13 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 export const StyledText = styled('p').withConfig({
-  shouldForwardProp: (prop) => ![
-      'small', 
-      'large', 
-      'success', 
-      'error', 
-      'warning'
-    ].includes(prop)
+  shouldForwardProp: (prop) => !['small', 'large', 'success', 'error', 'warning'].includes(prop)
 })<{ 
   small?: boolean, 
   large?: boolean, 
@@ -41,4 +35,4 @@ export const StyledText = styled('p').withConfig({
   ${({ error }) => error && css`
     color: #d32f2f;
   `}
-`;
+`

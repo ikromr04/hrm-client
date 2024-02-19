@@ -1,19 +1,17 @@
+import { ReactNode } from 'react'
 import { Span } from './styled'
-
-type SpinnerProps = {
-  className?: string
-  width?: number
-  height?: number
-  [rest: string]: unknown
-}
 
 function Spinner({ 
   className,
   width = 24,
   height = 24,
   ...rest
-}: SpinnerProps): JSX.Element {
-
+}: {
+  className?: string
+  width?: number
+  height?: number
+  [rest: string]: unknown
+}): ReactNode {
   return (
     <Span
       className={className}

@@ -1,12 +1,12 @@
-type FilterIconProps = {
+import { ReactNode } from 'react'
+
+function FilterIcon({
+  width = 16,
+  height = 16,
+}: {
   width?: number
   height?: number
-}
-
-function FilterIcon({ 
-  width = 16, 
-  height = 16, 
-}: FilterIconProps): JSX.Element {
+}): ReactNode {
   return (
     <svg 
       viewBox="0 0 24 24"

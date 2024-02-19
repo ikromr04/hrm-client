@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, ReactNode, useRef, useState } from 'react'
 import Modal from '@/components/ui/modal/modal'
 import Text from '@/components/ui/text/text'
 import { useFormValidation } from '@/hooks/use-form-validation'
@@ -12,11 +12,11 @@ import { Position } from '@/types/positions'
 import { updatePositionAction } from '@/store/position-slice/position-api-actions'
 import { PositionsUpdateDTO } from '@/dto/positions-dto'
 
-type EditModalProps = {
+function EditModal({
+  position
+}: {
   position: Position
-}
-
-function EditModal({ position }: EditModalProps): JSX.Element {
+}): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)

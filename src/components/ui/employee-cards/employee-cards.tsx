@@ -1,12 +1,13 @@
 import { Employees } from '@/types/employees'
 import { List, ListItem } from './styled'
 import EmployeesCard from '../employees-card/employees-card'
+import { ReactNode } from 'react'
 
-type EmployeeCardsProps = {
+function EmployeeCards({
+  employees
+}: {
   employees: Employees
-}
-
-function EmployeeCards({ employees }: EmployeeCardsProps): JSX.Element {
+}): ReactNode {
   return (
     <List>
       {employees.map((employee) => (

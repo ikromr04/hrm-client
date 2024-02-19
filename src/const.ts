@@ -62,6 +62,7 @@ export const APIRoute = {
   },
   Departments: {
     Index: '/departments',
+    Dashboard: '/departments/dashboard',
     Show: '/departments/:id',
   },
   Educations: {

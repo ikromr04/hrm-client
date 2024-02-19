@@ -6,8 +6,9 @@ import Hr from '@/components/ui/hr/hr'
 import AddressBookIcon from '@/components/icons/address-book-icon'
 import NavItem from './nav-Item/nav-item'
 import SettingsIcon from '@/components/icons/settings-icon'
+import { ReactNode } from 'react'
 
-function PageNavigation(): JSX.Element {
+function PageNavigation(): ReactNode {
   return (
     <Nav tagName="nav">
       <NavItem

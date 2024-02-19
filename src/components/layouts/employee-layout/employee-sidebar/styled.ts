@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Sidebar = styled('aside')`
   display: flex;
   flex-direction: column;
   gap: 16px;
-`;
+`
 
 export const LinksWrapper = styled('div')`
   display: flex;
@@ -12,5 +12,4 @@ export const LinksWrapper = styled('div')`
   gap: 8px;
   overflow: hidden;
   width: 100%;
-`;
-
+`

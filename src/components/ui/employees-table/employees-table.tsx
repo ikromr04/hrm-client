@@ -8,12 +8,13 @@ import { useAppDispatch, useAppSelector } from '@/hooks'
 import { setEmployeeAction } from '@/store/employee-slice/employees-slice'
 import { getEmployeesFilter } from '@/store/app-slice/app-selector'
 import TextLink from '../text-link/text-link'
+import { ReactNode } from 'react'
 
-type EmployeesTableProps = {
+function EmployeesTable({
+  employees
+}: {
   employees: Employees
-}
-
-function EmployeesTable({ employees }: EmployeesTableProps): JSX.Element {
+}): ReactNode {
   const dispatch = useAppDispatch()
   const filter = useAppSelector(getEmployeesFilter)
 
@@ -85,7 +86,7 @@ function EmployeesTable({ employees }: EmployeesTableProps): JSX.Element {
       }
       return row
     })
-  });
+  })
 
   return (
     <DataTable

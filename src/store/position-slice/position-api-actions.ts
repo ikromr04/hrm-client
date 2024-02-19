@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosError, AxiosInstance } from 'axios';
-import { APIRoute } from '../../const';
-import { Position, Positions } from '../../types/positions';
-import { PositionsStoreDTO, PositionsUpdateDTO } from '@/dto/positions-dto';
-import { ValidationError } from '@/types/validation-error';
-import { ID } from '@/types';
-import { generatePath } from 'react-router-dom';
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import { AxiosError, AxiosInstance } from 'axios'
+import { APIRoute } from '../../const'
+import { Position, Positions } from '../../types/positions'
+import { PositionsStoreDTO, PositionsUpdateDTO } from '@/dto/positions-dto'
+import { ValidationError } from '@/types/validation-error'
+import { ID } from '@/types'
+import { generatePath } from 'react-router-dom'
 
 export const fetchPositionsAction = createAsyncThunk<Positions, undefined, {
   extra: AxiosInstance;

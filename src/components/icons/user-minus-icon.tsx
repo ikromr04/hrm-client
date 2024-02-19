@@ -1,9 +1,12 @@
-type UserMinusIconProps = {
-  width: number
-  height: number
-}
+import { ReactNode } from 'react'
 
-function UserMinusIcon({ width, height }: UserMinusIconProps): JSX.Element {
+function UserMinusIcon({
+  width = 16,
+  height = 16,
+}: {
+  width?: number
+  height?: number
+}): ReactNode {
   return (
     <svg
       viewBox="0 0 24 24"

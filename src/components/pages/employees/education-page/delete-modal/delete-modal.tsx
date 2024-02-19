@@ -8,15 +8,16 @@ import Text from '@/components/ui/text/text'
 import { useAppDispatch } from '@/hooks'
 import { deleteEducationAction } from '@/store/api-actions'
 import { Education, Educations } from '@/types/educations'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, ReactNode, SetStateAction, useState } from 'react'
 import { toast } from 'react-toastify'
 
-type DeleteModalProps = {
+function DeleteModal({
+  education,
+  setEducations,
+}: {
   education: Education
   setEducations: Dispatch<SetStateAction<Educations | null>>
-}
-
-function DeleteModal({ education, setEducations }: DeleteModalProps) {
+}): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const dispatch = useAppDispatch()

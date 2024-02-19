@@ -1,19 +1,18 @@
-import { PropsWithChildren } from 'react'
+import { ReactNode } from 'react'
 import { Button } from './styled'
 import { Link } from 'react-router-dom'
-
-type DropdownButtonProps = PropsWithChildren<{
-  className?: string
-  href?: string
-  [rest: string]: unknown
-}>
 
 function DropdownButton({
   className,
   href,
   children,
   ...rest
-} : DropdownButtonProps): JSX.Element {
+} : {
+  children: ReactNode
+  className?: string
+  href?: string
+  [rest: string]: unknown
+}): ReactNode {
   return (
     <Button
     className={className}

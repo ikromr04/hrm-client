@@ -4,8 +4,9 @@ import IconsBox from '@/components/ui/icons-box/icons-box'
 import UserPlusIcon from '@/components/icons/user-plus-icon'
 import UserIcon from '@/components/icons/user-icon'
 import UserMinusIcon from '@/components/icons/user-minus-icon'
+import { ReactNode } from 'react'
 
-function Processes(): JSX.Element {
+function Processes(): ReactNode {
   return (
     <StyledProcesses>
       <Process tagName={Link} to="">

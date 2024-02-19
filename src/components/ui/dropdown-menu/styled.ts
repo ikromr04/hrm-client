@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import Box from '../box/box';
+import styled, { css } from 'styled-components'
+import Box from '../box/box'
 
 export const Menu = styled(Box).withConfig({
   shouldForwardProp: (props) => !['isOpen'].includes(props),
@@ -18,4 +18,4 @@ export const Menu = styled(Box).withConfig({
     opacity: 1;
     visibility: visible;
   `}
-`;
+`

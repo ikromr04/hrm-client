@@ -1,14 +1,5 @@
 import { Employee } from '@/types/employees'
-import {
-  Aside,
-  Header,
-  Avatar,
-  PositionsWrapper,
-  Footer,
-  FooterLinks,
-  FooterLink,
-  EmployeeLink,
-} from './styled'
+import { Aside, Header, Avatar, PositionsWrapper, Footer, FooterLinks, FooterLink, EmployeeLink } from './styled'
 import defaultAvatar from '@/assets/static/default-avatar.png'
 import Title from '../title/title'
 import Text from '../text/text'
@@ -24,12 +15,13 @@ import { getEmployeesFilter } from '@/store/app-slice/app-selector'
 import { generatePath } from 'react-router-dom'
 import { AppRoute } from '@/const'
 import { setEmployeeAction } from '@/store/employee-slice/employees-slice'
+import { ReactNode } from 'react'
 
-type EmployeesCardProps = {
+function EmployeesCard({
+  employee
+}: {
   employee: Employee
-}
-
-function EmployeesCard({ employee }: EmployeesCardProps): JSX.Element {
+}): ReactNode {
   const user = useAppSelector(getUser)
   const filter = useAppSelector(getEmployeesFilter)
   const dispatch = useAppDispatch()

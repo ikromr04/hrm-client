@@ -1,7 +1,8 @@
 import EmployeeLayout from '@/components/layouts/employee-layout/employee-layout'
 import { Main } from './styled'
+import { ReactNode } from 'react'
 
-function EmployeesVacationPage(): JSX.Element {
+function EmployeesVacationPage(): ReactNode {
   return (
     <EmployeeLayout>
       <Main>

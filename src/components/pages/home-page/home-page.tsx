@@ -4,8 +4,9 @@ import { Avatar, Header, Main } from './styled'
 import Title from '@/components/ui/title/title'
 import defaultAvatar from '@/assets/static/default-avatar.png'
 import { getUser } from '@/store/auth-slice/auth-selector'
+import { ReactNode } from 'react'
 
-function HomePage(): JSX.Element {
+function HomePage(): ReactNode {
   const user = useAppSelector(getUser)
 
   return (
@@ -18,8 +19,8 @@ function HomePage(): JSX.Element {
             height={40}
             alt={user?.name}
             onError={({ currentTarget }) => {
-              currentTarget.onerror = null;
-              currentTarget.src=defaultAvatar;
+              currentTarget.onerror = null
+              currentTarget.src=defaultAvatar
             }}
           />
           <Title>{`Добро пожаловать, ${user?.name}`}</Title>

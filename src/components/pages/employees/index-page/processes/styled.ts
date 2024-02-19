@@ -1,11 +1,11 @@
-import Box from '@/components/ui/box/box';
-import styled from 'styled-components';
+import Box from '@/components/ui/box/box'
+import styled from 'styled-components'
 
 export const StyledProcesses = styled('div')`
   display: flex;
   gap: 16px;
   width: 100%;
-`;
+`
 
 export const Process = styled(Box)`
   display: flex;
@@ -24,9 +24,9 @@ export const Process = styled(Box)`
   &:focus {
     box-shadow: none;
   }
-`;
+`
 
 export const ProcessInner = styled('div')`
   display: flex;
   flex-direction: column;
-`;
+`

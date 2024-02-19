@@ -1,14 +1,18 @@
-import { PropsWithChildren } from 'react'
+import { ReactNode } from 'react'
 import { StyledBox } from './styled'
 import { Link } from 'react-router-dom'
 
-type BoxProps = PropsWithChildren<{
+function Box({
+  children,
+  className,
+  tagName,
+  ...rest
+}: {
+  children: ReactNode
   className?: string
   tagName?: string | typeof Link
   [rest: string]: unknown
-}>
-
-function Box({ children, className, tagName, ...rest }: BoxProps): JSX.Element {
+}): ReactNode {
   return (
     <StyledBox
       className={className}

@@ -24,4 +24,4 @@ export const Span = styled('span').withConfig({
       transform: rotate(360deg);
     }
   }
-`;
+`

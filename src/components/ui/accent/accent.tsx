@@ -1,18 +1,17 @@
-import { PropsWithChildren } from 'react'
+import { ReactNode } from 'react'
 import { Span } from './styled'
-
-type AccentProps = PropsWithChildren<{
-  className?: string
-  tagName?: string
-  warning?: boolean
-}>
 
 function Accent({
   children,
   className,
   tagName,
   warning,
-}: AccentProps): JSX.Element {
+}: {
+  children: ReactNode
+  className?: string
+  tagName?: string
+  warning?: boolean
+}): ReactNode {
   return (
     <Span
       className={className}

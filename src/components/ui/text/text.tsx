@@ -1,15 +1,5 @@
+import { ReactNode } from 'react'
 import { StyledText } from './styled'
-import { PropsWithChildren } from 'react'
-
-type TextProps = PropsWithChildren<{
-  className?: string
-  tagName?: string
-  small?: boolean
-  large?: boolean
-  success?: boolean
-  warning?: boolean
-  error?: boolean
-}>
 
 function Text({
   children,
@@ -20,7 +10,16 @@ function Text({
   success,
   warning,
   error,
-}: TextProps): JSX.Element {
+}: {
+  children: ReactNode
+  className?: string
+  tagName?: string
+  small?: boolean
+  large?: boolean
+  success?: boolean
+  warning?: boolean
+  error?: boolean
+}): ReactNode {
   return (
     <StyledText
       className={className}

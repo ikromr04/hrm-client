@@ -1,18 +1,19 @@
-import { BaseSyntheticEvent, PropsWithChildren } from 'react'
+import { BaseSyntheticEvent, ReactNode } from 'react'
 import { ModalInner, StyledModal } from './styled'
 
-type ModalProps = PropsWithChildren<{
+function Modal({
+  children,
+  isOpen,
+}: {
+  children: ReactNode
   isOpen: boolean
-}>
-
-function Modal({ children, isOpen }: ModalProps): JSX.Element {
+}): ReactNode {
   const handleModalClick = (evt: BaseSyntheticEvent) => {
     if (evt.target === evt.currentTarget) {
       evt.target.children[0].classList.add('shake')
         setTimeout(() => {
           evt.target.children[0].classList.remove('shake')
-        }, 300);
-      
+        }, 300)
     }
   }
 

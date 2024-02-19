@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 export const StyledButton = styled('button').withConfig({
   shouldForwardProp: (props) => !['isCollapsed'].includes(props),
@@ -42,4 +42,4 @@ export const StyledButton = styled('button').withConfig({
       transform: scale(-1);
     }
   `}
-`;
+`

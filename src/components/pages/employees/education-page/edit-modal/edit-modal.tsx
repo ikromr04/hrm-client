@@ -1,5 +1,5 @@
 import Info from '@/components/ui/info/info'
-import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from 'react'
+import { ChangeEvent, Dispatch, ReactNode, SetStateAction, useRef, useState } from 'react'
 import Modal from '@/components/ui/modal/modal'
 import Text from '@/components/ui/text/text'
 import { useFormValidation } from '@/hooks/use-form-validation'
@@ -17,12 +17,13 @@ import { Education, Educations } from '@/types/educations'
 import EditIcon from '@/components/icons/edit-icon'
 import Colspan from '@/components/ui/colspan/colspan'
 
-type EditModalProps = {
+function EditModal({
+  education,
+  setEducations,
+}: {
   education: Education
   setEducations: Dispatch<SetStateAction<Educations | null>>
-}
-
-function EditModal({ education, setEducations }: EditModalProps) {
+}): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)

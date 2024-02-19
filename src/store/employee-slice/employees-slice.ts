@@ -42,8 +42,8 @@ export const employeeSlice = createSlice({
         state.employee = action.payload
         state.employees = null
       })
-      .addCase(storeEmployeeAction.fulfilled, (state, action) => {
-        state.employees = [action.payload, ...(state.employees || [])]
+      .addCase(storeEmployeeAction.fulfilled, (state) => {
+        state.employees = null
       })
   },
 })

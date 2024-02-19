@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 export const Dl = styled('dl').withConfig({
   shouldForwardProp: (props) => !['detailed', 'detailedInverse', 'columns'].includes(props),
@@ -51,16 +51,16 @@ export const Dl = styled('dl').withConfig({
     grid-template-columns: 1fr 1fr;
     gap: 8px;
   `}
-`;
+`
 
 export const Item = styled('div')``
 
 export const Dt = styled('dt')`
   color: #90a4ae;
-`;
+`
 
 export const Dd = styled('dd')`
   margin: 0;
   word-break: break-word;
   white-space: pre-line;
-`;
+`

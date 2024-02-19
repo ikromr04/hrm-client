@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
-import { StyledInfo } from '../info/styled';
+import { Link } from 'react-router-dom'
+import styled, { css } from 'styled-components'
+import { StyledInfo } from '../info/styled'
 
 export const Aside = styled('aside').withConfig({
   shouldForwardProp: (props) => !['currentUser'].includes(props)

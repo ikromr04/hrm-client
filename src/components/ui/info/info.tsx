@@ -1,15 +1,21 @@
-import { PropsWithChildren } from 'react'
+import { ReactNode } from 'react'
 import { StyledInfo } from './styled'
 
-type InfoProps = PropsWithChildren<{
+function Info({
+  children,
+  className,
+  top,
+  right,
+  bottom,
+  left,
+}: {
+  children: ReactNode
   className?: string
   top?: boolean
   right?: boolean
   bottom?: boolean
   left?: boolean
-}>
-
-function Info({ children, className, top, right, bottom, left }: InfoProps): JSX.Element {
+}): ReactNode {
   return (
     <StyledInfo
       className={className}

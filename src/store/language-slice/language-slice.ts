@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { SliceName } from '../../const';
-import { Languages } from '../../types/languages';
-import { deleteLanguageAction, fetchLanguagesAction, storeLanguageAction, updateLanguageAction } from './language-api-actions';
+import { createSlice } from '@reduxjs/toolkit'
+import { SliceName } from '../../const'
+import { Languages } from '../../types/languages'
+import { deleteLanguageAction, fetchLanguagesAction, storeLanguageAction, updateLanguageAction } from './language-api-actions'
 
 export type LanguageSlice = {
   languages: Languages | null

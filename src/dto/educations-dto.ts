@@ -18,4 +18,3 @@ export type EducationsUpdateDTO = {
   started_at?: Date
   graduated_at?: Date
 }
-

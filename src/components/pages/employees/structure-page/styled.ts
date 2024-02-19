@@ -1,11 +1,10 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Main = styled('main')`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 100%;;
-`;
+`
 
 export const Header = styled('header')`
   display: flex;
@@ -15,4 +14,4 @@ export const Header = styled('header')`
   &>*:first-child {
     margin-right: auto;
   }
-`;
+`

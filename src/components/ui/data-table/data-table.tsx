@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { ReactNode } from 'react'
 import { Table, Tbody, Td, Th, Thead, Tr } from './styled'
 
 export type DataTableRows = {
@@ -11,13 +12,15 @@ export type DataTableColumns = {
   width?: number
 }[]
 
-type DataTableProps = {
+function DataTable({
+  rows,
+  columns,
+  stickyHeader,
+}: {
   rows: DataTableRows
   columns: DataTableColumns
   stickyHeader?: boolean
-}
-
-function DataTable({ rows, columns, stickyHeader }: DataTableProps): JSX.Element {
+}): ReactNode {
   return (
     <Table>
       <Thead stickyHeader={stickyHeader}>

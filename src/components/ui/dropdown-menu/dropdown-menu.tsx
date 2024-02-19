@@ -1,18 +1,17 @@
+import { ReactNode } from 'react'
 import { Menu } from './styled'
-import { PropsWithChildren } from 'react';
 
-type DropdownMenuProps = PropsWithChildren<{
-  className?: string
-  isOpen?: boolean
-  [rest: string]: unknown
-}>
-
-function DropdownMenu({ 
+function DropdownMenu({
   children,
   className,
   isOpen,
   ...rest
-}: DropdownMenuProps): JSX.Element {
+}: {
+  children: ReactNode
+  className?: string
+  isOpen?: boolean
+  [rest: string]: unknown
+}): ReactNode {
   return (
     <Menu
       className={className}

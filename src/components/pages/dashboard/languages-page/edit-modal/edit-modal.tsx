@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, ReactNode, useRef, useState } from 'react'
 import Modal from '@/components/ui/modal/modal'
 import Text from '@/components/ui/text/text'
 import { useFormValidation } from '@/hooks/use-form-validation'
@@ -12,11 +12,11 @@ import { Language } from '@/types/languages'
 import { updateLanguageAction } from '@/store/language-slice/language-api-actions'
 import { LanguagesUpdateDTO } from '@/dto/languages-dto'
 
-type EditModalProps = {
+function EditModal({
+  language
+}: {
   language: Language
-}
-
-function EditModal({ language }: EditModalProps): JSX.Element {
+}): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)

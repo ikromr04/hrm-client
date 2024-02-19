@@ -1,5 +1,5 @@
-import { Table } from '@/components/ui/data-table/styled';
-import styled from 'styled-components';
+import { Table } from '@/components/ui/data-table/styled'
+import styled from 'styled-components'
 
 export const Main = styled('main')`
   display: flex;
@@ -10,7 +10,7 @@ export const Main = styled('main')`
   ${Table} {
     max-height: calc(100vh - 128px);
   }
-`;
+`
 
 export const Header = styled('header')`
   display: flex;
@@ -20,4 +20,4 @@ export const Header = styled('header')`
   &>*:first-child {
     margin-right: auto;
   }
-`;
+`

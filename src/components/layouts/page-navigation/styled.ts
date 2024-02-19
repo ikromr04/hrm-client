@@ -6,4 +6,4 @@ export const Nav = styled(Box)`
   z-index: 1;
   top: 0;
   padding: 8px 0;
-`;
+`

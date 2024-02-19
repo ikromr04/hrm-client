@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 export const StyledInfo = styled('span').withConfig({
   shouldForwardProp: (props) => !['top', 'right', 'bottom', 'left'].includes(props),
@@ -78,4 +78,4 @@ export const StyledInfo = styled('span').withConfig({
       transform: translateY(-50%) rotate(225deg);
     }
   `}
-`;
+`

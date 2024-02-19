@@ -1,9 +1,9 @@
-import { EmployeesFilter } from '@/types/employees';
-import { SliceName } from '../../const';
-import { State } from '../../types/state';
+import { EmployeesFilter } from '@/types/employees'
+import { SliceName } from '../../const'
+import { State } from '../../types/state'
 
 export const getNavigationCollapsedState = (state: State): boolean =>
-  state[SliceName.App].isNavigationCollapsed;
+  state[SliceName.App].isNavigationCollapsed
 
 export const getEmployeesFilter = (state: State): EmployeesFilter =>
-  state[SliceName.App].employeesFilter;
+  state[SliceName.App].employeesFilter

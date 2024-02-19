@@ -1,18 +1,17 @@
+import { ReactNode } from 'react'
 import { CheckedIcon, Label, UncheckedIcon } from './styled'
-
-type CheckBoxProps = {
-  label?: string
-  large?: boolean
-  bold?: boolean
-  [rest: string]: unknown
-}
 
 function Checkbox({
   label,
   large,
   bold,
   ...rest
-}: CheckBoxProps) {
+}: {
+  label?: string
+  large?: boolean
+  bold?: boolean
+  [rest: string]: unknown
+}): ReactNode {
   return (
     <Label large={large} bold={bold}>
       <input

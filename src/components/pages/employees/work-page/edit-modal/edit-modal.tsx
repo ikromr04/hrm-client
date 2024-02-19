@@ -1,5 +1,5 @@
 import Info from '@/components/ui/info/info'
-import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from 'react'
+import { ChangeEvent, Dispatch, ReactNode, SetStateAction, useRef, useState } from 'react'
 import Modal from '@/components/ui/modal/modal'
 import Text from '@/components/ui/text/text'
 import { useFormValidation } from '@/hooks/use-form-validation'
@@ -15,12 +15,13 @@ import { Activities, Activity } from '@/types/activities'
 import { ActivitiesUpdateDTO } from '@/dto/activities-dto'
 import Colspan from '@/components/ui/colspan/colspan'
 
-type EditModalProps = {
+function EditModal({
+  activity,
+  setActivities,
+}: {
   activity: Activity
   setActivities: Dispatch<SetStateAction<Activities | null>>
-}
-
-function EditModal({ activity, setActivities }: EditModalProps): JSX.Element {
+}): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)

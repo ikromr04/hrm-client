@@ -1,6 +1,6 @@
 import PageLayout from '@/components/layouts/page-layout/page-layout'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { useEffect } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { Header, Main } from '../styled'
 import Title from '@/components/ui/title/title'
 import DataTable, { DataTableColumns, DataTableRows } from '@/components/ui/data-table/data-table'
@@ -12,7 +12,7 @@ import DeleteModal from './delete-modal/delete-modal'
 import { getDepartments } from '@/store/department-slice/department-selector'
 import { fetchDepartmentsAction } from '@/store/department-slice/department-api-actions'
 
-function DashboardDepartmentsPage() {
+function DashboardDepartmentsPage(): ReactNode {
   const departments = useAppSelector(getDepartments)
   const dispatch = useAppDispatch()
 

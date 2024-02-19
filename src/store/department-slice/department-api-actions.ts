@@ -18,6 +18,16 @@ export const fetchDepartmentsAction = createAsyncThunk<Departments, undefined, {
   },
 )
 
+export const fetchDepartmentsDashboardAction = createAsyncThunk<HTMLDocument, undefined, {
+  extra: AxiosInstance
+}>(
+  'departments/fetchDashboard',
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get(APIRoute.Departments.Dashboard)
+    return data
+  },
+)
+
 export const storeDepartmentAction = createAsyncThunk<Department, {
   dto: DepartmentsStoreDTO
   errorHandler: (error: ValidationError) => void

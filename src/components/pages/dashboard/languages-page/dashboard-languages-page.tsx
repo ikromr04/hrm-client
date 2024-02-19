@@ -1,6 +1,6 @@
 import PageLayout from '@/components/layouts/page-layout/page-layout'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { useEffect } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { Header, Main } from '../styled'
 import Title from '@/components/ui/title/title'
 import DataTable, { DataTableColumns, DataTableRows } from '@/components/ui/data-table/data-table'
@@ -12,7 +12,7 @@ import DeleteModal from './delete-modal/delete-modal'
 import { getLanguages } from '@/store/language-slice/language-selector'
 import { fetchLanguagesAction } from '@/store/language-slice/language-api-actions'
 
-function DashboardLanguagesPage() {
+function DashboardLanguagesPage(): ReactNode {
   const languages = useAppSelector(getLanguages)
   const dispatch = useAppDispatch()
 

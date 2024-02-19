@@ -4,7 +4,7 @@ import Box from '@/components/ui/box/box'
 import BoxToolbar from '@/components/ui/box-toolbar/box-toolbar'
 import BoxInner from '@/components/ui/box-inner/box-inner'
 import Title from '@/components/ui/title/title'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, ReactNode, useEffect, useState } from 'react'
 import { Educations } from '@/types/educations'
 import Text from '@/components/ui/text/text'
 import Hr from '@/components/ui/hr/hr'
@@ -18,7 +18,7 @@ import { useParams } from 'react-router-dom'
 import EditModal from './edit-modal/edit-modal'
 import DeleteModal from './delete-modal/delete-modal'
 
-function EmployeesEducationPage() {
+function EmployeesEducationPage(): ReactNode {
   const [educations, setEducations] = useState<Educations | null>(null)
   const dispatch = useAppDispatch()
   const params = useParams()

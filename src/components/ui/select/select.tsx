@@ -1,19 +1,18 @@
-import { useState } from 'react'
-import {
-  Label,
-  LabelInner,
-  Option,
-  Options,
-  Span,
-  StyledInput,
-  Wrapper,
-} from './styled'
+import { ReactNode, useState } from 'react'
+import { Label, LabelInner, Option, Options, Span, StyledInput, Wrapper } from './styled'
 import { useOutsideClick } from '@/hooks/use-outside-click'
 import CaretIcon from '@/components/icons/caret-icon'
 import SquareCheckIcon from '@/components/icons/square-check-icon'
 import SquareIcon from '@/components/icons/square-icon'
 
-type SelectProps = {
+function Select({
+  className,
+  label,
+  value,
+  onChange,
+  options,
+  placeholder,
+}: {
   className?: string
   label?: string
   value: string
@@ -23,16 +22,7 @@ type SelectProps = {
     label: string 
   }[]
   placeholder?: string
-}
-
-function Select({
-  className,
-  label,
-  value,
-  onChange,
-  options,
-  placeholder,
-}: SelectProps): JSX.Element {
+}): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const wrapperRef = useOutsideClick(() => setIsOpen(false))
 

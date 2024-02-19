@@ -1,10 +1,21 @@
-import EmployeesLayout from '@/components/layouts/employees-layout/employees-layout'
+import PageLayout from '@/components/layouts/page-layout/page-layout'
+import { Header, Main } from './styled'
+import Title from '@/components/ui/title/title'
+import EmployeesNavigation from '@/components/layouts/employees-navigation/employees-navigation'
+import { ReactNode } from 'react'
 
-function EmployeesStructurePage(): JSX.Element {
+function EmployeesStructurePage(): ReactNode {
   return (
-    <EmployeesLayout>
-      Not implemented
-    </EmployeesLayout>
+    <PageLayout>
+      <Main>
+      <Header>
+          <Title tagName="h1">Организационная компании</Title>
+
+          <EmployeesNavigation />
+
+        </Header>
+      </Main>
+    </PageLayout>
   )
 }
 

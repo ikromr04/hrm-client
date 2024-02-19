@@ -1,14 +1,14 @@
-import { PropsWithChildren } from 'react'
+import { ReactNode } from 'react'
 import { Button } from './styled'
 
-type TextButtonProps = PropsWithChildren<{
+function TextButton({
+  children,
+  ...rest
+}: {
+  children: ReactNode
   [rest: string]: unknown
-}>
-
-function TextButton({ children, ...rest }: TextButtonProps): JSX.Element {
-  return (
-    <Button type="button" {...rest}>{children}</Button>
-  )
+}): ReactNode {
+  return <Button type="button" {...rest}>{children}</Button>
 }
 
 export default TextButton

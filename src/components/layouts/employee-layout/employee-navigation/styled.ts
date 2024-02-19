@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const List = styled('ul')`
   list-style: none;
@@ -6,7 +6,7 @@ export const List = styled('ul')`
   padding: 0;
   display: flex;
   gap: 2px;
-`;
+`
 
 export const ListItem = styled('li')`
   display: flex;

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 export const StyledIconsBox = styled('span').withConfig({
   shouldForwardProp: (props) => !['color'].includes(props),
@@ -18,4 +18,4 @@ export const StyledIconsBox = styled('span').withConfig({
   ${({ color }) => color && css`
     color: ${color};
   `}
-`;
+`

@@ -1,5 +1,5 @@
-import Container from '@/components/ui/container/container';
-import styled from 'styled-components';
+import Container from '@/components/ui/container/container'
+import styled from 'styled-components'
 
 export const StyledPage = styled(Container)`
   display: flex;
@@ -10,4 +10,4 @@ export const StyledPage = styled(Container)`
   gap: 24px;
   max-width: 880px;
   text-align: center;
-`;
+`

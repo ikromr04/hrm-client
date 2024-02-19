@@ -2,7 +2,7 @@ import Checkbox from '@/components/ui/checkbox/checkbox'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getEmployeesFilter } from '@/store/app-slice/app-selector'
 import { setEmployeesFilterAction } from '@/store/app-slice/app-slice'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, ReactNode } from 'react'
 import Input from '@/components/ui/input/input'
 import { FormElement } from '../styled'
 import { EmployeesDetailsFilter } from '@/types/employees'
@@ -11,7 +11,7 @@ import { FAMILY_STATUSES, GENDERS, NO_CHILDREN } from '@/const'
 import MultiSelect from '@/components/ui/multi-select/multi-select'
 import { getYears } from '@/utils/employees'
 
-function DetailsFilter() {
+function DetailsFilter(): ReactNode {
   const filter = useAppSelector(getEmployeesFilter)
   const dispatch = useAppDispatch()
 

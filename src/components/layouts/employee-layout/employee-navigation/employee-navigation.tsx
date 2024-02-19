@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { generatePath } from 'react-router-dom'
 import { List, ListItem } from './styled'
 import { useAppSelector } from '@/hooks'
@@ -5,7 +6,7 @@ import { getEmployee } from '@/store/employee-slice/employees-selector'
 import { AppRoute } from '@/const'
 import EmployeeLink from './employee-link/employee-link'
 
-function EmployeeNavigation(): JSX.Element {
+function EmployeeNavigation(): ReactNode {
   const employee = useAppSelector(getEmployee)
 
   if (!employee) {

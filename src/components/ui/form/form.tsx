@@ -1,13 +1,17 @@
-import { PropsWithChildren } from "react"
-import { StyledForm } from "./styled"
+import { ReactNode } from 'react'
+import { StyledForm } from './styled'
 
-type FormProps = PropsWithChildren<{
+function Form({
+  children,
+  grid,
+  autoWidth,
+  ...rest
+}: {
+  children: ReactNode
   grid?: boolean
   autoWidth?: boolean
   [rest: string]: unknown
-}>
-
-function Form({ children, grid, autoWidth, ...rest }: FormProps) {
+}): ReactNode {
   return (
     <StyledForm
       grid={grid}

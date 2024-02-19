@@ -7,8 +7,9 @@ import { useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
 import dayjs from 'dayjs'
 import EditModal from './edit-modal/edit-modal'
+import { ReactNode } from 'react'
 
-function EmployeeDetails(): JSX.Element {
+function EmployeeDetails(): ReactNode {
   const employee = useAppSelector(getEmployee)
 
   if (!employee) {

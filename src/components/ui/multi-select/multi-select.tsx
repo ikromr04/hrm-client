@@ -1,19 +1,18 @@
-import { useState } from 'react'
-import {
-  Label,
-  LabelInner,
-  Option,
-  Options,
-  Span,
-  StyledInput,
-  Wrapper,
-} from './styled'
+import { ReactNode, useState } from 'react'
+import { Label, LabelInner, Option, Options, Span, StyledInput, Wrapper } from './styled'
 import { useOutsideClick } from '@/hooks/use-outside-click'
 import CaretIcon from '@/components/icons/caret-icon'
 import SquareCheckIcon from '@/components/icons/square-check-icon'
 import SquareIcon from '@/components/icons/square-icon'
 
-type MultiSelectProps = {
+function MultiSelect({
+  className,
+  label,
+  value,
+  onChange,
+  options,
+  placeholder,
+}: {
   value: string[]
   onChange: (value: string[]) => void
   options: { 
@@ -23,16 +22,7 @@ type MultiSelectProps = {
   className?: string
   label?: string
   placeholder?: string
-}
-
-function MultiSelect({
-  className,
-  label,
-  value,
-  onChange,
-  options,
-  placeholder,
-}: MultiSelectProps): JSX.Element {
+}): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const wrapperRef = useOutsideClick(() => setIsOpen(false))
   const [values, setValues] = useState(value)

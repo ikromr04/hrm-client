@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Button, Item, SubItem, SubItems } from './styled'
 import { useAppSelector } from '@/hooks'
@@ -6,22 +7,20 @@ import { AppRoute } from '@/const'
 import Info from '@/components/ui/info/info'
 import DropdownTitle from '@/components/ui/dropdown-title/dropdown-title'
 
-type NavItemProps = {
-  title: string
-  icon: JSX.Element
-  href?: string
-  links?: {
-    title: string
-    href: string
-  }[]
-}
-
 function NavItem({
   title,
   icon,
   href,
   links,
-}: NavItemProps): JSX.Element {
+}: {
+  title: string
+  icon: ReactNode
+  href?: string
+  links?: {
+    title: string
+    href: string
+  }[]
+}): ReactNode {
   const location = useLocation()
   const isCollapsed = useAppSelector(getNavigationCollapsedState)
   const isCurrent = location.pathname === href

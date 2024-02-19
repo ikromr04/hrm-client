@@ -1,8 +1,8 @@
-import { AuthorizationStatus, SliceName } from '@/const';
-import { createSlice } from '@reduxjs/toolkit';
-import { checkAuthAction, loginAction, logoutAction } from './auth-api-actions';
-import { User } from '@/types/auth';
-import { updateEmployeeAction } from '../employee-slice/employees-api-actions';
+import { AuthorizationStatus, SliceName } from '@/const'
+import { createSlice } from '@reduxjs/toolkit'
+import { checkAuthAction, loginAction, logoutAction } from './auth-api-actions'
+import { User } from '@/types/auth'
+import { updateEmployeeAction } from '../employee-slice/employees-api-actions'
 
 export type AuthSlice = {
   authStatus: AuthorizationStatus

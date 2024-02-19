@@ -1,12 +1,12 @@
-type SettingsIconProps = {
-  width?: number
-  height?: number
-}
+import { ReactNode } from 'react'
 
 function SettingsIcon({
   width = 16,
   height = 16,
-}: SettingsIconProps): JSX.Element {
+}: {
+  width?: number
+  height?: number
+}): ReactNode {
   return (
     <svg
       width={width}

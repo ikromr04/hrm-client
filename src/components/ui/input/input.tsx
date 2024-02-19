@@ -1,14 +1,5 @@
-import { ForwardedRef, forwardRef } from 'react'
+import { ForwardedRef, ReactNode, forwardRef } from 'react'
 import { ErrorMessage, Label, Span, StyledInput, Wrapper } from './styled'
-
-type InputProps = {
-  className?: string
-  label?: string
-  errorMessage?: string
-  horizontal?: boolean
-  width?: number
-  [rest: string]: unknown
-}
 
 function Input({
   className,
@@ -17,7 +8,14 @@ function Input({
   horizontal,
   width,
   ...rest
-}: InputProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element {
+}: {
+  className?: string
+  label?: string
+  errorMessage?: string
+  horizontal?: boolean
+  width?: number
+  [rest: string]: unknown
+}, ref: ForwardedRef<HTMLInputElement>): ReactNode {
   return (
     <Wrapper className={className}>
       <Label horizontal={horizontal}>

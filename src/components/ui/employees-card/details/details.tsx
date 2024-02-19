@@ -5,15 +5,15 @@ import dayjs from 'dayjs'
 import { useAppSelector } from '@/hooks'
 import { getEmployeesFilter } from '@/store/app-slice/app-selector'
 import TextLink from '../../text-link/text-link'
+import { ReactNode } from 'react'
 
-type DetailsProps = {
+function Details({
+  employee
+}: {
   employee: Employee
-}
-
-function Details({ employee }: DetailsProps): JSX.Element {
+}): ReactNode {
   const filter = useAppSelector(getEmployeesFilter)
-  const { startedWorkAt, nationality, birthDate, gender, citizenship, email,
-    tel, familyStatus, children } = filter.details
+  const { startedWorkAt, nationality, birthDate, gender, citizenship, email, tel, familyStatus, children } = filter.details
   const list: { [key: string]: string | undefined } = {}
 
   if (!employee || !filter.details.isShown) {

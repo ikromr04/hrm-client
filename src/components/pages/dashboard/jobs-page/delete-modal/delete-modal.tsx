@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import Modal from '@/components/ui/modal/modal'
 import Text from '@/components/ui/text/text'
 import Form from '@/components/ui/form/form'
@@ -9,11 +9,11 @@ import { toast } from 'react-toastify'
 import { deleteJobAction } from '@/store/job-slice/job-api-actions'
 import { Job } from '@/types/jobs'
 
-type DeleteModalProps = {
+function DeleteModal({
+  job
+}: {
   job: Job
-}
-
-function DeleteModal({ job }: DeleteModalProps): JSX.Element {
+}): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const dispatch = useAppDispatch()

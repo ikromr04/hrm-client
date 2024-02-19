@@ -20,8 +20,6 @@ export const getYears = (from: number): string[] => {
   return years
 }
 
-
-
 export const filterEmployees = (filter: EmployeesFilter, employees: Employees): Employees =>
   employees.filter((employee) =>
     (`${employee.surname} ${employee.name} ${employee.patronymic}`).toLowerCase().includes(filter.name.query.toLowerCase())
