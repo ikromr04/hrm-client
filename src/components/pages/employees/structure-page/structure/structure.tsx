@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { fetchDepartmentsTreeAction } from '@/store/department-slice/department-api-actions'
 import { getDepartmentsTree } from '@/store/department-slice/department-selector'
-import { MouseEvent, ReactNode, WheelEvent, useEffect, useState } from 'react'
+import { MouseEvent, ReactNode, WheelEvent, useEffect, useRef, useState } from 'react'
 import { List, ListItem, Tools, Wrapper } from './styled'
 import DepartmentCard from '@/components/ui/department-card/department-card'
 import DepartmentsList from './departments-list/departments-list'
@@ -9,6 +9,8 @@ import Spinner from '@/components/ui/spinner/spinner'
 import Button from '@/components/ui/button/button'
 import Info from '@/components/ui/info/info'
 import RotateIcon from '@/components/icons/rotate-icon'
+import ExpandIcon from '@/components/icons/expand-icon'
+import CompressIcon from '@/components/icons/compress-icon'
 
 type Position = {
   x: number
@@ -22,10 +24,15 @@ function Structure(): ReactNode {
   const [position, setPosition] = useState<Position>({ x: 0, y: 0 })
   const [initialPosition, setInitialPosition] = useState<Position>({ x: 0, y: 0 })
   const [scale, setScale] = useState<number>(1)
-  
+  const ref = useRef<HTMLDivElement>(null)
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false)
+
   useEffect(() => {
     !departments && dispatch(fetchDepartmentsTreeAction())
-  }, [departments, dispatch])
+    isFullscreen
+      ? ref.current?.requestFullscreen()
+      : (document.fullscreenElement && document.exitFullscreen())
+  }, [departments, dispatch, isFullscreen])
 
   const handleMouseDown = (evt: MouseEvent<HTMLDivElement>) => {
     setIsDragging(true)
@@ -42,10 +49,6 @@ function Structure(): ReactNode {
         y: evt.clientY - initialPosition.y
       })
     }
-  }
-
-  const handleMouseUp = () => {
-    setIsDragging(false)
   }
 
   const handleWheel = (evt: WheelEvent<HTMLDivElement>) => {
@@ -70,9 +73,10 @@ function Structure(): ReactNode {
 
   return (
     <Wrapper
+      ref={ref}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
+      onMouseUp={() => setIsDragging(false)}
       onWheel={handleWheel}
     >
       <List 
@@ -114,7 +118,24 @@ function Structure(): ReactNode {
           type="button"
           large
           square
-          outlined
+          onClick={() => setIsFullscreen(!isFullscreen)}
+        >
+          {isFullscreen
+            ?
+              <>
+                <CompressIcon width={20} height={20} />
+                <Info left>Обычный режим</Info>
+              </>
+            :
+              <>
+                <ExpandIcon width={20} height={20} />
+                <Info left>Полноэкранный режим</Info>
+              </>}
+        </Button>
+        <Button
+          type="button"
+          large
+          square
           onClick={handleResetClick}
         >
           <RotateIcon left width={20} height={20} />

@@ -7,6 +7,7 @@ export const Wrapper = styled('div')`
   user-select: none;
   overflow: hidden;
   cursor: grab;
+  background-color: #f1f5f8;
 
   &:active {
     cursor: grabbing;
@@ -39,6 +40,4 @@ export const Tools = styled('div')`
   flex-direction: column;
   gap: 8px;
   padding: 4px;
-  background-color: #f1f5f8;
-  border-top-left-radius: 4px;
 `
