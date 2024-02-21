@@ -3,13 +3,23 @@ import { StyledInfo } from '../info/styled'
 import { Span } from '../spinner/styled'
 
 export const StyledButton = styled('button').withConfig({
-  shouldForwardProp: (props) => !['success', 'warning', 'error', 'large', 'small'].includes(props),
+  shouldForwardProp: (props) => ![
+    'success',
+    'warning',
+    'error',
+    'large',
+    'small',
+    'square',
+    'outlined',
+  ].includes(props),
 })<{ 
-  success?: boolean, 
-  warning?: boolean, 
-  error?: boolean, 
-  large?: boolean, 
-  small?: boolean 
+  success?: boolean
+  warning?: boolean
+  error?: boolean
+  large?: boolean
+  small?: boolean
+  square?: boolean
+  outlined?: boolean
 }>`
   position: relative;
   z-index: 0;
@@ -31,7 +41,7 @@ export const StyledButton = styled('button').withConfig({
   height: 32px;
   cursor: pointer;
   transition-property: backgroud-color, color, box-shadow;
-  transition-duration: 0.3s; 
+  transition-duration: 0.3s;
 
   &:active,
   &:hover {
@@ -76,6 +86,17 @@ export const StyledButton = styled('button').withConfig({
   ${({ small }) => small && css`
     height: 28px;
     min-height: 28px;
+  `}
+
+  ${({ square }) => square && css`
+    aspect-ratio: 1/1;
+    padding: 0;
+  `}
+
+  ${({ outlined }) => outlined && css`
+    background-color: transparent;
+    box-shadow: none;
+    border: 2px solid;
   `}
 
   ${Span} {

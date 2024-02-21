@@ -1,8 +1,8 @@
 import { css, styled } from 'styled-components'
 
 export const StyledTitle = styled('h2').withConfig({
-  shouldForwardProp: (props) => !['small', 'large'].includes(props),
-})<{ small?: boolean, large?: boolean }>`
+  shouldForwardProp: (props) => !['small', 'large', 'warn'].includes(props),
+})<{ small?: boolean, large?: boolean, warn?: boolean }>`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -19,5 +19,9 @@ export const StyledTitle = styled('h2').withConfig({
 
   ${({ large }) => large && css`
     font-size: 24px;
+  `}
+
+  ${({ warn }) => warn && css`
+    color: #ed6c02;
   `}
 `

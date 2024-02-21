@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { StyledLink } from './styled'
+import { Link } from 'react-router-dom'
 
 function TextLink({
   children,
@@ -7,10 +8,18 @@ function TextLink({
   ...rest
 }: {
   children: ReactNode
-  href: string
+  href?: string
   [rest: string]: unknown
 }): ReactNode {
-  return <StyledLink to={href} {...rest}>{children}</StyledLink>
+  return (
+    <StyledLink
+      as={href && Link}
+      to={href}
+      {...rest}
+    >
+      {children}
+    </StyledLink>
+  )
 }
 
 export default TextLink

@@ -3,16 +3,16 @@ import { StyledBoxInner } from './styled'
 
 function BoxInner({
   children,
-  clasName,
+  className,
   tagName,
 }: {
   children: ReactNode
-  clasName?: string
+  className?: string
   tagName?: string
 }): ReactNode {
   return (
     <StyledBoxInner
-      className={clasName}
+      className={className}
       as={tagName}
     >
       {children}

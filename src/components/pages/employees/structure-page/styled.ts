@@ -7,6 +7,8 @@ export const Main = styled('main')`
 `
 
 export const Header = styled('header')`
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 8px;

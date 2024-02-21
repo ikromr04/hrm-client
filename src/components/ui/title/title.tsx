@@ -7,6 +7,7 @@ function Title({
   tagName,
   small,
   large,
+  warn,
   ...rest
 }: {
   children: ReactNode
@@ -14,6 +15,7 @@ function Title({
   tagName?: string
   small?: boolean
   large?: boolean
+  warn?: boolean
   [rest: string]: unknown
 }): ReactNode {
   return (
@@ -22,6 +24,7 @@ function Title({
       as={tagName}
       small={small}
       large={large}
+      warn={warn}
       {...rest}
     >
       {children}

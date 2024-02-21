@@ -18,16 +18,6 @@ export const fetchDepartmentsAction = createAsyncThunk<Departments, undefined, {
   },
 )
 
-export const fetchDepartmentsDashboardAction = createAsyncThunk<HTMLDocument, undefined, {
-  extra: AxiosInstance
-}>(
-  'departments/fetchDashboard',
-  async (_arg, { extra: api }) => {
-    const { data } = await api.get(APIRoute.Departments.Dashboard)
-    return data
-  },
-)
-
 export const storeDepartmentAction = createAsyncThunk<Department, {
   dto: DepartmentsStoreDTO
   errorHandler: (error: ValidationError) => void
@@ -92,5 +82,15 @@ export const deleteDepartmentAction = createAsyncThunk<ID, {
     await api.delete(generatePath(APIRoute.Departments.Show, { id }))
     successHandler()
     return id
+  },
+)
+
+export const fetchDepartmentsTreeAction = createAsyncThunk<Departments, undefined, {
+  extra: AxiosInstance
+}>(
+  'departments/tree',
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get<Departments>(APIRoute.Departments.Tree)
+    return data
   },
 )

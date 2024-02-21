@@ -13,6 +13,8 @@ function Button({
   error,
   large,
   small,
+  square,
+  outlined,
   ...rest
 }: {
   children: ReactNode
@@ -24,6 +26,8 @@ function Button({
   error?: boolean
   large?: boolean
   small?: boolean
+  square?: boolean
+  outlined?: boolean
   [rest: string]: unknown
 }): ReactNode {
   return (
@@ -36,7 +40,9 @@ function Button({
       error={error}
       large={large}
       small={small}
+      square={square}
       disabled={loading}
+      outlined={outlined}
       {...rest}
     >
       {loading && <Spinner />}

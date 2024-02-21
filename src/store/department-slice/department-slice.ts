@@ -4,16 +4,19 @@ import { Departments } from '@/types/departments'
 import {
   deleteDepartmentAction,
   fetchDepartmentsAction,
+  fetchDepartmentsTreeAction,
   storeDepartmentAction,
   updateDepartmentAction,
 } from './department-api-actions'
 
 export type JobSlice = {
   departments: Departments | null
+  tree: Departments | null
 }
 
 const initialState: JobSlice = {
-  departments: null
+  departments: null,
+  tree: null,
 }
 
 export const departmentSlice = createSlice({
@@ -42,6 +45,9 @@ export const departmentSlice = createSlice({
         if (state.departments) {
           state.departments = state.departments.filter(({ id }) => id !== action.payload)
         }
+      })
+      .addCase(fetchDepartmentsTreeAction.fulfilled, (state, action) => {
+        state.tree = action.payload
       })
   },
 })

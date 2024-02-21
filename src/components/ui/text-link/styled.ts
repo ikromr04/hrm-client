@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled('div')`
   display: inline-flex;
   align-items: center;
   gap: 8px;
