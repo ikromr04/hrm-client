@@ -4,10 +4,10 @@ import { Employee } from './employees'
 export type Department = {
   id: ID
   title: string
-  left?: ID
-  right?: ID
-  parent?: ID
-  employees?: (Employee & { leader: boolean })[]
+  employees: (Employee & { leader: boolean })[]
+  left: ID
+  right: ID
+  parent: ID
   children?: Departments
 }
 

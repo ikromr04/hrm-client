@@ -88,6 +88,7 @@ export const Options = styled(Box)`
   left: 0;
   z-index: 4;
   width: 100%;
+  max-height: 324px;
   display: flex;
   flex-direction: column;
   border-radius: 0 0 8px 8px;

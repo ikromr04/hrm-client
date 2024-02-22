@@ -32,7 +32,7 @@ export const ListItem = styled('li')`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: 24px;
   align-items: center;
   width: max-content;
 

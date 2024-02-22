@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { Span } from './styled'
 
-function Spinner({ 
+function Spinner({
   className,
   width = 24,
   height = 24,

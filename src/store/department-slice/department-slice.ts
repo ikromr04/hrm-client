@@ -8,6 +8,7 @@ import {
   storeDepartmentAction,
   updateDepartmentAction,
 } from './department-api-actions'
+import { removeCategoryById } from '@/utils/departments'
 
 export type JobSlice = {
   departments: Departments | null
@@ -32,18 +33,15 @@ export const departmentSlice = createSlice({
         state.departments = [action.payload, ...(state.departments || [])]
       })
       .addCase(updateDepartmentAction.fulfilled, (state, action) => {
-        if (state.departments) {
-          state.departments = state.departments.map((department) => {
-            if (department.id === action.payload.id) {
-              return action.payload
-            }
-            return department
-          })
-        }
+        state.departments = null
+        state.tree = action.payload
       })
       .addCase(deleteDepartmentAction.fulfilled, (state, action) => {
         if (state.departments) {
           state.departments = state.departments.filter(({ id }) => id !== action.payload)
+        }
+        if (state.tree) {
+          state.tree = removeCategoryById(state.tree, +action.payload)
         }
       })
       .addCase(fetchDepartmentsTreeAction.fulfilled, (state, action) => {

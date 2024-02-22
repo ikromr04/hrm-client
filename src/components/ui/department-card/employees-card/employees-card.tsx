@@ -1,23 +1,17 @@
 import { Employee } from '@/types/employees'
 import { ReactNode } from 'react'
-import { Actions, Avatar, Card } from './styled'
+import { Avatar, Card } from './styled'
 import defaultAvatar from '@/assets/static/default-avatar.png'
 import Text from '../../text/text'
 import Title from '../../title/title'
 import TextLink from '../../text-link/text-link'
 import { generatePath } from 'react-router-dom'
 import { AppRoute } from '@/const'
-import Button from '../../button/button'
-import XIcon from '@/components/icons/x-icon'
-import Info from '../../info/info'
-import StarIcon from '@/components/icons/star-icon'
 
 function EmployeesCard({
   employee,
-  editable = true,
 }: {
   employee: Employee & { leader: boolean }
-  editable?: boolean
 }): ReactNode {
   return (
     <Card>
@@ -34,27 +28,6 @@ function EmployeesCard({
         </Title>
         <Text>{employee.jobs.map(({ title }) => title).join(', ')}</Text>
       </div>
-      {editable &&
-        <Actions>
-          <Button
-            type="button"
-            warning
-            small
-            square
-          >
-            <StarIcon />
-            <Info top>Сделать руководителем</Info>
-          </Button>
-          <Button
-            type="button"
-            error
-            small
-            square
-          >
-            <XIcon />
-            <Info top>Отделить</Info>
-          </Button>
-        </Actions>}
     </Card>
   )
 }

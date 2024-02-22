@@ -44,11 +44,11 @@ export const storeDepartmentAction = createAsyncThunk<Department, {
   },
 )
 
-export const updateDepartmentAction = createAsyncThunk<Department, {
+export const updateDepartmentAction = createAsyncThunk<Departments, {
   id: ID
   dto: DepartmentsUpdateDTO
   errorHandler: (error: ValidationError) => void
-  successHandler: (department: Department) => void
+  successHandler: (departmentsTree: Departments) => void
 }, {
   extra: AxiosInstance
   rejectWithValue: ValidationError
@@ -56,12 +56,11 @@ export const updateDepartmentAction = createAsyncThunk<Department, {
   'departments/update',
   async ({ id, dto, errorHandler, successHandler}, { extra: api, rejectWithValue }) => {
     try {
-      const { data } = await api.put<Department>(generatePath(APIRoute.Departments.Show, { id }), dto)
+      const { data } = await api.put<Departments>(generatePath(APIRoute.Departments.Show, { id }), dto)
       successHandler(data)
       return data
     } catch (err: any) {
       const error: AxiosError<ValidationError> = err
-      
       if (!error.response) {
         throw err
       }

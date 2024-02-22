@@ -1,16 +1,5 @@
 import styled from 'styled-components'
 
-export const Actions = styled('div')`
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  display: flex;
-  gap: 4px;
-  visibility: visible;
-  opacity: 0;
-  transition: .3s;
-`
-
 export const Card = styled('figure')`
   position: relative;
   display: flex;
@@ -22,11 +11,6 @@ export const Card = styled('figure')`
 
   &:hover {
     background-color: #f5f5f5;
-
-    ${Actions} {
-      visibility: visible;
-      opacity: 1;
-    }
   }
 `
 

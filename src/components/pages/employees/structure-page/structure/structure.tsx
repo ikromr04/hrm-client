@@ -28,7 +28,7 @@ function Structure(): ReactNode {
   const ref = useRef<HTMLDivElement>(null)
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false)
   const minScale = 0.1
-  const maxScale = 4
+  const maxScale = 2
 
   useEffect(() => {
     !departments && dispatch(fetchDepartmentsTreeAction())
@@ -55,7 +55,7 @@ function Structure(): ReactNode {
   }
 
   const handleWheel = (evt: WheelEvent<HTMLDivElement>) => {
-    if (evt.ctrlKey) {
+    if (evt.shiftKey) {
       const delta = evt.deltaY
       const newScale = scale + delta * 0.01
 
@@ -65,19 +65,18 @@ function Structure(): ReactNode {
     }
   }
 
-  const handleZoom = (type: 'in' | 'out') => () => {
-    setScale((prevScale) => {
-      let newScale
-      if (type === 'in') {
-        newScale = prevScale - 0.1
-      } else {
-        newScale = prevScale + 0.1
-      }
-      if (newScale >= minScale && newScale <= maxScale) {
-        return newScale
-      }
-      return prevScale
-    })
+  const handleZoom = (zoom: number) => () => {
+    let newScale
+
+    newScale = scale + zoom
+    if (newScale > maxScale) {
+      newScale = maxScale
+    }
+    if (newScale < minScale) {
+      newScale = minScale
+    }
+
+    setScale(newScale)
   }
 
   const handleResetClick = () => {
@@ -107,6 +106,9 @@ function Structure(): ReactNode {
             department={{
               id: '',
               title: 'Эволет',
+              left: '',
+              parent: '',
+              right: '',
               employees: [{
                 id: '',
                 name: 'Сайёра',
@@ -134,7 +136,7 @@ function Structure(): ReactNode {
           type="button"
           large
           square
-          onClick={handleZoom('in')}
+          onClick={handleZoom(-0.4)}
         >
           <ZoomIcon width={20} height={20} out={true} />
           <Info left>Уменьшить</Info>
@@ -143,7 +145,7 @@ function Structure(): ReactNode {
           type="button"
           large
           square
-          onClick={handleZoom('out')}
+          onClick={handleZoom(0.4)}
         >
           <ZoomIcon width={20} height={20} />
           <Info left>Приблизить</Info>

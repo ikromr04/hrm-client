@@ -1,8 +1,8 @@
 import { css, styled } from 'styled-components'
 
 export const Span = styled('span').withConfig({
-  shouldForwardProp: (props) => !['width', 'height'].includes(props),
-})<{ width: number, height: number }>`
+  shouldForwardProp: (props) => !['width', 'height', 'color'].includes(props),
+})<{ width: number, height: number, color?: string }>`
   border-radius: 50%;
   display: inline-block;
   border-top: 3px solid #2979ff;
