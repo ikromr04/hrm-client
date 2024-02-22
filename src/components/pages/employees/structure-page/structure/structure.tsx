@@ -11,6 +11,7 @@ import Info from '@/components/ui/info/info'
 import RotateIcon from '@/components/icons/rotate-icon'
 import ExpandIcon from '@/components/icons/expand-icon'
 import CompressIcon from '@/components/icons/compress-icon'
+import ZoomIcon from '@/components/icons/zoom-icon'
 
 type Position = {
   x: number
@@ -26,6 +27,8 @@ function Structure(): ReactNode {
   const [scale, setScale] = useState<number>(1)
   const ref = useRef<HTMLDivElement>(null)
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false)
+  const minScale = 0.1
+  const maxScale = 4
 
   useEffect(() => {
     !departments && dispatch(fetchDepartmentsTreeAction())
@@ -56,12 +59,25 @@ function Structure(): ReactNode {
       const delta = evt.deltaY
       const newScale = scale + delta * 0.01
 
-      const minScale = 0.1
-      const maxScale = 4
       if (newScale >= minScale && newScale <= maxScale) {
         setScale(newScale)
       }
     }
+  }
+
+  const handleZoom = (type: 'in' | 'out') => () => {
+    setScale((prevScale) => {
+      let newScale
+      if (type === 'in') {
+        newScale = prevScale - 0.1
+      } else {
+        newScale = prevScale + 0.1
+      }
+      if (newScale >= minScale && newScale <= maxScale) {
+        return newScale
+      }
+      return prevScale
+    })
   }
 
   const handleResetClick = () => {
@@ -114,6 +130,24 @@ function Structure(): ReactNode {
         </ListItem>
       </List>
       <Tools>
+        <Button
+          type="button"
+          large
+          square
+          onClick={handleZoom('in')}
+        >
+          <ZoomIcon width={20} height={20} out={true} />
+          <Info left>Уменьшить</Info>
+        </Button>
+        <Button
+          type="button"
+          large
+          square
+          onClick={handleZoom('out')}
+        >
+          <ZoomIcon width={20} height={20} />
+          <Info left>Приблизить</Info>
+        </Button>
         <Button
           type="button"
           large

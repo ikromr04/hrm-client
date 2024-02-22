@@ -18,8 +18,8 @@ export const Card = styled(Box)`
   min-width: 320px;
   max-width: 320px;
   min-height: 100px;
-  overflow: hidden;
-  
+  padding-bottom: 8px;
+
   &:hover {
     ${DepartmentActions} {
       visibility: visible;
