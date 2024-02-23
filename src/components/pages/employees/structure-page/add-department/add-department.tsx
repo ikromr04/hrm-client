@@ -60,6 +60,8 @@ function AddDepartment(): ReactNode {
         setIsSubmitting(false)
         setIsDisabled(true)
         setIsOpen(false)
+        setValidationError({ message: '' })
+        setDTO({ title: '', leaders: [], employees: [] })
       },
     }))
   }
@@ -74,7 +76,7 @@ function AddDepartment(): ReactNode {
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO((prevDTO) => ({ ...prevDTO, title: '' }))
+    setDTO({ title: '', leaders: [], employees: [] })
   }
 
   const handleParentChange = (value: string) => {
@@ -117,7 +119,7 @@ function AddDepartment(): ReactNode {
             autoComplete="off" />
           {employees && <>
             <MultiSelect
-              key={(+isOpen).toString().padStart(2)}
+              key={(+isOpen).toString().padStart(2, '0')}
               label="Руководитель (необязательное)"
               value={dto.leaders}
               onChange={handleLeadersChange}
@@ -126,7 +128,7 @@ function AddDepartment(): ReactNode {
                 ...employees.map(({ id, name, surname }) => ({ value: id, label: `${surname} ${name}` }))
               ]} />
             <MultiSelect
-              key={(+isOpen).toString().padStart(3)}
+              key={(+isOpen).toString().padStart(3, '0')}
               label="Сотрудники (необязательное)"
               value={dto.employees}
               onChange={handleDepartmentEmployeesChange}

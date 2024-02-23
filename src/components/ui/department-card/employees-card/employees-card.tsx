@@ -26,7 +26,7 @@ function EmployeesCard({
             {employee.name} {employee.surname}
           </TextLink>
         </Title>
-        <Text>{employee.jobs.map(({ title }) => title).join(', ')}</Text>
+        <Text>{employee.positions.map(({ title }) => title).join(', ')}</Text>
       </div>
     </Card>
   )
