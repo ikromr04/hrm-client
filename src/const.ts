@@ -24,7 +24,6 @@ export const AppRoute = {
     Jobs: '/dashboard/jobs',
     Positions: '/dashboard/positions',
     Languages: '/dashboard/languages',
-    Departments: '/dashboard/departments',
   },
   NotFound: '*',
 }

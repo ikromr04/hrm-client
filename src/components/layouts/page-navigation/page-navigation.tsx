@@ -34,7 +34,6 @@ function PageNavigation(): ReactNode {
           { title: 'Должности', href: AppRoute.Dashboard.Jobs },
           { title: 'Позиции', href: AppRoute.Dashboard.Positions },
           { title: 'Языки', href: AppRoute.Dashboard.Languages },
-          { title: 'Отделы', href: AppRoute.Dashboard.Departments },
         ]}
       />
 

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Title from '../title/title'
 import Box from '../box/box'
 
@@ -14,12 +14,26 @@ export const DepartmentActions = styled('div')`
   transition: .3s;
 `
 
-export const Card = styled(Box)`
+export const Card = styled(Box).withConfig({
+  shouldForwardProp: (props) => !['editable'].includes(props),
+})<{ editable: boolean }>`
   position: relative;
   min-width: 320px;
   max-width: 320px;
   min-height: 100px;
   padding-bottom: 8px;
+
+  ${({ editable }) => editable && css`
+    &::before {
+      content: "";
+      height: 24px;
+      width: 2px;
+      background-color: #9e9e9e;
+      position: absolute;
+      top: -25px;
+      left: calc(50% - 1px);
+    }
+  `}
 
   &:hover {
     ${DepartmentActions} {

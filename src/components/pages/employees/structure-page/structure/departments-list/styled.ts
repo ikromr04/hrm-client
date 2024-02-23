@@ -36,12 +36,23 @@ export const ListItem = styled('li')`
   align-items: center;
   width: max-content;
 
-  &::before {
+  &:first-child::before {
     content: "";
-    height: 24px;
-    width: 2px;
-    background-color: #9e9e9e;
+    width: 50%;
+    height: 16px;
+    background-color: #f1f5f8;
     position: absolute;
-    top: -25px;
+    top: -32px;
+    left: -1px;
+  }
+
+  &:last-child::after {
+    content: "";
+    width: 50%;
+    height: 16px;
+    background-color: #f1f5f8;
+    position: absolute;
+    top: -32px;
+    right: -1px;
   }
 `

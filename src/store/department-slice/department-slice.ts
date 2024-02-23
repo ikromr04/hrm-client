@@ -30,7 +30,8 @@ export const departmentSlice = createSlice({
         state.departments = action.payload
       })
       .addCase(storeDepartmentAction.fulfilled, (state, action) => {
-        state.departments = [action.payload, ...(state.departments || [])]
+        state.departments = null
+        state.tree = action.payload
       })
       .addCase(updateDepartmentAction.fulfilled, (state, action) => {
         state.departments = null

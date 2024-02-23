@@ -5,7 +5,7 @@ import { APIRoute } from '../../const'
 import { ValidationError } from '@/types/validation-error'
 import { ID } from '@/types'
 import { generatePath } from 'react-router-dom'
-import { Department, Departments } from '@/types/departments'
+import { Departments } from '@/types/departments'
 import { DepartmentsStoreDTO, DepartmentsUpdateDTO } from '@/dto/departments-dto'
 
 export const fetchDepartmentsAction = createAsyncThunk<Departments, undefined, {
@@ -18,10 +18,10 @@ export const fetchDepartmentsAction = createAsyncThunk<Departments, undefined, {
   },
 )
 
-export const storeDepartmentAction = createAsyncThunk<Department, {
+export const storeDepartmentAction = createAsyncThunk<Departments, {
   dto: DepartmentsStoreDTO
   errorHandler: (error: ValidationError) => void
-  successHandler: (department: Department) => void
+  successHandler: (departments: Departments) => void
 }, {
   extra: AxiosInstance
   rejectWithValue: ValidationError
@@ -29,7 +29,7 @@ export const storeDepartmentAction = createAsyncThunk<Department, {
   'departments/store',
   async ({ dto, errorHandler, successHandler}, { extra: api, rejectWithValue }) => {
     try {
-      const { data } = await api.post<Department>(APIRoute.Departments.Index, dto)
+      const { data } = await api.post<Departments>(APIRoute.Departments.Index, dto)
       successHandler(data)
       return data
     } catch (err: any) {

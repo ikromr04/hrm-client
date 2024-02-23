@@ -6,7 +6,6 @@ import { Department } from '@/types/departments'
 import { BaseSyntheticEvent, ChangeEvent, Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import Button from '../../button/button'
-import Colspan from '../../colspan/colspan'
 import Input from '../../input/input'
 import { getEmployees } from '@/store/employee-slice/employees-selector'
 import { fetchEmployeesAction } from '@/store/employee-slice/employees-api-actions'
@@ -34,7 +33,11 @@ function EditForm({
   const departments = useAppSelector(getDepartments)
   const leaders: ID[] = department.employees?.filter(({ leader }) => leader)?.map(({ id }) => id) || []
   const departmentEmployees: ID[] = department.employees?.filter(({ leader }) => !leader)?.map(({ id }) => id) || []
-  const [dto, setDTO] = useState<DepartmentsUpdateDTO>({ leaders, employees: departmentEmployees })
+  const [dto, setDTO] = useState<DepartmentsUpdateDTO>({
+    leaders,
+    employees: departmentEmployees,
+    parent_id: department.parent,
+  })
 
   useEffect(() => {
     !employees && dispatch(fetchEmployeesAction())
@@ -57,7 +60,7 @@ function EditForm({
         setIsSubmitting(false)
         setIsDisabled(true)
         setIsOpen(false)
-        setDTO({ leaders, employees: departmentEmployees })
+        setDTO({ leaders, employees: departmentEmployees, parent_id: department.parent })
       },
     }))
   }
@@ -72,7 +75,7 @@ function EditForm({
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO({ leaders, employees: departmentEmployees })
+    setDTO({ leaders, employees: departmentEmployees, parent_id: department.parent })
   }
 
   const handleParentChange = (value: string) => {
@@ -100,36 +103,32 @@ function EditForm({
       onChange={handleFormChange}
       onReset={handleFormReset}
     >
-      <Colspan span={2}>
-        <Input
-          name="title"
-          label="Название отдел/департамент"
-          defaultValue={department.title}
-          errorMessage={validationError.errors?.title?.[0]}
-          autoComplete="off" />
-      </Colspan>
-      {employees &&
-        <>
-          <MultiSelect
-            key={(+isOpen).toString().padStart(2)}
-            label="Руководитель (необязательное)"
-            value={leaders}
-            onChange={handleLeadersChange}
-            options={[
-              { value: '', label: 'Не указать' }, 
-              ...employees.map(({ id, name, surname }) => ({ value: id, label: `${surname} ${name}` }))
-            ]} />
-          <MultiSelect
-            key={(+isOpen).toString().padStart(3)}
-            label="Сотрудники (необязательное)"
-            value={departmentEmployees}
-            onChange={handleDepartmentEmployeesChange}
-            options={[
-              { value: '', label: 'Не указать' }, 
-              ...employees.map(({ id, name, surname }) => ({ value: id, label: `${surname} ${name}` }))
-            ]} />
-        </>}
-      {departments &&
+      <Input
+        name="title"
+        label="Название отдел/департамент"
+        defaultValue={department.title}
+        errorMessage={validationError.errors?.title?.[0]}
+        autoComplete="off" />
+      {employees && <>
+        <MultiSelect
+          key={(+isOpen).toString().padStart(2)}
+          label="Руководитель (необязательное)"
+          value={leaders}
+          onChange={handleLeadersChange}
+          options={[
+            { value: '', label: 'Не указать' }, 
+            ...employees.map(({ id, name, surname }) => ({ value: id, label: `${surname} ${name}` }))
+          ]} />
+        <MultiSelect
+          key={(+isOpen).toString().padStart(3)}
+          label="Сотрудники (необязательное)"
+          value={departmentEmployees}
+          onChange={handleDepartmentEmployeesChange}
+          options={[
+            { value: '', label: 'Не указать' }, 
+            ...employees.map(({ id, name, surname }) => ({ value: id, label: `${surname} ${name}` }))
+          ]} /></>}
+      {departments && <>
         <Select
           label="Родительский отдел (необязательное)"
           value={dto.parent_id || ''}
@@ -137,8 +136,7 @@ function EditForm({
             { value: '', label: 'Не указать' },
             ...departments.filter(({ id }) => id !== department.id).map(({ id, title }) => ({ value: id, label: title }))
           ]}
-          onChange={handleParentChange} />}
-      {departments &&
+          onChange={handleParentChange} />
         <MultiSelect
           key={(+isOpen).toString().padStart(3)}
           label="Дочерние подразделения (необязательное)"
@@ -146,8 +144,8 @@ function EditForm({
           onChange={handleChildrenChange}
           options={[
             { value: '', label: 'Не указать' }, 
-            ...departments.map(({ id, title }) => ({ value: id, label: title }))
-          ]} />}
+            ...departments.filter(({ id }) => id !== department.id).map(({ id, title }) => ({ value: id, label: title }))
+          ]} /></>}
 
       <Actions>
         <Button

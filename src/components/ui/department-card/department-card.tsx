@@ -44,7 +44,7 @@ function DepartmentCard({
   }
 
   return (
-    <Card tagName="section">
+    <Card tagName="section" editable={editable}>
       <BoxToolbar>
         <Title small>{department.title}</Title>
       </BoxToolbar>

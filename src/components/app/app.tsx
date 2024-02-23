@@ -19,7 +19,6 @@ import EmployeesEducationPage from '../pages/employees/education-page/employees-
 import DashboardJobsPage from '../pages/dashboard/jobs-page/dashboard-jobs-page'
 import DashboardPositionsPage from '../pages/dashboard/positions-page/dashboard-positions-page'
 import DashboardLanguagesPage from '../pages/dashboard/languages-page/dashboard-languages-page'
-import DashboardDepartmentsPage from '../pages/dashboard/departments-page/dashboard-departments-page'
 import { ReactNode } from 'react'
 
 function App(): ReactNode {
@@ -48,7 +47,6 @@ function App(): ReactNode {
         <Route path={AppRoute.Dashboard.Jobs} element={<DashboardJobsPage />} />
         <Route path={AppRoute.Dashboard.Positions} element={<DashboardPositionsPage />} />
         <Route path={AppRoute.Dashboard.Languages} element={<DashboardLanguagesPage />} />
-        <Route path={AppRoute.Dashboard.Departments} element={<DashboardDepartmentsPage />} />
 
         <Route path={AppRoute.Auth.Login} element={<LoginPage />} />
 

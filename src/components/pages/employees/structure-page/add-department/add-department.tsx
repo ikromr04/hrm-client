@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, useRef, useState } from 'react'
+import { ChangeEvent, ReactNode, useEffect, useRef, useState } from 'react'
 import { useFormValidation } from '@/hooks/use-form-validation'
 import Actions from '@/components/ui/actions/actions'
 import Button from '@/components/ui/button/button'
@@ -6,20 +6,32 @@ import Modal from '@/components/ui/modal/modal'
 import Input from '@/components/ui/input/input'
 import Form from '@/components/ui/form/form'
 import Text from '@/components/ui/text/text'
-import { useAppDispatch } from '@/hooks'
+import { useAppDispatch, useAppSelector } from '@/hooks'
 import { toast } from 'react-toastify'
 import PlusIcon from '@/components/icons/plus-icon'
 import { DepartmentsStoreDTO } from '@/dto/departments-dto'
-import { storeDepartmentAction } from '@/store/department-slice/department-api-actions'
+import { fetchDepartmentsAction, storeDepartmentAction } from '@/store/department-slice/department-api-actions'
+import { getEmployees } from '@/store/employee-slice/employees-selector'
+import { getDepartments } from '@/store/department-slice/department-selector'
+import MultiSelect from '@/components/ui/multi-select/multi-select'
+import Select from '@/components/ui/select/select'
+import { fetchEmployeesAction } from '@/store/employee-slice/employees-api-actions'
 
 function AddDepartment(): ReactNode {
-  const { formChangeHandler, setValidationError, validationError } = useFormValidation()
-  const ref = useRef<HTMLInputElement | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)
-  const [dto, setDTO] = useState<DepartmentsStoreDTO>({ title: '' })
-  const [isOpen, setIsOpen] = useState(false)
   const dispatch = useAppDispatch()
+  const { formChangeHandler, setValidationError, validationError } = useFormValidation()
+  const employees = useAppSelector(getEmployees)
+  const departments = useAppSelector(getDepartments)
+  const ref = useRef<HTMLInputElement | null>(null)
+  const [dto, setDTO] = useState<DepartmentsStoreDTO>({ title: '', leaders: [], employees: [] })
+  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    !employees && dispatch(fetchEmployeesAction())
+    !departments && dispatch(fetchDepartmentsAction())
+  }, [dispatch, employees, departments])
 
   const handleAddButtonClick = () => {
     setIsOpen(true)
@@ -54,7 +66,7 @@ function AddDepartment(): ReactNode {
 
   const handleFormChange = (evt: ChangeEvent<HTMLFormElement>) => {
     formChangeHandler(evt)
-    setDTO({ title: evt.target.value })
+    setDTO((prevDTO) => ({ ...prevDTO, title: evt.target.value }))
     setIsDisabled(false)
   }
 
@@ -62,7 +74,26 @@ function AddDepartment(): ReactNode {
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO({ title: ''})
+    setDTO((prevDTO) => ({ ...prevDTO, title: '' }))
+  }
+
+  const handleParentChange = (value: string) => {
+    setDTO((prevDTO) => ({ ...prevDTO, parent_id: value }))
+    setIsDisabled(false)
+  }
+
+  const handleLeadersChange = (value: string[]) => {
+    setDTO((prevDTO) => ({ ...prevDTO, leaders: value }))
+    setIsDisabled(false)
+  }
+  const handleDepartmentEmployeesChange = (value: string[]) => {
+    setDTO((prevDTO) => ({ ...prevDTO, employees: value }))
+    setIsDisabled(false)
+  }
+
+  const handleChildrenChange = (value: string[]) => {
+    setDTO((prevDTO) => ({ ...prevDTO, children: value }))
+    setIsDisabled(false)
   }
 
   return (
@@ -84,6 +115,43 @@ function AddDepartment(): ReactNode {
             label="Отдел/департамент"
             errorMessage={validationError.errors?.title?.[0]}
             autoComplete="off" />
+          {employees && <>
+            <MultiSelect
+              key={(+isOpen).toString().padStart(2)}
+              label="Руководитель (необязательное)"
+              value={dto.leaders}
+              onChange={handleLeadersChange}
+              options={[
+                { value: '', label: 'Не указать' }, 
+                ...employees.map(({ id, name, surname }) => ({ value: id, label: `${surname} ${name}` }))
+              ]} />
+            <MultiSelect
+              key={(+isOpen).toString().padStart(3)}
+              label="Сотрудники (необязательное)"
+              value={dto.employees}
+              onChange={handleDepartmentEmployeesChange}
+              options={[
+                { value: '', label: 'Не указать' }, 
+                ...employees.map(({ id, name, surname }) => ({ value: id, label: `${surname} ${name}` }))
+              ]} /></>}
+          {departments && <>
+            <Select
+              label="Родительский отдел (необязательное)"
+              value={dto.parent_id || ''}
+              options={[
+                { value: '', label: 'Не указать' },
+                ...departments.map(({ id, title }) => ({ value: id, label: title }))
+              ]}
+              onChange={handleParentChange} />
+            <MultiSelect
+              key={(+isOpen).toString().padStart(3)}
+              label="Дочерние подразделения (необязательное)"
+              value={[]}
+              onChange={handleChildrenChange}
+              options={[
+                { value: '', label: 'Не указать' }, 
+                ...departments.map(({ id, title }) => ({ value: id, label: title }))
+              ]} /></>}
 
           <Actions>
             <Button
