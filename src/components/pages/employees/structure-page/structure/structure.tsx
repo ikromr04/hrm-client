@@ -55,9 +55,9 @@ function Structure(): ReactNode {
   }
 
   const handleWheel = (evt: WheelEvent<HTMLDivElement>) => {
-    if (evt.ctrlKey) {
+    if (evt.shiftKey) {
       const delta = evt.deltaY
-      const newScale = scale + delta * 0.01
+      const newScale = scale + delta * 0.001
 
       if (newScale >= minScale && newScale <= maxScale) {
         setScale(newScale)
