@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Wrapper = styled('div')`
   position: relative;
+  z-index: 0;
   width: 100%;
   height: calc(100vh - 129px);
   user-select: none;
