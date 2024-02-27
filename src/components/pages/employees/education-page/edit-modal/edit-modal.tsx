@@ -16,6 +16,7 @@ import { educationFormOptions } from '@/const'
 import { Education, Educations } from '@/types/educations'
 import EditIcon from '@/components/icons/edit-icon'
 import Colspan from '@/components/ui/colspan/colspan'
+import dayjs from 'dayjs'
 
 function EditModal({
   education,
@@ -30,7 +31,7 @@ function EditModal({
   const dispatch = useAppDispatch()
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
-  const [dto, setDTO] = useState<EducationsUpdateDTO>({})
+  const [dto, setDTO] = useState<EducationsUpdateDTO>({ form: education.form })
 
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()
@@ -48,7 +49,7 @@ function EditModal({
         setIsSubmitting(false)
         setIsDisabled(true)
         setIsOpen(false)
-        setDTO({})
+        setDTO({ form: education.form })
         setEducations((prevEducations) => 
           (prevEducations || []).map((prevEducation) => 
             (prevEducation.id === education.id) ? education : prevEducation
@@ -79,7 +80,7 @@ function EditModal({
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO({})
+    setDTO({ form: education.form })
   }
 
   const handleEducationFormChange = (value: string) => {
@@ -125,21 +126,21 @@ function EditModal({
             autoComplete="off" />
           <Select
             label="Форма обучения"
-            value={education.form}
+            value={dto.form || ''}
             onChange={handleEducationFormChange}
             options={educationFormOptions} />
           <Input
             name="started_at"
             type="date"
             label="Год поступления"
-            defaultValue={education.startedAt}
+            defaultValue={dayjs(education.startedAt).format('YYYY-MM-DD')}
             errorMessage={validationError.errors?.started_at?.[0]}
             autoComplete="off" />
           <Input
             name="graduated_at"
             type="date"
             label="Год окончания"
-            defaultValue={education.graduatedAt}
+            defaultValue={dayjs(education.graduatedAt).format('YYYY-MM-DD')}
             errorMessage={validationError.errors?.graduated_at?.[0]}
             autoComplete="off" />
 

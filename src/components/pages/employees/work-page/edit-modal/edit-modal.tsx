@@ -14,6 +14,7 @@ import EditIcon from '@/components/icons/edit-icon'
 import { Activities, Activity } from '@/types/activities'
 import { ActivitiesUpdateDTO } from '@/dto/activities-dto'
 import Colspan from '@/components/ui/colspan/colspan'
+import dayjs from 'dayjs'
 
 function EditModal({
   activity,
@@ -112,14 +113,14 @@ function EditModal({
             name="hired_at"
             type="date"
             label="Начало работы"
-            defaultValue={activity.hiredAt}
+            defaultValue={dayjs(activity.hiredAt).format('YYYY-MM-DD')}
             errorMessage={validationError.errors?.hired_at?.[0]}
             autoComplete="off" />
           <Input
             name="dismissed_at"
             type="date"
             label="Дата уволнения"
-            defaultValue={activity.dismissedAt}
+            defaultValue={dayjs(activity.dismissedAt).format('YYYY-MM-DD')}
             errorMessage={validationError.errors?.dismissed_at?.[0]}
             autoComplete="off" />
 

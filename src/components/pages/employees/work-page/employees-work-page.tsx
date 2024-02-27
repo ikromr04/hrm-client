@@ -16,6 +16,7 @@ import { useParams } from 'react-router-dom'
 import EditModal from './edit-modal/edit-modal'
 import DeleteModal from './delete-modal/delete-modal'
 import { Activities } from '@/types/activities'
+import dayjs from 'dayjs'
 
 function EmployeesWorkPage(): ReactNode {
   const [activities, setActivities] = useState<Activities | null>(null)
@@ -51,8 +52,8 @@ function EmployeesWorkPage(): ReactNode {
                   list={{
                     'Организация': activity.organization,
                     'Должность': activity.job,
-                    'Начало работы': activity.hiredAt,
-                    'Дата уволнения': activity.dismissedAt,
+                    'Начало работы': dayjs(activity.hiredAt).format('D MMM YYYY'),
+                    'Дата уволнения': dayjs(activity.dismissedAt).format('D MMM YYYY'),
                   }}
                 />
               </BoxInner>
