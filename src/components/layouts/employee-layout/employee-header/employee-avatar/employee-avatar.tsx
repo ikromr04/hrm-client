@@ -86,8 +86,10 @@ function EmployeeAvatar(): ReactNode {
             onChange={handleInputChange}
           />
         </DropdownButton>
-        {employee.avatar && 
-          <DropdownButton onClick={handleDeleteAvatar}>Удалить</DropdownButton>}
+        {employee.avatar && <>
+          <DropdownButton href={employee.avatar} target="_blank">Посмотреть</DropdownButton>
+          <DropdownButton onClick={handleDeleteAvatar}>Удалить</DropdownButton>
+        </>}
       </DropdownMenu>
     </Dropdown>
   )
