@@ -115,6 +115,7 @@ function Structure(): ReactNode {
                 surname: 'Мирзоева',
                 login: '',
                 avatar: '',
+                avatarThumb: '',
                 startedWorkAt: new Date(),
                 departments: [],
                 jobs: [],
