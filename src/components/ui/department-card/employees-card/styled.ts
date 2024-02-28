@@ -20,4 +20,6 @@ export const Avatar = styled('img')`
   min-height: 48px;
   border-radius: 50%;
   object-fit: cover;
+  width: 48px;
+  height: 48px;
 `

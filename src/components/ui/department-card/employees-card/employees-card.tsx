@@ -16,10 +16,10 @@ function EmployeesCard({
   return (
     <Card>
       <Avatar
-        src={employee.avatar || defaultAvatar}
+        src={employee.avatarThumb || defaultAvatar}
         alt={employee.name}
-        width={48}
-        height={48} />
+        width={144}
+        height={144} />
       <div>
         <Title tagName="h3" small>
           <TextLink href={employee.id && generatePath(AppRoute.Employees.Show, { id: employee.id })}>

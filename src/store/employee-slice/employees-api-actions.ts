@@ -9,6 +9,7 @@ import { EmployeesStoreDTO, EmployeesUpdateDTO } from '@/dto/employees-dto'
 import { ValidationError } from '@/types/validation-error'
 import { Educations } from '@/types/educations'
 import { Activities } from '@/types/activities'
+import { EmployeesUpdateAvatarResponse } from '@/responses/employees'
 
 export const fetchEmployeesAction = createAsyncThunk<Employees, undefined, {
   extra: AxiosInstance
@@ -90,15 +91,24 @@ export const updateEmployeeAction = createAsyncThunk<Employee, {
 export const updateEmployeesAvatarAction = createAsyncThunk<void, {
   formData: FormData
   id: ID
-  successHandler: (avatar: string) => void
+  successHandler: (response: EmployeesUpdateAvatarResponse) => void
  }, {
   extra: AxiosInstance
+  rejectWithValue: ValidationError
 }>(
   'employees/updateAvatar',
-  async ({ formData, id, successHandler }, { extra: api }) => {
+  async ({ formData, id, successHandler }, { extra: api, rejectWithValue }) => {
     formData.append('_method', 'put')
-    const { data } = await api.post<string>(generatePath(APIRoute.Employees.Avatar, { id }), formData)
-    successHandler(data)
+    try {
+      const { data } = await api.post<EmployeesUpdateAvatarResponse>(generatePath(APIRoute.Employees.Avatar, { id }), formData)
+      successHandler(data)
+    } catch (err: any) {
+      const error: AxiosError<ValidationError> = err
+      if (!error.response) {
+        throw err
+      }
+      return rejectWithValue(error.response.data)
+    }
   },
 )
 

@@ -31,11 +31,11 @@ function EmployeeAvatar(): ReactNode {
     dispatch(updateEmployeesAvatarAction({
       formData,
       id: employee.id,
-      successHandler(avatar) {
+      successHandler(response) {
         setIsLoading(false)
-        dispatch(setEmployeesAvatarAction(avatar))
+        dispatch(setEmployeesAvatarAction(response))
         if (employee.id === user?.id) {
-          dispatch(setUsersAvatarAction(avatar))
+          dispatch(setUsersAvatarAction(response))
         }
       },
     }))
@@ -46,10 +46,10 @@ function EmployeeAvatar(): ReactNode {
     dispatch(deleteEmployeesAvatarAction({
       id: employee.id,
       successHandler() {
-        dispatch(setEmployeesAvatarAction(''))
+        dispatch(setEmployeesAvatarAction({ avatar: '', avatarThumb: '' }))
         setIsLoading(false)
         if (employee.id === user?.id) {
-          dispatch(setUsersAvatarAction(''))
+          dispatch(setUsersAvatarAction({ avatar: '', avatarThumb: '' }))
         }
       },
     }))
@@ -63,10 +63,14 @@ function EmployeeAvatar(): ReactNode {
       >
         {isLoading && <Loading />}
         <Image
-          src={employee.avatar || defaultAvatar}
-          alt={employee.name}
+          src={employee.avatarThumb}
           width={144}
-          height={144} />
+          height={144}
+          alt={employee.name}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null
+            currentTarget.src=defaultAvatar
+          }} />
         <Info top>Изменить фотографию</Info>
       </Button>
 

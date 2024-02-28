@@ -14,9 +14,9 @@ function HomePage(): ReactNode {
       <Main>
         <Header>
           <Avatar
-            src={user?.avatar}
-            width={40}
-            height={40}
+            src={user?.avatarThumb}
+            width={144}
+            height={144}
             alt={user?.name}
             onError={({ currentTarget }) => {
               currentTarget.onerror = null

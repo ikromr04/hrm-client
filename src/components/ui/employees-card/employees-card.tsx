@@ -30,10 +30,14 @@ function EmployeesCard({
     <Aside currentUser={user?.id === employee.id}>
       <Header>
         <Avatar
-          src={employee.avatar || defaultAvatar}
+          src={employee.avatarThumb}
           alt={employee.name}
-          width={64}
-          height={64} />
+          width={144}
+          height={144}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null
+            currentTarget.src=defaultAvatar
+          }} />
         <div>
           <Title small>
             <EmployeeLink to={generatePath(AppRoute.Employees.Show, { id: employee.id })} onClick={() => dispatch(setEmployeeAction(null))}>

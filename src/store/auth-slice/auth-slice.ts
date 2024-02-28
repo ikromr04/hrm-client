@@ -21,7 +21,8 @@ export const authSlice = createSlice({
     setUsersAvatarAction: (state, action) => {
       const user = state.user
       if (user) {
-        user.avatar = action.payload
+        user.avatar = action.payload.avatar
+        user.avatarThumb = action.payload.avatarThumb
       }
       state.user = user
     }

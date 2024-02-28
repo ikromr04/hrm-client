@@ -22,7 +22,8 @@ export const employeeSlice = createSlice({
     setEmployeesAvatarAction: (state, action) => {
       const employee = state.employee
       if (employee) {
-        employee.avatar = action.payload
+        employee.avatar = action.payload.avatar
+        employee.avatarThumb = action.payload.avatarThumb
       }
       state.employee = employee
     },

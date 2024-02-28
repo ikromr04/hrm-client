@@ -22,6 +22,8 @@ export const StyledButton = styled('button')`
 export const Avatar = styled('img')`
   object-fit: cover;
   border-radius: 50%;
+  width: 32px;
+  height: 32px;
 `
 
 export const DropdownIcon = styled(CaretIcon)`

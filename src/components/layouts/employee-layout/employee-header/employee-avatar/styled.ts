@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 export const Dropdown = styled('div')`
   position: relative;
+  align-self: flex-start;
 `
 
 export const Button = styled('button')`

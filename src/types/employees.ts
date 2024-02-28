@@ -11,6 +11,7 @@ export type Employee = {
   patronymic?: string
   login: string
   avatar: string
+  avatarThumb: string
   startedWorkAt: Date
   departments: Departments
   jobs: Jobs

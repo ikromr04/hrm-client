@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+  import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import { StyledInfo } from '../info/styled'
 
@@ -27,6 +27,8 @@ export const Header = styled('header')`
 export const Avatar = styled('img')`
   display: block;
   border-radius: 50%;
+  width: 64px;
+  height: 64px;
 `
 
 export const EmployeeLink = styled(Link)`

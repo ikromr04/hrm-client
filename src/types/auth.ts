@@ -7,5 +7,6 @@ export type User = {
   patronymic?: string
   login: string
   avatar: string
+  avatarThumb: string
   startedWorkAt: Date
 }

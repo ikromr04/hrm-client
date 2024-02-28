@@ -24,9 +24,9 @@ function EmployeeMenu(): ReactNode {
     <Dropdown ref={ref}>
       <StyledButton onClick={() => setIsOpen(!isOpen)}>
         <Avatar
-          src={user.avatar}
-          width={32}
-          height={32}
+          src={user.avatarThumb}
+          width={144}
+          height={144}
           alt={user.name}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null
