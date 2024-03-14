@@ -18,6 +18,7 @@ import Select from '@/components/ui/select/select'
 import { FAMILY_STATUSES, GENDERS, NO_CHILDREN } from '@/const'
 import MultiSelect from '@/components/ui/multi-select/multi-select'
 import { getYears } from '@/utils/employees'
+import dayjs from 'dayjs'
 
 function EditModal({
   employee
@@ -25,11 +26,13 @@ function EditModal({
   employee: Employee
 }): ReactNode {
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
-  const [dto, setDTO] = useState<EmployeesUpdateDTO>({ details: {
-    gender: employee.details?.gender,
-    family_status: employee.details?.familyStatus,
-    children: employee.details?.children,
-  }})
+  const [dto, setDTO] = useState<EmployeesUpdateDTO>({
+    details: {
+      gender: employee.details?.gender,
+      family_status: employee.details?.familyStatus,
+      children: employee.details?.children,
+    }
+  })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const ref = useRef<HTMLInputElement | null>(null)
   const [isDisabled, setIsDisabled] = useState(true)
@@ -67,18 +70,20 @@ function EditModal({
       details: { ...prevDTO.details, [evt.target.name]: evt.target.value }
     }))
     setIsDisabled(() => validationError.message ? true : false)
-    setValidationError({ message: ''})
+    setValidationError({ message: '' })
   }
 
   const handleFormReset = () => {
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO({ details: {
-      gender: employee.details?.gender,
-      family_status: employee.details?.familyStatus,
-      children: employee.details?.children,
-    }})
+    setDTO({
+      details: {
+        gender: employee.details?.gender,
+        family_status: employee.details?.familyStatus,
+        children: employee.details?.children,
+      }
+    })
   }
 
   const handleGenderChange = (value: string) => {
@@ -127,7 +132,7 @@ function EditModal({
             name="birth_date"
             type="date"
             label="Дата рождения"
-            defaultValue={employee.details?.birthDate}
+            defaultValue={dayjs(employee.details?.birthDate).format('YYYY-MM-DD')}
             errorMessage={validationError.errors?.['details.birth_date']?.[0]}
             autoComplete="off" />
           <Select

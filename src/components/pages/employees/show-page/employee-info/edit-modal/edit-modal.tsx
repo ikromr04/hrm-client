@@ -21,6 +21,7 @@ import { getPositions } from '@/store/position-slice/position-selector'
 import { fetchPositionsAction } from '@/store/position-slice/position-api-actions'
 import { getDepartments } from '@/store/department-slice/department-selector'
 import { fetchDepartmentsAction } from '@/store/department-slice/department-api-actions'
+import dayjs from 'dayjs'
 
 function EditModal({
   employee
@@ -146,27 +147,27 @@ function EditModal({
             name="started_work_at"
             type="date"
             label="Начало работы"
-            defaultValue={employee.startedWorkAt}
+            defaultValue={dayjs(employee.startedWorkAt).format('YYYY-MM-DD')}
             errorMessage={validationError.errors?.started_work_at?.[0]}
             autoComplete="off" />
-          {departments && 
+          {departments &&
             <MultiSelect
               key={(+isOpen).toString().padStart(2)}
               label="Отдел"
               value={employee.departments.map(({ id }) => id)}
               onChange={handleDepartmentsChange}
               options={[
-                { value: '', label: 'Не указать' }, 
+                { value: '', label: 'Не указать' },
                 ...departments.map(({ id, title }) => ({ value: id, label: title }))
               ]} />}
-          {jobs && 
+          {jobs &&
             <MultiSelect
               key={(+isOpen).toString().padStart(3)}
               label="Должность"
               value={employee.jobs.map(({ id }) => id)}
               onChange={handleJobsChange}
               options={[
-                { value: '', label: 'Не указать' }, 
+                { value: '', label: 'Не указать' },
                 ...jobs.map(({ id, title }) => ({ value: id, label: title }))
               ]} />}
           {positions &&
