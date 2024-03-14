@@ -88,10 +88,14 @@ export const updateEmployeeAction = createAsyncThunk<Employee, {
   },
 )
 
-export const updateEmployeesAvatarAction = createAsyncThunk<void, {
+export const updateEmployeesAvatarAction = createAsyncThunk<{
+  id: ID
+  avatar: string
+  avatarThumb: string
+}, {
   formData: FormData
   id: ID
-  successHandler: (response: EmployeesUpdateAvatarResponse) => void
+  successHandler: () => void
  }, {
   extra: AxiosInstance
   rejectWithValue: ValidationError
@@ -101,7 +105,11 @@ export const updateEmployeesAvatarAction = createAsyncThunk<void, {
     formData.append('_method', 'put')
     try {
       const { data } = await api.post<EmployeesUpdateAvatarResponse>(generatePath(APIRoute.Employees.Avatar, { id }), formData)
-      successHandler(data)
+      successHandler()
+      return {
+        id,
+        ...data
+      }
     } catch (err: any) {
       const error: AxiosError<ValidationError> = err
       if (!error.response) {
@@ -112,7 +120,7 @@ export const updateEmployeesAvatarAction = createAsyncThunk<void, {
   },
 )
 
-export const deleteEmployeesAvatarAction = createAsyncThunk<void, {
+export const deleteEmployeesAvatarAction = createAsyncThunk<ID, {
   id: ID
   successHandler: () => void
  }, {
@@ -120,8 +128,9 @@ export const deleteEmployeesAvatarAction = createAsyncThunk<void, {
 }>(
   'employees/deleteAvatar',
   async ({ id, successHandler }, { extra: api }) => {
-    await api.delete<string>(generatePath(APIRoute.Employees.Avatar, { id }))
+    await api.delete(generatePath(APIRoute.Employees.Avatar, { id }))
     successHandler()
+    return id
   },
 )
 

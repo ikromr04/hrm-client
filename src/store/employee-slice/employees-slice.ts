@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import { SliceName } from '../../const'
 import { Employee, Employees } from '../../types/employees'
 import {
-  fetchEmployeeAction, fetchEmployeesAction, storeEmployeeAction, updateEmployeeAction,
+  deleteEmployeesAvatarAction,
+  fetchEmployeeAction, fetchEmployeesAction, storeEmployeeAction, updateEmployeeAction, updateEmployeesAvatarAction,
 } from './employees-api-actions'
 
 export type EmployeesSlice = {
@@ -19,14 +20,6 @@ export const employeeSlice = createSlice({
   name: SliceName.Employee,
   initialState,
   reducers: {
-    setEmployeesAvatarAction: (state, action) => {
-      const employee = state.employee
-      if (employee) {
-        employee.avatar = action.payload.avatar
-        employee.avatarThumb = action.payload.avatarThumb
-      }
-      state.employee = employee
-    },
     setEmployeeAction: (state, action) => {
       state.employee = action.payload
     }
@@ -46,7 +39,23 @@ export const employeeSlice = createSlice({
       .addCase(storeEmployeeAction.fulfilled, (state) => {
         state.employees = null
       })
+      .addCase(updateEmployeesAvatarAction.fulfilled, (state, action) => {
+        const employee = state.employee
+        if (employee && employee.id === action.payload.id) {
+          employee.avatar = action.payload.avatar
+          employee.avatarThumb = action.payload.avatarThumb
+        }
+        state.employee = employee
+      })
+      .addCase(deleteEmployeesAvatarAction.fulfilled, (state, action) => {
+        const employee = state.employee
+        if (employee && employee.id === action.payload) {
+          employee.avatar = ''
+          employee.avatarThumb = ''
+        }
+        state.employee = employee
+      })
   },
 })
 
-export const { setEmployeesAvatarAction, setEmployeeAction } = employeeSlice.actions
+export const { setEmployeeAction } = employeeSlice.actions

@@ -3,18 +3,14 @@ import { Image, Button, Loading, Dropdown } from './styled'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
 import { deleteEmployeesAvatarAction, updateEmployeesAvatarAction } from '@/store/employee-slice/employees-api-actions'
-import { setEmployeesAvatarAction } from '@/store/employee-slice/employees-slice'
 import Info from '@/components/ui/info/info'
 import defaultAvatar from '@/assets/static/default-avatar.png'
 import { useDropdown } from '@/hooks/use-dropdown'
 import DropdownMenu from '@/components/ui/dropdown-menu/dropdown-menu'
 import DropdownButton from '@/components/ui/dropdown-button/dropdown-button'
-import { getUser } from '@/store/auth-slice/auth-selector'
-import { setUsersAvatarAction } from '@/store/auth-slice/auth-slice'
 
 function EmployeeAvatar(): ReactNode {
   const employee = useAppSelector(getEmployee)
-  const user = useAppSelector(getUser)
   const dispatch = useAppDispatch()
   const { ref, isOpen, setIsOpen } = useDropdown()
   const [isLoading, setIsLoading] = useState(false)
@@ -31,12 +27,8 @@ function EmployeeAvatar(): ReactNode {
     dispatch(updateEmployeesAvatarAction({
       formData,
       id: employee.id,
-      successHandler(response) {
+      successHandler() {
         setIsLoading(false)
-        dispatch(setEmployeesAvatarAction(response))
-        if (employee.id === user?.id) {
-          dispatch(setUsersAvatarAction(response))
-        }
       },
     }))
   }
@@ -46,11 +38,7 @@ function EmployeeAvatar(): ReactNode {
     dispatch(deleteEmployeesAvatarAction({
       id: employee.id,
       successHandler() {
-        dispatch(setEmployeesAvatarAction({ avatar: '', avatarThumb: '' }))
         setIsLoading(false)
-        if (employee.id === user?.id) {
-          dispatch(setUsersAvatarAction({ avatar: '', avatarThumb: '' }))
-        }
       },
     }))
   }
@@ -69,7 +57,7 @@ function EmployeeAvatar(): ReactNode {
           alt={employee.name}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null
-            currentTarget.src=defaultAvatar
+            currentTarget.src = defaultAvatar
           }} />
         <Info top>Изменить фотографию</Info>
       </Button>

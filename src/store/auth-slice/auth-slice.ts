@@ -2,7 +2,7 @@ import { AuthorizationStatus, SliceName } from '@/const'
 import { createSlice } from '@reduxjs/toolkit'
 import { checkAuthAction, loginAction, logoutAction } from './auth-api-actions'
 import { User } from '@/types/auth'
-import { updateEmployeeAction } from '../employee-slice/employees-api-actions'
+import { deleteEmployeesAvatarAction, updateEmployeeAction, updateEmployeesAvatarAction } from '../employee-slice/employees-api-actions'
 
 export type AuthSlice = {
   authStatus: AuthorizationStatus
@@ -50,6 +50,22 @@ export const authSlice = createSlice({
         if (state.user?.id === action.payload.id) {
           state.user = action.payload
         }
+      })
+      .addCase(updateEmployeesAvatarAction.fulfilled, (state, action) => {
+        const user = state.user
+        if (user && user.id === action.payload.id) {
+          user.avatar = action.payload.avatar
+          user.avatarThumb = action.payload.avatarThumb
+        }
+        state.user = user
+      })
+      .addCase(deleteEmployeesAvatarAction.fulfilled, (state, action) => {
+        const user = state.user
+        if (user && user.id === action.payload) {
+          user.avatar = ''
+          user.avatarThumb = ''
+        }
+        state.user = user
       })
   },
 })
