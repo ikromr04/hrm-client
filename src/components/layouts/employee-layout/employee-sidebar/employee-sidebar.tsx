@@ -12,7 +12,7 @@ import dayjs from 'dayjs'
 import { useAppSelector } from '@/hooks'
 import { getEmployee } from '@/store/employee-slice/employees-selector'
 import { getWorkTime } from '@/utils/employees'
-import { ReactNode } from 'react'
+import { ReactNode, memo } from 'react'
 
 function EmployeeSidebar(): ReactNode {
   const employee = useAppSelector(getEmployee)
@@ -56,4 +56,4 @@ function EmployeeSidebar(): ReactNode {
   )
 }
 
-export default EmployeeSidebar
+export default memo(EmployeeSidebar)

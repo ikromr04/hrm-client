@@ -1,5 +1,5 @@
 import { updateEmployeeAction } from '@/store/employee-slice/employees-api-actions'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, memo, useEffect, useState } from 'react'
 import { EmployeesUpdateDTO } from '@/dto/employees-dto'
 import Actions from '@/components/ui/actions/actions'
 import EditIcon from '@/components/icons/edit-icon'
@@ -102,4 +102,4 @@ function EditModal(): ReactNode {
   )
 }
 
-export default EditModal
+export default memo(EditModal)
