@@ -6,7 +6,7 @@ import Hr from '@/components/ui/hr/hr'
 import AddressBookIcon from '@/components/icons/address-book-icon'
 import NavItem from './nav-Item/nav-item'
 import SettingsIcon from '@/components/icons/settings-icon'
-import { ReactNode } from 'react'
+import { ReactNode, memo } from 'react'
 
 function PageNavigation(): ReactNode {
   return (
@@ -42,4 +42,4 @@ function PageNavigation(): ReactNode {
   )
 }
 
-export default PageNavigation
+export default memo(PageNavigation)

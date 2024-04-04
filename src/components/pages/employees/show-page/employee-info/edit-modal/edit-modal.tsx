@@ -1,5 +1,5 @@
 import { updateEmployeeAction } from '@/store/employee-slice/employees-api-actions'
-import { ChangeEvent, ReactNode, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, ReactNode, useCallback, useRef, useState } from 'react'
 import { useFormValidation } from '@/hooks/use-form-validation'
 import { EmployeesUpdateDTO } from '@/dto/employees-dto'
 import Actions from '@/components/ui/actions/actions'
@@ -11,17 +11,13 @@ import Form from '@/components/ui/form/form'
 import { Employee } from '@/types/employees'
 import Info from '@/components/ui/info/info'
 import Text from '@/components/ui/text/text'
-import { useAppDispatch, useAppSelector } from '@/hooks'
+import { useAppDispatch } from '@/hooks'
 import { toast } from 'react-toastify'
 import { EditButton } from './styled'
-import MultiSelect from '@/components/ui/multi-select/multi-select'
-import { getJobs } from '@/store/job-slice/job-selector'
-import { fetchJobsAction } from '@/store/job-slice/job-api-actions'
-import { getPositions } from '@/store/position-slice/position-selector'
-import { fetchPositionsAction } from '@/store/position-slice/position-api-actions'
-import { getDepartments } from '@/store/department-slice/department-selector'
-import { fetchDepartmentsAction } from '@/store/department-slice/department-api-actions'
 import dayjs from 'dayjs'
+import DepartmentsSelection from './departments-selection/departments-selection'
+import JobsSelection from './jobs-selection/jobs-selection'
+import PositionsSelection from './positions-selection/positions-selection'
 
 function EditModal({
   employee
@@ -35,15 +31,6 @@ function EditModal({
   const [dto, setDTO] = useState<EmployeesUpdateDTO>({})
   const [isOpen, setIsOpen] = useState(false)
   const dispatch = useAppDispatch()
-  const departments = useAppSelector(getDepartments)
-  const jobs = useAppSelector(getJobs)
-  const positions = useAppSelector(getPositions)
-
-  useEffect(() => {
-    !departments && dispatch(fetchDepartmentsAction())
-    !jobs && dispatch(fetchJobsAction())
-    !positions && dispatch(fetchPositionsAction())
-  }, [departments, jobs, positions, dispatch])
 
   const handleEditButtonClick = () => {
     setIsOpen(true)
@@ -90,20 +77,20 @@ function EditModal({
     setDTO({})
   }
 
-  const handleDepartmentsChange = (value: string[]) => {
+  const handleDepartmentsChange = useCallback((value: string[]) => {
     setDTO((prevDTO) => ({ ...prevDTO, departments: value }))
     setIsDisabled(() => validationError.message ? true : false)
-  }
+  }, [validationError.message])
 
-  const handleJobsChange = (value: string[]) => {
+  const handleJobsChange = useCallback((value: string[]) => {
     setDTO((prevDTO) => ({ ...prevDTO, jobs: value }))
     setIsDisabled(() => validationError.message ? true : false)
-  }
+  }, [validationError.message])
 
-  const handlePositionsChange = (value: string[]) => {
+  const handlePositionsChange = useCallback((value: string[]) => {
     setDTO((prevDTO) => ({ ...prevDTO, positions: value }))
     setIsDisabled(() => validationError.message ? true : false)
-  }
+  }, [validationError.message])
 
   return (
     <>
@@ -150,36 +137,21 @@ function EditModal({
             defaultValue={dayjs(employee.startedWorkAt).format('YYYY-MM-DD')}
             errorMessage={validationError.errors?.started_work_at?.[0]}
             autoComplete="off" />
-          {departments &&
-            <MultiSelect
-              key={(+isOpen).toString().padStart(2)}
-              label="Отдел"
-              value={employee.departments.map(({ id }) => id)}
-              onChange={handleDepartmentsChange}
-              options={[
-                { value: '', label: 'Не указать' },
-                ...departments.map(({ id, title }) => ({ value: id, label: title }))
-              ]} />}
-          {jobs &&
-            <MultiSelect
-              key={(+isOpen).toString().padStart(3)}
-              label="Должность"
-              value={employee.jobs.map(({ id }) => id)}
-              onChange={handleJobsChange}
-              options={[
-                { value: '', label: 'Не указать' },
-                ...jobs.map(({ id, title }) => ({ value: id, label: title }))
-              ]} />}
-          {positions &&
-            <MultiSelect
-              key={(+isOpen).toString().padStart(4)}
-              label="Позиция"
-              value={employee.positions.map(({ id }) => id)}
-              onChange={handlePositionsChange}
-              options={[
-                { value: '', label: 'Не указать' },
-                ...positions.map(({ id, title }) => ({ value: id, label: title }))
-              ]} />}
+          <DepartmentsSelection
+            isOpen={isOpen}
+            value={employee.departments.map(({ id }) => id)}
+            onChange={handleDepartmentsChange}
+          />
+          <JobsSelection
+            isOpen={isOpen}
+            value={employee.jobs.map(({ id }) => id)}
+            onChange={handleJobsChange}
+          />
+          <PositionsSelection
+            isOpen={isOpen}
+            value={employee.positions.map(({ id }) => id)}
+            onChange={handlePositionsChange}
+          />
 
           <Actions>
             <Button

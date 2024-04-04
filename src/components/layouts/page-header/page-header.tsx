@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, memo } from 'react'
 import { Header, HeaderContainer } from './styled'
 import EmployeeMenu from './employee-menu/employee-menu'
 import QuickAdd from './quick-add/quick-add'
@@ -18,4 +18,4 @@ function PageHeader(): ReactNode {
   )
 }
 
-export default PageHeader
+export default memo(PageHeader)
