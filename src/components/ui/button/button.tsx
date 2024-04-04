@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, memo } from 'react'
 import { StyledButton } from './styled'
 import { Link } from 'react-router-dom'
 import Spinner from '../spinner/spinner'
@@ -51,4 +51,4 @@ function Button({
   )
 }
 
-export default Button
+export default memo(Button)

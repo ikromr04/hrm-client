@@ -9,4 +9,9 @@ export type User = {
   avatar: string
   avatarThumb: string
   startedWorkAt: Date
+  role: {
+    id: ID
+    name: string
+    displayName: string
+  }
 }

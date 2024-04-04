@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, memo } from 'react'
 import { Wrapper } from './styled'
 
 function Actions({
@@ -11,4 +11,4 @@ function Actions({
   return <Wrapper className={className}>{children}</Wrapper>
 }
 
-export default Actions
+export default memo(Actions)

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, memo } from 'react'
 import { StyledForm } from './styled'
 
 function Form({
@@ -23,4 +23,4 @@ function Form({
   )
 }
 
-export default Form
+export default memo(Form)

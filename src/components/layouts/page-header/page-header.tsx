@@ -5,6 +5,7 @@ import QuickAdd from './quick-add/quick-add'
 import MainLogo from './main-logo/main-logo'
 
 function PageHeader(): ReactNode {
+
   return (
     <Header>
       <HeaderContainer>

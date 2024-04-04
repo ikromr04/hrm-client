@@ -4,19 +4,15 @@ import Form from '@/components/ui/form/form'
 import Input from '@/components/ui/input/input'
 import Modal from '@/components/ui/modal/modal'
 import Text from '@/components/ui/text/text'
-import { useAppDispatch, useAppSelector } from '@/hooks'
+import { useAppDispatch } from '@/hooks'
 import { useFormValidation } from '@/hooks/use-form-validation'
-import { ChangeEvent, Dispatch, ReactNode, SetStateAction, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, Dispatch, ReactNode, SetStateAction, memo, useCallback, useEffect, useRef, useState } from 'react'
 import { EmployeesStoreDTO } from '@/dto/employees-dto'
-import { getDepartments } from '@/store/department-slice/department-selector'
-import { getJobs } from '@/store/job-slice/job-selector'
-import { getPositions } from '@/store/position-slice/position-selector'
-import { fetchDepartmentsAction } from '@/store/department-slice/department-api-actions'
-import { fetchJobsAction } from '@/store/job-slice/job-api-actions'
-import { fetchPositionsAction } from '@/store/position-slice/position-api-actions'
 import { storeEmployeeAction } from '@/store/employee-slice/employees-api-actions'
 import { toast } from 'react-toastify'
-import MultiSelect from '@/components/ui/multi-select/multi-select'
+import DepartmentsSelection from './departments-selection/departments-selection'
+import JobsSelection from './jobs-selection/jobs-selection'
+import PositionsSelection from './positions-selection/positions-selection'
 
 function EmployeeModal({
   isOpen,
@@ -29,16 +25,10 @@ function EmployeeModal({
   const ref = useRef<HTMLInputElement | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)
-  const [dto, setDTO] = useState<EmployeesStoreDTO>({ name: '', surname: '', login: ''})
+  const [dto, setDTO] = useState<EmployeesStoreDTO>({ name: '', surname: '', login: '' })
   const dispatch = useAppDispatch()
-  const departments = useAppSelector(getDepartments)
-  const jobs = useAppSelector(getJobs)
-  const positions = useAppSelector(getPositions)
 
   useEffect(() => {
-    !departments && dispatch(fetchDepartmentsAction())
-    !jobs && dispatch(fetchJobsAction())
-    !positions && dispatch(fetchPositionsAction())
     setTimeout(() => {
       if (ref.current) {
         const value = ref.current.value
@@ -47,7 +37,7 @@ function EmployeeModal({
         ref.current.value = value
       }
     }, 150)
-  }, [departments, jobs, positions, dispatch, isOpen])
+  }, [isOpen])
 
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()
@@ -78,23 +68,23 @@ function EmployeeModal({
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO({ name: '', surname: '', login: ''})
+    setDTO({ name: '', surname: '', login: '' })
   }
 
-  const handleDepartmentsChange = (value: string[]) => {
+  const handleDepartmentsChange = useCallback((value: string[]) => {
     setDTO((prevDTO) => ({ ...prevDTO, departments: value }))
     setIsDisabled(() => validationError.message ? true : false)
-  }
+  }, [validationError.message])
 
-  const handleJobsChange = (value: string[]) => {
+  const handleJobsChange = useCallback((value: string[]) => {
     setDTO((prevDTO) => ({ ...prevDTO, jobs: value }))
     setIsDisabled(() => validationError.message ? true : false)
-  }
+  }, [validationError.message])
 
-  const handlePositionsChange = (value: string[]) => {
+  const handlePositionsChange = useCallback((value: string[]) => {
     setDTO((prevDTO) => ({ ...prevDTO, positions: value }))
     setIsDisabled(() => validationError.message ? true : false)
-  }
+  }, [validationError.message])
 
   return (
     <Modal isOpen={isOpen}>
@@ -133,36 +123,18 @@ function EmployeeModal({
           label="Начало работы"
           errorMessage={validationError.errors?.started_work_at?.[0]}
           autoComplete="off" />
-        {departments && 
-          <MultiSelect
-            key={(+isOpen).toString().padStart(2)}
-            label="Отдел (необязательное)"
-            value={[]}
-            onChange={handleDepartmentsChange}
-            options={[
-              { value: '', label: 'Не указать' }, 
-              ...departments.map(({ id, title }) => ({ value: id, label: title }))
-            ]} />}
-        {jobs && 
-          <MultiSelect
-            key={(+isOpen).toString().padStart(3)}
-            label="Должность (необязательное)"
-            value={[]}
-            onChange={handleJobsChange}
-            options={[
-              { value: '', label: 'Не указать' }, 
-              ...jobs.map(({ id, title }) => ({ value: id, label: title }))
-            ]} />}
-        {positions &&
-          <MultiSelect
-            key={(+isOpen).toString().padStart(4)}
-            label="Позиция (необязательное)"
-            value={[]}
-            onChange={handlePositionsChange}
-            options={[
-              { value: '', label: 'Не указать' },
-              ...positions.map(({ id, title }) => ({ value: id, label: title }))
-            ]} />}
+        <DepartmentsSelection
+          isOpen={isOpen}
+          onChange={handleDepartmentsChange}
+        />
+        <JobsSelection
+          isOpen={isOpen}
+          onChange={handleJobsChange}
+        />
+        <PositionsSelection
+          isOpen={isOpen}
+          onChange={handlePositionsChange}
+        />
 
         <Actions>
           <Button
@@ -182,4 +154,4 @@ function EmployeeModal({
   )
 }
 
-export default EmployeeModal
+export default memo(EmployeeModal)

@@ -1,4 +1,4 @@
-import { ForwardedRef, ReactNode, forwardRef } from 'react'
+import { ForwardedRef, ReactNode, forwardRef, memo } from 'react'
 import { ErrorMessage, Label, Span, StyledInput, Wrapper } from './styled'
 
 function Input({
@@ -31,4 +31,4 @@ function Input({
   )
 }
 
-export default forwardRef(Input)
+export default memo(forwardRef(Input))

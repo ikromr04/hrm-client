@@ -27,7 +27,7 @@ export const Table = styled('table')`
 
 export const Thead = styled('thead').withConfig({
   shouldForwardProp: (props) => !['stickyHeader'].includes(props),
-})<{ stickyHeader?: boolean }>`
+}) <{ stickyHeader?: boolean }>`
   display: flex;
   flex-grow: 1;
   border-radius: 8px 8px 0 0;
@@ -72,7 +72,7 @@ export const Tr = styled('tr')`
 
 export const Th = styled('th').withConfig({
   shouldForwardProp: (props) => !['width'].includes(props),
-})<{ width?: number }>`
+}) <{ width?: number }>`
   display: flex;
   padding: 4px 16px;
   padding: 8px 16px;
@@ -87,10 +87,12 @@ export const Th = styled('th').withConfig({
 
 export const Td = styled('td').withConfig({
   shouldForwardProp: (props) => !['width'].includes(props),
-})<{ width?: number }>`
+}) <{ width?: number }>`
   display: flex;
   padding: 8px 16px;
   word-break: break-word;
+  flex-wrap: wrap;
+  gap: 4px;
   flex-grow: 1;
 
   ${({ width }) => width && css`

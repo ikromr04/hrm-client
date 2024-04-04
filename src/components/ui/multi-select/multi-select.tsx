@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode, memo, useState } from 'react'
 import { Label, LabelInner, Option, Options, Span, StyledInput, Wrapper } from './styled'
 import { useOutsideClick } from '@/hooks/use-outside-click'
 import CaretIcon from '@/components/icons/caret-icon'
@@ -84,4 +84,4 @@ function MultiSelect({
   )
 }
 
-export default MultiSelect
+export default memo(MultiSelect)

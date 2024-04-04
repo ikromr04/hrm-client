@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, ReactNode } from 'react'
+import { BaseSyntheticEvent, ReactNode, memo } from 'react'
 import { ModalInner, StyledModal } from './styled'
 
 function Modal({
@@ -26,4 +26,4 @@ function Modal({
   )
 }
 
-export default Modal
+export default memo(Modal)

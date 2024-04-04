@@ -7,10 +7,17 @@ import { useDropdown } from '@/hooks/use-dropdown'
 import { ReactNode, useState } from 'react'
 import DropdownButton from '@/components/ui/dropdown-button/dropdown-button'
 import EmployeeModal from './employee-modal/employee-modal'
+import { useAppSelector } from '@/hooks'
+import { getUser } from '@/store/auth-slice/auth-selector'
 
 function QuickAdd(): ReactNode {
   const { ref, isOpen, setIsOpen } = useDropdown()
   const [isEmployeeModalOpen, setIsEmployeeModalOpen] = useState(false)
+  const user = useAppSelector(getUser)
+
+  if (user?.role.name != 'admin') {
+    return <></>
+  }
 
   return (
     <>

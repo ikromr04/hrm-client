@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, memo } from 'react'
 import { StyledText } from './styled'
 
 function Text({
@@ -35,4 +35,4 @@ function Text({
   )
 }
 
-export default Text
+export default memo(Text)

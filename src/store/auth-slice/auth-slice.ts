@@ -48,7 +48,16 @@ export const authSlice = createSlice({
       })
       .addCase(updateEmployeeAction.fulfilled, (state, action) => {
         if (state.user?.id === action.payload.id) {
-          state.user = action.payload
+          state.user = {
+            ...state.user,
+            name: action.payload.name,
+            surname: action.payload.surname,
+            patronymic: action.payload.patronymic,
+            login: action.payload.login,
+            avatar: action.payload.avatar,
+            avatarThumb: action.payload.avatarThumb,
+            startedWorkAt: action.payload.startedWorkAt,
+          }
         }
       })
       .addCase(updateEmployeesAvatarAction.fulfilled, (state, action) => {
