@@ -33,7 +33,7 @@ export type Employee = {
   previous: ID
 }
 
-export type Employees = Employee[]
+export type Employees = Omit<Employee, 'next' | 'previous'>[]
 
 export type EmployeeLanguage = Language & { level: string }
 

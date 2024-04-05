@@ -77,8 +77,7 @@ function EditModal(): ReactNode {
               key={language.id}
               currentLanguage={language}
               languages={getFilteredLanguages(language)}
-              setDTO={setDTO}
-            />
+              setDTO={setDTO} />
           ))}
 
           <EmptyLanguageFields languages={getFilteredLanguages()} setDTO={setDTO} />

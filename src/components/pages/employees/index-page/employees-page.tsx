@@ -24,7 +24,7 @@ function EmployeesPage(): ReactNode {
   const dispatch = useAppDispatch()
   const [keyword, setKeyword] = useState('')
 
-  const filteredEmployees = employees ? employees.filter((employee) => 
+  const filteredEmployees = employees ? employees.filter((employee) =>
     (`${employee.surname} ${employee.name} ${employee.patronymic}`).toLowerCase().includes(keyword.toLowerCase())
     || employee.login.toLowerCase().includes(keyword.toLowerCase())
     || (keyword ? (employee.details?.tel1?.toLowerCase().includes(keyword.toLowerCase()) || employee.details?.tel2?.toLowerCase().includes(keyword.toLowerCase())) : true)

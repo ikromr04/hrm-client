@@ -1,5 +1,5 @@
 import { storeEmployeeAction } from '@/store/employee-slice/employees-api-actions'
-import { ChangeEvent, ReactNode, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, ReactNode, useRef, useState } from 'react'
 import { useFormValidation } from '@/hooks/use-form-validation'
 import { EmployeesStoreDTO } from '@/dto/employees-dto'
 import Actions from '@/components/ui/actions/actions'
@@ -8,37 +8,25 @@ import Modal from '@/components/ui/modal/modal'
 import Input from '@/components/ui/input/input'
 import Form from '@/components/ui/form/form'
 import Text from '@/components/ui/text/text'
-import { useAppDispatch, useAppSelector } from '@/hooks'
+import { useAppDispatch } from '@/hooks'
 import { toast } from 'react-toastify'
 import MultiSelect from '@/components/ui/multi-select/multi-select'
-import { getJobs } from '@/store/job-slice/job-selector'
-import { fetchJobsAction } from '@/store/job-slice/job-api-actions'
-import { getPositions } from '@/store/position-slice/position-selector'
-import { fetchPositionsAction } from '@/store/position-slice/position-api-actions'
-import { getDepartments } from '@/store/department-slice/department-selector'
-import { fetchDepartmentsAction } from '@/store/department-slice/department-api-actions'
 import PlusIcon from '@/components/icons/plus-icon'
 import Select from '@/components/ui/select/select'
 import { FAMILY_STATUSES, GENDERS, NO_CHILDREN } from '@/const'
 import { getYears } from '@/utils/employees'
+import DepartmentsSelection from './departments-selection/departments-selection'
+import JobsSelection from './jobs-selection/jobs-selection'
+import PositionsSelection from './positions-selection/positions-selection'
 
 function AddEmployee(): ReactNode {
   const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const ref = useRef<HTMLInputElement | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)
-  const [dto, setDTO] = useState<EmployeesStoreDTO>({ name: '', surname: '', login: ''})
+  const [dto, setDTO] = useState<EmployeesStoreDTO>({ name: '', surname: '', login: '' })
   const [isOpen, setIsOpen] = useState(false)
   const dispatch = useAppDispatch()
-  const departments = useAppSelector(getDepartments)
-  const jobs = useAppSelector(getJobs)
-  const positions = useAppSelector(getPositions)
-
-  useEffect(() => {
-    !departments && dispatch(fetchDepartmentsAction())
-    !jobs && dispatch(fetchJobsAction())
-    !positions && dispatch(fetchPositionsAction())
-  }, [departments, jobs, positions, dispatch])
 
   const handleAddButtonClick = () => {
     setIsOpen(true)
@@ -88,7 +76,7 @@ function AddEmployee(): ReactNode {
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO({ name: '', surname: '', login: ''})
+    setDTO({ name: '', surname: '', login: '' })
   }
 
   const handleDepartmentsChange = (value: string[]) => {
@@ -171,36 +159,18 @@ function AddEmployee(): ReactNode {
             label="Начало работы (необязательное)"
             errorMessage={validationError.errors?.started_work_at?.[0]}
             autoComplete="off" />
-          {departments && 
-            <MultiSelect
-              key={(+isOpen).toString().padStart(2)}
-              label="Отдел (необязательное)"
-              value={[]}
-              onChange={handleDepartmentsChange}
-              options={[
-                { value: '', label: 'Не указать' }, 
-                ...departments.map(({ id, title }) => ({ value: id, label: title }))
-              ]} />}
-          {jobs && 
-            <MultiSelect
-              key={(+isOpen).toString().padStart(3)}
-              label="Должность (необязательное)"
-              value={[]}
-              onChange={handleJobsChange}
-              options={[
-                { value: '', label: 'Не указать' }, 
-                ...jobs.map(({ id, title }) => ({ value: id, label: title }))
-              ]} />}
-          {positions &&
-            <MultiSelect
-              key={(+isOpen).toString().padStart(4)}
-              label="Позиция (необязательное)"
-              value={[]}
-              onChange={handlePositionsChange}
-              options={[
-                { value: '', label: 'Не указать' },
-                ...positions.map(({ id, title }) => ({ value: id, label: title }))
-              ]} />}
+          <DepartmentsSelection
+            isOpen={isOpen}
+            onChange={handleDepartmentsChange}
+          />
+          <JobsSelection
+            isOpen={isOpen}
+            onChange={handleJobsChange}
+          />
+          <PositionsSelection
+            isOpen={isOpen}
+            onChange={handlePositionsChange}
+          />
           <Input
             key={(+isOpen).toString().padStart(5)}
             data-details="details"

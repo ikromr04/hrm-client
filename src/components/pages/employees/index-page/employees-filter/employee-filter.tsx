@@ -1,6 +1,6 @@
 import FilterIcon from '@/components/icons/filter-icon'
 import { ButtonWrapper, FilterButton, FilterCaret, Form, FormElement, FormTitle } from './styled'
-import { ChangeEvent, ReactNode, useEffect, useState } from 'react'
+import { ChangeEvent, ReactNode, memo, useEffect, useState } from 'react'
 import Title from '@/components/ui/title/title'
 import LanguagesFilter from './languages-filter/languages-filter'
 import DetailsFilter from './details-filter/details-filter'
@@ -159,4 +159,4 @@ function EmployeeFilter(): ReactNode {
   )
 }
 
-export default EmployeeFilter
+export default memo(EmployeeFilter)
