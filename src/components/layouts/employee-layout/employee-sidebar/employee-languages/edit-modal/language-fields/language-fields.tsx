@@ -31,7 +31,7 @@ function LanguageFields({
         }
         return prevLanguage
       })
-      return {...prevDTO}
+      return { ...prevDTO }
     })
 
   const handleLevelChange = (level: string) =>
@@ -45,7 +45,7 @@ function LanguageFields({
         }
         return prevLanguage
       })
-      return {...prevDTO}
+      return { ...prevDTO }
     })
 
   const handleDeleteButtonClick = () =>
@@ -53,7 +53,7 @@ function LanguageFields({
       prevDTO.languages = prevDTO.languages?.filter((prevLanguage) => (
         prevLanguage.id !== currentLanguage.id
       ))
-      return {...prevDTO}
+      return { ...prevDTO }
     })
 
   return (
