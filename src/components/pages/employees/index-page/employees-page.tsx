@@ -13,11 +13,9 @@ import EmployeesList from './employees-list/employees-list'
 import EmployeesFilter from './employees-filter/employee-filter'
 import PageLayout from '@/components/layouts/page-layout/page-layout'
 import Title from '@/components/ui/title/title'
-import Button from '@/components/ui/button/button'
-import CaretIcon from '@/components/icons/caret-icon'
 import AddEmployee from './add-employee/add-employee'
-import { useEmployeesExport } from '@/hooks/use-employees-export'
 import EmployeesNavigation from '@/components/layouts/employees-navigation/employees-navigation'
+import ExportButton from './export-button/export-button'
 
 function EmployeesPage(): ReactNode {
   const employees = useAppSelector(getEmployees)
@@ -42,9 +40,7 @@ function EmployeesPage(): ReactNode {
           <Title tagName="h1">Справочник сотрудников</Title>
 
           <EmployeesNavigation />
-          <Button type="button" onClick={useEmployeesExport()}>
-            Экспорт <CaretIcon />
-          </Button>
+          <ExportButton />
           <AddEmployee />
         </Header>
 

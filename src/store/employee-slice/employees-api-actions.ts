@@ -78,7 +78,7 @@ export const updateEmployeeAction = createAsyncThunk<Employee, {
       return data
     } catch (err: any) {
       const error: AxiosError<ValidationError> = err
-      
+
       if (!error.response) {
         throw err
       }
@@ -96,7 +96,7 @@ export const updateEmployeesAvatarAction = createAsyncThunk<{
   formData: FormData
   id: ID
   successHandler: () => void
- }, {
+}, {
   extra: AxiosInstance
   rejectWithValue: ValidationError
 }>(
@@ -123,7 +123,7 @@ export const updateEmployeesAvatarAction = createAsyncThunk<{
 export const deleteEmployeesAvatarAction = createAsyncThunk<ID, {
   id: ID
   successHandler: () => void
- }, {
+}, {
   extra: AxiosInstance
 }>(
   'employees/deleteAvatar',
@@ -156,6 +156,18 @@ export const fetchEmployeesActivitiesAction = createAsyncThunk<void, {
   'employees/fetchActivities',
   async ({ id, successHandler }, { extra: api }) => {
     const { data } = await api.get<Activities>(generatePath(APIRoute.Employees.Activities, { id }))
+    successHandler(data)
+  },
+)
+
+export const fetchEmployeesSheetAction = createAsyncThunk<void, {
+  successHandler: (employees: (Employee & { password: string })[]) => void
+}, {
+  extra: AxiosInstance
+}>(
+  'employees/fetchSheet',
+  async ({ successHandler }, { extra: api }) => {
+    const { data } = await api.post<(Employee & { password: string })[]>(APIRoute.Employees.Export)
     successHandler(data)
   },
 )
