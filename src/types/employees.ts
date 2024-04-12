@@ -29,8 +29,8 @@ export type Employee = {
     familyStatus?: string
     children?: string[]
   }
-  next: ID
-  previous: ID
+  next?: ID
+  previous?: ID
 }
 
 export type Employees = Omit<Employee, 'next' | 'previous'>[]

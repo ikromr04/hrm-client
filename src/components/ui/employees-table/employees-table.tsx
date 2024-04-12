@@ -9,6 +9,8 @@ import { setEmployeeAction } from '@/store/employee-slice/employees-slice'
 import { getEmployeesFilter } from '@/store/app-slice/app-selector'
 import TextLink from '../text-link/text-link'
 import { ReactNode } from 'react'
+import { Avatar } from './styled'
+import defaultAvatar from '@/assets/static/default-avatar.png'
 
 function EmployeesTable({
   employees
@@ -21,6 +23,15 @@ function EmployeesTable({
   let rows: DataTableRows = employees.map((employee, index) => ({
     count: ++index,
     startedWorkAt: dayjs(employee.startedWorkAt).format('D MMM YYYY').toString(),
+    avatar: <Avatar
+      src={employee.avatarThumb}
+      alt={employee.name}
+      width={144}
+      height={144}
+      onError={({ currentTarget }) => {
+        currentTarget.onerror = null
+        currentTarget.src = defaultAvatar
+      }} />,
     name:
       <TextLink
         href={generatePath(AppRoute.Employees.Show, { id: employee.id })}
@@ -40,7 +51,7 @@ function EmployeesTable({
       <TextLink href={`mailto:${employee.details?.email}`}>
         {employee.details?.email}
       </TextLink>,
-    tel: 
+    tel:
       <div>
         {employee.details?.tel1 && <>
           <TextLink href={`tel:${employee.details?.tel1}`}>{employee.details?.tel1}</TextLink> <br />
@@ -54,18 +65,19 @@ function EmployeesTable({
 
   let columns: DataTableColumns = [
     { field: 'count', headerName: '№', width: 56 },
-    { field: 'startedWorkAt', headerName: 'Начало работы', width: 160 },
+    { field: 'avatar', headerName: 'Аватар', width: 96 },
     { field: 'name', headerName: 'ФИО', width: 300 },
-    { field: 'login', headerName: 'Логин', width: 264 },
-    { field: 'positions', headerName: 'Позиция', width: 264 },
     { field: 'jobs', headerName: 'Должность', width: 240 },
+    { field: 'login', headerName: 'Логин', width: 264 },
+    { field: 'email', headerName: 'Эл. почта', width: 264 },
+    { field: 'tel', headerName: 'Телефон', width: 144 },
+    { field: 'startedWorkAt', headerName: 'Начало работы', width: 160 },
+    { field: 'positions', headerName: 'Позиция', width: 264 },
     { field: 'languages', headerName: 'Знание языков', width: 240 },
     { field: 'birthDate', headerName: 'Дата рождения', width: 160 },
     { field: 'nationality', headerName: 'Национальность', width: 160 },
     { field: 'citizenship', headerName: 'Гражданство', width: 160 },
     { field: 'gender', headerName: 'Пол', width: 120 },
-    { field: 'email', headerName: 'Эл. почта', width: 264 },
-    { field: 'tel', headerName: 'Телефон', width: 144 },
     { field: 'familyStatus', headerName: 'Семейное положение', width: 200 },
     { field: 'children', headerName: 'Дети', width: 120 },
     { field: 'address', headerName: 'Адрес', width: 560 },
