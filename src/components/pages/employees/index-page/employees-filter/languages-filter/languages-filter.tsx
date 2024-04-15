@@ -2,22 +2,27 @@ import Checkbox from '@/components/ui/checkbox/checkbox'
 import MultiSelect from '@/components/ui/multi-select/multi-select'
 import Select from '@/components/ui/select/select'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { getEmployeesFilter } from '@/store/app-slice/app-selector'
 import { getLanguages } from '@/store/language-slice/language-selector'
 import { ChangeEvent, ReactNode, useEffect } from 'react'
 import { fetchLanguagesAction } from '@/store/language-slice/language-api-actions'
 import { setEmployeesFilterAction } from '@/store/app-slice/app-slice'
 import { languageLevelOptions } from '@/const'
-import { FormElement} from '../styled'
+import { FormElement } from '../styled'
+import { EmployeesFilter } from '@/types/employees'
 
-function LanguagesFilter(): ReactNode {
-  const filter = useAppSelector(getEmployeesFilter)
+function LanguagesFilter({
+  isOpen,
+  filter,
+}: {
+  isOpen: boolean
+  filter: EmployeesFilter
+}): ReactNode {
   const languages = useAppSelector(getLanguages)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    !languages && dispatch(fetchLanguagesAction())
-  }, [languages, dispatch])
+    isOpen && !languages && dispatch(fetchLanguagesAction())
+  }, [isOpen, languages, dispatch])
 
   if (!languages) {
     return <></>

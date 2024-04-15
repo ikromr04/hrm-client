@@ -1,6 +1,6 @@
 import FilterIcon from '@/components/icons/filter-icon'
 import { ButtonWrapper, FilterButton, FilterCaret, Form, FormElement, FormTitle } from './styled'
-import { ChangeEvent, ReactNode, memo, useEffect, useState } from 'react'
+import { ChangeEvent, ReactNode, memo, useState } from 'react'
 import LanguagesFilter from './languages-filter/languages-filter'
 import Checkbox from '@/components/ui/checkbox/checkbox'
 import { useAppDispatch, useAppSelector } from '@/hooks'
@@ -8,27 +8,16 @@ import { getEmployeesFilter } from '@/store/app-slice/app-selector'
 import { EmployeesFilter } from '@/types/employees'
 import { resetEmployeesFilterAction, setEmployeesFilterAction } from '@/store/app-slice/app-slice'
 import Input from '@/components/ui/input/input'
-import MultiSelect from '@/components/ui/multi-select/multi-select'
-import { getPositions } from '@/store/position-slice/position-selector'
-import { fetchPositionsAction } from '@/store/position-slice/position-api-actions'
 import Button from '@/components/ui/button/button'
 import XIcon from '@/components/icons/x-icon'
 import DepartmentsFilter from './departments-filter/departments-filter'
 import JobsFilter from './jobs-filter/jobs-filter'
+import PositionsFilter from './positions-filter/positions-filter'
 
 function EmployeeFilter(): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const filter = useAppSelector(getEmployeesFilter)
   const dispatch = useAppDispatch()
-  const positions = useAppSelector(getPositions)
-
-  useEffect(() => {
-    !positions && dispatch(fetchPositionsAction())
-  }, [positions, dispatch])
-
-  if (!positions) {
-    return <></>
-  }
 
   const handleFilterChange = (
     name: keyof EmployeesFilter,
@@ -94,23 +83,14 @@ function EmployeeFilter(): ReactNode {
           filter={filter}
           handleFilterChange={handleFilterChange} />
 
-        <FormElement>
-          <Checkbox
-            label="Позиция"
-            checked={filter.positions.isShown}
-            onChange={(evt: ChangeEvent<HTMLInputElement>) =>
-              handleFilterChange('positions', 'isShown', evt.target.checked)} />
-          <MultiSelect
-            value={filter.positions.query}
-            options={[
-              { value: '', label: 'Все' },
-              ...positions.map(({ id, title }) => ({ value: id, label: title }))
-            ]}
-            onChange={(value: string[]) =>
-              handleFilterChange('positions', 'query', value)} />
-        </FormElement>
+        <PositionsFilter
+          isOpen={isOpen}
+          filter={filter}
+          handleFilterChange={handleFilterChange} />
 
-        <LanguagesFilter />
+        <LanguagesFilter
+          isOpen={isOpen}
+          filter={filter} />
 
         <ButtonWrapper>
           <Button
