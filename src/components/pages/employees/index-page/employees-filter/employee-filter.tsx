@@ -9,27 +9,24 @@ import { EmployeesFilter } from '@/types/employees'
 import { resetEmployeesFilterAction, setEmployeesFilterAction } from '@/store/app-slice/app-slice'
 import Input from '@/components/ui/input/input'
 import MultiSelect from '@/components/ui/multi-select/multi-select'
-import { getJobs } from '@/store/job-slice/job-selector'
-import { fetchJobsAction } from '@/store/job-slice/job-api-actions'
 import { getPositions } from '@/store/position-slice/position-selector'
 import { fetchPositionsAction } from '@/store/position-slice/position-api-actions'
 import Button from '@/components/ui/button/button'
 import XIcon from '@/components/icons/x-icon'
 import DepartmentsFilter from './departments-filter/departments-filter'
+import JobsFilter from './jobs-filter/jobs-filter'
 
 function EmployeeFilter(): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
   const filter = useAppSelector(getEmployeesFilter)
   const dispatch = useAppDispatch()
-  const jobs = useAppSelector(getJobs)
   const positions = useAppSelector(getPositions)
 
   useEffect(() => {
-    !jobs && dispatch(fetchJobsAction())
     !positions && dispatch(fetchPositionsAction())
-  }, [jobs, positions, dispatch])
+  }, [positions, dispatch])
 
-  if (!jobs || !positions) {
+  if (!positions) {
     return <></>
   }
 
@@ -90,35 +87,12 @@ function EmployeeFilter(): ReactNode {
         <DepartmentsFilter
           isOpen={isOpen}
           filter={filter}
-          handleFilterChange={handleFilterChange}
-        />
-        {/* <FormElement>
-          <Checkbox
-            label="Отдел/Департамент"
-            checked={filter.departments.isShown}
-            onChange={(evt: ChangeEvent<HTMLInputElement>) =>
-              handleFilterChange('departments', 'isShown', evt.target.checked)} />
-          <MultiSelect
-            value={filter.departments.query}
-            options={[
-              { value: '', label: 'Все' },
-              ...departments.map(({ id, title }) => ({ value: id, label: title }))
-            ]}
-            onChange={(value: string[]) =>
-              handleFilterChange('departments', 'query', value)} />
-        </FormElement> */}
+          handleFilterChange={handleFilterChange} />
 
-        <FormElement>
-          <Checkbox label="Должность" checked disabled />
-          <MultiSelect
-            value={filter.jobs.query}
-            options={[
-              { value: '', label: 'Все' },
-              ...jobs.map(({ id, title }) => ({ value: id, label: title }))
-            ]}
-            onChange={(value: string[]) =>
-              handleFilterChange('jobs', 'query', value)} />
-        </FormElement>
+        <JobsFilter
+          isOpen={isOpen}
+          filter={filter}
+          handleFilterChange={handleFilterChange} />
 
         <FormElement>
           <Checkbox
