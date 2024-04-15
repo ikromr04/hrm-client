@@ -9,7 +9,6 @@ import CallIcon from '@/components/icons/call-icon'
 import Info from '../info/info'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getUser } from '@/store/auth-slice/auth-selector'
-import Details from './details/details'
 import Languages from './languages/languages'
 import { getEmployeesFilter } from '@/store/app-slice/app-selector'
 import { generatePath } from 'react-router-dom'
@@ -51,7 +50,6 @@ function EmployeesCard({
         </div>
       </Header>
       <Languages employee={employee} />
-      <Details employee={employee} />
       <Footer>
         <FooterLinks>
           <FooterLink to={`mailto:${employee.details?.email}`}>

@@ -1,9 +1,7 @@
 import FilterIcon from '@/components/icons/filter-icon'
 import { ButtonWrapper, FilterButton, FilterCaret, Form, FormElement, FormTitle } from './styled'
 import { ChangeEvent, ReactNode, memo, useEffect, useState } from 'react'
-import Title from '@/components/ui/title/title'
 import LanguagesFilter from './languages-filter/languages-filter'
-import DetailsFilter from './details-filter/details-filter'
 import Checkbox from '@/components/ui/checkbox/checkbox'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { getEmployeesFilter } from '@/store/app-slice/app-selector'
@@ -15,9 +13,9 @@ import { getJobs } from '@/store/job-slice/job-selector'
 import { fetchJobsAction } from '@/store/job-slice/job-api-actions'
 import { getPositions } from '@/store/position-slice/position-selector'
 import { fetchPositionsAction } from '@/store/position-slice/position-api-actions'
-import Select from '@/components/ui/select/select'
 import Button from '@/components/ui/button/button'
 import XIcon from '@/components/icons/x-icon'
+import DepartmentsFilter from './departments-filter/departments-filter'
 
 function EmployeeFilter(): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
@@ -36,10 +34,10 @@ function EmployeeFilter(): ReactNode {
   }
 
   const handleFilterChange = (
-    name: keyof EmployeesFilter | 'order',
-    key: 'isShown' | 'query' | 'by' | 'type',
+    name: keyof EmployeesFilter,
+    key: 'isShown' | 'query' | 'level',
     value: boolean | string | string[]
-  ) => {
+  ): void => {
     dispatch(setEmployeesFilterAction({
       ...filter,
       [name]: {
@@ -68,30 +66,6 @@ function EmployeeFilter(): ReactNode {
         </FormTitle>
 
         <FormElement>
-          <Title small>Сортировка</Title>
-          <Select
-            label="Столбец"
-            options={[
-              { value: 'surname', label: 'ФИО' },
-              { value: 'login', label: 'Логин' },
-              { value: 'startedWorkAt', label: 'Начало работы' },
-              { value: 'children', label: 'Количество детей' },
-            ]}
-            value={filter.order.by}
-            onChange={(value: string) =>
-              handleFilterChange('order', 'by', value)} />
-          <Select
-            label="Тип"
-            options={[
-              { value: 'asc', label: 'По возрастанию' },
-              { value: 'desc', label: 'По убиванию' },
-            ]}
-            value={filter.order.type}
-            onChange={(value: string) =>
-              handleFilterChange('order', 'type', value)} />
-        </FormElement>
-
-        <FormElement>
           <Checkbox label="ФИО" checked disabled />
           <Input
             type="search"
@@ -113,13 +87,34 @@ function EmployeeFilter(): ReactNode {
               handleFilterChange('login', 'query', evt.target.value)} />
         </FormElement>
 
+        <DepartmentsFilter
+          isOpen={isOpen}
+          filter={filter}
+          handleFilterChange={handleFilterChange}
+        />
+        {/* <FormElement>
+          <Checkbox
+            label="Отдел/Департамент"
+            checked={filter.departments.isShown}
+            onChange={(evt: ChangeEvent<HTMLInputElement>) =>
+              handleFilterChange('departments', 'isShown', evt.target.checked)} />
+          <MultiSelect
+            value={filter.departments.query}
+            options={[
+              { value: '', label: 'Все' },
+              ...departments.map(({ id, title }) => ({ value: id, label: title }))
+            ]}
+            onChange={(value: string[]) =>
+              handleFilterChange('departments', 'query', value)} />
+        </FormElement> */}
+
         <FormElement>
           <Checkbox label="Должность" checked disabled />
           <MultiSelect
             value={filter.jobs.query}
             options={[
               { value: '', label: 'Все' },
-                ...jobs.map(({ id, title }) => ({ value: id, label: title }))
+              ...jobs.map(({ id, title }) => ({ value: id, label: title }))
             ]}
             onChange={(value: string[]) =>
               handleFilterChange('jobs', 'query', value)} />
@@ -135,15 +130,13 @@ function EmployeeFilter(): ReactNode {
             value={filter.positions.query}
             options={[
               { value: '', label: 'Все' },
-                ...positions.map(({ id, title }) => ({ value: id, label: title }))
+              ...positions.map(({ id, title }) => ({ value: id, label: title }))
             ]}
             onChange={(value: string[]) =>
               handleFilterChange('positions', 'query', value)} />
         </FormElement>
 
         <LanguagesFilter />
-
-        <DetailsFilter />
 
         <ButtonWrapper>
           <Button

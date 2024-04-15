@@ -100,10 +100,6 @@ export const educationFormOptions = [
 ]
 
 export const defaultEmployeesFilter = {
-  order: {
-    by: 'surname',
-    type: 'asc',
-  },
   name: {
     isShown: true,
     query: '',
@@ -111,6 +107,10 @@ export const defaultEmployeesFilter = {
   login: {
     isShown: false,
     query: '',
+  },
+  departments: {
+    isShown: true,
+    query: [],
   },
   jobs: {
     isShown: true,
@@ -124,51 +124,5 @@ export const defaultEmployeesFilter = {
     isShown: false,
     query: [],
     level: '',
-  },
-  details: {
-    isShown: false,
-    startedWorkAt: {
-      isShown: false,
-      from: '',
-      to: '',
-    },
-    nationality: {
-      isShown: false,
-      query: '',
-    },
-    birthDate: {
-      isShown: false,
-      from: '',
-      to: '',
-    },
-    gender: {
-      isShown: false,
-      query: ''
-    },
-    address: {
-      isShown: true,
-      query: ''
-    },
-    citizenship: {
-      isShown: false,
-      query: '',
-    },
-    email: {
-      isShown: true,
-      query: '',
-    },
-    tel: {
-      isShown: true,
-      query: '',
-    },
-    familyStatus: {
-      isShown: false,
-      query: '',
-    },
-    children: {
-      isShown: false,
-      query: [],
-      quantity: null
-    },
   },
 }

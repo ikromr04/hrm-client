@@ -40,10 +40,6 @@ export type EmployeeLanguage = Language & { level: string }
 export type EmployeeLanguages = EmployeeLanguage[]
 
 export type EmployeesFilter = {
-  order: {
-    by: string
-    type: string
-  }
   name: {
     isShown: boolean
     query: string
@@ -51,6 +47,10 @@ export type EmployeesFilter = {
   login: {
     isShown: boolean
     query: string
+  }
+  departments: {
+    isShown: boolean
+    query: ID[]
   }
   jobs: {
     isShown: boolean
@@ -64,53 +64,5 @@ export type EmployeesFilter = {
     isShown: boolean
     query: ID[]
     level: string
-  }
-  details: EmployeesDetailsFilter
-}
-
-export type EmployeesDetailsFilter = {
-  isShown: boolean
-  startedWorkAt: {
-    isShown: boolean
-    from: string
-    to: string
-  }
-  nationality: {
-    isShown: boolean
-    query: string
-  }
-  birthDate: {
-    isShown: boolean
-    from: string
-    to: string
-  }
-  gender: {
-    isShown: boolean
-    query: string
-  }
-  address: {
-    isShown: boolean
-    query: string
-  }
-  citizenship: {
-    isShown: boolean
-    query: string
-  }
-  email: {
-    isShown: boolean
-    query: string
-  }
-  tel: {
-    isShown: boolean
-    query: string
-  }
-  familyStatus: {
-    isShown: boolean
-    query: string
-  }
-  children: {
-    isShown: boolean
-    query: string[]
-    quantity: number | null
   }
 }

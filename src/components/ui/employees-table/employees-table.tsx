@@ -4,9 +4,8 @@ import Accent from '../accent/accent'
 import DataTable, { DataTableColumns, DataTableRows } from '../data-table/data-table'
 import { generatePath } from 'react-router-dom'
 import { AppRoute } from '@/const'
-import { useAppDispatch, useAppSelector } from '@/hooks'
+import { useAppDispatch } from '@/hooks'
 import { setEmployeeAction } from '@/store/employee-slice/employees-slice'
-import { getEmployeesFilter } from '@/store/app-slice/app-selector'
 import TextLink from '../text-link/text-link'
 import { ReactNode } from 'react'
 import { Avatar } from './styled'
@@ -18,9 +17,9 @@ function EmployeesTable({
   employees: Employees
 }): ReactNode {
   const dispatch = useAppDispatch()
-  const filter = useAppSelector(getEmployeesFilter)
+  // const filter = useAppSelector(getEmployeesFilter)
 
-  let rows: DataTableRows = employees.map((employee, index) => ({
+  const rows: DataTableRows = employees.map((employee, index) => ({
     count: ++index,
     startedWorkAt: dayjs(employee.startedWorkAt).format('D MMM YYYY').toString(),
     avatar: <Avatar
@@ -63,7 +62,7 @@ function EmployeesTable({
     address: employee.details?.address,
   }))
 
-  let columns: DataTableColumns = [
+  const columns: DataTableColumns = [
     { field: 'count', headerName: '№', width: 56 },
     { field: 'avatar', headerName: 'Аватар', width: 96 },
     { field: 'name', headerName: 'ФИО', width: 300 },
@@ -82,23 +81,6 @@ function EmployeesTable({
     { field: 'children', headerName: 'Дети', width: 120 },
     { field: 'address', headerName: 'Адрес', width: 560 },
   ]
-
-  const filters = [...Object.entries(filter), ...Object.entries(filter.details)]
-
-  filters.forEach(([filterKey, filterValue]) => {
-    rows = rows.map((row) => {
-      if (
-        (filterKey in row)
-        && (typeof filterValue === 'object')
-        && ('isShown' in filterValue)
-        && !filterValue.isShown
-      ) {
-        delete row[filterKey]
-        columns = columns.filter(({ field }) => field !== filterKey)
-      }
-      return row
-    })
-  })
 
   return (
     <DataTable
