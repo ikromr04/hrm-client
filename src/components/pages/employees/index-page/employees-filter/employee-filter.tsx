@@ -1,5 +1,5 @@
 import FilterIcon from '@/components/icons/filter-icon'
-import { ButtonWrapper, FilterButton, FilterCaret, Form, FormElement, FormTitle } from './styled'
+import { ButtonWrapper, CloseIcon, FilterButton, FilterCaret, Form, FormElement, FormTitle } from './styled'
 import { ChangeEvent, ReactNode, memo, useState } from 'react'
 import LanguagesFilter from './languages-filter/languages-filter'
 import Checkbox from '@/components/ui/checkbox/checkbox'
@@ -9,7 +9,6 @@ import { EmployeesFilter } from '@/types/employees'
 import { resetEmployeesFilterAction, setEmployeesFilterAction } from '@/store/app-slice/app-slice'
 import Input from '@/components/ui/input/input'
 import Button from '@/components/ui/button/button'
-import XIcon from '@/components/icons/x-icon'
 import DepartmentsFilter from './departments-filter/departments-filter'
 import JobsFilter from './jobs-filter/jobs-filter'
 import PositionsFilter from './positions-filter/positions-filter'
@@ -47,7 +46,7 @@ function EmployeeFilter(): ReactNode {
             error
             onClick={() => setIsOpen(!isOpen)}
           >
-            <XIcon />
+            <CloseIcon />
           </Button>
         </FormTitle>
 

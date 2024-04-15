@@ -1,3 +1,4 @@
+import ArrowLeftIcon from '@/components/icons/arrow-left-icon'
 import CaretIcon from '@/components/icons/caret-icon'
 import Title from '@/components/ui/title/title'
 import styled, { css } from 'styled-components'
@@ -35,7 +36,7 @@ export const Form = styled('form').withConfig({
   z-index: 3;
   background-color: #ffffff;
   box-shadow: 0 0 4px rgba(0, 0, 0, 8%);
-  padding: 0 24px;
+  padding: 16px 32px;
   height: 100vh;
   min-width: 240px;
   transform: translateX(100%);
@@ -91,4 +92,8 @@ export const ButtonWrapper = styled('div')`
   button {
     flex-grow: 1;
   }
+`
+
+export const CloseIcon = styled(ArrowLeftIcon)`
+  transform: scale(-1);
 `
