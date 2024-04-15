@@ -3,6 +3,7 @@ import { Header, HeaderContainer } from './styled'
 import EmployeeMenu from './employee-menu/employee-menu'
 import QuickAdd from './quick-add/quick-add'
 import MainLogo from './main-logo/main-logo'
+import AdminComponents from '@/components/admin-components/admin-components'
 
 function PageHeader(): ReactNode {
 
@@ -11,7 +12,9 @@ function PageHeader(): ReactNode {
       <HeaderContainer>
         <MainLogo />
 
-        <QuickAdd />
+        <AdminComponents>
+          <QuickAdd />
+        </AdminComponents>
         <EmployeeMenu />
       </HeaderContainer>
     </Header>

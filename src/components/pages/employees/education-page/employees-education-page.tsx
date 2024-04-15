@@ -17,12 +17,13 @@ import CreateModal from './create-modal/create-modal'
 import { useParams } from 'react-router-dom'
 import EditModal from './edit-modal/edit-modal'
 import DeleteModal from './delete-modal/delete-modal'
+import AdminComponents from '@/components/admin-components/admin-components'
 
 function EmployeesEducationPage(): ReactNode {
   const [educations, setEducations] = useState<Educations | null>(null)
   const dispatch = useAppDispatch()
   const params = useParams()
-  
+
   useEffect(() => {
     !educations && params.id && dispatch(fetchEmployeesEducationsAction({
       id: params.id,
@@ -38,16 +39,20 @@ function EmployeesEducationPage(): ReactNode {
         <Box>
           <BoxToolbar>
             <Title>Образование</Title>
-            <CreateModal key={educations?.length} setEducations={setEducations} />
+            <AdminComponents>
+              <CreateModal key={educations?.length} setEducations={setEducations} />
+            </AdminComponents>
           </BoxToolbar>
           {educations?.map((education, index) => (
             <Fragment key={education.id}>
               {index > 0 && <Hr />}
               <BoxInner>
-                <EducationActions>
-                  <EditModal education={education} setEducations={setEducations} />
-                  <DeleteModal education={education} setEducations={setEducations} />
-                </EducationActions>
+                <AdminComponents>
+                  <EducationActions>
+                    <EditModal education={education} setEducations={setEducations} />
+                    <DeleteModal education={education} setEducations={setEducations} />
+                  </EducationActions>
+                </AdminComponents>
                 <DescriptionList
                   list={{
                     'Учебное заведение': education.institution,

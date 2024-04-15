@@ -8,6 +8,7 @@ import { getEmployee } from '@/store/employee-slice/employees-selector'
 import dayjs from 'dayjs'
 import EditModal from './edit-modal/edit-modal'
 import { ReactNode } from 'react'
+import AdminComponents from '@/components/admin-components/admin-components'
 
 function EmployeeInfo(): ReactNode {
   const employee = useAppSelector(getEmployee)
@@ -20,7 +21,9 @@ function EmployeeInfo(): ReactNode {
     <Box tagName="section">
       <BoxToolbar>
         <Title small>Сотрудник</Title>
-        <EditModal key={employee.id} employee={employee} />
+        <AdminComponents>
+          <EditModal key={employee.id} employee={employee} />
+        </AdminComponents>
       </BoxToolbar>
 
       <BoxInner>

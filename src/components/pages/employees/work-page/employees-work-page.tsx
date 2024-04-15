@@ -17,12 +17,13 @@ import EditModal from './edit-modal/edit-modal'
 import DeleteModal from './delete-modal/delete-modal'
 import { Activities } from '@/types/activities'
 import dayjs from 'dayjs'
+import AdminComponents from '@/components/admin-components/admin-components'
 
 function EmployeesWorkPage(): ReactNode {
   const [activities, setActivities] = useState<Activities | null>(null)
   const dispatch = useAppDispatch()
   const params = useParams()
-  
+
   useEffect(() => {
     !activities && params.id && dispatch(fetchEmployeesActivitiesAction({
       id: params.id,
@@ -38,16 +39,20 @@ function EmployeesWorkPage(): ReactNode {
         <Box>
           <BoxToolbar>
             <Title>Трудовая деятельность</Title>
-            <CreateModal key={activities?.length} setActivities={setActivities} />
+            <AdminComponents>
+              <CreateModal key={activities?.length} setActivities={setActivities} />
+            </AdminComponents>
           </BoxToolbar>
           {activities?.map((activity, index) => (
             <Fragment key={activity.id}>
               {index > 0 && <Hr />}
               <BoxInner>
-                <ActivityActions>
-                  <EditModal activity={activity} setActivities={setActivities} />
-                  <DeleteModal activity={activity} setActivities={setActivities} />
-                </ActivityActions>
+                <AdminComponents>
+                  <ActivityActions>
+                    <EditModal activity={activity} setActivities={setActivities} />
+                    <DeleteModal activity={activity} setActivities={setActivities} />
+                  </ActivityActions>
+                </AdminComponents>
                 <DescriptionList
                   list={{
                     'Организация': activity.organization,

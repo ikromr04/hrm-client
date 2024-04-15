@@ -7,6 +7,7 @@ import AddressBookIcon from '@/components/icons/address-book-icon'
 import NavItem from './nav-Item/nav-item'
 import SettingsIcon from '@/components/icons/settings-icon'
 import { ReactNode, memo } from 'react'
+import AdminComponents from '@/components/admin-components/admin-components'
 
 function PageNavigation(): ReactNode {
   return (
@@ -27,15 +28,17 @@ function PageNavigation(): ReactNode {
 
       <Hr />
 
-      <NavItem
-        title="Панель управления"
-        icon={<SettingsIcon />}
-        links={[
-          { title: 'Должности', href: AppRoute.Dashboard.Jobs },
-          { title: 'Позиции', href: AppRoute.Dashboard.Positions },
-          { title: 'Языки', href: AppRoute.Dashboard.Languages },
-        ]}
-      />
+      <AdminComponents>
+        <NavItem
+          title="Панель управления"
+          icon={<SettingsIcon />}
+          links={[
+            { title: 'Должности', href: AppRoute.Dashboard.Jobs },
+            { title: 'Позиции', href: AppRoute.Dashboard.Positions },
+            { title: 'Языки', href: AppRoute.Dashboard.Languages },
+          ]}
+        />
+      </AdminComponents>
 
       <ToggleButton />
     </Nav>

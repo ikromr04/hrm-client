@@ -85,7 +85,7 @@ export const ButtonWrapper = styled('div')`
   padding: 8px 0;
   position: sticky;
   bottom: 0;
-  margin-top: 300px;
+  margin-top: auto;
   z-index: 4;
   width: 100%;
 

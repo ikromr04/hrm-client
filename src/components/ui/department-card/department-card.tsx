@@ -16,6 +16,7 @@ import EditIcon from '@/components/icons/edit-icon'
 import EditForm from './edit-form/edit-form'
 import Text from '../text/text'
 import Actions from '../actions/actions'
+import AdminComponents from '@/components/admin-components/admin-components'
 
 function DepartmentCard({
   department,
@@ -48,67 +49,71 @@ function DepartmentCard({
       <BoxToolbar>
         <Title small>{department.title}</Title>
       </BoxToolbar>
-      {isOpen && <EditForm department={department} isOpen={isOpen} setIsOpen={setIsOpen} />}
+      <AdminComponents>
+        {isOpen && <EditForm department={department} isOpen={isOpen} setIsOpen={setIsOpen} />}
+      </AdminComponents>
       {!isOpen &&
         <section>
           {isDeleting
             ?
-              <Form onSubmit={handleFormSubmit}>
-                <Text>Вы уверены что хотите удалить {department.title}?</Text>
-                <Actions>
-                  <Button
-                    type="submit"
-                    success
-                    loading={isSubmitting}
-                    disabled={isSubmitting}
-                  >
-                    Удалить
-                  </Button>
-                  <Button type="reset" error onClick={() => setIsDeleting(false)}>
-                    Отмена
-                  </Button>
-                </Actions>
-              </Form>
+            <Form onSubmit={handleFormSubmit}>
+              <Text>Вы уверены что хотите удалить {department.title}?</Text>
+              <Actions>
+                <Button
+                  type="submit"
+                  success
+                  loading={isSubmitting}
+                  disabled={isSubmitting}
+                >
+                  Удалить
+                </Button>
+                <Button type="reset" error onClick={() => setIsDeleting(false)}>
+                  Отмена
+                </Button>
+              </Actions>
+            </Form>
             :
-              <>
-                {leaders?.map((leader) => (
-                  <EmployeesCard
-                    key={leader.id}
-                    employee={leader} />
-                ))}
+            <>
+              {leaders?.map((leader) => (
+                <EmployeesCard
+                  key={leader.id}
+                  employee={leader} />
+              ))}
 
-                {employees?.length ? <>
-                  <SectionTitle tagName="h3" small warn>Сотрудники</SectionTitle>
-                  {employees.map((employee) => (
-                    <EmployeesCard
-                      key={employee.id}
-                      employee={employee} />
-                  ))}
-                </> : ''}
-              </>}
+              {employees?.length ? <>
+                <SectionTitle tagName="h3" small warn>Сотрудники</SectionTitle>
+                {employees.map((employee) => (
+                  <EmployeesCard
+                    key={employee.id}
+                    employee={employee} />
+                ))}
+              </> : ''}
+            </>}
         </section>
       }
       {!isOpen && !isDeleting && editable &&
-        <DepartmentActions>
-          <Button
-            onClick={() => setIsDeleting(true)}
-            type="button"
-            square
-            error
-          >
-            <DeleteIcon />
-            <Info left>Удалить {department.title}</Info>
-          </Button>
-          <Button
-            type="button"
-            warning
-            square
-            onClick={() => setIsOpen(true)}
-          >
-            <EditIcon />
-            <Info left>Редактировать {department.title}</Info>
-          </Button>
-        </DepartmentActions>}
+        <AdminComponents>
+          <DepartmentActions>
+            <Button
+              onClick={() => setIsDeleting(true)}
+              type="button"
+              square
+              error
+            >
+              <DeleteIcon />
+              <Info left>Удалить {department.title}</Info>
+            </Button>
+            <Button
+              type="button"
+              warning
+              square
+              onClick={() => setIsOpen(true)}
+            >
+              <EditIcon />
+              <Info left>Редактировать {department.title}</Info>
+            </Button>
+          </DepartmentActions>
+        </AdminComponents>}
     </Card>
   )
 }

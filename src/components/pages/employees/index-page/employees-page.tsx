@@ -16,6 +16,7 @@ import Title from '@/components/ui/title/title'
 import AddEmployee from './add-employee/add-employee'
 import EmployeesNavigation from '@/components/layouts/employees-navigation/employees-navigation'
 import ExportButton from './export-button/export-button'
+import AdminComponents from '@/components/admin-components/admin-components'
 
 function EmployeesPage(): ReactNode {
   const employees = useAppSelector(getEmployees)
@@ -40,8 +41,10 @@ function EmployeesPage(): ReactNode {
           <Title tagName="h1">Справочник сотрудников</Title>
 
           <EmployeesNavigation />
-          <ExportButton />
-          <AddEmployee />
+          <AdminComponents>
+            <ExportButton />
+            <AddEmployee />
+          </AdminComponents>
         </Header>
 
         <Processes />
