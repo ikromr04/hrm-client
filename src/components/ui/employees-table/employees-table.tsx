@@ -17,7 +17,6 @@ function EmployeesTable({
   employees: Employees
 }): ReactNode {
   const dispatch = useAppDispatch()
-  // const filter = useAppSelector(getEmployeesFilter)
 
   const rows: DataTableRows = employees.map((employee, index) => ({
     count: ++index,
@@ -41,6 +40,7 @@ function EmployeesTable({
     login: employee.login,
     positions: employee.positions.map(({ id, title }) => <Accent key={id}>{title}</Accent>),
     jobs: employee.jobs.map(({ title }) => title).join(', '),
+    departments: employee.departments.map(({ title }) => title).join(', '),
     languages: employee.languages.map(({ name }) => name).join(', '),
     birthDate: employee.details?.birthDate ? dayjs(employee.details.birthDate).format('D MMM YYYY') : '',
     nationality: employee.details?.nationality,
@@ -66,12 +66,13 @@ function EmployeesTable({
     { field: 'count', headerName: '№', width: 56 },
     { field: 'avatar', headerName: 'Аватар', width: 96 },
     { field: 'name', headerName: 'ФИО', width: 300 },
+    { field: 'departments', headerName: 'Отдел/Департамент', width: 240 },
     { field: 'jobs', headerName: 'Должность', width: 240 },
-    { field: 'login', headerName: 'Логин', width: 264 },
-    { field: 'email', headerName: 'Эл. почта', width: 264 },
+    { field: 'positions', headerName: 'Позиция', width: 240 },
+    { field: 'login', headerName: 'Логин', width: 240 },
+    { field: 'email', headerName: 'Эл. почта', width: 248 },
     { field: 'tel', headerName: 'Телефон', width: 144 },
     { field: 'startedWorkAt', headerName: 'Начало работы', width: 160 },
-    { field: 'positions', headerName: 'Позиция', width: 264 },
     { field: 'languages', headerName: 'Знание языков', width: 240 },
     { field: 'birthDate', headerName: 'Дата рождения', width: 160 },
     { field: 'nationality', headerName: 'Национальность', width: 160 },
