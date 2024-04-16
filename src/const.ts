@@ -46,6 +46,7 @@ export const APIRoute = {
     Languages: '/employees/:id/languages',
     Educations: '/employees/:id/educations',
     Activities: '/employees/:id/activities',
+    Equipments: '/employees/:id/equipments',
     Export: '/employees/export',
   },
   Jobs: {
@@ -72,6 +73,10 @@ export const APIRoute = {
   Activities: {
     Index: '/activities',
     Show: '/activities/:id',
+  },
+  Equipments: {
+    Index: '/equipments',
+    Show: '/equipments/:id',
   },
 }
 

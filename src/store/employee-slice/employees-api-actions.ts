@@ -10,6 +10,7 @@ import { ValidationError } from '@/types/validation-error'
 import { Educations } from '@/types/educations'
 import { Activities } from '@/types/activities'
 import { EmployeesUpdateAvatarResponse } from '@/responses/employees'
+import { Equipments } from '@/types/equipments'
 
 export const fetchEmployeesAction = createAsyncThunk<Employees, undefined, {
   extra: AxiosInstance
@@ -156,6 +157,19 @@ export const fetchEmployeesActivitiesAction = createAsyncThunk<void, {
   'employees/fetchActivities',
   async ({ id, successHandler }, { extra: api }) => {
     const { data } = await api.get<Activities>(generatePath(APIRoute.Employees.Activities, { id }))
+    successHandler(data)
+  },
+)
+
+export const fetchEmployeesEquipmentsAction = createAsyncThunk<void, {
+  id: ID
+  successHandler: (equipments: Equipments) => void
+}, {
+  extra: AxiosInstance
+}>(
+  'employees/fetchEquipments',
+  async ({ id, successHandler }, { extra: api }) => {
+    const { data } = await api.get<Equipments>(generatePath(APIRoute.Employees.Equipments, { id }))
     successHandler(data)
   },
 )
