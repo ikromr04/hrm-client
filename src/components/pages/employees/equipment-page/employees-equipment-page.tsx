@@ -16,6 +16,7 @@ import Spinner from '@/components/ui/spinner/spinner'
 import Text from '@/components/ui/text/text'
 import CreateModal from './create-modal/create-modal'
 import EditModal from './edit-modal/edit-modal'
+import DeleteModal from './delete-modal/delete-modal'
 
 function EmployeesEquipmentPage(): ReactNode {
   const [equipments, setEquipments] = useState<Equipments | null>(null)
@@ -48,7 +49,7 @@ function EmployeesEquipmentPage(): ReactNode {
                 <AdminComponents>
                   <EquipmentActions>
                     <EditModal equipment={equipment} setEquipments={setEquipments} />
-                    {/* <DeleteModal activity={activity} setActivities={setActivities} /> */}
+                    <DeleteModal equipment={equipment} setEquipments={setEquipments} />
                   </EquipmentActions>
                 </AdminComponents>
                 <DescriptionList
