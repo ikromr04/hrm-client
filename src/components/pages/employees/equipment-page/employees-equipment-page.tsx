@@ -1,5 +1,5 @@
 import EmployeeLayout from '@/components/layouts/employee-layout/employee-layout'
-import { Main } from './styled'
+import { EquipmentActions, Main } from './styled'
 import { Fragment, ReactNode, useEffect, useState } from 'react'
 import { Equipments } from '@/types/equipments'
 import { useAppDispatch } from '@/hooks'
@@ -15,6 +15,7 @@ import DescriptionList from '@/components/ui/description-list/description-list'
 import Spinner from '@/components/ui/spinner/spinner'
 import Text from '@/components/ui/text/text'
 import CreateModal from './create-modal/create-modal'
+import EditModal from './edit-modal/edit-modal'
 
 function EmployeesEquipmentPage(): ReactNode {
   const [equipments, setEquipments] = useState<Equipments | null>(null)
@@ -45,10 +46,10 @@ function EmployeesEquipmentPage(): ReactNode {
               {index > 0 && <Hr />}
               <BoxInner>
                 <AdminComponents>
-                  {/* <ActivityActions>
-                    <EditModal activity={activity} setActivities={setActivities} />
-                    <DeleteModal activity={activity} setActivities={setActivities} />
-                  </ActivityActions> */}
+                  <EquipmentActions>
+                    <EditModal equipment={equipment} setEquipments={setEquipments} />
+                    {/* <DeleteModal activity={activity} setActivities={setActivities} /> */}
+                  </EquipmentActions>
                 </AdminComponents>
                 <DescriptionList
                   list={{

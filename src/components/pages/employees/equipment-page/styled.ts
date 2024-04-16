@@ -9,3 +9,10 @@ export const Main = styled('main')`
     margin-bottom: 8px;
   }
 `
+export const EquipmentActions = styled('div')`
+  position: absolute;
+  top: 0;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+`

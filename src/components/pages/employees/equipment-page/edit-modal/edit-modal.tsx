@@ -1,5 +1,3 @@
-import PlusIcon from '@/components/icons/plus-icon'
-import { CreateButton } from './styled'
 import Info from '@/components/ui/info/info'
 import { ChangeEvent, Dispatch, ReactNode, SetStateAction, useRef, useState } from 'react'
 import Modal from '@/components/ui/modal/modal'
@@ -9,58 +7,54 @@ import Form from '@/components/ui/form/form'
 import Actions from '@/components/ui/actions/actions'
 import Button from '@/components/ui/button/button'
 import { useAppDispatch } from '@/hooks'
-import { storeEquipmentAction } from '@/store/api-actions'
+import { updateEquipmentAction } from '@/store/api-actions'
 import { toast } from 'react-toastify'
-import { useParams } from 'react-router-dom'
 import Input from '@/components/ui/input/input'
-import { Equipments } from '@/types/equipments'
-import { EquipmentsStoreDTO } from '@/dto/equipments-dto'
+import EditIcon from '@/components/icons/edit-icon'
+import { Equipment, Equipments } from '@/types/equipments'
+import { EquipmentsUpdateDTO } from '@/dto/equipments-dto'
 
-function CreateModal({
-  setEquipments
+function EditModal({
+  equipment,
+  setEquipments,
 }: {
+  equipment: Equipment
   setEquipments: Dispatch<SetStateAction<Equipments | null>>
 }): ReactNode {
   const [isOpen, setIsOpen] = useState(false)
-  const { formChangeHandler, setValidationError, validationError } = useFormValidation()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)
-  const ref = useRef<HTMLInputElement | null>(null)
   const dispatch = useAppDispatch()
-  const params = useParams()
-  const [dto, setDTO] = useState<EquipmentsStoreDTO>({
-    user_id: params.id || '',
-    title: '',
-    info: '',
-  })
+  const { formChangeHandler, setValidationError, validationError } = useFormValidation()
+  const ref = useRef<HTMLInputElement | null>(null)
+  const [dto, setDTO] = useState<EquipmentsUpdateDTO>({})
 
   const handleFormSubmit = (evt: SubmitEvent) => {
     evt.preventDefault()
     setIsSubmitting(true)
-    dispatch(storeEquipmentAction({
+    dispatch(updateEquipmentAction({
+      id: equipment.id,
       dto,
       errorHandler(error) {
         setValidationError(error)
         setIsSubmitting(false)
         setIsDisabled(true)
       },
-      successHandler(equipment) {
-        toast.success('Оборудование успешно добавлено.')
+      successHandler(activity) {
+        toast.success('Данные успешно обновлены.')
         setIsSubmitting(false)
         setIsDisabled(true)
         setIsOpen(false)
-        setDTO({ user_id: params.id || '', title: '', info: '' })
-        setEquipments((prevEquipments) => {
-          if (prevEquipments) {
-            return [equipment, ...prevEquipments]
-          }
-          return [equipment]
-        })
+        setDTO({})
+        setEquipments((prevEquipments) =>
+          (prevEquipments || []).map((prevEquipment) =>
+            (prevEquipment.id === activity.id) ? activity : prevEquipment
+          ))
       },
     }))
   }
 
-  const handleCreateButtonClick = () => {
+  const handleEditButtonClick = () => {
     setIsOpen(true)
     setTimeout(() => {
       if (ref.current) {
@@ -82,14 +76,14 @@ function CreateModal({
     setIsOpen(false)
     setIsDisabled(true)
     setValidationError({ message: '' })
-    setDTO({ user_id: params.id || '', title: '', info: '' })
+    setDTO({})
   }
 
   return (
     <>
-      <CreateButton type="button" onClick={handleCreateButtonClick}>
-        <PlusIcon /> <Info top>Добавить</Info>
-      </CreateButton>
+      <Button type="button" onClick={handleEditButtonClick}>
+        <EditIcon /> <Info top>Редактировать</Info>
+      </Button>
       <Modal isOpen={isOpen}>
         <Text error>{validationError?.message}</Text> <br />
         <Form
@@ -101,13 +95,13 @@ function CreateModal({
             ref={ref}
             name="title"
             label="Оборудование"
-            defaultValue={dto.title}
+            defaultValue={equipment.title}
             errorMessage={validationError.errors?.title?.[0]}
             autoComplete="off" />
           <Input
             name="info"
             label="Информация (необязательное)"
-            defaultValue={dto.info}
+            defaultValue={equipment.info}
             errorMessage={validationError.errors?.info?.[0]}
             autoComplete="off" />
 
@@ -118,7 +112,7 @@ function CreateModal({
               loading={isSubmitting}
               disabled={isDisabled || isSubmitting}
             >
-              Добавить
+              Сохранить
             </Button>
             <Button type="reset" error>
               Отмена
@@ -130,4 +124,4 @@ function CreateModal({
   )
 }
 
-export default CreateModal
+export default EditModal
