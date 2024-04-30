@@ -73,9 +73,9 @@ export const Tr = styled('tr')`
 export const Th = styled('th').withConfig({
   shouldForwardProp: (props) => !['width'].includes(props),
 }) <{ width?: number }>`
+  position: relative;
   display: flex;
-  padding: 4px 16px;
-  padding: 8px 16px;
+  padding: 12px 16px;
   justify-content: flex-start;
   flex-grow: 1;
 

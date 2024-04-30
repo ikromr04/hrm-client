@@ -1,16 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode } from 'react'
 import { Table, Tbody, Td, Th, Thead, Tr } from './styled'
 
-export type DataTableRows = {
-  [key: string]: any
-}[]
+export type DataTableRow = {
+  [key: string]: ReactNode
+}
 
-export type DataTableColumns = {
+export type DataTableRows = DataTableRow[]
+
+export type DataTableColumn = {
   field: string
-  headerName: string
+  header: ReactNode
   width?: number
-}[]
+}
+
+export type DataTableColumns = DataTableColumn[]
 
 function DataTable({
   rows,
@@ -26,7 +29,7 @@ function DataTable({
       <Thead stickyHeader={stickyHeader}>
         <Tr>
           {columns.map((column) => (
-            <Th key={column.field} width={column.width}>{column.headerName}</Th>
+            <Th key={column.field} width={column.width}>{column.header}</Th>
           ))}
         </Tr>
       </Thead>

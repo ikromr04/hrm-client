@@ -1,3 +1,4 @@
+import { Filter } from '@/components/ui/employees-table/employees-table'
 import { Employees, EmployeesFilter } from '@/types/employees'
 import dayjs from 'dayjs'
 
