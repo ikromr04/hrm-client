@@ -66,3 +66,15 @@ export type EmployeesFilter = {
     level: string
   }
 }
+
+export type EmployeesEquipments = {
+  id: ID
+  name: string
+  surname: string
+  patronymic: string
+  avatarThumb: string
+  equipments: {
+    title: string
+    info?: string
+  }[]
+}[]

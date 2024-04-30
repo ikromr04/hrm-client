@@ -11,6 +11,7 @@ import { ActivitiesStoreDTO, ActivitiesUpdateDTO } from '@/dto/activities-dto'
 import { Activity } from '@/types/activities'
 import { EquipmentsStoreDTO, EquipmentsUpdateDTO } from '@/dto/equipments-dto'
 import { Equipment } from '@/types/equipments'
+import { EmployeesEquipments } from '@/types/employees'
 
 export const storeEducationAction = createAsyncThunk<void, {
   dto: EducationsStoreDTO
@@ -27,7 +28,7 @@ export const storeEducationAction = createAsyncThunk<void, {
       successHandler(data)
     } catch (err: any) {
       const error: AxiosError<ValidationError> = err
-      
+
       if (!error.response) {
         throw err
       }
@@ -53,7 +54,7 @@ export const updateEducationAction = createAsyncThunk<void, {
       successHandler(data)
     } catch (err: any) {
       const error: AxiosError<ValidationError> = err
-      
+
       if (!error.response) {
         throw err
       }
@@ -91,7 +92,7 @@ export const storeActivityAction = createAsyncThunk<void, {
       successHandler(data)
     } catch (err: any) {
       const error: AxiosError<ValidationError> = err
-      
+
       if (!error.response) {
         throw err
       }
@@ -117,7 +118,7 @@ export const updateActivityAction = createAsyncThunk<void, {
       successHandler(data)
     } catch (err: any) {
       const error: AxiosError<ValidationError> = err
-      
+
       if (!error.response) {
         throw err
       }
@@ -155,7 +156,7 @@ export const storeEquipmentAction = createAsyncThunk<void, {
       successHandler(data)
     } catch (err: any) {
       const error: AxiosError<ValidationError> = err
-      
+
       if (!error.response) {
         throw err
       }
@@ -181,7 +182,7 @@ export const updateEquipmentAction = createAsyncThunk<void, {
       successHandler(data)
     } catch (err: any) {
       const error: AxiosError<ValidationError> = err
-      
+
       if (!error.response) {
         throw err
       }
@@ -201,5 +202,15 @@ export const deleteEquipmentAction = createAsyncThunk<void, {
   async ({ id, successHandler }, { extra: api }) => {
     await api.delete(generatePath(APIRoute.Equipments.Show, { id }))
     successHandler()
+  },
+)
+
+export const fetchEmployeeEquipmentAction = createAsyncThunk<EmployeesEquipments, undefined, {
+  extra: AxiosInstance
+}>(
+  'equipments/fetch',
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get<EmployeesEquipments>(APIRoute.Equipments.Index)
+    return data
   },
 )

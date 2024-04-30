@@ -19,6 +19,9 @@ export const AppRoute = {
     KPI: '/employees/:id/kpi',
     Attendance: '/employees/:id/attendance',
   },
+  Equipments: {
+    Index: '/equipments'
+  },
   Dashboard: {
     Employees: '/dashboard/employees',
     Jobs: '/dashboard/jobs',

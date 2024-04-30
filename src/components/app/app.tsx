@@ -20,6 +20,7 @@ import DashboardJobsPage from '../pages/dashboard/jobs-page/dashboard-jobs-page'
 import DashboardPositionsPage from '../pages/dashboard/positions-page/dashboard-positions-page'
 import DashboardLanguagesPage from '../pages/dashboard/languages-page/dashboard-languages-page'
 import { ReactNode } from 'react'
+import EquipmentsPage from '../pages/equipments-page/equipments-page'
 
 function App(): ReactNode {
   const authStatus = useAppSelector(getAuthStatus)
@@ -43,6 +44,8 @@ function App(): ReactNode {
         <Route path={AppRoute.Employees.PIR} element={<EmployeesPIRPage />} />
         <Route path={AppRoute.Employees.KPI} element={<EmployeesKPIPage />} />
         <Route path={AppRoute.Employees.Attendance} element={<EmployeesAttendancePage />} />
+
+        <Route path={AppRoute.Equipments.Index} element={<EquipmentsPage />} />
 
         <Route path={AppRoute.Dashboard.Jobs} element={<DashboardJobsPage />} />
         <Route path={AppRoute.Dashboard.Positions} element={<DashboardPositionsPage />} />

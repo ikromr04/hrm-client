@@ -8,6 +8,7 @@ import NavItem from './nav-Item/nav-item'
 import SettingsIcon from '@/components/icons/settings-icon'
 import { ReactNode, memo } from 'react'
 import AdminComponents from '@/components/admin-components/admin-components'
+import ToolsIcon from '@/components/icons/tools-icon'
 
 function PageNavigation(): ReactNode {
   return (
@@ -15,16 +16,19 @@ function PageNavigation(): ReactNode {
       <NavItem
         title="Главная страница"
         icon={<HomeIcon />}
-        href={AppRoute.Home}
-      />
+        href={AppRoute.Home} />
 
       <Hr />
 
       <NavItem
         title="Сотрудники"
         icon={<AddressBookIcon />}
-        href={AppRoute.Employees.Index}
-      />
+        href={AppRoute.Employees.Index} />
+
+      <NavItem
+        title="Оборудование"
+        icon={<ToolsIcon />}
+        href={AppRoute.Equipments.Index} />
 
       <Hr />
 
@@ -36,8 +40,7 @@ function PageNavigation(): ReactNode {
             { title: 'Должности', href: AppRoute.Dashboard.Jobs },
             { title: 'Позиции', href: AppRoute.Dashboard.Positions },
             { title: 'Языки', href: AppRoute.Dashboard.Languages },
-          ]}
-        />
+          ]} />
       </AdminComponents>
 
       <ToggleButton />
