@@ -13,11 +13,12 @@ import { AppRoute } from '@/const'
 import { setEmployeeAction } from '@/store/employee-slice/employees-slice'
 import Accent from '@/components/ui/accent/accent'
 import MapPin from '@/components/icons/map-pin-icon'
+import AdminComponents from '@/components/admin-components/admin-components'
 
 function EmployeeHeader(): ReactNode {
   const employee = useAppSelector(getEmployee)
   const dispatch = useAppDispatch()
-  
+
   if (!employee) {
     return <></>
   }
@@ -49,6 +50,14 @@ function EmployeeHeader(): ReactNode {
         </div>
 
         <Actions>
+          <AdminComponents>
+            <Button
+              href={generatePath(AppRoute.Employees.CV, { id: employee.id })}
+              target="_blank"
+            >
+              Печатать
+            </Button>
+          </AdminComponents>
           <Button
             href={generatePath(AppRoute.Employees.Show, { id: employee.previous })}
             onClick={() => dispatch(setEmployeeAction(null))}

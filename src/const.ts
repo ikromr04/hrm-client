@@ -18,6 +18,7 @@ export const AppRoute = {
     PIR: '/employees/:id/pir',
     KPI: '/employees/:id/kpi',
     Attendance: '/employees/:id/attendance',
+    CV: '/employees/:id/cv',
   },
   Equipments: {
     Index: '/equipments'
