@@ -15,15 +15,15 @@ function VacationsGrid({
   year,
 }: {
   employeesVacations: EmployeesVacations
-  year: string
+  year: number
 }): ReactNode {
   const [keyword, setKeyword] = useState<string>('')
-  const [filter, setFilter] = useState<string>('')
+  const [filter, setFilter] = useState<number | null>(null)
   const dispatch = useAppDispatch()
 
-  const handleFilterClick = (monthIndex: string): () => void => (): void => {
+  const handleFilterClick = (monthIndex: number): () => void => (): void => {
     if (filter === monthIndex) {
-      setFilter('')
+      setFilter(null)
       return
     }
     setFilter(monthIndex)
@@ -31,7 +31,7 @@ function VacationsGrid({
 
   const filteredEmployee = employeesVacations
     .filter((employee) => `${employee.surname} ${employee.name} ${employee.patronymic}`.toLowerCase().includes(keyword))
-    .filter(({ vacations }) => filter ? vacations.find((vacation) => vacation.split('-')[0] === year)?.split('-')[1] === filter : true)
+    .filter(({ vacations }) => filter ? vacations.find((vacation) => vacation.year === year)?.month === filter : true)
 
   return (
     <Wrapper>
@@ -72,7 +72,7 @@ function VacationsGrid({
             <Month
               key={month[0]}
               type="button"
-              onClick={handleFilterClick(month[0])}
+              onClick={handleFilterClick(+month[0])}
               warning={month[0] === filter}
             >
               {month[1]}

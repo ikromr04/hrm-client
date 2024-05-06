@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { SliceName } from '../../const'
 import { EmployeesVacations } from '@/types/vacations'
-import { fetchEmployeesVacationsAction } from './vacation-api-actions'
+import { fetchEmployeesVacationsAction, updateVacationAction } from './vacation-api-actions'
 
 export type VactionsSlice = {
   employeesVacations: EmployeesVacations | null
@@ -18,6 +18,9 @@ export const vacationsSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchEmployeesVacationsAction.fulfilled, (state, action) => {
+        state.employeesVacations = action.payload
+      })
+      .addCase(updateVacationAction.fulfilled, (state, action) => {
         state.employeesVacations = action.payload
       })
   },

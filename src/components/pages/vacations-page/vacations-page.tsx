@@ -12,18 +12,14 @@ import { getYears } from '@/utils/employees'
 
 function VacationsPage(): ReactNode {
   const employeesVacations = useAppSelector(getEmployeesVacations)
-  const [year, setYear] = useState<string>(dayjs().year().toString())
+  const [year, setYear] = useState<number>(dayjs().year())
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     !employeesVacations && dispatch(fetchEmployeesVacationsAction())
   }, [dispatch, employeesVacations])
 
-  if (!employeesVacations) {
-    return null
-  }
-
-  const handleYearChange = (year: string): void => setYear(year)
+  const handleYearChange = (year: string): void => setYear(+year)
 
   return (
     <PageLayout>
@@ -31,7 +27,7 @@ function VacationsPage(): ReactNode {
         <MainTitle>
           Отпуски сотрудников
           <Select
-            value={year}
+            value={year.toString()}
             options={[
               ...getYears(1991).map((year) => ({ value: year, label: year }))
             ]}

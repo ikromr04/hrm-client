@@ -6,7 +6,10 @@ export type EmployeesVacation = {
   surname: string
   patronymic?: string
   avatarThumb: string
-  vacations: string[]
+  vacations: {
+    year: number,
+    month: number,
+  }[]
 }
 
 export type EmployeesVacations = EmployeesVacation[]
