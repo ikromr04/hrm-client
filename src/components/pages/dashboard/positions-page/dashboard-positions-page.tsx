@@ -31,9 +31,9 @@ function DashboardPositionsPage(): ReactNode {
   }))
 
   const columns: DataTableColumns = [
-    { field: 'count', headerName: '№', width: 56 },
-    { field: 'title', headerName: 'Название' },
-    { field: 'actions', headerName: 'Действия', width: 280 },
+    { field: 'count', header: '№', width: 56 },
+    { field: 'title', header: 'Название' },
+    { field: 'actions', header: 'Действия', width: 280 },
   ]
 
   return (

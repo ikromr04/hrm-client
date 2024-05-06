@@ -9,6 +9,7 @@ import SettingsIcon from '@/components/icons/settings-icon'
 import { ReactNode, memo } from 'react'
 import AdminComponents from '@/components/admin-components/admin-components'
 import ToolsIcon from '@/components/icons/tools-icon'
+import VacationIcon from '@/components/icons/vacation-icon'
 
 function PageNavigation(): ReactNode {
   return (
@@ -29,6 +30,11 @@ function PageNavigation(): ReactNode {
         title="Оборудование"
         icon={<ToolsIcon />}
         href={AppRoute.Equipments.Index} />
+
+      <NavItem
+        title="Отпуски"
+        icon={<VacationIcon />}
+        href={AppRoute.Vacations.Index} />
 
       <Hr />
 

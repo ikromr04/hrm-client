@@ -31,9 +31,9 @@ function DashboardLanguagesPage(): ReactNode {
   }))
 
   const columns: DataTableColumns = [
-    { field: 'count', headerName: '№', width: 56 },
-    { field: 'name', headerName: 'Название' },
-    { field: 'actions', headerName: 'Действия', width: 280 },
+    { field: 'count', header: '№', width: 56 },
+    { field: 'name', header: 'Название' },
+    { field: 'actions', header: 'Действия', width: 280 },
   ]
 
   return (

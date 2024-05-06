@@ -1,8 +1,8 @@
 import { BaseSyntheticEvent, Dispatch, ReactNode, SetStateAction } from 'react'
 import { Input } from './styled'
-import { Filter } from '../employees-table'
-import { DataTableRow } from '../../data-table/data-table'
 import { useOutsideClick } from '@/hooks/use-outside-click'
+import { DataTableRow } from '@/components/ui/data-table/data-table'
+import { Filter } from '../equipments-table'
 
 function Filters({
   fieldName,

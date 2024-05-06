@@ -23,6 +23,9 @@ export const AppRoute = {
   Equipments: {
     Index: '/equipments'
   },
+  Vacations: {
+    Index: '/vacations'
+  },
   Dashboard: {
     Employees: '/dashboard/employees',
     Jobs: '/dashboard/jobs',
@@ -82,6 +85,10 @@ export const APIRoute = {
     Index: '/equipments',
     Show: '/equipments/:id',
   },
+  Vacations: {
+    Index: '/vacations',
+    Show: '/vacations/:id',
+  },
 }
 
 export enum SliceName {
@@ -92,6 +99,7 @@ export enum SliceName {
   Position = 'Position',
   Language = 'Language',
   Department = 'Department',
+  Vacation = 'Vacation',
 }
 
 export const languageLevelOptions = [
