@@ -75,7 +75,7 @@ function EquipmentsTable({
     {
       field: 'equipments',
       header: <>
-        Адрес
+        Оборудование
         <Filters
           fieldName="equipments"
           filter={filter}
