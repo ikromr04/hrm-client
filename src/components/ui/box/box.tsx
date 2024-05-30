@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
 import { StyledBox } from './styled'
-import { Link } from 'react-router-dom'
 
 function Box({
   children,
@@ -10,7 +9,7 @@ function Box({
 }: {
   children: ReactNode
   className?: string
-  tagName?: string | typeof Link
+  tagName?: string
   [rest: string]: unknown
 }): ReactNode {
   return (

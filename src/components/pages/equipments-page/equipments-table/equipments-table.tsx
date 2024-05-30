@@ -55,7 +55,9 @@ function EquipmentsTable({
         currentTarget.onerror = null
         currentTarget.src = defaultAvatar
       }} />,
-    equipments: employee.equipments.map(({ title, info }) => <><b>{title}</b>{info ? ` - ${info}` : ''};</>),
+    equipments: employee.equipments.map(({ title, info }) => <>
+      <b>{title}</b>{info ? ` - ${info}` : ''};
+    </>),
   }))
 
   const columns: DataTableColumns = [

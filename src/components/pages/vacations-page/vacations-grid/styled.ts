@@ -1,7 +1,7 @@
 import BoxToolbar from '@/components/ui/box-toolbar/box-toolbar'
-import Box from '@/components/ui/box/box'
 import { StyledButton } from '@/components/ui/button/styled'
 import { StyledInput } from '@/components/ui/input/styled'
+import Box from '@/components/ui/box/box'
 import styled from 'styled-components'
 
 export const Wrapper = styled(Box)`
