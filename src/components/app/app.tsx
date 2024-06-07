@@ -52,6 +52,8 @@ function App(): ReactNode {
 
         <Route path={AppRoute.Vacations.Index} element={<VacationsPage />} />
 
+        <Route path={AppRoute.Applications.Index} element={<VacationsPage />} />
+
         <Route path={AppRoute.Dashboard.Jobs} element={<DashboardJobsPage />} />
         <Route path={AppRoute.Dashboard.Positions} element={<DashboardPositionsPage />} />
         <Route path={AppRoute.Dashboard.Languages} element={<DashboardLanguagesPage />} />

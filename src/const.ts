@@ -32,6 +32,9 @@ export const AppRoute = {
     Positions: '/dashboard/positions',
     Languages: '/dashboard/languages',
   },
+  Applications: {
+    Index: '/applications'
+  },
   NotFound: '*',
 }
 
