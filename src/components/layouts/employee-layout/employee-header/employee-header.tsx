@@ -55,7 +55,7 @@ function EmployeeHeader(): ReactNode {
               href={generatePath(AppRoute.Employees.CV, { id: employee.id })}
               target="_blank"
             >
-              Печатать
+              Резюме
             </Button>
           </AdminComponents>
           <Button

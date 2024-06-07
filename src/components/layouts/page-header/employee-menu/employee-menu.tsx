@@ -38,10 +38,11 @@ function EmployeeMenu(): ReactNode {
       </StyledButton>
 
       <DropdownMenu isOpen={isOpen} onClick={() => setIsOpen(false)}>
-        <DropdownButton
-          href={generatePath(AppRoute.Employees.Show, { id: user.id })}
-        >
+        <DropdownButton href={generatePath(AppRoute.Employees.Show, { id: user.id })}>
           Перейти к профилю
+        </DropdownButton>
+        <DropdownButton>
+          Подать заявку
         </DropdownButton>
         <Hr />
         <DropdownButton onClick={() => dispatch(logoutAction())}>

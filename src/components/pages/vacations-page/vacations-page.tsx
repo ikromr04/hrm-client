@@ -31,8 +31,7 @@ function VacationsPage(): ReactNode {
             options={[
               ...getYears(1991).map((year) => ({ value: year, label: year }))
             ]}
-            onChange={handleYearChange}
-          />
+            onChange={handleYearChange} />
         </MainTitle>
         {employeesVacations
           ? <VacationsGrid employeesVacations={employeesVacations} year={year} />

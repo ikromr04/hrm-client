@@ -13,8 +13,6 @@ export const CV = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 32px 40px;
-  padding-top: 0;
   width: 90%;
   max-width: 1440px;
   margin: 0 auto;
@@ -31,7 +29,7 @@ export const HeaderInner = styled('div')`
   justify-content: space-between;
   gap: 32px;
   flex-grow: 1;
-  padding-top: 80px;
+  padding-top: 40px;
 `
 
 export const EmployeeName = styled(Title)`
@@ -41,7 +39,6 @@ export const EmployeeName = styled(Title)`
 export const Avatar = styled('img')`
   display: flex;
   border-radius: 50%;
-  margin-top: 32px;
 `
 
 export const EmployeeDetail = styled('div')`

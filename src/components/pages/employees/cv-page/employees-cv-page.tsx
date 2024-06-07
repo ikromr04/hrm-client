@@ -45,6 +45,7 @@ function EmployeesCVPage() {
             Печатать <DropdownIcon />
           </ExportButton>}
         content={() => ref.current} />
+      <br />
       <CV ref={ref}>
         <Header>
           <Avatar
@@ -121,7 +122,7 @@ function EmployeesCVPage() {
         </Box>
         <Education />
         <Activity />
-        <Tools/>
+        <Tools />
       </CV>
     </PrivateRoute>
   )
