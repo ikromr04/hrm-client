@@ -33,7 +33,9 @@ export const AppRoute = {
     Languages: '/dashboard/languages',
   },
   Applications: {
-    Index: '/applications'
+    Prepaid: '/applications/prepaid',
+    Loan: '/applications/loan',
+    Vacation: '/applications/vacation',
   },
   NotFound: '*',
 }

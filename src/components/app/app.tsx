@@ -23,6 +23,9 @@ import { ReactNode } from 'react'
 import EquipmentsPage from '../pages/equipments-page/equipments-page'
 import EmployeesCVPage from '../pages/employees/cv-page/employees-cv-page'
 import VacationsPage from '../pages/vacations-page/vacations-page'
+import PrepaidPage from '../pages/applications/prepaid-page/prepaid-page'
+import LoanPage from '../pages/applications/loan-page/loan-page'
+import VacationPage from '../pages/applications/vacation-page/vacation-page'
 
 function App(): ReactNode {
   const authStatus = useAppSelector(getAuthStatus)
@@ -52,7 +55,9 @@ function App(): ReactNode {
 
         <Route path={AppRoute.Vacations.Index} element={<VacationsPage />} />
 
-        <Route path={AppRoute.Applications.Index} element={<VacationsPage />} />
+        <Route path={AppRoute.Applications.Prepaid} element={<PrepaidPage />} />
+        <Route path={AppRoute.Applications.Loan} element={<LoanPage />} />
+        <Route path={AppRoute.Applications.Vacation} element={<VacationPage />} />
 
         <Route path={AppRoute.Dashboard.Jobs} element={<DashboardJobsPage />} />
         <Route path={AppRoute.Dashboard.Positions} element={<DashboardPositionsPage />} />

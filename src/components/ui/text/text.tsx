@@ -10,6 +10,9 @@ function Text({
   success,
   warning,
   error,
+  bold,
+  uppercase,
+  center,
 }: {
   children: ReactNode
   className?: string
@@ -19,6 +22,9 @@ function Text({
   success?: boolean
   warning?: boolean
   error?: boolean
+  bold?: boolean
+  uppercase?: boolean
+  center?: boolean
 }): ReactNode {
   return (
     <StyledText
@@ -29,6 +35,9 @@ function Text({
       success={success}
       warning={warning}
       error={error}
+      bold={bold}
+      uppercase={uppercase}
+      center={center}
     >
       {children}
     </StyledText>

@@ -41,7 +41,7 @@ function EmployeeMenu(): ReactNode {
         <DropdownButton href={generatePath(AppRoute.Employees.Show, { id: user.id })}>
           Перейти к профилю
         </DropdownButton>
-        <DropdownButton href={AppRoute.Applications.Index}>
+        <DropdownButton href={AppRoute.Applications.Prepaid}>
           Подать заявку
         </DropdownButton>
         <Hr />

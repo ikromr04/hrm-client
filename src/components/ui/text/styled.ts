@@ -1,13 +1,25 @@
 import styled, { css } from 'styled-components'
 
 export const StyledText = styled('p').withConfig({
-  shouldForwardProp: (prop) => !['small', 'large', 'success', 'error', 'warning'].includes(prop)
-})<{ 
-  small?: boolean, 
-  large?: boolean, 
-  success?: boolean, 
-  error?: boolean, 
-  warning?: boolean 
+  shouldForwardProp: (prop) => ![
+    'small',
+    'large',
+    'success',
+    'error',
+    'warning',
+    'bold',
+    'uppercase',
+    'center',
+  ].includes(prop)
+}) <{
+  small?: boolean,
+  large?: boolean,
+  success?: boolean,
+  error?: boolean,
+  warning?: boolean,
+  bold?: boolean,
+  uppercase?: boolean,
+  center?: boolean,
 }>`
   margin-top: 0;
   margin-bottom: 0;
@@ -34,5 +46,17 @@ export const StyledText = styled('p').withConfig({
 
   ${({ error }) => error && css`
     color: #d32f2f;
+  `}
+
+  ${({ bold }) => bold && css`
+    font-weight: bold;
+  `}
+
+  ${({ uppercase }) => uppercase && css`
+    text-transform: uppercase;
+  `}
+
+  ${({ center }) => center && css`
+    text-align: center;
   `}
 `
